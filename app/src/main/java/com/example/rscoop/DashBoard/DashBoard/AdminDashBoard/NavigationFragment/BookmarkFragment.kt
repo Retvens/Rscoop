@@ -2,10 +2,13 @@ package com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -57,12 +60,40 @@ class BookmarkFragment : Fragment() {
 
                 shimmer.stopShimmer()
                 shimmer.visibility = View.GONE
-
+                val searchBar = view!!.findViewById<EditText>(R.id.searchbox2)
                 val response = response.body()!!
 
-                bookmarkAdapter = BookmarkAdapter(requireActivity(),response)
-                bookmarkAdapter.notifyDataSetChanged()
-                recyclerView.adapter = bookmarkAdapter
+                if (response != null){
+                    val originalData = response.toList()
+
+                    bookmarkAdapter = BookmarkAdapter(requireActivity(),response)
+                    bookmarkAdapter.notifyDataSetChanged()
+                    recyclerView.adapter = bookmarkAdapter
+
+                    searchBar.addTextChangedListener(object : TextWatcher{
+                        override fun beforeTextChanged(
+                            p0: CharSequence?,
+                            p1: Int,
+                            p2: Int,
+                            p3: Int
+                        ) {
+
+                        }
+
+                        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                        }
+
+                        override fun afterTextChanged(p0: Editable?) {
+                            val filterData = originalData.filter { item ->
+                                item.hotel_name.contains(p0.toString(),ignoreCase = true)
+                            }
+
+                            bookmarkAdapter.updateData(filterData)
+                        }
+
+                    })
+                }
 
                 bookmarkAdapter.setOnItemClickListener(object : BookmarkAdapter.onItemClickListener{
                     override fun onClick(position: Int) {

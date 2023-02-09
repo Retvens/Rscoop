@@ -55,9 +55,14 @@ class RecentTasks : Fragment() {
             ) {
                 val response = response.body()!!
 
-                recentrecycler = RecentRecycler(requireActivity(),response)
-                recentrecycler.notifyDataSetChanged()
-                recyclerView.adapter = recentrecycler
+                if (response != null){
+
+
+                    recentrecycler = RecentRecycler(requireActivity(),response)
+                    recentrecycler.notifyDataSetChanged()
+                    recyclerView.adapter = recentrecycler
+                }
+
             }
 
             override fun onFailure(call: Call<List<OwnersData>?>, t: Throwable) {

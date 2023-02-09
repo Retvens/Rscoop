@@ -3,14 +3,19 @@ package com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -31,6 +36,8 @@ import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Query
+import kotlin.io.path.fileVisitor
 
 class ExploreFragment() : Fragment(){
 
@@ -42,11 +49,9 @@ class ExploreFragment() : Fragment(){
     private lateinit var tabLabLayout:TabLayout
     private  var recentTasks = RecentTasks()
     private lateinit var shimmer: ShimmerFrameLayout
+    private lateinit var searchBar:EditText
 
-    private  val recentTask =  RecentTasks()
-    private val todayTasks = TodayTasks()
-    private val upcomingTasks = UpcomingTasks()
-    private val completedTasks = CompletedTasks()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,6 +79,7 @@ class ExploreFragment() : Fragment(){
         hotelRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
 
 
+
 // All Tasks Tab Layout
         var viewPager = view.findViewById<ViewPager>(R.id.viewPager1)
         tabLabLayout = view.findViewById<TabLayout>(R.id.tabLayout)
@@ -94,7 +100,7 @@ class ExploreFragment() : Fragment(){
         getHotels()
 
 
-
+        searchBar = view.findViewById<EditText>(R.id.search_Bar)
 
     }
 
@@ -112,16 +118,47 @@ class ExploreFragment() : Fragment(){
 
                val response = response.body()!!
 
-               adapter = RecyclerAdminView(requireActivity(),response)
-               adapter.notifyDataSetChanged()
-               recyclerView.adapter = adapter
+               if (response != null){
+                   val originalData = response.toList()
 
-               adapter.setOnItemClickListener(object : RecyclerAdminView.onItemClickListener{
-                   override fun onClick(position: Int) {
-                       startActivity(Intent(context,ClientCountries::class.java))
-                   }
 
-               })
+                   adapter = RecyclerAdminView(requireActivity(),response)
+                   adapter.notifyDataSetChanged()
+                   recyclerView.adapter = adapter
+
+                   searchBar.addTextChangedListener(object : TextWatcher{
+                       override fun beforeTextChanged(
+                           p0: CharSequence?,
+                           p1: Int,
+                           p2: Int,
+                           p3: Int
+                       ) {
+
+                       }
+
+                       override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                           val filterData = originalData.filter { item ->
+                               item.Name.contains(p0.toString(),ignoreCase = true)
+                           }
+
+                           adapter.updateData(filterData)
+                       }
+
+                       override fun afterTextChanged(p0: Editable?) {
+
+                       }
+
+                   })
+
+                   adapter.setOnItemClickListener(object : RecyclerAdminView.onItemClickListener{
+                       override fun onClick(position: Int) {
+                           startActivity(Intent(context,ClientCountries::class.java))
+                       }
+
+                   })
+
+               }
+
            }
 
            override fun onFailure(call: Call<List<CountryData>?>, t: Throwable) {
@@ -145,15 +182,48 @@ class ExploreFragment() : Fragment(){
           ) {
               shimmer.stopShimmer()
               shimmer.visibility = View.GONE
-
               val response = response.body()
-              hotelAdapter = RecyclerHotelsView(requireActivity(), response!!)
-              hotelAdapter.notifyDataSetChanged()
-              hotelRecyclerView.adapter = hotelAdapter
+
+              if (response != null){
+
+                  val originalData = response.toList()
+
+                  hotelAdapter = RecyclerHotelsView(requireActivity(), response!!)
+                  hotelAdapter.notifyDataSetChanged()
+                  hotelRecyclerView.adapter = hotelAdapter
+
+                  //searchBar
+                  searchBar.addTextChangedListener(object : TextWatcher{
+                      override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                      }
+
+                      override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                          val filterData = originalData.filter { item ->
+                              item.hotel_name.contains(p0.toString(),ignoreCase = true)
+                          }
+
+                          hotelAdapter.updateData(filterData)
+
+                      }
+
+                      override fun afterTextChanged(p0: Editable?) {
+                      }
+
+                  })
+
+              }
+
+
+
           }
 
           override fun onFailure(call: Call<List<HotelsData>?>, t: Throwable) {
-
+//                Toast.makeText(requireContext(),t.message,Toast.LENGTH_LONG).show()
+              val error = view!!.findViewById<TextView>(R.id.error)
+              error.text = t.message
+              Log.e("error",t.message.toString())
           }
       })
     }
@@ -166,7 +236,6 @@ class ExploreFragment() : Fragment(){
             transaction.commit()
         }
     }
-
 
 
 }

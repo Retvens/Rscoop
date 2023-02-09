@@ -12,7 +12,7 @@ import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerAdminView
 import com.example.rscoop.DataCollections.HotelsData
 import com.example.rscoop.R
 
-class BookmarkAdapter(val context: Context,val userList:List<HotelsData>):RecyclerView.Adapter<BookmarkAdapter.MyViewHolderClass>() {
+class BookmarkAdapter(val context: Context, var userList:List<HotelsData>):RecyclerView.Adapter<BookmarkAdapter.MyViewHolderClass>() {
 
 
 
@@ -57,5 +57,8 @@ class BookmarkAdapter(val context: Context,val userList:List<HotelsData>):Recycl
        return  userList.size
     }
 
-
+    fun updateData(newItems: List<HotelsData>) {
+        userList = newItems
+        notifyDataSetChanged()
+    }
 }
