@@ -10,9 +10,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rscoop.DataCollections.CountryData
+import com.example.rscoop.DataCollections.HotelsData
 import com.example.rscoop.R
 
-class RecyclerAdminView(val context: Context, val userList:List<CountryData>):RecyclerView.Adapter<RecyclerAdminView.MyViewHolder>(){
+class RecyclerAdminView(val context: Context, var userList:List<CountryData>):RecyclerView.Adapter<RecyclerAdminView.MyViewHolder>(){
 
     private lateinit var mListener: onItemClickListener
 
@@ -55,6 +56,10 @@ class RecyclerAdminView(val context: Context, val userList:List<CountryData>):Re
 
     override fun getItemCount(): Int {
         return userList.size
+    }
+    fun updateData(newItems: List<CountryData>) {
+        userList = newItems
+        notifyDataSetChanged()
     }
 
 

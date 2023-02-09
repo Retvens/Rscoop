@@ -16,7 +16,7 @@ import com.example.rscoop.R
 import com.example.rscoop.RecentProperties.ClientCountries
 import kotlin.math.round
 
-class RecyclerHotelsView(val context: Context, val hotelList:List<HotelsData>): RecyclerView.Adapter<RecyclerHotelsView.MyclassViewHolder>() {
+class RecyclerHotelsView(val context: Context, var hotelList:List<HotelsData>): RecyclerView.Adapter<RecyclerHotelsView.MyclassViewHolder>() {
 
     class MyclassViewHolder(itemview: View):RecyclerView.ViewHolder(itemview){
 
@@ -43,6 +43,10 @@ class RecyclerHotelsView(val context: Context, val hotelList:List<HotelsData>): 
 
     override fun getItemCount(): Int {
        return hotelList.size
+    }
+    fun updateData(newItems: List<HotelsData>) {
+        hotelList = newItems
+        notifyDataSetChanged()
     }
 
 

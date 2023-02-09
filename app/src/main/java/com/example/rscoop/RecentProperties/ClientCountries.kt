@@ -3,7 +3,10 @@ package com.example.rscoop.RecentProperties
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -52,13 +55,41 @@ class ClientCountries : AppCompatActivity() {
                 shimmer.stopShimmer()
                 shimmer.visibility = View.GONE
 
-
-
+                val searchBar = findViewById<EditText>(R.id.searchbox)
                 val response = response.body()!!
 
-                clientCountriesAdapter = ClientCountriesAdapter(this@ClientCountries,response)
-                clientCountriesAdapter.notifyDataSetChanged()
-                recyclerView.adapter = clientCountriesAdapter
+                if (response != null){
+                    val originalData = response.toList()
+                    clientCountriesAdapter = ClientCountriesAdapter(this@ClientCountries,response)
+                    clientCountriesAdapter.notifyDataSetChanged()
+                    recyclerView.adapter = clientCountriesAdapter
+
+                    searchBar.addTextChangedListener(object :TextWatcher{
+                        override fun beforeTextChanged(
+                            p0: CharSequence?,
+                            p1: Int,
+                            p2: Int,
+                            p3: Int
+                        ) {
+
+                        }
+
+                        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                        }
+
+                        override fun afterTextChanged(p0: Editable?) {
+                            val filterData = originalData.filter { item ->
+                                item.Name.contains(p0.toString(),ignoreCase = true)
+                            }
+
+                            clientCountriesAdapter.updateData(filterData)
+                        }
+
+                    })
+
+
+                }
 
                 clientCountriesAdapter.setOnItemClickListener(object :ClientCountriesAdapter.onItemClickListener{
                     override fun onClick(position: Int) {
