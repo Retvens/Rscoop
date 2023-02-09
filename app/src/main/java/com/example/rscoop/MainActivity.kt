@@ -13,12 +13,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val text = findViewById<TextView>(R.id.text)
-
-        text.setOnClickListener {
-            startActivity(Intent(this,OnBoardingScreen::class.java))
-        }
-
 
 
     }
