@@ -19,6 +19,6 @@ interface RetvensUrls {
     @GET("Country")
     fun getCountry(): Call<List<CountryData>>
 
-
+    
 
 }

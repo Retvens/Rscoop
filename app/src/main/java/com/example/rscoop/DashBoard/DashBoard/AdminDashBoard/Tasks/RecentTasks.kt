@@ -66,7 +66,7 @@ class RecentTasks : Fragment() {
             }
 
             override fun onFailure(call: Call<List<OwnersData>?>, t: Throwable) {
-                TODO("Not yet implemented")
+
             }
         })
 
