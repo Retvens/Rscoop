@@ -24,6 +24,7 @@ import com.example.rscoop.DataCollections.HotelsData
 import com.example.rscoop.DataCollections.OwnersData
 import com.example.rscoop.R
 import com.example.rscoop.RecentProperties.ClientCountries
+import com.example.rscoop.RecentProperties.RecentPropertiesView
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.tabs.TabLayout
@@ -42,6 +43,8 @@ class ExploreFragment() : Fragment(){
     private lateinit var tabLabLayout:TabLayout
     private  var recentTasks = RecentTasks()
     private lateinit var shimmer: ShimmerFrameLayout
+
+    private lateinit var recentProperties: TextView
 
     private  val recentTask =  RecentTasks()
     private val todayTasks = TodayTasks()
@@ -73,6 +76,10 @@ class ExploreFragment() : Fragment(){
         hotelRecyclerView.setHasFixedSize(true)
         hotelRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
 
+        recentProperties = view.findViewById(R.id.view_properties)
+        recentProperties.setOnClickListener {
+            startActivity(Intent(context,RecentPropertiesView::class.java))
+        }
 
 // All Tasks Tab Layout
         var viewPager = view.findViewById<ViewPager>(R.id.viewPager1)

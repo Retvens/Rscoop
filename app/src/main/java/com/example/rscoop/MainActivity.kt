@@ -5,14 +5,36 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import com.example.rscoop.OnBoardingScreen.OnBoardingScreen
+import androidx.cardview.widget.CardView
+import com.example.rscoop.Authentication.LoginActivity
+import com.example.rscoop.Authentication.LoginPhone
+import com.example.rscoop.DashBoard.AdminDashBoard.AdminDashBoard
 
 class MainActivity : AppCompatActivity() {
+    lateinit var loginBtn : CardView
+    lateinit var phoneLogin : CardView
+    lateinit var signupBtn : TextView
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        signupBtn = findViewById(R.id.signup)
+        phoneLogin = findViewById(R.id.phone_cv)
+        loginBtn = findViewById(R.id.login_cv)
+
+        signupBtn.setOnClickListener {
+            startActivity(Intent(this, AdminDashBoard::class.java))
+        }
+
+        loginBtn.setOnClickListener {
+            startActivity( Intent(this, LoginActivity::class.java))
+        }
+
+        phoneLogin.setOnClickListener{
+            startActivity(Intent(this,LoginPhone::class.java))
+        }
 
 
     }
