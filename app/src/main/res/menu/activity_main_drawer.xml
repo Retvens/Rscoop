@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+            <item
+                android:id="@+id/addClient"
+                android:title="Add Clients/Users"
+                android:icon="@drawable/ic_baseline_person_add_alt_1_24"
+
+                />
+            <item
+                android:id="@+id/addProperty"
+                android:title="Add Property"
+                android:icon="@drawable/ic_baseline_add_home_24"
+                />
+            <item
+                android:id="@+id/addCountry"
+                android:title="Add Country"
+                android:icon="@drawable/ic_baseline_language_24"
+
+                />
+            <item
+                android:id="@+id/addCity"
+                android:title="Add City"
+                android:icon="@drawable/ic_baseline_attach_money_24"
+                />
+
+    <item android:title=""/>
+
+    <item
+        android:id="@+id/Terms"
+        android:title="@string/iconName"
+        android:icon="@drawable/ic_baseline_question_mark_24"
+
+        />
+    <item
+        android:id="@+id/Privacy"
+        android:title="Privacy Policy"
+        android:icon="@drawable/ic_baseline_check_box_24"
+        />
+    <item
+        android:id="@+id/Help"
+        android:title="Help Centre"
+        android:icon="@drawable/ic_baseline_headphones_24"
+
+        />
+    <item
+        android:id="@+id/About"
+        android:title="About us"
+        android:icon="@drawable/ic_baseline_person_24"
+        />
+
+
+</menu>

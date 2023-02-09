@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">RSCOOP</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="iconName">Terms &amp; Condition</string>
+    <string name="header1">You also want a dedicated reporting of your social media report? Get it instanlty in just a few taps</string>
+    <string name="title">Hi Retvens,\n How we can help you
+    </string>
+    <string name="title2">Get the updates of recent client in new countries</string>
+    <string name="properties">Recent Properties</string>
+
+    <style name="TabLayout">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">13dp</item>
+        <item name="android:textColor">#C8C8D0</item>
+    </style>
+
+
+
+</resources>

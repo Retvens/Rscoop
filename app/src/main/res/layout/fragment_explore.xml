@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DashBoard.DashBoard.AdminDashBoard.NavigationFragment.ExploreFragment">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/recycler1"
+                tools:ignore="MissingConstraints"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recycler2"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    >
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        tools:ignore="MissingConstraints"
+                        android:src="@drawable/person_icon"
+                        />
+
+
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="94dp"
+                        android:fontFamily="@font/average"
+                        android:text="@string/title"
+                        android:textSize="35dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/title"
+                        android:layout_marginTop="20dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginRight="30dp"
+                        android:background="@drawable/searchbox"
+                        android:textSize="18dp"
+                        android:paddingLeft="35dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:hint="Search"
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_search_24"
+                        android:layout_marginStart="35dp"
+                        android:layout_below="@+id/title"
+                        android:layout_marginTop="30dp"
+                        android:layout_alignParentStart="true"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@color/white"
+                    android:layout_below="@+id/recycler2"
+                    android:layout_marginTop="20dp"
+                    tools:ignore="MissingConstraints">
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="50dp"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            >
+                            <include layout="@layout/list_item_shimmer"/>
+                            <include layout="@layout/list_item_shimmer"/>
+                            <include layout="@layout/list_item_shimmer"/>
+
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/average"
+                        android:paddingLeft="15dp"
+                        android:text="Recent Countries"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="33dp"
+                        android:paddingStart="15dp"
+                        android:text="@string/title2"
+                        android:textSize="13sp"
+                        tools:ignore="RtlSymmetry" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/countryRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="50dp" />
+
+
+                    <TextView
+                        android:id="@+id/textpro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/countryRecycler"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/average"
+                        android:paddingLeft="15dp"
+                        android:text="Recent Properties"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/countryRecycler"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/average"
+                        android:paddingRight="20dp"
+                        android:text="View all latest"
+                        android:layout_alignParentRight="true"
+                        android:textSize="18dp"
+                        android:textColor="#4A7AF7"
+                        />
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/hotelsRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textpro"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="600dp"
+                    android:layout_below="@id/relativeLayout"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/alltask"
+                        android:text="All Tasks"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="15dp"
+                        android:fontFamily="@font/average"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="View all Tasks"
+                        android:textColor="#4A7AF7"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:textSize="15dp"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="15dp"
+                        android:fontFamily="@font/average"
+                        android:paddingRight="15dp"
+                        />
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tabTextColor="#7A7777"
+                        android:layout_below="@+id/alltask"
+                        tools:ignore="MissingConstraints"
+                        app:tabTextAppearance="@style/TabLayout"
+                        app:tabSelectedTextColor="#4A7AF7"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        />
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewPager1"
+                        android:layout_width="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/tabLayout"
+                        android:background="@color/white"
+                        />
+
+
+
+
+                </RelativeLayout>
+            </RelativeLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

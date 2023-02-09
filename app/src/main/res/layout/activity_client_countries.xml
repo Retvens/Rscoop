@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecentProperties.ClientCountries">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/constraint"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/properties"
+            android:id="@+id/recenttext"
+            android:textSize="30dp"
+            android:textColor="#383842"
+            android:layout_marginTop="45dp"
+            android:textStyle="normal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/searchbox2"
+            android:textSize="18dp"
+            android:paddingLeft="35dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:hint="Search"
+            app:layout_constraintTop_toBottomOf="@+id/recenttext"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/searchbox"
+            tools:ignore="MissingConstraints" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_search_24"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentStart="true"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toBottomOf="@+id/recenttext"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/client_shimmer_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        tools:ignore="MissingConstraints"
+        android:layout_below="@+id/constraint"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        >
+
+       <include layout="@layout/clientshimmer"/>
+
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerOfClientCountry"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_below="@+id/constraint"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            tools:ignore="MissingConstraints"
+            android:layout_alignParentBottom="true"
+            />
+
+
+
+
+
+</RelativeLayout>
