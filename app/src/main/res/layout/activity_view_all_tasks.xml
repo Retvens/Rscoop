@@ -1,103 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecentProperties.ViewAllTasks">
 
-    <ImageView
-        android:id="@+id/tasks_back_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintHorizontal_bias=".05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias=".05"
-        app:srcCompat="@drawable/back_btn" />
-
-    <TextView
-        android:id="@+id/all_tasks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/all_tasks"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/avenir"
-        android:textColor="@color/black"
-        android:layout_marginStart="10dp"
-        app:layout_constraintTop_toTopOf="@id/tasks_back_btn"
-        app:layout_constraintStart_toEndOf="@id/tasks_back_btn"
-        app:layout_constraintBottom_toBottomOf="@id/tasks_back_btn"/>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/search_Bar_card"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp"
-        android:background="@color/light_grey"
-        android:layout_margin="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/all_tasks">
+        android:id="@+id/constraint"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/tasks_back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginStart="8dp"
-            android:orientation="horizontal">
+            app:layout_constraintHorizontal_bias=".05"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias=".05"
+            app:srcCompat="@drawable/back_btn" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_search_24"/>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/try_to_enter_any_hotel_name"
-                android:textColorHint="#ABB3BB"
-                android:outlineSpotShadowColor="#ABB3BB"
-                android:outlineAmbientShadowColor="#ABB3BB"/>
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#c1c1c1"
-        android:layout_marginVertical="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_Bar_card"/>
+        <TextView
+            android:id="@+id/all_tasks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all_tasks"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/avenir"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="@id/tasks_back_btn"
+            app:layout_constraintStart_toEndOf="@id/tasks_back_btn"
+            app:layout_constraintBottom_toBottomOf="@id/tasks_back_btn"/>
 
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_Bar_card"
-        >
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/search_Bar"
+            android:background="@drawable/searchbox3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:paddingLeft="35dp"
+            android:paddingTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="90dp"
+            android:hint="Search"
+            tools:ignore="MissingConstraints" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_search_24"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="100dp"
+            android:layout_alignParentStart="true"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_Tasks"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/constraint"
+           />
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_tasks_view_container"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/constraint"
+            tools:ignore="MissingConstraints">
 
             <LinearLayout
                 android:id="@+id/shimmer_layout_tasks"
@@ -115,7 +107,4 @@
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
