@@ -57,7 +57,8 @@ dependencies {
     //shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
-    //google Map
-    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+//    Country Code Picker
+    implementation'com.hbb20:ccp:2.5.3'
+
 
 }

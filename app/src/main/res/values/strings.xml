@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RSCOOP</string>
+    <string name="app_name">R-SCOOP</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="iconName">Terms &amp; Condition</string>
@@ -9,11 +9,23 @@
     <string name="title2">Get the updates of recent client in new countries</string>
     <string name="properties">Recent Properties</string>
 
+    <!--    Authentication String-->
+    <string name="log_in">Log In</string>
+    <string name="don_t_have_an">Don\'t have an account? Sign Up</string>
+    <string name="connect_with_phone">Connect With Phone</string>
+    <string name="enter_mail">Enter Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_context">Please enter your email address. You will receive a link to create a new password via email.</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="phone_context">Easy discovering new reports and download your social information with Retvens</string>
+    <string name="enter_the">Enter the 4 digit code sent to your phone</string>
+    <string name="i_have_a_problem">I have a problem.</string>
+    <string name="hi_welcome">Hi,\nWelcome back!</string>
+
     <style name="TabLayout">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">13dp</item>
         <item name="android:textColor">#C8C8D0</item>
     </style>
-
 
 </resources>

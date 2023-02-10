@@ -41,6 +41,85 @@
         app:layout_constraintVertical_bias="0.148" />
 
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/phone_cv"
+        android:layout_width="315dp"
+        android:layout_height="44dp"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="#5856D6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/r_scoop">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/phone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/connect_with_phone"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:gravity="center_horizontal"
+                android:layout_marginHorizontal="5dp"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/login_cv"
+        android:layout_width="315dp"
+        android:layout_height="44dp"
+        app:cardBackgroundColor="#FF2D55"
+        app:cardCornerRadius="8dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias=".08"
+        app:layout_constraintTop_toBottomOf="@+id/phone_cv">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:gravity="center_horizontal"
+                android:text="@string/log_in"
+                android:textSize="15sp"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/don_t_have_an"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_cv"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
