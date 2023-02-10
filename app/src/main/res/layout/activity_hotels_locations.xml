@@ -49,6 +49,6 @@
         map:zOrderOnTop="true"
         map:uiZoomControls="true"
         android:background="#8F8F8F"
-        tools:ignore="MissingConstraints" />
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
