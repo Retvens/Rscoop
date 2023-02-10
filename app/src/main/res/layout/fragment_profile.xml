@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:text="Retvens Services"
         android:textSize="20dp"
-        android:fontFamily="@font/arvo"
+        android:fontFamily="@font/avenir"
         android:textColor="@color/black"
         android:layout_marginStart="10dp"
         app:layout_constraintVertical_bias="0.3"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:background="#FF2D55"
-        app:layout_constraintVertical_bias="0.64"
+        app:layout_constraintVertical_bias="0.73"
         app:cardCornerRadius="5dp"
         app:layout_constraintStart_toEndOf="@id/profile_image"
         app:layout_constraintTop_toTopOf="@id/profile_image"
@@ -50,7 +50,7 @@
             android:layout_height="match_parent"
             android:background="#FF2D55"
             android:gravity="center"
-            android:paddingHorizontal="4dp"
+            android:paddingHorizontal="6dp"
             android:orientation="horizontal">
 
         <ImageView
@@ -61,7 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:layout_marginStart="4dp"
+                android:fontFamily="@font/avenir"
+                android:layout_marginStart="6dp"
                 android:text="Admin"/>
 
     </LinearLayout>
@@ -69,6 +70,7 @@
     </androidx.cardview.widget.CardView>
 
     <View
+        android:id="@+id/view_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="44dp"
@@ -79,15 +81,291 @@
         app:layout_constraintTop_toBottomOf="@id/card_admin"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/client_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/png_add_client"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintTop_toBottomOf="@id/view_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <TextView
+            android:id="@+id/add_clients_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_clients_users"
+            android:fontFamily="@font/avenir"
+            android:layout_marginStart="8dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/client_icon"
+            app:layout_constraintStart_toEndOf="@id/client_icon"
+            app:layout_constraintBottom_toBottomOf="@id/client_icon"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forword_arrow"
+            android:layout_marginEnd="5dp"
+            app:tint="@color/light_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_clients_text"
+            app:layout_constraintBottom_toBottomOf="@id/add_clients_text"/>
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
 
-    </RelativeLayout>
+        <ImageView
+            android:id="@+id/property_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/png_add_property"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintVertical_bias="0.04"
+            app:layout_constraintTop_toBottomOf="@id/client_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <TextView
+            android:id="@+id/add_property_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_property"
+            android:fontFamily="@font/avenir"
+            android:layout_marginStart="8dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/property_icon"
+            app:layout_constraintStart_toEndOf="@id/property_icon"
+            app:layout_constraintBottom_toBottomOf="@id/property_icon"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forword_arrow"
+            android:layout_marginEnd="5dp"
+            app:tint="@color/light_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_property_text"
+            app:layout_constraintBottom_toBottomOf="@id/add_property_text"/>
+
+        <ImageView
+            android:id="@+id/country_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/png_add_country"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintVertical_bias="0.04"
+            app:layout_constraintTop_toBottomOf="@id/property_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/sky_blue" />
+        <TextView
+            android:id="@+id/add_country_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_country"
+            android:fontFamily="@font/avenir"
+            android:layout_marginStart="8dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/country_icon"
+            app:layout_constraintStart_toEndOf="@id/country_icon"
+            app:layout_constraintBottom_toBottomOf="@id/country_icon"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forword_arrow"
+            android:layout_marginEnd="5dp"
+            app:tint="@color/light_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_country_text"
+            app:layout_constraintBottom_toBottomOf="@id/add_country_text"/>
+
+        <ImageView
+            android:id="@+id/city_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/png_add_city"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintVertical_bias="0.04"
+            app:layout_constraintTop_toBottomOf="@id/country_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/sky_blue" />
+        <TextView
+            android:id="@+id/add_city_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_city"
+            android:fontFamily="@font/avenir"
+            android:layout_marginStart="8dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/city_icon"
+            app:layout_constraintStart_toEndOf="@id/city_icon"
+            app:layout_constraintBottom_toBottomOf="@id/city_icon"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forword_arrow"
+            android:layout_marginEnd="5dp"
+            app:tint="@color/light_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_city_text"
+            app:layout_constraintBottom_toBottomOf="@id/add_city_text"/>
+
+
+
+
+        <ImageView
+            android:id="@+id/tnc_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/png_tnc"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintTop_toBottomOf="@id/city_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/sky_blue" />
+        <TextView
+                android:id="@+id/add_tnc_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_and_conditions"
+                android:fontFamily="@font/avenir"
+                android:layout_marginStart="8dp"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="@id/tnc_icon"
+                app:layout_constraintStart_toEndOf="@id/tnc_icon"
+                app:layout_constraintBottom_toBottomOf="@id/tnc_icon"
+                />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forword_arrow"
+            android:layout_marginEnd="5dp"
+            app:tint="@color/light_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_tnc_text"
+            app:layout_constraintBottom_toBottomOf="@id/add_tnc_text"/>
+
+        <ImageView
+            android:id="@+id/privacy_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/png_privacy"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintVertical_bias="0.04"
+            app:layout_constraintTop_toBottomOf="@id/tnc_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/sky_blue" />
+        <TextView
+            android:id="@+id/add_privacy_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/privacy_policy"
+            android:fontFamily="@font/avenir"
+            android:layout_marginStart="8dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/privacy_icon"
+            app:layout_constraintStart_toEndOf="@id/privacy_icon"
+            app:layout_constraintBottom_toBottomOf="@id/privacy_icon"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forword_arrow"
+            android:layout_marginEnd="5dp"
+            app:tint="@color/light_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_privacy_text"
+            app:layout_constraintBottom_toBottomOf="@id/add_privacy_text"/>
+
+    <ImageView
+            android:id="@+id/help_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/png_help"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintVertical_bias="0.04"
+            app:layout_constraintTop_toBottomOf="@id/privacy_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/sky_blue" />
+    <TextView
+            android:id="@+id/add_help_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/help_center"
+            android:fontFamily="@font/avenir"
+            android:layout_marginStart="8dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/help_icon"
+            app:layout_constraintStart_toEndOf="@id/help_icon"
+            app:layout_constraintBottom_toBottomOf="@id/help_icon"
+            />
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forword_arrow"
+            android:layout_marginEnd="5dp"
+            app:tint="@color/light_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_help_text"
+            app:layout_constraintBottom_toBottomOf="@id/add_help_text"/>
+
+    <ImageView
+            android:id="@+id/about_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/png_about"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintVertical_bias="0.04"
+            app:layout_constraintTop_toBottomOf="@id/help_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/sky_blue" />
+    <TextView
+            android:id="@+id/add_about_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_us"
+            android:fontFamily="@font/avenir"
+            android:layout_marginStart="8dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/about_icon"
+            app:layout_constraintStart_toEndOf="@id/about_icon"
+            app:layout_constraintBottom_toBottomOf="@id/about_icon"
+            />
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forword_arrow"
+            android:layout_marginEnd="5dp"
+            app:tint="@color/light_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_about_text"
+            app:layout_constraintBottom_toBottomOf="@id/add_about_text"/>
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
