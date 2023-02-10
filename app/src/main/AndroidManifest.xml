@@ -14,13 +14,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RSCOOP"
         tools:targetApi="31">
-
-        <activity android:name=".RecentProperties.RecentPropertiesView" android:exported="false"/>
-        <activity android:name=".Authentication.PhoneVerification" android:exported="false"/>
-        <activity android:name=".Authentication.LoginPhone" android:exported="false"/>
-        <activity android:name=".Authentication.ForgotPassword" android:exported="false"/>
-        <activity android:name=".Authentication.LoginActivity" android:exported="false"/>
-
+        <activity
+            android:name=".RecentProperties.ViewAllTasks"
+            android:exported="false" />
+        <activity
+            android:name=".RecentProperties.RecentPropertiesView"
+            android:exported="false" />
+        <activity
+            android:name=".Authentication.PhoneVerification"
+            android:exported="false" />
+        <activity
+            android:name=".Authentication.LoginPhone"
+            android:exported="false" />
+        <activity
+            android:name=".Authentication.ForgotPassword"
+            android:exported="false" />
+        <activity
+            android:name=".Authentication.LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".RecentProperties.ClientCountries"
             android:exported="false">
@@ -61,17 +72,12 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".RecentProperties.HotelsLocations"
-            android:exported="false"
-            >
-
+        <activity
+            android:name=".RecentProperties.HotelsLocations"
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value=""
-                >
-
-            </meta-data>
-
+                android:value=""></meta-data>
         </activity>
     </application>
 

@@ -30,6 +30,7 @@ import com.example.rscoop.DataCollections.OwnersData
 import com.example.rscoop.R
 import com.example.rscoop.RecentProperties.ClientCountries
 import com.example.rscoop.RecentProperties.RecentPropertiesView
+import com.example.rscoop.RecentProperties.ViewAllTasks
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.tabs.TabLayout
@@ -61,6 +62,7 @@ class ExploreFragment() : Fragment(){
     private val upcomingTasks = UpcomingTasks()
     private val completedTasks = CompletedTasks()
     private lateinit var recentProperties: TextView
+    private lateinit var allTasks: TextView
 
 
     override fun onCreateView(
@@ -88,6 +90,10 @@ class ExploreFragment() : Fragment(){
         hotelRecyclerView.setHasFixedSize(true)
         hotelRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
 
+        allTasks = view.findViewById(R.id.view_all_tasks)
+        allTasks.setOnClickListener {
+            startActivity(Intent(context,ViewAllTasks::class.java))
+        }
         recentProperties = view.findViewById(R.id.view_properties)
         recentProperties.setOnClickListener {
             startActivity(Intent(context,RecentPropertiesView::class.java))

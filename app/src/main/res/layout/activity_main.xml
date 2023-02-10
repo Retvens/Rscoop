@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textColor="@color/black"
+        android:fontFamily="@font/avenir"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/connect_with_phone"
                 android:textSize="15sp"
+                android:fontFamily="@font/avenir"
                 android:textColor="@color/white"
                 android:gravity="center_horizontal"
                 android:layout_marginHorizontal="5dp"/>
@@ -101,6 +103,7 @@
                 android:layout_marginHorizontal="5dp"
                 android:gravity="center_horizontal"
                 android:text="@string/log_in"
+                android:fontFamily="@font/avenir"
                 android:textSize="15sp"
                 android:textColor="@color/white" />
 
@@ -114,6 +117,7 @@
         android:layout_height="wrap_content"
         android:text="@string/don_t_have_an"
         android:textSize="15sp"
+        android:fontFamily="@font/avenir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

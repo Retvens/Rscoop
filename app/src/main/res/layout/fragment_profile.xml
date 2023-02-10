@@ -15,7 +15,7 @@
         android:scaleType="fitXY"
         app:shapeAppearanceOverlay="@style/SpecificCornerRounded"
         app:layout_constraintVertical_bias="0.15"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="44dp"
-        android:background="@color/teal_200"
+        android:background="#D0E4E2"
         app:layout_constraintVertical_bias="0.03"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -121,12 +121,12 @@
 
     </RelativeLayout>
 
-
     <RelativeLayout
         android:id="@+id/property_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintVertical_bias="0.04"
         app:layout_constraintTop_toBottomOf="@id/client_layout"
@@ -161,12 +161,12 @@
 
     </RelativeLayout>
 
-
     <RelativeLayout
         android:id="@+id/country_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintVertical_bias="0.04"
         app:layout_constraintTop_toBottomOf="@id/property_layout"
@@ -208,6 +208,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintVertical_bias="0.04"
         app:layout_constraintTop_toBottomOf="@id/country_layout"
@@ -249,7 +250,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintVertical_bias="0.13"
         app:layout_constraintTop_toBottomOf="@id/city_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -282,12 +283,12 @@
             android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>
-
     <RelativeLayout
         android:id="@+id/privacy_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintVertical_bias="0.04"
         app:layout_constraintTop_toBottomOf="@id/tnc_layout"
@@ -322,13 +323,12 @@
             android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>
-
-
     <RelativeLayout
         android:id="@+id/help_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintVertical_bias="0.04"
         app:layout_constraintTop_toBottomOf="@id/privacy_layout"
@@ -362,12 +362,11 @@
             app:tint="@color/light_grey"
         android:layout_alignParentEnd="true"/>
 </RelativeLayout>
-
-
     <RelativeLayout
         android:id="@+id/about_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginHorizontal="20dp"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintVertical_bias="0.04"
@@ -400,9 +399,7 @@
                 android:src="@drawable/forword_arrow"
                 android:layout_marginEnd="5dp"
                 app:tint="@color/light_grey"
-            android:layout_alignParentEnd="true"/>
-
+                android:layout_alignParentEnd="true"/>
    </RelativeLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
