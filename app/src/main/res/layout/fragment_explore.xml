@@ -216,6 +216,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/view_all_tasks"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="View all Tasks"

@@ -29,6 +29,10 @@
     <string name="add_property">Add Property</string>
     <string name="add_country">Add Country</string>
     <string name="add_clients_users">Add Clients/Users</string>
+    <string name="recent_properties">Recent Properties</string>
+    <string name="all_tasks">All Tasks</string>
+    <string name="try_to_enter_any_hotel_name">Try to Enter Any Hotel Name</string>
+    <string name="marketing">Marketing</string>
 
     <style name="TabLayout">
         <item name="android:textStyle">bold</item>
