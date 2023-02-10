@@ -5,30 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
+import android.widget.Toast
 import com.example.rscoop.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var clientLayout:RelativeLayout
+    private lateinit var propertyLayout:RelativeLayout
+    private lateinit var countryLayout:RelativeLayout
+    private lateinit var cityLayout:RelativeLayout
+
+    private lateinit var tncLayout:RelativeLayout
+    private lateinit var privacyLayout:RelativeLayout
+    private lateinit var helpLayout:RelativeLayout
+    private lateinit var aboutLayout:RelativeLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +29,56 @@ class ProfileFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+     clientLayout = view.findViewById(R.id.client_layout)
+     propertyLayout = view.findViewById(R.id.property_layout)
+     countryLayout = view.findViewById(R.id.country_layout)
+     cityLayout = view.findViewById(R.id.city_layout)
+
+     tncLayout = view.findViewById(R.id.tnc_layout)
+     privacyLayout = view.findViewById(R.id.privacy_layout)
+     helpLayout = view.findViewById(R.id.help_layout)
+     aboutLayout = view.findViewById(R.id.about_layout)
+
+        clientLayout.setOnClickListener {
+            Toast.makeText(context,"Working",Toast.LENGTH_LONG)
+                .show()
+        }
+
+        propertyLayout.setOnClickListener {
+            Toast.makeText(context,"Working",Toast.LENGTH_LONG)
+                .show()
+        }
+
+        countryLayout.setOnClickListener {
+            Toast.makeText(context,"Working",Toast.LENGTH_LONG)
+                .show()
+        }
+
+        cityLayout.setOnClickListener {
+            Toast.makeText(context,"Working",Toast.LENGTH_LONG)
+                .show()
+        }
+
+        tncLayout.setOnClickListener {
+            Toast.makeText(context,"Working",Toast.LENGTH_LONG)
+                .show()
+        }
+
+        privacyLayout.setOnClickListener {
+            Toast.makeText(context,"Working",Toast.LENGTH_LONG)
+                .show()
+        }
+
+        helpLayout.setOnClickListener {
+            Toast.makeText(context,"Working",Toast.LENGTH_LONG)
+                .show()
+        }
+
+        aboutLayout.setOnClickListener {
+            Toast.makeText(context,"Working",Toast.LENGTH_LONG)
+                .show()
+        }
     }
 }
