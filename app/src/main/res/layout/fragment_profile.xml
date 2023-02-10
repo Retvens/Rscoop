@@ -15,7 +15,7 @@
         android:scaleType="fitXY"
         app:shapeAppearanceOverlay="@style/SpecificCornerRounded"
         app:layout_constraintVertical_bias="0.15"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
         android:fontFamily="@font/avenir"
         android:textColor="@color/black"
         android:layout_marginStart="10dp"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintVertical_bias="0.2"
         app:layout_constraintStart_toEndOf="@id/profile_image"
         app:layout_constraintTop_toTopOf="@id/profile_image"
         app:layout_constraintBottom_toBottomOf="@id/profile_image"/>
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:background="#FF2D55"
-        app:layout_constraintVertical_bias="0.73"
+        app:layout_constraintVertical_bias="0.65"
         app:cardCornerRadius="5dp"
         app:layout_constraintStart_toEndOf="@id/profile_image"
         app:layout_constraintTop_toTopOf="@id/profile_image"
@@ -49,8 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#FF2D55"
+            android:paddingHorizontal="8dp"
             android:gravity="center"
-            android:paddingHorizontal="6dp"
             android:orientation="horizontal">
 
         <ImageView
@@ -81,17 +81,25 @@
         app:layout_constraintTop_toBottomOf="@id/card_admin"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
+
+    <RelativeLayout
+        android:id="@+id/client_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintTop_toBottomOf="@id/view_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
         <ImageView
             android:id="@+id/client_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/png_add_client"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintVertical_bias="0.1"
-            app:layout_constraintTop_toBottomOf="@id/view_line"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/png_add_client"/>
         <TextView
             android:id="@+id/add_clients_text"
             android:layout_width="wrap_content"
@@ -101,32 +109,37 @@
             android:layout_marginStart="8dp"
             android:textSize="17sp"
             android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="@id/client_icon"
-            app:layout_constraintStart_toEndOf="@id/client_icon"
-            app:layout_constraintBottom_toBottomOf="@id/client_icon"
-            />
+            android:layout_toEndOf="@id/client_icon"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/forword_arrow"
             android:layout_marginEnd="5dp"
             app:tint="@color/light_grey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_clients_text"
-            app:layout_constraintBottom_toBottomOf="@id/add_clients_text"/>
+            android:layout_alignParentEnd="true"/>
 
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/property_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.04"
+        app:layout_constraintTop_toBottomOf="@id/client_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
             android:id="@+id/property_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/png_add_property"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintVertical_bias="0.04"
-            app:layout_constraintTop_toBottomOf="@id/client_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/png_add_property"/>
         <TextView
             android:id="@+id/add_property_text"
             android:layout_width="wrap_content"
@@ -136,31 +149,38 @@
             android:layout_marginStart="8dp"
             android:textSize="17sp"
             android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="@id/property_icon"
-            app:layout_constraintStart_toEndOf="@id/property_icon"
-            app:layout_constraintBottom_toBottomOf="@id/property_icon"
-            />
+            android:layout_toEndOf="@id/property_icon"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/forword_arrow"
             android:layout_marginEnd="5dp"
             app:tint="@color/light_grey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_property_text"
-            app:layout_constraintBottom_toBottomOf="@id/add_property_text"/>
+            android:layout_alignParentEnd="true"/>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/country_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.04"
+        app:layout_constraintTop_toBottomOf="@id/property_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
 
         <ImageView
             android:id="@+id/country_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
             android:src="@drawable/png_add_country"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintVertical_bias="0.04"
-            app:layout_constraintTop_toBottomOf="@id/property_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:tint="@color/sky_blue" />
         <TextView
             android:id="@+id/add_country_text"
@@ -171,31 +191,36 @@
             android:layout_marginStart="8dp"
             android:textSize="17sp"
             android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="@id/country_icon"
-            app:layout_constraintStart_toEndOf="@id/country_icon"
-            app:layout_constraintBottom_toBottomOf="@id/country_icon"
-            />
+            android:layout_toEndOf="@id/country_icon"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/forword_arrow"
             android:layout_marginEnd="5dp"
             app:tint="@color/light_grey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_country_text"
-            app:layout_constraintBottom_toBottomOf="@id/add_country_text"/>
+            android:layout_alignParentEnd="true"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/city_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.04"
+        app:layout_constraintTop_toBottomOf="@id/country_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
             android:id="@+id/city_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/png_add_city"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintVertical_bias="0.04"
-            app:layout_constraintTop_toBottomOf="@id/country_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_alignParentStart="true"
             app:tint="@color/sky_blue" />
         <TextView
             android:id="@+id/add_city_text"
@@ -206,9 +231,47 @@
             android:layout_marginStart="8dp"
             android:textSize="17sp"
             android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="@id/city_icon"
-            app:layout_constraintStart_toEndOf="@id/city_icon"
-            app:layout_constraintBottom_toBottomOf="@id/city_icon"
+            android:layout_toEndOf="@id/city_icon"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forword_arrow"
+            android:layout_marginEnd="5dp"
+            app:tint="@color/light_grey"
+            android:layout_alignParentEnd="true"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tnc_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintTop_toBottomOf="@id/city_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/tnc_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/png_tnc"
+            app:tint="@color/sky_blue" />
+        <TextView
+            android:id="@+id/add_tnc_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terms_and_conditions"
+            android:fontFamily="@font/avenir"
+            android:layout_marginStart="8dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_toEndOf="@id/tnc_icon"
             />
         <ImageView
             android:layout_width="wrap_content"
@@ -216,59 +279,28 @@
             android:src="@drawable/forword_arrow"
             android:layout_marginEnd="5dp"
             app:tint="@color/light_grey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_city_text"
-            app:layout_constraintBottom_toBottomOf="@id/add_city_text"/>
+            android:layout_alignParentEnd="true"/>
 
+    </RelativeLayout>
 
-
-
-        <ImageView
-            android:id="@+id/tnc_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/png_tnc"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintVertical_bias="0.1"
-            app:layout_constraintTop_toBottomOf="@id/city_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:tint="@color/sky_blue" />
-        <TextView
-                android:id="@+id/add_tnc_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/terms_and_conditions"
-                android:fontFamily="@font/avenir"
-                android:layout_marginStart="8dp"
-                android:textSize="17sp"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toTopOf="@id/tnc_icon"
-                app:layout_constraintStart_toEndOf="@id/tnc_icon"
-                app:layout_constraintBottom_toBottomOf="@id/tnc_icon"
-                />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/forword_arrow"
-            android:layout_marginEnd="5dp"
-            app:tint="@color/light_grey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_tnc_text"
-            app:layout_constraintBottom_toBottomOf="@id/add_tnc_text"/>
+    <RelativeLayout
+        android:id="@+id/privacy_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.04"
+        app:layout_constraintTop_toBottomOf="@id/tnc_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
             android:id="@+id/privacy_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/png_privacy"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintVertical_bias="0.04"
-            app:layout_constraintTop_toBottomOf="@id/tnc_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_alignParentStart="true"
             app:tint="@color/sky_blue" />
         <TextView
             android:id="@+id/add_privacy_text"
@@ -279,9 +311,7 @@
             android:layout_marginStart="8dp"
             android:textSize="17sp"
             android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="@id/privacy_icon"
-            app:layout_constraintStart_toEndOf="@id/privacy_icon"
-            app:layout_constraintBottom_toBottomOf="@id/privacy_icon"
+            android:layout_toEndOf="@id/privacy_icon"
             />
         <ImageView
             android:layout_width="wrap_content"
@@ -289,21 +319,29 @@
             android:src="@drawable/forword_arrow"
             android:layout_marginEnd="5dp"
             app:tint="@color/light_grey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_privacy_text"
-            app:layout_constraintBottom_toBottomOf="@id/add_privacy_text"/>
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/help_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.04"
+        app:layout_constraintTop_toBottomOf="@id/privacy_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
     <ImageView
             android:id="@+id/help_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
             android:src="@drawable/png_help"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintVertical_bias="0.04"
-            app:layout_constraintTop_toBottomOf="@id/privacy_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:tint="@color/sky_blue" />
     <TextView
             android:id="@+id/add_help_text"
@@ -314,9 +352,7 @@
             android:layout_marginStart="8dp"
             android:textSize="17sp"
             android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="@id/help_icon"
-            app:layout_constraintStart_toEndOf="@id/help_icon"
-            app:layout_constraintBottom_toBottomOf="@id/help_icon"
+            android:layout_toEndOf="@id/help_icon"
             />
     <ImageView
             android:layout_width="wrap_content"
@@ -324,48 +360,49 @@
             android:src="@drawable/forword_arrow"
             android:layout_marginEnd="5dp"
             app:tint="@color/light_grey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_help_text"
-            app:layout_constraintBottom_toBottomOf="@id/add_help_text"/>
+        android:layout_alignParentEnd="true"/>
+</RelativeLayout>
 
-    <ImageView
+
+    <RelativeLayout
+        android:id="@+id/about_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.04"
+        app:layout_constraintTop_toBottomOf="@id/help_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
             android:id="@+id/about_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
             android:src="@drawable/png_about"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintVertical_bias="0.04"
-            app:layout_constraintTop_toBottomOf="@id/help_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:tint="@color/sky_blue" />
-    <TextView
-            android:id="@+id/add_about_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/about_us"
-            android:fontFamily="@font/avenir"
-            android:layout_marginStart="8dp"
-            android:textSize="17sp"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="@id/about_icon"
-            app:layout_constraintStart_toEndOf="@id/about_icon"
-            app:layout_constraintBottom_toBottomOf="@id/about_icon"
-            />
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/forword_arrow"
-            android:layout_marginEnd="5dp"
-            app:tint="@color/light_grey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_about_text"
-            app:layout_constraintBottom_toBottomOf="@id/add_about_text"/>
+        <TextView
+                android:id="@+id/add_about_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_us"
+                android:fontFamily="@font/avenir"
+                android:layout_marginStart="8dp"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:layout_toEndOf="@id/about_icon"
+                />
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/forword_arrow"
+                android:layout_marginEnd="5dp"
+                app:tint="@color/light_grey"
+            android:layout_alignParentEnd="true"/>
+
+   </RelativeLayout>
 
 
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
