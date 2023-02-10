@@ -33,6 +33,9 @@
             android:name=".Authentication.LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".ClientInformation.ClientInfo"
+            android:exported="false" />
+        <activity
             android:name=".RecentProperties.ClientCountries"
             android:exported="false">
             <meta-data

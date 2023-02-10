@@ -7,7 +7,8 @@ data class OwnersData(
     val Password:String,
     val Phone:String,
     val owner_id:Int,
-    val Profile_photo:String
+    val Profile_photo:String,
+    val Country:String
 
 
 ){

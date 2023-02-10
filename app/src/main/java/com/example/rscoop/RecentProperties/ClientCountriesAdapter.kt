@@ -1,6 +1,7 @@
 package com.example.rscoop.RecentProperties
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.rscoop.ClientInformation.ClientInfo
 import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerAdminView
 import com.example.rscoop.DataCollections.CountryData
 import com.example.rscoop.DataCollections.HotelsData
@@ -48,8 +50,20 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
     }
 
     override fun onBindViewHolder(holder: MyViewHolderClass, position: Int) {
+
+        val data = userList[position]
+
         holder.Name.text = userList[position].Name
         Glide.with(context).load(userList[position].Profile_photo).into(holder.image)
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context,ClientInfo::class.java)
+            intent.putExtra("client_name",data.Name)
+            intent.putExtra("client_image",data.Profile_photo)
+            intent.putExtra("client_phone",data.Phone)
+            intent.putExtra("client_address",data.Country)
+            context.startActivity(intent)
+        }
 
     }
 
