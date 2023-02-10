@@ -3,6 +3,7 @@ package com.example.rscoop.ApiRequests
 import com.example.rscoop.DataCollections.CountryData
 import com.example.rscoop.DataCollections.HotelsData
 import com.example.rscoop.DataCollections.OwnersData
+import com.example.rscoop.DataCollections.TaskData
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -19,6 +20,7 @@ interface RetvensUrls {
     @GET("Country")
     fun getCountry(): Call<List<CountryData>>
 
-    
+    @GET("task")
+    fun getTask(): Call<List<TaskData>>
 
 }

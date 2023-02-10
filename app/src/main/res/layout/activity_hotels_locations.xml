@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecentProperties.HotelsLocations">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/properties"
+        android:id="@+id/recenttext"
+        android:textSize="30dp"
+        android:textColor="#383842"
+        android:layout_marginTop="45dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:layout_width="360dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/individual_HotelImage"
+        app:layout_constraintTop_toBottomOf="@+id/recenttext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        />
+
+
+    <com.google.android.gms.maps.MapView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/mapView"
+        android:layout_width="370dp"
+        android:layout_height="500dp"
+        map:layout_constraintTop_toBottomOf="@+id/individual_HotelImage"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        map:uiCompass="true"
+        map:zOrderOnTop="true"
+        map:uiZoomControls="true"
+        android:background="#8F8F8F"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

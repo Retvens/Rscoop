@@ -12,6 +12,7 @@ import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.*
 import com.example.rscoop.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+//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
 class AdminDashBoard : AppCompatActivity() {
 //    private lateinit var toggle: ActionBarDrawerToggle
 //    private lateinit var recyclerView: RecyclerView
@@ -71,10 +72,6 @@ class AdminDashBoard : AppCompatActivity() {
                 transaction.commit()
             }
     }
-
-
-
-
 
 
 }

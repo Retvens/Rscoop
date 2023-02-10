@@ -118,7 +118,7 @@ class ExploreFragment() : Fragment(){
 
                val response = response.body()!!
 
-               if (response != null){
+               if (response != null && view != null){
                    val originalData = response.toList()
 
 
@@ -184,11 +184,11 @@ class ExploreFragment() : Fragment(){
               shimmer.visibility = View.GONE
               val response = response.body()
 
-              if (response != null){
+              if (response != null && isAdded){
 
                   val originalData = response.toList()
 
-                  hotelAdapter = RecyclerHotelsView(requireActivity(), response!!)
+                  hotelAdapter = RecyclerHotelsView(context!!, response!!)
                   hotelAdapter.notifyDataSetChanged()
                   hotelRecyclerView.adapter = hotelAdapter
 
@@ -221,8 +221,6 @@ class ExploreFragment() : Fragment(){
 
           override fun onFailure(call: Call<List<HotelsData>?>, t: Throwable) {
 //                Toast.makeText(requireContext(),t.message,Toast.LENGTH_LONG).show()
-              val error = view!!.findViewById<TextView>(R.id.error)
-              error.text = t.message
               Log.e("error",t.message.toString())
           }
       })

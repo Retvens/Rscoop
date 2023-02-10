@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,7 @@ class BookmarkFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var bookmarkAdapter: BookmarkAdapter
     private lateinit var shimmer: ShimmerFrameLayout
+    private lateinit var searchBar:EditText
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,6 +48,8 @@ class BookmarkFragment : Fragment() {
 
         getData()
 
+        searchBar = view.findViewById<EditText>(R.id.searchbox2)
+
     }
 
     private fun getData() {
@@ -60,17 +64,18 @@ class BookmarkFragment : Fragment() {
 
                 shimmer.stopShimmer()
                 shimmer.visibility = View.GONE
-                val searchBar = view!!.findViewById<EditText>(R.id.searchbox2)
+
                 val response = response.body()!!
 
-                if (response != null){
+
+                if (response != null && isAdded) {
                     val originalData = response.toList()
 
-                    bookmarkAdapter = BookmarkAdapter(requireActivity(),response)
+                    bookmarkAdapter = BookmarkAdapter(requireActivity(), response)
                     bookmarkAdapter.notifyDataSetChanged()
                     recyclerView.adapter = bookmarkAdapter
 
-                    searchBar.addTextChangedListener(object : TextWatcher{
+                    searchBar.addTextChangedListener(object : TextWatcher {
                         override fun beforeTextChanged(
                             p0: CharSequence?,
                             p1: Int,
@@ -86,7 +91,7 @@ class BookmarkFragment : Fragment() {
 
                         override fun afterTextChanged(p0: Editable?) {
                             val filterData = originalData.filter { item ->
-                                item.hotel_name.contains(p0.toString(),ignoreCase = true)
+                                item.hotel_name.contains(p0.toString(), ignoreCase = true)
                             }
 
                             bookmarkAdapter.updateData(filterData)
@@ -95,12 +100,7 @@ class BookmarkFragment : Fragment() {
                     })
                 }
 
-                bookmarkAdapter.setOnItemClickListener(object : BookmarkAdapter.onItemClickListener{
-                    override fun onClick(position: Int) {
-                        Toast.makeText(context,"work in progress",Toast.LENGTH_LONG).show()
-                    }
 
-                })
             }
 
             override fun onFailure(call: Call<List<HotelsData>?>, t: Throwable) {
@@ -110,3 +110,5 @@ class BookmarkFragment : Fragment() {
     }
 
 }
+
+

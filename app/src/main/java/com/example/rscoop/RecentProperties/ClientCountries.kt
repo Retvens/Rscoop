@@ -93,7 +93,10 @@ class ClientCountries : AppCompatActivity() {
 
                 clientCountriesAdapter.setOnItemClickListener(object :ClientCountriesAdapter.onItemClickListener{
                     override fun onClick(position: Int) {
-                        Toast.makeText(this@ClientCountries,"working",Toast.LENGTH_LONG).show()
+
+                        Toast.makeText(this@ClientCountries,"working on it",Toast.LENGTH_LONG).show()
+
+
                     }
 
                 })

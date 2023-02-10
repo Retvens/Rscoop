@@ -12,6 +12,7 @@ import com.example.rscoop.ApiRequests.RetrofitBuilder
 import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerAdminView
 import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
 import com.example.rscoop.DataCollections.OwnersData
+import com.example.rscoop.DataCollections.TaskData
 import com.example.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,27 +46,21 @@ class RecentTasks : Fragment() {
 
     private fun getData() {
 
-        val data = RetrofitBuilder.retrofitBuilder.getOwner()
+        val data = RetrofitBuilder.retrofitBuilder.getTask()
 
-        data.enqueue(object : Callback<List<OwnersData>?> {
-            @SuppressLint("NotifyDataSetChanged")
+        data.enqueue(object : Callback<List<TaskData>?> {
             override fun onResponse(
-                call: Call<List<OwnersData>?>,
-                response: Response<List<OwnersData>?>
+                call: Call<List<TaskData>?>,
+                response: Response<List<TaskData>?>
             ) {
                 val response = response.body()!!
 
-                if (response != null){
-
-
-                    recentrecycler = RecentRecycler(requireActivity(),response)
-                    recentrecycler.notifyDataSetChanged()
-                    recyclerView.adapter = recentrecycler
-                }
-
+                recentrecycler = RecentRecycler(requireActivity(),response)
+                recentrecycler.notifyDataSetChanged()
+                recyclerView.adapter = recentrecycler
             }
 
-            override fun onFailure(call: Call<List<OwnersData>?>, t: Throwable) {
+            override fun onFailure(call: Call<List<TaskData>?>, t: Throwable) {
 
             }
         })
