@@ -37,7 +37,7 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
 
         holder.Name.text = userList[position].Name
         Glide.with(context).load(userList[position].Profile_photo).into(holder.image)
-        holder.number.text = data.Name
+        holder.number.text = data.Phone
         holder.address.text = data.Country
 
         holder.itemView.setOnClickListener {

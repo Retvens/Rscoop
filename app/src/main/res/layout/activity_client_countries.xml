@@ -15,25 +15,38 @@
         android:id="@+id/constraint"
         >
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/properties"
-            android:id="@+id/recenttext"
-            android:textSize="30dp"
-            android:textColor="#383842"
-            android:layout_marginTop="45dp"
-            android:fontFamily="@font/avenir"
-            android:textStyle="normal"
-            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/back_btn"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/recenttext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/avenir"
+            android:text="@string/properties"
+            android:textFontWeight="800"
+            android:layout_marginLeft="20dp"
+            android:textColor="#383842"
+            android:textSize="30dp"
+            android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.291"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="30dp"

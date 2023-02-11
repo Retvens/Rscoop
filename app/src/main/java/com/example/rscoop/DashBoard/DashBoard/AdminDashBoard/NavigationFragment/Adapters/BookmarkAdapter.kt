@@ -46,11 +46,13 @@ class BookmarkAdapter(val context: Context, var userList:List<HotelsData>):Recyc
         holder.itemView.setOnClickListener {
                 val intent = Intent(context,HotelsLocations::class.java)
                 intent.putExtra("Name",item.hotel_name)
-                intent.putExtra("image",item.hotel_profile_photo)
+                intent.putExtra("image",item.Cover_photo)
+                intent.putExtra("logo",item.hotel_profile_photo)
 
             for (location in item.hotel_location){
-                intent.putExtra("latitude",location.Latitude)
-                intent.putExtra("longitude",location.Longitude)
+                intent.putExtra("latitude",18.921729)
+                intent.putExtra("longitude",72.833031)
+
             }
 
                 context.startActivity(intent)

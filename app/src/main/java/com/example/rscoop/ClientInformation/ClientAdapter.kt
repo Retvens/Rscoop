@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -40,9 +41,18 @@ class ClientAdapter(val context: Context, var userList:List<HotelsData>):Recycle
         holder.rating.text = userList[position].hotel_stars.toString()
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, HotelsLocations::class.java)
-            intent.putExtra("item_name", item.hotel_name)
-            intent.putExtra("item_image", item.hotel_profile_photo)
+            val intent = Intent(context, HotelsLocations::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            intent.putExtra("Name",item.hotel_name)
+            intent.putExtra("image",item.Cover_photo)
+            intent.putExtra("logo",item.hotel_profile_photo)
+
+            for (location in item.hotel_location){
+                intent.putExtra("latitude",18.921729)
+                intent.putExtra("longitude",72.833031)
+
+            }
             context.startActivity(intent)
         }
     }
@@ -50,10 +60,5 @@ class ClientAdapter(val context: Context, var userList:List<HotelsData>):Recycle
     override fun getItemCount(): Int {
         return  userList.size
     }
-    private fun itemClicked(item: HotelsData) {
-        val intent = Intent(context, HotelsLocations::class.java)
-        intent.putExtra("item_name", item.hotel_name)
-        intent.putExtra("item_image", item.hotel_profile_photo)
-        context.startActivity(intent)
-    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.Toast
+import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddClient
 import com.retvens.rscoop.R
 
 
@@ -43,8 +45,7 @@ class ProfileFragment : Fragment() {
      aboutLayout = view.findViewById(R.id.about_layout)
 
         clientLayout.setOnClickListener {
-            Toast.makeText(context,"Working",Toast.LENGTH_LONG)
-                .show()
+            startActivity(Intent(context,AddClient::class.java))
         }
 
         propertyLayout.setOnClickListener {

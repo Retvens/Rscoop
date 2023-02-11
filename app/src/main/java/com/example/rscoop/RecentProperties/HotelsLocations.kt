@@ -1,8 +1,10 @@
 package com.retvens.rscoop.RecentProperties
 
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -27,32 +29,38 @@ class HotelsLocations : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hotels_locations)
 
-        val image = findViewById<ImageView>(R.id.individual_HotelImage)
-
-
         mMapFragment = SupportMapFragment.newInstance()
             supportFragmentManager.beginTransaction()
                 .replace(R.id.map_show, mMapFragment)
                 .commit()
-
-
-        //getting data from intent
+//
+//
+//        //getting data from intent
         val hotel_Name = intent.getStringExtra("Name")
         val hotel_Image = intent.getStringExtra("image")
-        val latitude = intent.getStringExtra("latitude")
-        val longitude = intent.getStringExtra("longitude")
+        val latitude = intent.getDoubleExtra("latitude",0.0)
+        val longitude = intent.getDoubleExtra("longitude",0.0)
+        val logoOfHotel = intent.getStringExtra("logo")
 
-        Toast.makeText(this,latitude,Toast.LENGTH_LONG).show()
 
+//
+
+        val image = findViewById<ImageView>(R.id.clienthotelimg)
+        val logo = findViewById<ImageView>(R.id.logoOfHotel)
+        val name = findViewById<TextView>(R.id.Hotel_Name)
+        val name2 = findViewById<TextView>(R.id.Hotel_Name2)
+
+        Glide.with(baseContext).load(logoOfHotel).into(logo)
+        name.text = hotel_Name
+        name2.text = hotel_Name
         Glide.with(baseContext).load(hotel_Image).into(image)
-
+        Toast.makeText(this,"$latitude",Toast.LENGTH_LONG).show()
         mMapFragment.getMapAsync(object : OnMapReadyCallback{
             override fun onMapReady(p0: GoogleMap) {
                 googleMap = p0
-                val latitude = 18.921729
-                val longitude = 72.833031
+
                 val location = LatLng(latitude, longitude)
-                googleMap.addMarker(MarkerOptions().position(location).title("San Francisco"))
+                googleMap.addMarker(MarkerOptions().position(location).title("$hotel_Name"))
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15f))
             }
 

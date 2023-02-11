@@ -17,9 +17,11 @@
         android:id="@+id/Client_Name"
         android:textSize="30dp"
         android:fontFamily="@font/avenir"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
+        android:textColor="#383842"
+        android:layout_marginTop="20dp"
+        android:textFontWeight="800"
+
+        android:textStyle="normal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="@+id/backarrow"
         android:layout_marginLeft="40dp"
@@ -32,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Client_Name"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:background="@drawable/imagecorner"
@@ -54,10 +56,10 @@
 
     <ImageView
         android:id="@+id/backarrow"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
-        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_btn"
+        android:layout_marginTop="30dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginLeft="20dp"
@@ -72,9 +74,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="5dp"
         android:textSize="20dp"
+        android:textFontWeight="800"
         android:fontFamily="@font/avenir"
         android:textStyle="normal"
-        android:textColor="@color/black"
+        android:textColor="#092C4C"
         tools:ignore="MissingConstraints" />
 
     <RelativeLayout
@@ -109,17 +112,17 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/whatsapp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="420dp"
-        android:layout_marginRight="100dp"
-        tools:ignore="MissingConstraints" />
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="424dp"
+            android:layout_marginEnd="100dp"
+            android:src="@drawable/whatsapp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-    <ImageView
+        <ImageView
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:src="@drawable/phonepng"
@@ -143,9 +146,10 @@
         android:layout_height="wrap_content"
         android:text="Recent Properties"
         android:textSize="26sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
+        android:textFontWeight="800"
         android:fontFamily="@font/avenir"
-        android:textColor="@color/black"
+        android:textColor="#383842"
         app:layout_constraintTop_toBottomOf="@+id/ooo"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginLeft="30dp"

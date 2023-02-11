@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="#F5F5F5"
     tools:context=".DashBoard.DashBoard.AdminDashBoard.NavigationFragment.BookmarkFragment">
 
 
@@ -14,32 +14,19 @@
         android:layout_height="match_parent">
 
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
-        android:text="  All Clients"
+        android:layout_marginTop="30dp"
+        android:textFontWeight="800"
         android:fontFamily="@font/avenir"
-        android:textSize="18dp"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/black"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/avenir"
-        android:textStyle="bold"
-        android:text="Retvens"
+        android:textStyle="normal"
+        android:text="Favourite Properties"
         android:textSize="25dp"
         android:layout_marginLeft="30dp"
-        android:textColor="@color/black"
+        android:textColor="#383842"
         tools:ignore="MissingConstraints" />
 
 
@@ -48,8 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/maps"
-
         tools:ignore="MissingConstraints" />
 
     <EditText
