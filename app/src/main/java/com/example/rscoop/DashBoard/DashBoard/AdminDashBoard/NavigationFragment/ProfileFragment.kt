@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.Toast
-import com.example.rscoop.R
+import com.retvens.rscoop.R
+
 
 class ProfileFragment : Fragment() {
 
