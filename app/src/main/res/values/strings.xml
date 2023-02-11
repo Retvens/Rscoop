@@ -33,6 +33,12 @@
     <string name="all_tasks">All Tasks</string>
     <string name="try_to_enter_any_hotel_name">Try to Enter Any Hotel Name</string>
     <string name="marketing">Marketing</string>
+    <string name="add_client">Add Client</string>
+    <string name="add_properties">Add Properties</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_default_password">Enter default password</string>
+    <string name="location">Location</string>
 
     <style name="TabLayout">
         <item name="android:textStyle">bold</item>
