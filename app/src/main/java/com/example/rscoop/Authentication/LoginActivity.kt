@@ -1,12 +1,12 @@
-package com.example.rscoop.Authentication
+package com.retvens.rscoop.Authentication
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import com.example.rscoop.R
 import com.google.android.material.textfield.TextInputEditText
+import com.retvens.rscoop.R
 
 class LoginActivity : AppCompatActivity() {
 
