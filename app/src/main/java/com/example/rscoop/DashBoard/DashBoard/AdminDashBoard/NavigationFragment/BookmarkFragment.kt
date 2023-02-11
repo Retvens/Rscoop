@@ -52,7 +52,7 @@ class BookmarkFragment : Fragment() {
     }
 
     private fun getData() {
-        val data = RetrofitBuilder.retrofitBuilder.getHotel()
+        val data = RetrofitBuilder.retrofitBuilder.getHotel("")
 
         data.enqueue(object : Callback<List<HotelsData>?> {
             @SuppressLint("NotifyDataSetChanged")

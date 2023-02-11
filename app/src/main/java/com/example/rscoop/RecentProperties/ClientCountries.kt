@@ -46,7 +46,7 @@ ClientCountries : AppCompatActivity() {
 
         val country = intent.getStringExtra("country")
 //        Toast.makeText(this,"$country",Toast.LENGTH_LONG).show()
-        val data = RetrofitBuilder.retrofitBuilder.getOwner(5252)
+        val data = RetrofitBuilder.retrofitBuilder.getOwner(country.toString())
 
        data.enqueue(object : Callback<List<OwnersData>?> {
            override fun onResponse(

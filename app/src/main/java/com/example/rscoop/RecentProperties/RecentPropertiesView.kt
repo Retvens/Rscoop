@@ -40,7 +40,7 @@ class RecentPropertiesView : AppCompatActivity() {
     private fun recyclerViewData() {
         recyclerProperties.setVisibility(View.GONE)
 
-        val retrofit = RetrofitBuilder.retrofitBuilder.getHotel()
+        val retrofit = RetrofitBuilder.retrofitBuilder.getHotel("")
 
         retrofit.enqueue(object : Callback<List<HotelsData>?> {
             override fun onResponse(
