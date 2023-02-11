@@ -52,11 +52,13 @@ class ClientInfo : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(baseContext, LinearLayoutManager.HORIZONTAL,false)
 
 
-        getData()
+        getHotels()
     }
 
-    private fun getData() {
-        val data = RetrofitBuilder.retrofitBuilder.getHotel()
+    private fun getHotels() {
+
+        val owner = intent.getStringExtra("owner")
+        val data = RetrofitBuilder.retrofitBuilder.getHotel(owner.toString())
         data.enqueue(object : Callback<List<HotelsData>?> {
             override fun onResponse(
                 call: Call<List<HotelsData>?>,

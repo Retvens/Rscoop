@@ -46,6 +46,7 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
             intent.putExtra("client_image",data.Profile_photo)
             intent.putExtra("client_phone",data.Phone)
             intent.putExtra("client_address",data.Country)
+            intent.putExtra("owner",data.owner_id)
             context.startActivity(intent)
         }
 

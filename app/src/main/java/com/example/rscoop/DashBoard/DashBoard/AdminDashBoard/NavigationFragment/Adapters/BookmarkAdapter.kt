@@ -14,6 +14,7 @@ import com.example.rscoop.DataCollections.HotelsData
 import com.example.rscoop.DataCollections.HotelsLocation
 import com.retvens.rscoop.R
 import com.retvens.rscoop.RecentProperties.HotelsLocations
+import com.retvens.rscoop.RecentProperties.MapsActivity
 
 class BookmarkAdapter(val context: Context, var userList:List<HotelsData>):RecyclerView.Adapter<BookmarkAdapter.MyViewHolderClass>() {
 
@@ -26,10 +27,7 @@ class BookmarkAdapter(val context: Context, var userList:List<HotelsData>):Recyc
         var image = itemview.findViewById<ImageView>(R.id.bookmark_Image)
         var rating = itemview.findViewById<TextView>(R.id.bookmark_Rating)
 
-        init {
 
-
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolderClass {
@@ -46,7 +44,17 @@ class BookmarkAdapter(val context: Context, var userList:List<HotelsData>):Recyc
         holder.rating.text = userList[position].hotel_stars.toString()
 
         holder.itemView.setOnClickListener {
-            itemClicked(item)
+                val intent = Intent(context,HotelsLocations::class.java)
+                intent.putExtra("Name",item.hotel_name)
+                intent.putExtra("image",item.hotel_profile_photo)
+
+            for (location in item.hotel_location){
+                intent.putExtra("latitude",location.Latitude)
+                intent.putExtra("longitude",location.Longitude)
+            }
+
+                context.startActivity(intent)
+
         }
     }
 
@@ -57,14 +65,6 @@ class BookmarkAdapter(val context: Context, var userList:List<HotelsData>):Recyc
     fun updateData(newItems: List<HotelsData>) {
         userList = newItems
         notifyDataSetChanged()
-    }
-
-    private fun itemClicked(item: HotelsData) {
-
-        val intent = Intent(context, HotelsLocations::class.java)
-        intent.putExtra("item_name", item.hotel_name)
-        intent.putExtra("item_image", item.hotel_profile_photo)
-        context.startActivity(intent)
     }
 
 

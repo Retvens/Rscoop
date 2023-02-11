@@ -34,23 +34,15 @@
         android:scaleType="fitXY"
         />
 
-
-    <com.google.android.gms.maps.MapView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        map:layout_constraintTop_toBottomOf="@+id/individual_HotelImage"
-        map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:clickable="true"
-        android:apiKey="AIzaSyC7qNJBepL9gkSOmXO2YQcD_vNKXskTtBQ"
-        map:uiCompass="true"
-        map:zOrderOnTop="true"
-        map:uiZoomControls="true"
-
-        />
+<FrameLayout
+    android:id="@+id/map_show"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    tools:ignore="MissingConstraints"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="400dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

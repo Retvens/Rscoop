@@ -188,7 +188,7 @@ class ExploreFragment() : Fragment(){
 
     //Fetching the Data of Hotels
     private fun getHotels() {
-        val data = RetrofitBuilder.retrofitBuilder.getHotel()
+        val data = RetrofitBuilder.retrofitBuilder.getHotel("")
 
       data.enqueue(object : Callback<List<HotelsData>?> {
           @SuppressLint("NotifyDataSetChanged")

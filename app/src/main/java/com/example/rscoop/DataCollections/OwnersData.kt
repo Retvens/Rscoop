@@ -6,7 +6,7 @@ data class OwnersData(
     val Email:String,
     val Password:String,
     val Phone:String,
-    val owner_id:Number,
+    val owner_id:String,
     val Profile_photo:String,
     val Country:String,
     val Cover_photo:String,
