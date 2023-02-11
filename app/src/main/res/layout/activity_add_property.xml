@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dp">
+
+        <ImageView
+            android:id="@+id/property_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_bias=".05"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias=".03"
+            app:srcCompat="@drawable/back_btn" />
+
+        <TextView
+            android:id="@+id/add_property"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Property"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/avenir"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="@id/property_back_btn"
+            app:layout_constraintStart_toEndOf="@id/property_back_btn"
+            app:layout_constraintBottom_toBottomOf="@id/property_back_btn"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/sky_blue"
+            app:layout_constraintTop_toTopOf="@id/add_property"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardCornerRadius="6dp"
+            app:layout_constraintBottom_toBottomOf="@id/add_property">
+
+            <TextView
+                android:id="@+id/save_property"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:paddingHorizontal="25dp"
+                android:background="@color/sky_blue"
+                android:textSize="16sp"
+                android:fontFamily="@font/avenir"
+                android:textColor="@color/white"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/property_cover"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/png_image"
+            app:layout_constraintTop_toBottomOf="@+id/add_property"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/property_profile"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            style="@style/SpecificCornerRounded"
+            android:src="@drawable/png_hotel_profile"
+            app:layout_constraintTop_toBottomOf="@id/property_cover"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/property_cover"/>
+
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            style="@style/SpecificCornerRounded"
+            android:src="@drawable/png_edit"
+            app:layout_constraintVertical_bias="0.4"
+            app:layout_constraintTop_toTopOf="@id/property_profile"
+            app:layout_constraintStart_toEndOf="@id/property_profile"
+            app:layout_constraintBottom_toBottomOf="@id/property_profile"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            style="@style/SpecificCornerRounded"
+            android:src="@drawable/png_edit"
+            app:layout_constraintVertical_bias="0.1"
+            android:layout_marginEnd="6dp"
+            app:layout_constraintTop_toTopOf="@id/property_cover"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/property_cover"/>
+
+
+        <TextView
+            android:id="@+id/client_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hotel Name"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/property_profile"
+            android:fontFamily="@font/avenir"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            style="@style/SpecificCornerRounded"
+            android:src="@drawable/png_edit"
+            app:layout_constraintVertical_bias="0.6"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="@id/client_name_text"
+            app:layout_constraintStart_toEndOf="@id/client_name_text"
+            app:layout_constraintBottom_toBottomOf="@id/client_name_text"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/property_d_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="25dp"
+            android:layout_margin="20dp"
+            app:cardElevation="7dp"
+            app:layout_constraintTop_toBottomOf="@id/client_name_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/round_corner"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="18dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/property_google"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Google total reviews"
+                        android:textSize="17sp"
+                        android:textColor="@color/add_details"
+                        android:background="@null"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        style="@style/SpecificCornerRounded"
+                        android:src="@drawable/png_edit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="18dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/round_corner"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/property_trip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter trip adviser total reviews"
+                        android:textSize="17sp"
+                        android:background="@null"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        style="@style/SpecificCornerRounded"
+                        android:src="@drawable/png_edit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="18dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/round_corner"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/property_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter complete address"
+                        android:textSize="17sp"
+                        android:background="@null"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        style="@style/SpecificCornerRounded"
+                        android:src="@drawable/png_edit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="18dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_corner"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/property_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/location"
+                        android:textSize="17sp"
+                        android:background="@null"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        style="@style/SpecificCornerRounded"
+                        android:src="@drawable/png_edit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"/>
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="18dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_corner"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/property_starts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Property Starts"
+                        android:textSize="17sp"
+                        android:background="@null"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        style="@style/SpecificCornerRounded"
+                        android:src="@drawable/png_edit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/add_prop_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Amenties"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/avenir"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/property_d_card"/>
+
+        <TextView
+            android:id="@+id/social_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Social Media Links"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/avenir"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_prop_text"/>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_add_links"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="8dp"
+            android:padding="20dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintTop_toBottomOf="@id/social_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/fb"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/facebook"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <RelativeLayout
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toEndOf="@id/fb"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fb"
+                    app:layout_constraintBottom_toBottomOf="@id/fb">
+
+                    <EditText
+                        android:id="@+id/fb_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="facebook.com/username"
+                        android:textSize="13sp"
+                        android:textColor="@color/add_details"
+                        android:background="@null"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        style="@style/SpecificCornerRounded"
+                        android:src="@drawable/png_edit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"/>
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:id="@+id/googl"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/google"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fb"/>
+                <RelativeLayout
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toEndOf="@id/googl"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/googl"
+                    app:layout_constraintBottom_toBottomOf="@id/googl">
+
+                    <EditText
+                        android:id="@+id/google_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="googlemybusiness.com/username"
+                        android:textSize="13sp"
+                        android:textColor="@color/add_details"
+                        android:background="@null"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        style="@style/SpecificCornerRounded"
+                        android:src="@drawable/png_edit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"/>
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:id="@+id/insta"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/instagram"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/googl"/>
+                <RelativeLayout
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toEndOf="@id/insta"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/insta"
+                    app:layout_constraintBottom_toBottomOf="@id/insta">
+
+                    <EditText
+                        android:id="@+id/insta_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="instagram.com/username"
+                        android:textSize="13sp"
+                        android:textColor="@color/add_details"
+                        android:background="@null"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        style="@style/SpecificCornerRounded"
+                        android:src="@drawable/png_edit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"/>
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:id="@+id/linkedin"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/linkedin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/insta"/>
+                <RelativeLayout
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toEndOf="@id/linkedin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/linkedin"
+                    app:layout_constraintBottom_toBottomOf="@id/linkedin">
+
+                    <EditText
+                        android:id="@+id/linkedin_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="linkedin.com/username"
+                        android:textSize="13sp"
+                        android:textColor="@color/add_details"
+                        android:background="@null"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        style="@style/SpecificCornerRounded"
+                        android:src="@drawable/png_edit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"/>
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:id="@+id/pinterest"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/pinterest"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/linkedin"/>
+                <RelativeLayout
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toEndOf="@id/pinterest"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/pinterest"
+                    app:layout_constraintBottom_toBottomOf="@id/pinterest">
+
+                    <EditText
+                        android:id="@+id/pinterest_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="pinterest.com/username"
+                        android:textSize="13sp"
+                        android:textColor="@color/add_details"
+                        android:background="@null"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        style="@style/SpecificCornerRounded"
+                        android:src="@drawable/png_edit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"/>
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:id="@+id/tripad"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/tripadvisor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/pinterest"/>
+                <RelativeLayout
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toEndOf="@id/tripad"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tripad"
+                    app:layout_constraintBottom_toBottomOf="@id/tripad">
+
+                    <EditText
+                        android:id="@+id/tripad_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="linkedin.com/username"
+                        android:textSize="13sp"
+                        android:textColor="@color/add_details"
+                        android:background="@null"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        style="@style/SpecificCornerRounded"
+                        android:src="@drawable/png_edit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"/>
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/whats"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/whatsapp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tripad"/>
+                <RelativeLayout
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toEndOf="@id/whats"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/whats"
+                    app:layout_constraintBottom_toBottomOf="@id/whats">
+
+                    <EditText
+                        android:id="@+id/whats_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="whatsapp.com/username"
+                        android:textSize="13sp"
+                        android:textColor="@color/add_details"
+                        android:background="@null"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        style="@style/SpecificCornerRounded"
+                        android:src="@drawable/png_edit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"/>
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/twit"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/twitter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/whats"/>
+                <RelativeLayout
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toEndOf="@id/twit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/twit"
+                    app:layout_constraintBottom_toBottomOf="@id/twit">
+
+                    <EditText
+                        android:id="@+id/twitter_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="twitter.com/username"
+                        android:textSize="13sp"
+                        android:textColor="@color/add_details"
+                        android:background="@null"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        style="@style/SpecificCornerRounded"
+                        android:src="@drawable/png_edit"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"/>
+
+                </RelativeLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/about_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About Accomodation"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/avenir"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_add_links"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            style="@style/SpecificCornerRounded"
+            android:src="@drawable/png_edit"
+            app:layout_constraintTop_toTopOf="@id/about_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/about_text"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="30dp"
+            android:layout_margin="10dp"
+            app:cardElevation="8dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/about_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <EditText
+                android:id="@+id/property_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Property Description"
+                android:textSize="16sp"
+                android:lines="6"
+                android:gravity="top"
+                android:padding="15dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/add_details"
+                android:background="@drawable/round_corner"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:fontFamily="@font/avenir"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

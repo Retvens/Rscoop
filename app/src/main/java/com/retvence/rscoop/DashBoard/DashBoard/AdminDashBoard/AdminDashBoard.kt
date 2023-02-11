@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.ExploreFragment
-import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.ExploreFragment
+import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.ProfileFragment
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.BookmarkFragment
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.TodoFragment
 import com.retvens.rscoop.R

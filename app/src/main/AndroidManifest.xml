@@ -15,6 +15,7 @@
         android:theme="@style/Theme.RSCOOP"
         tools:targetApi="31">
 
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -33,9 +34,12 @@
         <activity
             android:name=".RecentProperties.MapsActivity"
             android:exported="false"
-            android:label="@string/title_activity_maps" />
+            android:label="@str
         <activity
             android:name=".DashBoard.DashBoard.AdminDashBoard.Profile.AddClient"
+            android:exported="false" />
+        <activity
+            android:name=".DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty"
             android:exported="false" />
         <activity
             android:name=".RecentProperties.ViewAllTasks"
