@@ -1,4 +1,4 @@
-package com.retvence.rscoop.RecentProperties
+package com.retvens.rscoop.RecentProperties
 
 import android.graphics.Rect
 import android.view.View

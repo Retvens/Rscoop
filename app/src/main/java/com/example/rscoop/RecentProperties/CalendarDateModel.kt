@@ -1,4 +1,4 @@
-package com.retvence.rscoop.RecentProperties
+package com.retvens.rscoop.RecentProperties
 
 import java.text.SimpleDateFormat
 import java.util.*

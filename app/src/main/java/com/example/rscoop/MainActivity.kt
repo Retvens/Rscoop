@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.retvens.rscoop.Authentication.LoginActivity
 import com.retvens.rscoop.Authentication.LoginPhone
-import com.retvens.rscoop.DashBoard.AdminDashBoard.AdminDashBoard
+import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 
 class MainActivity : AppCompatActivity() {
     lateinit var loginBtn : CardView

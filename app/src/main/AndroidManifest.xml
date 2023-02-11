@@ -31,10 +31,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC7qNJBepL9gkSOmXO2YQcD_vNKXskTtBQ" />
 
-        <activity
-            android:name=".RecentProperties.MapsActivity"
-            android:exported="false"
-            android:label="@str
+
         <activity
             android:name=".DashBoard.DashBoard.AdminDashBoard.Profile.AddClient"
             android:exported="false" />
@@ -70,7 +67,7 @@
                 android:value="AIzaSyC7qNJBepL9gkSOmXO2YQcD_vNKXskTtBQ" />
         </activity>
         <activity
-            android:name=".DashBoard.AdminDashBoard.AdminDashBoard"
+            android:name="com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="true">
             <intent-filter>

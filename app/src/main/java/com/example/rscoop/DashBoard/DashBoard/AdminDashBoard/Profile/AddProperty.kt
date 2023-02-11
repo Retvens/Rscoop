@@ -1,4 +1,4 @@
-package com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile
+package com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
