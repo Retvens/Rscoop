@@ -7,12 +7,13 @@
     tools:context=".RecentProperties.ViewAllTasks">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
         android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_height="wrap_content">
+        android:layout_alignParentEnd="true">
 
         <ImageView
             android:id="@+id/tasks_back_btn"
@@ -43,31 +44,27 @@
 
         <EditText
             android:id="@+id/search_Bar"
-            android:background="@drawable/searchbox3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:paddingLeft="35dp"
             android:paddingTop="10dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:paddingBottom="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="90dp"
-            android:hint="Search"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@id/all_tasks"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:hint="Search" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_search_24"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="100dp"
             android:layout_alignParentStart="true"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toTopOf="@id/search_Bar"
+            app:layout_constraintBottom_toBottomOf="@id/search_Bar"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -97,6 +94,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@color/white">
+                <include layout = "@layout/shimmer_for_activity"/>
+                <include layout = "@layout/shimmer_for_activity"/>
+                <include layout = "@layout/shimmer_for_activity"/>
                 <include layout = "@layout/shimmer_for_activity"/>
                 <include layout = "@layout/shimmer_for_activity"/>
                 <include layout = "@layout/shimmer_for_activity"/>
