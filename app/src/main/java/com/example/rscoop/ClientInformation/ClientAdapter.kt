@@ -1,4 +1,4 @@
-package com.example.rscoop.ClientInformation
+package com.retvens.rscoop.ClientInformation
 
 import android.content.Context
 import android.content.Intent
@@ -11,8 +11,9 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rscoop.DataCollections.HotelsData
-import com.example.rscoop.R
-import com.example.rscoop.RecentProperties.HotelsLocations
+import com.retvens.rscoop.R
+import com.retvens.rscoop.RecentProperties.HotelsLocations
+
 
 class ClientAdapter(val context: Context, var userList:List<HotelsData>):RecyclerView.Adapter<ClientAdapter.ViewHolder>() {
 

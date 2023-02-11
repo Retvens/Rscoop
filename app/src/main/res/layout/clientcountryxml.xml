@@ -51,6 +51,7 @@
             />
 
         <TextView
+            android:id="@+id/NumberOfClient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+91 7905845935"
@@ -65,6 +66,7 @@
             app:layout_constraintBottom_toBottomOf="@id/clientImage"/>
 
         <TextView
+            android:id="@+id/addOfClient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mumbai,India"

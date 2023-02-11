@@ -1,4 +1,4 @@
-package com.example.rscoop.RecentProperties
+package com.retvens.rscoop.RecentProperties
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.example.rscoop.DataCollections.HotelsData
-import com.example.rscoop.R
+import com.retvens.rscoop.R
+
 
 class RecentPropertiesAdapter(val context: Context,val propertyList: List<HotelsData>) : RecyclerView.Adapter<RecentPropertiesAdapter.RecentPropertiesViewHolder>(){
 

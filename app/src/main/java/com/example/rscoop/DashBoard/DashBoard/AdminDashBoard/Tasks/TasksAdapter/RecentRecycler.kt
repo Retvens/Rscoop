@@ -1,4 +1,4 @@
-package com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter
+package com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,11 +9,9 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerAdminView
-import com.example.rscoop.DataCollections.HotelsData
-import com.example.rscoop.DataCollections.OwnersData
 import com.example.rscoop.DataCollections.TaskData
-import com.example.rscoop.R
+import com.retvens.rscoop.R
+
 
 class RecentRecycler(val context: Context, var userList:List<TaskData>) : RecyclerView.Adapter<RecentRecycler.MyViewHolder>(){
 
