@@ -11,11 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -26,20 +23,15 @@ import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.*
 import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.FragmentAdapter
 import com.example.rscoop.DataCollections.CountryData
 import com.example.rscoop.DataCollections.HotelsData
-import com.example.rscoop.DataCollections.OwnersData
 import com.example.rscoop.R
 import com.example.rscoop.RecentProperties.ClientCountries
 import com.example.rscoop.RecentProperties.RecentPropertiesView
 import com.example.rscoop.RecentProperties.ViewAllTasks
-import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.tabs.TabLayout
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Query
-import kotlin.io.path.fileVisitor
 
 class ExploreFragment() : Fragment(){
 
