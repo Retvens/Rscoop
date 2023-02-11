@@ -1,11 +1,12 @@
-package com.example.rscoop.OnBoardingScreen
+package com.retvens.rscoop.OnBoardingScreen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
-import com.example.rscoop.R
+import com.retvens.rscoop.R
+
 
 class OnBoardingScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

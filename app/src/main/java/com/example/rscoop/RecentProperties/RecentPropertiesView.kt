@@ -1,4 +1,4 @@
-package com.example.rscoop.RecentProperties
+package com.retvens.rscoop.RecentProperties
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rscoop.ApiRequests.RetrofitBuilder
 import com.example.rscoop.ApiRequests.RetvensUrls
 import com.example.rscoop.DataCollections.HotelsData
-import com.example.rscoop.R
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

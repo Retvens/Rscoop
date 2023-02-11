@@ -1,4 +1,4 @@
-package com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
+package com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -14,11 +14,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rscoop.ApiRequests.RetrofitBuilder
-import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.Adapters.BookmarkAdapter
-import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerAdminView
 import com.example.rscoop.DataCollections.HotelsData
-import com.example.rscoop.R
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.Adapters.BookmarkAdapter
+import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

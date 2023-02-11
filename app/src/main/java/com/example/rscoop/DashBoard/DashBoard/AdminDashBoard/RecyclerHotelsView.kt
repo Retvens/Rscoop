@@ -1,4 +1,4 @@
-package com.example.rscoop.DashBoard.DashBoard.AdminDashBoard
+package com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard
 
 import android.content.Context
 import android.content.Intent
@@ -11,9 +11,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rscoop.DataCollections.HotelsData
-import com.example.rscoop.DataCollections.OwnersData
-import com.example.rscoop.R
-import com.example.rscoop.RecentProperties.ClientCountries
+import com.retvens.rscoop.R
+
 import kotlin.math.round
 
 class RecyclerHotelsView(val context: Context, var hotelList:List<HotelsData>): RecyclerView.Adapter<RecyclerHotelsView.MyclassViewHolder>() {

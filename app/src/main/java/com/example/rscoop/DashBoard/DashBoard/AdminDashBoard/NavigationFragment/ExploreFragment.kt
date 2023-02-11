@@ -11,27 +11,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.rscoop.ApiRequests.RetrofitBuilder
-import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerAdminView
-import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerHotelsView
 import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.*
 import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.FragmentAdapter
 import com.example.rscoop.DataCollections.CountryData
 import com.example.rscoop.DataCollections.HotelsData
-import com.example.rscoop.R
-import com.example.rscoop.RecentProperties.ClientCountries
-import com.example.rscoop.RecentProperties.RecentPropertiesView
-import com.example.rscoop.RecentProperties.ViewAllTasks
+import com.example.rscoop.DataCollections.OwnersData
+import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.tabs.TabLayout
+import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerAdminView
+import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerHotelsView
+import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.CompletedTasks
+import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.RecentTasks
+import com.retvens.rscoop.R
+import com.retvens.rscoop.RecentProperties.RecentPropertiesView
+import com.retvens.rscoop.RecentProperties.ViewAllTasks
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Query
+import kotlin.io.path.fileVisitor
 
 class ExploreFragment() : Fragment(){
 
@@ -84,11 +93,11 @@ class ExploreFragment() : Fragment(){
 
         allTasks = view.findViewById(R.id.view_all_tasks)
         allTasks.setOnClickListener {
-            startActivity(Intent(context,ViewAllTasks::class.java))
+            startActivity(Intent(context, ViewAllTasks::class.java))
         }
         recentProperties = view.findViewById(R.id.view_properties)
         recentProperties.setOnClickListener {
-            startActivity(Intent(context,RecentPropertiesView::class.java))
+            startActivity(Intent(context, RecentPropertiesView::class.java))
         }
 
 
@@ -162,12 +171,7 @@ class ExploreFragment() : Fragment(){
 
                    })
 
-                   adapter.setOnItemClickListener(object : RecyclerAdminView.onItemClickListener{
-                       override fun onClick(position: Int) {
-                           startActivity(Intent(context,ClientCountries::class.java))
-                       }
 
-                   })
 
                }
 

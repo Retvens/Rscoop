@@ -1,4 +1,4 @@
-package com.example.rscoop.ClientInformation
+package com.retvens.rscoop.ClientInformation
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
@@ -10,9 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rscoop.ApiRequests.RetrofitBuilder
-import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.Adapters.BookmarkAdapter
 import com.example.rscoop.DataCollections.HotelsData
-import com.example.rscoop.R
+import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
