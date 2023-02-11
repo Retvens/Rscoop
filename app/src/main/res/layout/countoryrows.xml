@@ -29,6 +29,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="110dp"
+            android:fontFamily="@font/avenir"
             android:id="@+id/countryName"
             android:textAlignment="center"
             android:textSize="14dp"

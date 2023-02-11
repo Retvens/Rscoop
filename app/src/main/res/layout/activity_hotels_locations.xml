@@ -12,6 +12,7 @@
         android:text="@string/properties"
         android:id="@+id/recenttext"
         android:textSize="30dp"
+        android:fontFamily="@font/avenir"
         android:textColor="#383842"
         android:layout_marginTop="45dp"
         android:textStyle="bold"

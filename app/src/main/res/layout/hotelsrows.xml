@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="110dp"
         android:id="@+id/hotelName"
+        android:fontFamily="@font/avenir"
         android:textAlignment="center"
         android:textSize="14dp"
         android:textColor="@color/black"
