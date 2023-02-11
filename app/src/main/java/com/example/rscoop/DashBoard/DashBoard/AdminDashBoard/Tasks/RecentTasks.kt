@@ -1,4 +1,4 @@
-package com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks
+package com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,11 +9,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rscoop.ApiRequests.RetrofitBuilder
-import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerAdminView
-import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
-import com.example.rscoop.DataCollections.OwnersData
 import com.example.rscoop.DataCollections.TaskData
-import com.example.rscoop.R
+import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
+import com.retvens.rscoop.R
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,7 +20,7 @@ import retrofit2.Response
 class RecentTasks : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recentrecycler:RecentRecycler
+    private lateinit var recentrecycler: RecentRecycler
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

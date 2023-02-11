@@ -1,4 +1,4 @@
-package com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
+package com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.Toast
-import com.example.rscoop.R
+import com.retvens.rscoop.R
+
 
 class ProfileFragment : Fragment() {
 

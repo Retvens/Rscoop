@@ -39,8 +39,8 @@
             android:name=".RecentProperties.ClientCountries"
             android:exported="false">
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyC7qNJBepL9gkSOmXO2YQcD_vNKXskTtBQ" />
         </activity>
         <activity
             android:name=".DashBoard.AdminDashBoard.AdminDashBoard"

@@ -1,4 +1,4 @@
-package com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.Adapters
+package com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.Adapters
 
 import android.content.Context
 import android.content.Intent
@@ -10,11 +10,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerAdminView
 import com.example.rscoop.DataCollections.HotelsData
 import com.example.rscoop.DataCollections.HotelsLocation
-import com.example.rscoop.R
-import com.example.rscoop.RecentProperties.HotelsLocations
+import com.retvens.rscoop.R
+import com.retvens.rscoop.RecentProperties.HotelsLocations
 
 class BookmarkAdapter(val context: Context, var userList:List<HotelsData>):RecyclerView.Adapter<BookmarkAdapter.MyViewHolderClass>() {
 

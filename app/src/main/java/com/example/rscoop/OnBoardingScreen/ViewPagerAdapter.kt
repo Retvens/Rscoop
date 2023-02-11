@@ -1,4 +1,4 @@
-package com.example.rscoop.OnBoardingScreen
+package com.retvens.rscoop.OnBoardingScreen
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,9 +7,8 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.PagerAdapter
-import com.example.rscoop.R
-import kotlinx.coroutines.NonDisposableHandle.parent
+import com.example.rscoop.OnBoardingScreen.OnBoardingFragment2
+
 
 class ViewPagerAdapter(fragmentManager:FragmentManager) :FragmentPagerAdapter(fragmentManager) {
 

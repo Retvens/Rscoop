@@ -1,4 +1,4 @@
-package com.example.rscoop
+package com.retvens.rscoop
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import com.example.rscoop.Authentication.LoginActivity
-import com.example.rscoop.Authentication.LoginPhone
-import com.example.rscoop.DashBoard.AdminDashBoard.AdminDashBoard
+import com.retvens.rscoop.Authentication.LoginActivity
+import com.retvens.rscoop.Authentication.LoginPhone
+import com.retvens.rscoop.DashBoard.AdminDashBoard.AdminDashBoard
 
 class MainActivity : AppCompatActivity() {
     lateinit var loginBtn : CardView
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         phoneLogin.setOnClickListener{
-            startActivity(Intent(this,LoginPhone::class.java))
+            startActivity(Intent(this, LoginPhone::class.java))
         }
 
 
