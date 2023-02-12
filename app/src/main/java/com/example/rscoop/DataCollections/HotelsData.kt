@@ -10,7 +10,8 @@ data class HotelsData(
     val Number_of_banquet:Number,
     val owner_id:Number,
     val hotel_profile_photo:String,
-    val Cover_photo:String
+    val Cover_photo:String,
+    val token:String
 
 ){
 
