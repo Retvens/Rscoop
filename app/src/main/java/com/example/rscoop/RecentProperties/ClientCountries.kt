@@ -1,5 +1,6 @@
 package com.retvens.rscoop.RecentProperties
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -7,10 +8,13 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rscoop.ApiRequests.RetrofitBuilder
+import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
+import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.ExploreFragment
 import com.example.rscoop.DataCollections.OwnersData
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.retvens.rscoop.R
@@ -19,8 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class
-ClientCountries : AppCompatActivity() {
+class ClientCountries : AppCompatActivity() {
 
     private lateinit var clientCountriesAdapter: ClientCountriesAdapter
     private lateinit var recyclerView: RecyclerView
@@ -29,6 +32,11 @@ ClientCountries : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_client_countries)
+
+        val backbtn = findViewById<ImageView>(R.id.Client_backbtn)
+        backbtn.setOnClickListener {
+            startActivity(Intent(this,AdminDashBoard::class.java))
+        }
 
         //recycler define
         recyclerView = findViewById(R.id.recyclerOfClientCountry)
@@ -45,7 +53,6 @@ ClientCountries : AppCompatActivity() {
 
 
         val country = intent.getStringExtra("country")
-//        Toast.makeText(this,"$country",Toast.LENGTH_LONG).show()
         val data = RetrofitBuilder.retrofitBuilder.getOwner(country.toString())
 
        data.enqueue(object : Callback<List<OwnersData>?> {
@@ -60,7 +67,6 @@ ClientCountries : AppCompatActivity() {
 
                if (response.code() == 200){
 
-                   Toast.makeText(baseContext, response.message(), Toast.LENGTH_LONG).show()
 
                    val response = response.body()!!
                    val originalData = response.toList()
@@ -101,7 +107,6 @@ ClientCountries : AppCompatActivity() {
            }
 
            override fun onFailure(call: Call<List<OwnersData>?>, t: Throwable) {
-               Toast.makeText(baseContext, t.message, Toast.LENGTH_LONG).show()
                Log.e("error",t.message.toString())
            }
        })
