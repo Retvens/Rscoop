@@ -36,7 +36,7 @@
             android:name=".DashBoard.DashBoard.AdminDashBoard.Profile.AddClient"
             android:exported="false" />
         <activity
-            android:name=".DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty"
+            android:name="com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty"
             android:exported="false" />
         <activity
             android:name=".RecentProperties.ViewAllTasks"
@@ -67,7 +67,7 @@
                 android:value="AIzaSyC7qNJBepL9gkSOmXO2YQcD_vNKXskTtBQ" />
         </activity>
         <activity
-            android:name="com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard"
+            android:name="com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="true">
             <intent-filter>
