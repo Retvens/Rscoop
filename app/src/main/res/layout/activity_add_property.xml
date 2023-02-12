@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty">
+    tools:context="com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,7 +13,7 @@
         android:padding="6dp">
 
         <ImageView
-            android:id="@+id/addproperty_back_btn"
+            android:id="@+id/property_back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintHorizontal_bias=".05"
@@ -34,9 +34,9 @@
             android:fontFamily="@font/avenir"
             android:textColor="@color/black"
             android:layout_marginStart="10dp"
-            app:layout_constraintTop_toTopOf="@id/addproperty_back_btn"
-            app:layout_constraintStart_toEndOf="@id/addproperty_back_btn"
-            app:layout_constraintBottom_toBottomOf="@id/addproperty_back_btn"/>
+            app:layout_constraintTop_toTopOf="@id/property_back_btn"
+            app:layout_constraintStart_toEndOf="@id/property_back_btn"
+            app:layout_constraintBottom_toBottomOf="@id/property_back_btn"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
