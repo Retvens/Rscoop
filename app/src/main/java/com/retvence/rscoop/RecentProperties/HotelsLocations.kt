@@ -61,7 +61,6 @@ class HotelsLocations : AppCompatActivity() {
         mMapFragment.getMapAsync(object : OnMapReadyCallback{
             override fun onMapReady(p0: GoogleMap) {
                 googleMap = p0
-                Toast.makeText(applicationContext,"${latitude}",Toast.LENGTH_LONG).show()
                 val location = LatLng(lat, long)
                 googleMap.addMarker(MarkerOptions().position(location).title("$hotel_Name"))
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15f))

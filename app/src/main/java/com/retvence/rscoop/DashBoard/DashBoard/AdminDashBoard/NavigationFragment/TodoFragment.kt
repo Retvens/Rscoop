@@ -36,7 +36,6 @@ class TodoFragment : Fragment() {
             val fragmentAdapterT = FragmentAdapter(requireActivity().supportFragmentManager)
             fragmentAdapterT.addFragment(RecentTasks(), "Recent")
             fragmentAdapterT.addFragment(TodayTasks(), "Today")
-            fragmentAdapterT.addFragment(UpcomingTasks(), "Upcoming")
             fragmentAdapterT.addFragment(CompletedTasks(), "Completed")
 
             viewPagerToDo.adapter = fragmentAdapterT

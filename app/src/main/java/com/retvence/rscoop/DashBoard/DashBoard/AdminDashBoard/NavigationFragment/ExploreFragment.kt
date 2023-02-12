@@ -103,7 +103,6 @@ class ExploreFragment() : Fragment(){
 
         viewAdapter.addFragment(RecentTasks(),"Recent")
         viewAdapter.addFragment(TodayTasks(),"Today")
-        viewAdapter.addFragment(UpcomingTasks(),"Upcoming")
         viewAdapter.addFragment(CompletedTasks(),"Completed")
 
         viewPager.adapter = viewAdapter
