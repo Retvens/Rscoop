@@ -1,14 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DashBoard.DashBoard.AdminDashBoard.NavigationFragment.TodoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="todo" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/task_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oct 22, 2020"
+        android:fontFamily="@font/avenir"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/today_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today"
+        android:fontFamily="@font/avenir"
+        android:textStyle="bold"
+        android:layout_marginTop="-5dp"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_marginHorizontal="25dp"
+        app:layout_constraintTop_toBottomOf="@id/task_date"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/png_timer"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/today_task"
+        app:layout_constraintBottom_toBottomOf="@id/today_task"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/png_check"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/today_task"
+        app:layout_constraintBottom_toBottomOf="@id/today_task"/>
+
+    <RelativeLayout
+        android:id="@+id/relativ_task"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/round_low"
+        android:padding="10dp"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintTop_toBottomOf="@id/today_task"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_baseline_search_24"
+            app:tint="@color/add_details" />
+
+        <EditText
+            android:id="@+id/search_tasks"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="40dp"
+            android:background="@null"
+            android:hint="@string/try_to_enter_any_hotel_name"
+            android:textColorHint="@color/add_details"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/total_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/have_total"
+        android:fontFamily="@font/avenir"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="2dp"
+        app:layout_constraintTop_toBottomOf="@id/relativ_task"
+        app:layout_constraintStart_toStartOf="@id/relativ_task"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="35"
+        android:minHeight="50dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/total_task"
+        app:layout_constraintStart_toStartOf="@id/total_task"
+        android:minWidth="350dp"
+        android:progressBackgroundTint="@android:color/darker_gray"
+        android:progressTint="@color/sky_blue" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_todo"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="@dimen/margin_10"
+        app:layout_constraintTop_toBottomOf="@id/progressBar"
+        app:layout_constraintStart_toStartOf="@id/total_task">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/png_rect_s" />
+
+            <TextView
+                android:id="@+id/todo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To Do"
+                android:textStyle="bold|normal"
+                android:fontFamily="@font/avenir"
+                android:textSize="16sp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:textColor="@color/black"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="14dp"/>
+            <TextView
+                android:id="@+id/todo_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6 Tasks "
+                android:textStyle="normal"
+                android:fontFamily="@font/avenir"
+                android:textSize="14sp"
+                android:layout_below="@id/todo"
+                android:textColor="@color/add_details"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginStart="15dp"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toEndOf="@id/card_todo"
+        app:layout_constraintTop_toTopOf="@id/card_todo"
+        app:layout_constraintBottom_toBottomOf="@id/card_todo">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/png_rect_s"
+                app:tint="#4FC123"/>
+
+            <TextView
+                android:id="@+id/todo_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Done"
+                android:textStyle="bold|normal"
+                android:fontFamily="@font/avenir"
+                android:textSize="16sp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:textColor="@color/black"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="14dp"/>
+            <TextView
+                android:id="@+id/todo_done_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8 Tasks "
+                android:textStyle="normal"
+                android:fontFamily="@font/avenir"
+                android:textSize="14sp"
+                android:layout_below="@id/todo_done"
+                android:textColor="@color/add_details"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginStart="15dp"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/my_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Task"
+        android:fontFamily="@font/avenir"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_marginHorizontal="4dp"
+        app:layout_constraintTop_toBottomOf="@id/card_todo"
+        app:layout_constraintStart_toStartOf="@id/card_todo"/>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        style="@style/TabLayout"
+        app:tabSelectedTextColor="@color/sky_blue"
+        app:tabTextColor="@color/add_details"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/my_task"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/tabs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

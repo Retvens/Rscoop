@@ -30,17 +30,17 @@ class TodoFragment : Fragment() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
-//            viewPagerToDo = view.findViewById(R.id.view_pager_task)
-//            tabLayoutT = view.findViewById(R.id.tabs)
-//
-//            val fragmentAdapterT = FragmentAdapter(requireActivity().supportFragmentManager)
-//            fragmentAdapterT.addFragment(RecentTasks(), "Recent")
-//            fragmentAdapterT.addFragment(TodayTasks(), "Today")
-//            fragmentAdapterT.addFragment(UpcomingTasks(), "Upcoming")
-//            fragmentAdapterT.addFragment(CompletedTasks(), "Completed")
-//
-//            viewPagerToDo.adapter = fragmentAdapterT
-//            tabLayoutT.setupWithViewPager(viewPagerToDo)
+            viewPagerToDo = view.findViewById(R.id.view_pager_task)
+            tabLayoutT = view.findViewById(R.id.tabs)
+
+            val fragmentAdapterT = FragmentAdapter(requireActivity().supportFragmentManager)
+            fragmentAdapterT.addFragment(RecentTasks(), "Recent")
+            fragmentAdapterT.addFragment(TodayTasks(), "Today")
+            fragmentAdapterT.addFragment(UpcomingTasks(), "Upcoming")
+            fragmentAdapterT.addFragment(CompletedTasks(), "Completed")
+
+            viewPagerToDo.adapter = fragmentAdapterT
+            tabLayoutT.setupWithViewPager(viewPagerToDo)
 
     }
 }

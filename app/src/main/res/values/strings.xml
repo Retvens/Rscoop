@@ -40,6 +40,8 @@
     <string name="enter_email">Enter Email</string>
     <string name="enter_default_password">Enter default password</string>
     <string name="location">Location</string>
+    
+    <string name="have_total">Have total <b>18 Task</b></string>
 
     <style name="TabLayout">
         <item name="android:textStyle">bold</item>
