@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.rscoop.DataCollections.HotelsData
+import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvens.rscoop.R
 import com.retvens.rscoop.RecentProperties.HotelsLocations
 
@@ -23,9 +21,7 @@ class ClientAdapter(val context: Context, var userList:List<HotelsData>):Recycle
         var name = itemview.findViewById<TextView>(R.id.bookmark_Name)
         var image = itemview.findViewById<ImageView>(R.id.bookmark_Image)
         var rating = itemview.findViewById<TextView>(R.id.bookmark_Rating)
-
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.bookmarkscreen,parent,false)
