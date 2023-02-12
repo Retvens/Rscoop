@@ -1,16 +1,19 @@
 package com.retvens.rscoop.RecentProperties
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rscoop.ApiRequests.RetrofitBuilder
+import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.example.rscoop.DataCollections.TaskData
 
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -34,12 +37,17 @@ class ViewAllTasks : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_all_tasks)
 
+        val backbtn = findViewById<ImageView>(R.id.tasks_back_btn)
+        backbtn.setOnClickListener {
+            startActivity(Intent(this, AdminDashBoard::class.java))
+        }
+
         recyclerView = findViewById(R.id.recycler_Tasks)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         //search
-        search = findViewById(R.id.search_Bar)
+        search = findViewById(R.id.search_tasks)
 
         shimmerFrameLayout = findViewById(R.id.shimmer_tasks_view_container)
         shimmerLayout = findViewById(R.id.shimmer_layout_tasks)

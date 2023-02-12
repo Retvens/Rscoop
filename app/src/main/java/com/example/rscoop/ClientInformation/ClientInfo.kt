@@ -1,6 +1,7 @@
 package com.retvens.rscoop.ClientInformation
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -10,8 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rscoop.ApiRequests.RetrofitBuilder
+import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.example.rscoop.DataCollections.HotelsData
 import com.retvens.rscoop.R
+import com.retvens.rscoop.RecentProperties.ClientCountries
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +27,11 @@ class ClientInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_client_info)
+
+        val backbtn = findViewById<ImageView>(R.id.backarrow)
+        backbtn.setOnClickListener {
+            startActivity(Intent(this, AdminDashBoard::class.java))
+        }
 
         //defined items
         val client_Name = findViewById<TextView>(R.id.Client_Name)
