@@ -32,32 +32,35 @@
         android:id="@+id/relative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:padding="10dp"
+        android:layout_below="@id/tasks_back_btn"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/round_low"
-        android:layout_below="@id/tasks_back_btn">
+        android:padding="10dp">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_search_24"
-            app:tint="@color/add_details"
+            android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
-            android:layout_centerVertical="true"/>
+            android:src="@drawable/ic_baseline_search_24"
+            app:tint="@color/add_details" />
+
         <EditText
             android:id="@+id/search_tasks"
+            style="@style/TextAppearance.AppCompat.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/try_to_enter_any_hotel_name"
-            android:textSize="14sp"
-            android:textColorHint="@color/add_details"
-            android:background="@null"
-            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_centerVertical="true"
             android:layout_marginStart="40dp"
-            android:layout_centerVertical="true"/>
+            android:background="@null"
+            android:hint="@string/try_to_enter_any_hotel_name"
+            android:textColorHint="@color/add_details"
+            android:textSize="14sp" />
 
     </RelativeLayout>
-
 
     <TextView
         android:id="@+id/tv_date_month"
@@ -70,11 +73,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewDate"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_below="@id/tv_date_month"/>
 
 
