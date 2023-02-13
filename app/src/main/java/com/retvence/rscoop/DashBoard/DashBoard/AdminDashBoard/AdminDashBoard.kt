@@ -15,10 +15,6 @@ import com.retvens.rscoop.R
 //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
 class AdminDashBoard : AppCompatActivity() {
 //    private lateinit var toggle: ActionBarDrawerToggle
-//    private lateinit var recyclerView: RecyclerView
-//    private lateinit var hotelRecyclerView:RecyclerView
-//    private lateinit var adapter: RecyclerAdminView
-//    private lateinit var hotelAdapter:RecyclerHotelsView
 
     private  val exploreFragment =  ExploreFragment()
     private val todoFragment = TodoFragment()

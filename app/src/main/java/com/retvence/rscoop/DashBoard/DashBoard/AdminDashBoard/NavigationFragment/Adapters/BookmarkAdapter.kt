@@ -46,8 +46,9 @@ class BookmarkAdapter(val context: Context, var userList:List<HotelsData>):Recyc
                 intent.putExtra("logo",item.hotel_profile_photo)
 
             for (location in item.hotel_location){
-                intent.putExtra("latitude",18.921729)
-                intent.putExtra("longitude",72.833031)
+                intent.putExtra("latitude",location.Latitude)
+                intent.putExtra("longitude",location.Longitude)
+
 
             }
 

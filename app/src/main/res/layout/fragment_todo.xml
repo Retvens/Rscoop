@@ -233,6 +233,7 @@
         app:tabSelectedTextColor="@color/sky_blue"
         app:tabTextColor="@color/add_details"
         app:layout_constraintStart_toStartOf="parent"
+        app:tabTextAppearance="@style/TabLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/my_task"/>
     <androidx.viewpager.widget.ViewPager
