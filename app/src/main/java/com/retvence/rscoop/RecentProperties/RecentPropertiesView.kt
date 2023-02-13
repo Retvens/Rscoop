@@ -37,6 +37,7 @@ class RecentPropertiesView : AppCompatActivity() {
         val backbtn = findViewById<ImageView>(R.id.properties_back_btn)
         backbtn.setOnClickListener {
             startActivity(Intent(this, AdminDashBoard::class.java))
+            finish()
         }
 
         searchProperty = findViewById(R.id.search_property)

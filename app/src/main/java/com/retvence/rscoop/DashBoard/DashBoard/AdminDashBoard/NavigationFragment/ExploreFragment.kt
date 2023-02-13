@@ -11,8 +11,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -58,6 +60,8 @@ class ExploreFragment() : Fragment(){
     private lateinit var recentProperties: TextView
     private lateinit var allTasks: TextView
 
+    private lateinit var exploreProfile: ImageView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -83,6 +87,14 @@ class ExploreFragment() : Fragment(){
         hotelRecyclerView = view.findViewById(R.id.hotelsRecycler)
         hotelRecyclerView.setHasFixedSize(true)
         hotelRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
+
+        exploreProfile = view.findViewById(R.id.exploreProfile)
+        exploreProfile.setOnClickListener {
+           val profileFragment = ProfileFragment()
+            val transection: FragmentTransaction = fragmentManager!!.beginTransaction()
+            transection.replace(R.id.fragment_container,profileFragment)
+                transection.commit()
+        }
 
         allTasks = view.findViewById(R.id.view_all_tasks)
         allTasks.setOnClickListener {

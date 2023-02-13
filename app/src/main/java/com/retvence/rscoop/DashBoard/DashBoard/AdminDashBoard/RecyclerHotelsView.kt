@@ -30,6 +30,8 @@ class RecyclerHotelsView(val context: Context, var hotelList:List<HotelsData>): 
         holder.hotelName.text = hotelList[position].hotel_name
         Glide.with(context).load(hotelList[position].hotel_profile_photo).into(holder.hotelImage)
 
+
+
        holder.hotelImage.setOnClickListener {
 
 

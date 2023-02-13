@@ -1,6 +1,7 @@
 package com.retvens.rscoop.RecentProperties
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.retvence.rscoop.DataCollections.HotelsData
+import com.retvence.rscoop.DataCollections.HotelsLocation
 import com.retvence.rscoop.DataCollections.TaskData
 import com.retvens.rscoop.R
 
@@ -27,6 +29,21 @@ class RecentPropertiesAdapter(val context: Context, var propertyList: List<Hotel
         holder.hotelName.text = propertyList.hotel_name
         holder.ratingBar.rating = propertyList.hotel_stars.toFloat()
         Glide.with(context).load(propertyList.hotel_profile_photo).into(holder.hotelCover)
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context,HotelsLocations::class.java)
+            intent.putExtra("Name",propertyList.hotel_name)
+            intent.putExtra("image",propertyList.Cover_photo)
+            intent.putExtra("logo",propertyList.hotel_profile_photo)
+
+            for (location in propertyList.hotel_location){
+                intent.putExtra("latitude", location.Latitude)
+                intent.putExtra("longitude",location.Longitude)
+            }
+
+            context.startActivity(intent)
+        }
+
     }
 
     override fun getItemCount(): Int {

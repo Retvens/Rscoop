@@ -1,4 +1,4 @@
-package com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
+package com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
 
 import android.content.Intent
 import android.os.Bundle

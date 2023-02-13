@@ -2,6 +2,7 @@ package com.retvens.rscoop.ClientInformation
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -34,11 +35,16 @@ class ClientInfo : AppCompatActivity() {
         //defined items
         val client_Name = findViewById<TextView>(R.id.Client_Name)
         val hotelImage = findViewById<ImageView>(R.id.clienthotelimg)
+        val whatsappClient = findViewById<ImageView>(R.id.whatsapp_client)
         val clientImage = findViewById<ImageView>(R.id.imageOfClient)
         val client_Name2 = findViewById<TextView>(R.id.Client_Name2)
         val number = findViewById<TextView>(R.id.client_number)
         val add = findViewById<TextView>(R.id.client_address)
 
+        whatsappClient.setOnClickListener {
+            val uriForWhat: Uri = Uri.parse("https://whatsapp.com")
+            startActivity(Intent(Intent.ACTION_VIEW,uriForWhat))
+        }
 
         val name = intent.getStringExtra("client_name")
         val image = intent.getStringExtra("client_image")

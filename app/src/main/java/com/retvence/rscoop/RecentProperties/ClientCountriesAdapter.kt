@@ -2,6 +2,7 @@ package com.retvens.rscoop.RecentProperties
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
 
         var Name = itemview.findViewById<TextView>(R.id.clientName)
         var image = itemview.findViewById<ImageView>(R.id.clientImage)
+        var whats = itemview.findViewById<ImageView>(R.id.whatsappCountry)
         val number = itemview.findViewById<TextView>(R.id.NumberOfClient)
         val address = itemview.findViewById<TextView>(R.id.addOfClient)
     }
@@ -39,6 +41,11 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
         Glide.with(context).load(userList[position].Profile_photo).into(holder.image)
         holder.number.text = data.Phone
         holder.address.text = data.Country
+
+        holder.whats.setOnClickListener {
+            val uriWhats : Uri = Uri.parse("https://whatsapp.com")
+            context.startActivity(Intent(Intent.ACTION_VIEW,uriWhats))
+        }
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ClientInfo::class.java)

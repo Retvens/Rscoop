@@ -40,6 +40,7 @@ class ViewAllTasks : AppCompatActivity() {
         val backbtn = findViewById<ImageView>(R.id.tasks_back_btn)
         backbtn.setOnClickListener {
             startActivity(Intent(this, AdminDashBoard::class.java))
+            finish()
         }
 
         recyclerView = findViewById(R.id.recycler_Tasks)

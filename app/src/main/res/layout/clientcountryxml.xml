@@ -96,6 +96,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
         <ImageView
+            android:id="@+id/whatsappCountry"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/whatsapp"
