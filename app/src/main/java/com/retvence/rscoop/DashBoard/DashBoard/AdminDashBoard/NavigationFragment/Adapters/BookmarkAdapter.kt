@@ -10,8 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.rscoop.DataCollections.HotelsData
-import com.example.rscoop.DataCollections.HotelsLocation
+import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvens.rscoop.R
 import com.retvens.rscoop.RecentProperties.HotelsLocations
 import com.retvens.rscoop.RecentProperties.MapsActivity

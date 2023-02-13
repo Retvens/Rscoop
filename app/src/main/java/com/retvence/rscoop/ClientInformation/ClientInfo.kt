@@ -11,9 +11,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.rscoop.ApiRequests.RetrofitBuilder
-import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
-import com.example.rscoop.DataCollections.HotelsData
+import com.retvence.rscoop.ApiRequests.RetrofitBuilder
+import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
+import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvens.rscoop.R
 import com.retvens.rscoop.RecentProperties.ClientCountries
 import retrofit2.Call
@@ -86,7 +86,7 @@ class ClientInfo : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<HotelsData>?>, t: Throwable) {
-                TODO("Not yet implemented")
+
             }
         })
     }

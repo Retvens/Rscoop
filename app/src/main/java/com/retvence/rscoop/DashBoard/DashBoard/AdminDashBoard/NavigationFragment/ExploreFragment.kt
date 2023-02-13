@@ -44,19 +44,12 @@ class ExploreFragment() : Fragment(){
     private lateinit var hotelRecyclerView:RecyclerView
     private lateinit var adapter: RecyclerAdminView
     private lateinit var hotelAdapter: RecyclerHotelsView
-    private lateinit var tabLabLayout:TabLayout
+    private lateinit var tabLayout:TabLayout
     private  var recentTasks = RecentTasks()
     private lateinit var shimmer: ShimmerFrameLayout
     private lateinit var searchBar:EditText
 
 
-
-   
-
-    private  val recentTask =  RecentTasks()
-    private val todayTasks = TodayTasks()
-    private val upcomingTasks = UpcomingTasks()
-    private val completedTasks = CompletedTasks()
     private lateinit var recentProperties: TextView
     private lateinit var allTasks: TextView
 
@@ -107,19 +100,38 @@ class ExploreFragment() : Fragment(){
 
 
 // All Tasks Tab Layout
-        var viewPager = view.findViewById<ViewPager>(R.id.viewPager1)
-        tabLabLayout = view.findViewById<TabLayout>(R.id.tabLayout)
+        tabLayout = view.findViewById(R.id.tabLayout)
 
+        val tab1 = tabLayout.newTab().setText("Recent")
+        val tab2 = tabLayout.newTab().setText("Today")
+        val tab3 = tabLayout.newTab().setText("Completed")
+        tabLayout.addTab(tab1)
+        tabLayout.addTab(tab2)
+        tabLayout.addTab(tab3)
 
-       val viewAdapter = FragmentAdapter(requireActivity().supportFragmentManager)
+        childFragmentManager.beginTransaction()
+            .replace(R.id.container, RecentTasks())
+            .commit()
 
-        viewAdapter.addFragment(RecentTasks(),"Recent")
-        viewAdapter.addFragment(TodayTasks(),"Today")
-        viewAdapter.addFragment(CompletedTasks(),"Completed")
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                val fragment = when (tab.position) {
+                    0 -> RecentTasks()
+                    1 -> TodayTasks()
+                    2 -> CompletedTasks()
+                    else -> RecentTasks()
+                }
+                childFragmentManager.beginTransaction()
+                    .replace(R.id.container, fragment)
+                    .commit()
+            }
 
-        viewPager.adapter = viewAdapter
-        tabLabLayout.setupWithViewPager(viewPager)
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
 
+        // Set the initial tab selection
+        tabLayout.getTabAt(0)?.select()
 
         getCountry()
         getHotels()

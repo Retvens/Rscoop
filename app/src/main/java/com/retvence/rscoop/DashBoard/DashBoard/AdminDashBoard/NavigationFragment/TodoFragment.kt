@@ -17,8 +17,7 @@ import com.retvens.rscoop.R
 
 class TodoFragment : Fragment() {
 
-    lateinit var viewPagerToDo: ViewPager
-    lateinit var tabLayoutT: TabLayout
+    lateinit var tabLayout: TabLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,16 +29,40 @@ class TodoFragment : Fragment() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
-            viewPagerToDo = view.findViewById(R.id.view_pager_task)
-            tabLayoutT = view.findViewById(R.id.tabs)
+            tabLayout = view.findViewById<TabLayout>(R.id.tabs)
 
-            val fragmentAdapterT = FragmentAdapter(requireActivity().supportFragmentManager)
-            fragmentAdapterT.addFragment(RecentTasks(), "Recent")
-            fragmentAdapterT.addFragment(TodayTasks(), "Today")
-            fragmentAdapterT.addFragment(CompletedTasks(), "Completed")
+            val tab1 = tabLayout.newTab().setText("Recent")
+            val tab2 = tabLayout.newTab().setText("Today")
+            val tab3 = tabLayout.newTab().setText("Completed")
+            tabLayout.addTab(tab1)
+            tabLayout.addTab(tab2)
+            tabLayout.addTab(tab3)
 
-            viewPagerToDo.adapter = fragmentAdapterT
-            tabLayoutT.setupWithViewPager(viewPagerToDo)
+            childFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, RecentTasks())
+                .commit()
+
+            tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab) {
+                    val fragment = when (tab.position) {
+                        0 -> RecentTasks()
+                        1 -> TodayTasks()
+                        2 -> CompletedTasks()
+                        else -> RecentTasks()
+                    }
+                    childFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .commit()
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {}
+                override fun onTabReselected(tab: TabLayout.Tab?) {}
+            })
+
+            // Set the initial tab selection
+            tabLayout.getTabAt(0)?.select()
+
+
 
     }
 }
