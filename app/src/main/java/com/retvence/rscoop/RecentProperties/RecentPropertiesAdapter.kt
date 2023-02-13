@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.retvence.rscoop.DataCollections.HotelsData
+import com.retvence.rscoop.DataCollections.TaskData
 import com.retvens.rscoop.R
 
 
-class RecentPropertiesAdapter(val context: Context,val propertyList: List<HotelsData>) : RecyclerView.Adapter<RecentPropertiesAdapter.RecentPropertiesViewHolder>(){
+class RecentPropertiesAdapter(val context: Context, var propertyList: List<HotelsData>) : RecyclerView.Adapter<RecentPropertiesAdapter.RecentPropertiesViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentPropertiesViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
@@ -30,6 +31,10 @@ class RecentPropertiesAdapter(val context: Context,val propertyList: List<Hotels
 
     override fun getItemCount(): Int {
         return propertyList.size
+    }
+    fun updateProData(newProItems: List<HotelsData>) {
+        propertyList = newProItems
+        notifyDataSetChanged()
     }
 
     class RecentPropertiesViewHolder(itemView: View) : ViewHolder(itemView){
