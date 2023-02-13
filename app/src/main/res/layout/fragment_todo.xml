@@ -96,21 +96,19 @@
         android:layout_below="@id/relativ_task"
         android:layout_alignParentStart="true"/>
 
-    <ProgressBar
+    <com.mackhartley.roundedprogressbar.RoundedProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminate="false"
-        android:max="100"
-        android:progress="35"
-        android:minHeight="50dp"
-        android:layout_marginStart="25dp"
-        android:minWidth="350dp"
-        android:progressBackgroundTint="@android:color/darker_gray"
-        android:progressTint="@color/sky_blue"
-        android:layout_below="@id/total_task"
-        android:layout_alignParentStart="true"/>
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        app:rpbBackgroundColor="#4FC123"
+        android:layout_marginTop="@dimen/margin_5"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:layout_marginHorizontal="25dp"
+        app:rpbCornerRadius="20dp"
+        app:rpbProgress="40"
+        app:rpbProgressColor="@color/sky_blue"
+        app:rpbShowProgressText="false"
+        android:layout_below="@id/total_task"/>
 
 
     <androidx.cardview.widget.CardView

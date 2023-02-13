@@ -4,6 +4,7 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
@@ -43,35 +44,32 @@ class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateMode
             val calendarDay = itemView.findViewById<TextView>(R.id.tv_calendar_day)
             val calendarDate = itemView.findViewById<TextView>(R.id.tv_calendar_date)
             val cardView = itemView.findViewById<CardView>(R.id.card_calendar)
+            val linearView = itemView.findViewById<LinearLayout>(R.id.linear_cal)
 
             calendarDay.text = calendarDateModel.calendarDay
             calendarDate.text = calendarDateModel.calendarDate
 
-            val calendarAdapter = CalendarAdapter { calendarDateModel, position ->
-
-                // Handle the click event here
-                // You can access the CalendarDateModel with the `calendarDateModel` parameter
-                // And the position of the item in the list with the `position` parameter
-
-                cardView.setOnClickListener {
-                    calendarDay.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
-                    calendarDate.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
-                    cardView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.sky_blue))
+            cardView.setOnClickListener {
+                calendarDay.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
+                calendarDate.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
+                linearView.setBackgroundColor(ContextCompat.getColor(itemView.context,R.color.sky_blue))
+                cardView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.sky_blue))
 //                    listener.invoke(calendarDateModel, adapterPosition)
-                }
-            }
+              }
 
-            itemView.setOnClickListener {
+
                 if (calendarDateModel.isSelected) {
                 calendarDay.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
                 calendarDate.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
                 cardView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.sky_blue))
+                linearView.setBackgroundColor(ContextCompat.getColor(itemView.context,R.color.sky_blue))
                     } else {
                         calendarDay.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
                         calendarDate.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
                         cardView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.white))
+                        linearView.setBackgroundColor(ContextCompat.getColor(itemView.context,R.color.white))
                     }
-            }
+
         }
     }
 

@@ -62,6 +62,22 @@
 
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/iv_calendar_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/forword_arrow"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/tv_date_month"
+        android:layout_below="@id/relative"/>
+    <ImageView
+        android:id="@+id/iv_calendar_previous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_arrow"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/tv_date_month"
+        android:layout_below="@id/relative"/>
 
     <TextView
         android:id="@+id/tv_date_month"
@@ -76,10 +92,12 @@
         android:id="@+id/recyclerViewDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_below="@id/tv_date_month"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="18dp"
         android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_below="@id/tv_date_month"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
         <androidx.recyclerview.widget.RecyclerView
