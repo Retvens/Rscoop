@@ -83,6 +83,7 @@
 
 
     <ImageView
+        android:id="@+id/edit_clientProfile"
         android:layout_width="20dp"
         android:layout_height="20dp"
         style="@style/SpecificCornerRounded"
@@ -93,6 +94,7 @@
         app:layout_constraintBottom_toBottomOf="@id/client_profile"/>
 
     <ImageView
+        android:id="@+id/edit_clientCover"
         android:layout_width="20dp"
         android:layout_height="20dp"
         style="@style/SpecificCornerRounded"

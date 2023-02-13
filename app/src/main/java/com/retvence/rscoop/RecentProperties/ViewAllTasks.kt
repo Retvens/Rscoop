@@ -10,10 +10,9 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rscoop.ApiRequests.RetrofitBuilder
-import com.example.rscoop.DataCollections.TaskData
-
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.retvence.rscoop.ApiRequests.RetrofitBuilder
+import com.retvence.rscoop.DataCollections.TaskData
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
 import com.retvens.rscoop.R
 import retrofit2.Call
@@ -39,7 +38,7 @@ class ViewAllTasks : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         //search
-        search = findViewById(R.id.search_Bar)
+        search = findViewById(R.id.search_tasks)
 
         shimmerFrameLayout = findViewById(R.id.shimmer_tasks_view_container)
         shimmerLayout = findViewById(R.id.shimmer_layout_tasks)

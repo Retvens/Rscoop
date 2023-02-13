@@ -38,10 +38,12 @@ class HotelsLocations : AppCompatActivity() {
 //        //getting data from intent
         val hotel_Name = intent.getStringExtra("Name")
         val hotel_Image = intent.getStringExtra("image")
-        val latitude = intent.getDoubleExtra("latitude",0.0)
-        val longitude = intent.getDoubleExtra("longitude",0.0)
+        val latitude = intent.getStringExtra("latitude")
+        val longitude = intent.getStringExtra("longitude")
         val logoOfHotel = intent.getStringExtra("logo")
 
+        val lat = latitude!!.toDouble()
+        val long = longitude!!.toDouble()
 
 //
 
@@ -54,12 +56,11 @@ class HotelsLocations : AppCompatActivity() {
         name.text = hotel_Name
         name2.text = hotel_Name
         Glide.with(baseContext).load(hotel_Image).into(image)
-        Toast.makeText(this,"$latitude",Toast.LENGTH_LONG).show()
         mMapFragment.getMapAsync(object : OnMapReadyCallback{
             override fun onMapReady(p0: GoogleMap) {
                 googleMap = p0
 
-                val location = LatLng(latitude, longitude)
+                val location = LatLng(lat, long)
                 googleMap.addMarker(MarkerOptions().position(location).title("$hotel_Name"))
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15f))
             }

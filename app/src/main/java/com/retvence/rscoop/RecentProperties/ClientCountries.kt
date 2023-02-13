@@ -10,9 +10,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rscoop.ApiRequests.RetrofitBuilder
-import com.example.rscoop.DataCollections.OwnersData
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.retvence.rscoop.ApiRequests.RetrofitBuilder
+import com.retvence.rscoop.DataCollections.OwnersData
 import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback

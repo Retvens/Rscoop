@@ -12,7 +12,7 @@ class AddProperty : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_property)
 
-        val backbtn = findViewById<ImageView>(R.id.addproperty_back_btn)
+        val backbtn = findViewById<ImageView>(R.id.property_back_btn)
         backbtn.setOnClickListener {
             startActivity(Intent(this, AdminDashBoard::class.java))
         }
