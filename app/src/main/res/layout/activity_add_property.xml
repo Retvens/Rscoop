@@ -88,6 +88,7 @@
             android:layout_height="20dp"
             style="@style/SpecificCornerRounded"
             android:src="@drawable/png_edit"
+            android:layout_marginStart="3dp"
             app:layout_constraintVertical_bias="0.4"
             app:layout_constraintTop_toTopOf="@id/property_profile"
             app:layout_constraintStart_toEndOf="@id/property_profile"
