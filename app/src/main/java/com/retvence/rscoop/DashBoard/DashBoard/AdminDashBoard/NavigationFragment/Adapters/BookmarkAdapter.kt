@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.retvence.rscoop.DataCollections.HotelsData
+import com.example.rscoop.DataCollections.HotelsData
+import com.example.rscoop.DataCollections.HotelsLocation
 import com.retvens.rscoop.R
 import com.retvens.rscoop.RecentProperties.HotelsLocations
+import com.retvens.rscoop.RecentProperties.MapsActivity
 
 class BookmarkAdapter(val context: Context, var userList:List<HotelsData>):RecyclerView.Adapter<BookmarkAdapter.MyViewHolderClass>() {
 
@@ -23,6 +26,7 @@ class BookmarkAdapter(val context: Context, var userList:List<HotelsData>):Recyc
         var name = itemview.findViewById<TextView>(R.id.bookmark_Name)
         var image = itemview.findViewById<ImageView>(R.id.bookmark_Image)
         var rating = itemview.findViewById<TextView>(R.id.bookmark_Rating)
+
 
     }
 
@@ -48,7 +52,6 @@ class BookmarkAdapter(val context: Context, var userList:List<HotelsData>):Recyc
             for (location in item.hotel_location){
                 intent.putExtra("latitude",location.Latitude)
                 intent.putExtra("longitude",location.Longitude)
-
 
             }
 

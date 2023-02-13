@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty">
+    tools:context=".DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias=".02"
+            app:layout_constraintVertical_bias=".03"
             app:srcCompat="@drawable/back_btn" />
 
         <TextView
@@ -87,7 +88,6 @@
             android:layout_height="20dp"
             style="@style/SpecificCornerRounded"
             android:src="@drawable/png_edit"
-            android:layout_marginStart="3dp"
             app:layout_constraintVertical_bias="0.4"
             app:layout_constraintTop_toTopOf="@id/property_profile"
             app:layout_constraintStart_toEndOf="@id/property_profile"
@@ -145,7 +145,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@drawable/round_corner"
                     android:layout_marginTop="15dp"
                     android:layout_marginHorizontal="10dp"
@@ -180,7 +180,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginHorizontal="10dp"
                     android:paddingVertical="18dp"
                     android:layout_marginTop="6dp"
@@ -214,7 +214,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginHorizontal="10dp"
                     android:paddingVertical="18dp"
                     android:layout_marginTop="6dp"
@@ -248,7 +248,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginHorizontal="10dp"
                     android:paddingVertical="18dp"
                     android:layout_marginTop="6dp"
@@ -281,11 +281,13 @@
 
                 </RelativeLayout>
 
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginHorizontal="10dp"
                     android:paddingVertical="18dp"
+                    android:layout_marginTop="6dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/round_corner"
                     android:layout_gravity="center_vertical"
@@ -334,116 +336,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/property_d_card"/>
 
-        <CheckBox
-            android:id="@+id/check_swim"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.07"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_prop_text"/>
-        <ImageView
-            android:id="@+id/img_swim"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/swimming_pool"
-            app:layout_constraintBottom_toBottomOf="@id/check_swim"
-            app:layout_constraintTop_toTopOf="@id/check_swim"
-            app:layout_constraintStart_toEndOf="@id/check_swim"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Swimming Pool"
-            android:layout_marginStart="6dp"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/avenir"
-            app:layout_constraintBottom_toBottomOf="@id/check_swim"
-            app:layout_constraintTop_toTopOf="@id/check_swim"
-            app:layout_constraintStart_toEndOf="@id/img_swim"/>
-
-        <CheckBox
-            android:id="@+id/check_park"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:layout_constraintStart_toStartOf="@id/check_swim"
-            app:layout_constraintTop_toBottomOf="@id/check_swim"/>
-        <ImageView
-            android:id="@+id/img_park"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/parking"
-            app:layout_constraintBottom_toBottomOf="@id/check_park"
-            app:layout_constraintTop_toTopOf="@id/check_park"
-            app:layout_constraintStart_toEndOf="@id/check_park"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Parking Space"
-            android:layout_marginStart="6dp"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/avenir"
-            app:layout_constraintBottom_toBottomOf="@id/check_park"
-            app:layout_constraintTop_toTopOf="@id/check_park"
-            app:layout_constraintStart_toEndOf="@id/img_park"/>
-
-
-        <CheckBox
-            android:id="@+id/check_resto"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.52"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_prop_text"/>
-        <ImageView
-            android:id="@+id/img_resto"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/restorent"
-            app:layout_constraintBottom_toBottomOf="@id/check_resto"
-            app:layout_constraintTop_toTopOf="@id/check_resto"
-            app:layout_constraintStart_toEndOf="@id/check_resto"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Restorent"
-            android:layout_marginStart="6dp"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/avenir"
-            app:layout_constraintBottom_toBottomOf="@id/check_resto"
-            app:layout_constraintTop_toTopOf="@id/check_resto"
-            app:layout_constraintStart_toEndOf="@id/img_resto"/>
-
-        <CheckBox
-            android:id="@+id/check_desk"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:layout_constraintStart_toStartOf="@id/check_resto"
-            app:layout_constraintTop_toBottomOf="@id/check_resto"/>
-        <ImageView
-            android:id="@+id/img_desk"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/desk_front"
-            app:layout_constraintBottom_toBottomOf="@id/check_desk"
-            app:layout_constraintTop_toTopOf="@id/check_desk"
-            app:layout_constraintStart_toEndOf="@id/check_desk"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="24 Hour front desk"
-            android:layout_marginStart="6dp"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="@font/avenir"
-            app:layout_constraintBottom_toBottomOf="@id/check_desk"
-            app:layout_constraintTop_toTopOf="@id/check_desk"
-            app:layout_constraintStart_toEndOf="@id/img_desk"/>
-
-
         <TextView
             android:id="@+id/social_text"
             android:layout_width="wrap_content"
@@ -457,7 +349,7 @@
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/check_park"/>
+            app:layout_constraintTop_toBottomOf="@id/add_prop_text"/>
 
 
         <androidx.cardview.widget.CardView
@@ -467,6 +359,7 @@
             android:layout_margin="10dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="8dp"
+            android:padding="20dp"
             android:layout_marginBottom="15dp"
             app:layout_constraintTop_toBottomOf="@id/social_text"
             app:layout_constraintStart_toStartOf="parent"
@@ -475,13 +368,15 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
 
                 <ImageView
                     android:id="@+id/fb"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginStart="14dp"
                     android:src="@drawable/facebook"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -492,8 +387,10 @@
                     android:background="@drawable/round_low"
                     android:layout_marginHorizontal="10dp"
                     android:paddingVertical="5dp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
                     app:layout_constraintStart_toEndOf="@id/fb"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/fb"
                     app:layout_constraintBottom_toBottomOf="@id/fb">
 
@@ -507,10 +404,8 @@
                         android:background="@null"
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:fontFamily="@font/avenir"
-                        android:layout_marginStart="5dp"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="5dp"
                         android:layout_alignParentStart="true"/>
 
                     <ImageView
@@ -529,9 +424,9 @@
                     android:id="@+id/googl"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/google"
-                    app:layout_constraintStart_toStartOf="@id/fb"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fb"/>
                 <RelativeLayout
                     android:layout_width="280dp"
@@ -576,9 +471,9 @@
                     android:id="@+id/insta"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/instagram"
-                    app:layout_constraintStart_toStartOf="@id/fb"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/googl"/>
                 <RelativeLayout
                     android:layout_width="280dp"
@@ -623,9 +518,9 @@
                     android:id="@+id/linkedin"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/linkedin"
-                    app:layout_constraintStart_toStartOf="@id/fb"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/insta"/>
                 <RelativeLayout
                     android:layout_width="280dp"
@@ -670,9 +565,9 @@
                     android:id="@+id/pinterest"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/pinterest"
-                    app:layout_constraintStart_toStartOf="@id/fb"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/linkedin"/>
                 <RelativeLayout
                     android:layout_width="280dp"
@@ -717,9 +612,9 @@
                     android:id="@+id/tripad"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/tripadvisor"
-                    app:layout_constraintStart_toStartOf="@id/fb"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/pinterest"/>
                 <RelativeLayout
                     android:layout_width="280dp"
@@ -763,9 +658,9 @@
                     android:id="@+id/whats"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/whatsapp"
-                    app:layout_constraintStart_toStartOf="@id/fb"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tripad"/>
                 <RelativeLayout
                     android:layout_width="280dp"
@@ -809,9 +704,9 @@
                     android:id="@+id/twit"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/twitter"
-                    app:layout_constraintStart_toStartOf="@id/fb"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/whats"/>
                 <RelativeLayout
                     android:layout_width="280dp"

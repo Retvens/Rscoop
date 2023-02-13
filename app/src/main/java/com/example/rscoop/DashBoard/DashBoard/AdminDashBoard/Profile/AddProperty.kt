@@ -7,12 +7,12 @@ import android.widget.ImageView
 import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.retvens.rscoop.R
 
-class AddClient : AppCompatActivity() {
+class AddProperty : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_client)
+        setContentView(R.layout.activity_add_property)
 
-        val backbtn = findViewById<ImageView>(R.id.add_back_btn)
+        val backbtn = findViewById<ImageView>(R.id.addproperty_back_btn)
         backbtn.setOnClickListener {
             startActivity(Intent(this, AdminDashBoard::class.java))
         }

@@ -1,12 +1,14 @@
 package com.retvens.rscoop.RecentProperties
 
 import android.content.Intent
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
+import com.example.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -14,7 +16,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.retvens.rscoop.ClientInformation.ClientInfo
 import com.retvens.rscoop.R
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HotelsLocations : AppCompatActivity() {
 
@@ -44,9 +50,8 @@ class HotelsLocations : AppCompatActivity() {
         val longitude = intent.getStringExtra("longitude")
         val logoOfHotel = intent.getStringExtra("logo")
 
-        val lat = latitude!!.toDouble()
+        val lat  = latitude!!.toDouble()
         val long = longitude!!.toDouble()
-
 
 //
 
@@ -54,6 +59,7 @@ class HotelsLocations : AppCompatActivity() {
         val logo = findViewById<ImageView>(R.id.logoOfHotel)
         val name = findViewById<TextView>(R.id.Hotel_Name)
         val name2 = findViewById<TextView>(R.id.Hotel_Name2)
+
         Glide.with(baseContext).load(logoOfHotel).into(logo)
         name.text = hotel_Name
         name2.text = hotel_Name
@@ -61,6 +67,7 @@ class HotelsLocations : AppCompatActivity() {
         mMapFragment.getMapAsync(object : OnMapReadyCallback{
             override fun onMapReady(p0: GoogleMap) {
                 googleMap = p0
+
                 val location = LatLng(lat, long)
                 googleMap.addMarker(MarkerOptions().position(location).title("$hotel_Name"))
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15f))
