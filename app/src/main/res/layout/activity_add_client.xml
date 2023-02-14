@@ -83,6 +83,7 @@
 
 
     <ImageView
+        android:id="@+id/edit_clientProfile"
         android:layout_width="20dp"
         android:layout_height="20dp"
         style="@style/SpecificCornerRounded"
@@ -93,6 +94,7 @@
         app:layout_constraintBottom_toBottomOf="@id/client_profile"/>
 
     <ImageView
+        android:id="@+id/edit_clientCover"
         android:layout_width="20dp"
         android:layout_height="20dp"
         style="@style/SpecificCornerRounded"
@@ -104,11 +106,11 @@
         app:layout_constraintBottom_toBottomOf="@id/client_cover"/>
 
 
-    <TextView
+    <EditText
         android:id="@+id/client_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Client Full Name"
+        android:hint="Client Full Name"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/client_profile"
         android:fontFamily="@font/avenir"

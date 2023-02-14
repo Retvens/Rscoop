@@ -4,18 +4,33 @@ import com.retvence.rscoop.DataCollections.CountryData
 import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvence.rscoop.DataCollections.OwnersData
 import com.retvence.rscoop.DataCollections.TaskData
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.Response
+import retrofit2.http.*
 
 
 interface RetvensUrls {
 
     @GET("hotelowner/{Country}")
     fun getOwner(@Path("Country") Country:String): Call<List<OwnersData>>
+
+    @Multipart
+    @POST("hotelowner")
+    fun uploadData(
+        @Part("Name") name: String,
+        @Part("Email") email: String,
+        @Part("Password") password: String,
+        @Part("Phone") phone: Number,
+        @Part("owner_id") ownerId: String,
+        @Part("Country") country: String,
+        @Part("token") token: String,
+        @Part("Service_type") type: String,
+        @Part profilePhoto: MultipartBody.Part,
+        @Part coverPhoto: MultipartBody.Part
+    ): Call<List<OwnersData>>
 
     @GET("property/{owner_id}")
     fun getHotel(@Path("owner_id") owner:String): Call<List<HotelsData>>

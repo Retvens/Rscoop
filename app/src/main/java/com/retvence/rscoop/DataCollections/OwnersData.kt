@@ -5,17 +5,13 @@ data class OwnersData(
     val Name:String,
     val Email:String,
     val Password:String,
-    val Phone:String,
+    val Phone:Number,
     val owner_id:String,
     val Profile_photo:String,
     val Country:String,
     val Cover_photo:String,
-    val token:String
-
-//    val userId:String,
-//    val id:String,
-//    val title:String,
-//    val body:String
+    val token:String,
+    val Service_type:String
 
 ){
 

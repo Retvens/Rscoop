@@ -18,12 +18,4 @@ object RetrofitBuilder {
         .build()
         .create(RetvensUrls::class.java)
 
-    val retrofitBuilder2 =  Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .baseUrl("https://jsonplaceholder.typicode.com/")
-        .build()
-        .create(RetvensUrls::class.java)
-
-
-
 }

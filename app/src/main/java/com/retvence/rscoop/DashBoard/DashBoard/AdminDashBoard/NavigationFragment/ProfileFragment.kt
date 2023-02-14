@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.Toast
+import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddClient
-import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty
 import com.retvens.rscoop.R
 
 
