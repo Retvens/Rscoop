@@ -6,28 +6,43 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-
-
+import androidx.recyclerview.widget.SnapHelper
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.retvence.rscoop.DataCollections.TaskData
+import com.retvence.rscoop.RecentProperties.CalendarAdapter
+import com.retvence.rscoop.RecentProperties.CalendarDateModel
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
 import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ViewAllTasks : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
 
+    private lateinit var tvDateMonth: TextView
+    private lateinit var ivCalendarNext: ImageView
+    private lateinit var ivCalendarPrevious: ImageView
+
+    private lateinit var recyclerViewDate: RecyclerView
+    private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
+    private val cal = Calendar.getInstance(Locale.ENGLISH)
+    private val currentDate = Calendar.getInstance(Locale.ENGLISH)
+    private val dates = ArrayList<Date>()
+    private lateinit var adapter: CalendarAdapter
+    private val calendarList2 = ArrayList<CalendarDateModel>()
+
+
+    private lateinit var recyclerView: RecyclerView
     private lateinit var recentrecycler: RecentRecycler
 
     lateinit var shimmerFrameLayout: ShimmerFrameLayout
@@ -44,6 +59,11 @@ class ViewAllTasks : AppCompatActivity() {
             finish()
         }
 
+        tvDateMonth = findViewById(R.id.tv_date_month)
+        recyclerViewDate = findViewById(R.id.recyclerViewDate)
+        ivCalendarNext = findViewById(R.id.iv_calendar_next)
+        ivCalendarPrevious = findViewById(R.id.iv_calendar_previous)
+
         recyclerView = findViewById(R.id.recycler_Tasks)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -54,9 +74,65 @@ class ViewAllTasks : AppCompatActivity() {
         shimmerFrameLayout = findViewById(R.id.shimmer_tasks_view_container)
         shimmerLayout = findViewById(R.id.shimmer_layout_tasks)
 
+        setUpAdapter()
+        setUpClickListener()
+        setUpCalendar()
         allTaskData()
     }
+    /**
+     * Set up click listener
+     */
 
+    private fun setUpClickListener() {
+        ivCalendarNext.setOnClickListener {
+            cal.add(Calendar.MONTH, 1)
+            setUpCalendar()
+        }
+        ivCalendarPrevious.setOnClickListener {
+            cal.add(Calendar.MONTH, -1)
+            if (cal == currentDate)
+                setUpCalendar()
+            else
+                setUpCalendar()
+        }
+    }
+
+    /**
+     * Setting up adapter for recyclerview
+     */
+    private fun setUpAdapter() {
+//        val spacingInPixels = resources.getDimensionPixelSize(R.dimen.single_calendar_margin)
+//        recyclerViewDate.addItemDecoration(UnitHorizontalItemDecoration(spacingInPixels))
+        val snapHelper: SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(recyclerViewDate)
+        adapter = CalendarAdapter { calendarDateModel: CalendarDateModel, position: Int ->
+            calendarList2.forEachIndexed { index, calendarModel ->
+                calendarModel.isSelected = index == position
+            }
+            adapter.setData(calendarList2)
+        }
+        recyclerViewDate.adapter = adapter
+    }
+
+    /**
+     * Function to setup calendar for every month
+     */
+    private fun setUpCalendar() {
+        val calendarList = ArrayList<CalendarDateModel>()
+        tvDateMonth.text = sdf.format(cal.time)
+        val monthCalendar = cal.clone() as Calendar
+        val maxDaysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
+        dates.clear()
+        monthCalendar.set(Calendar.DAY_OF_MONTH, 1)
+        while (dates.size < maxDaysInMonth) {
+            dates.add(monthCalendar.time)
+            calendarList.add(CalendarDateModel(monthCalendar.time))
+            monthCalendar.add(Calendar.DAY_OF_MONTH, 1)
+        }
+        calendarList2.clear()
+        calendarList2.addAll(calendarList)
+        adapter.setData(calendarList)
+    }
 
     private fun allTaskData() {
         val allTask = RetrofitBuilder.retrofitBuilder.getTask()

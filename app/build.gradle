@@ -75,4 +75,6 @@ dependencies {
 
     //Country Code Picker
     implementation'com.hbb20:ccp:2.5.3'
+
+    implementation 'com.github.MackHartley:RoundedProgressBar:3.0.0'
 }

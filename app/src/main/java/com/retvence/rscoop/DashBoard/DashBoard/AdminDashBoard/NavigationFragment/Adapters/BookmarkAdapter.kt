@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide
 import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvens.rscoop.R
 import com.retvens.rscoop.RecentProperties.HotelsLocations
-import com.retvens.rscoop.RecentProperties.MapsActivity
 
 class BookmarkAdapter(val context: Context, var userList:List<HotelsData>):RecyclerView.Adapter<BookmarkAdapter.MyViewHolderClass>() {
 
