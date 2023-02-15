@@ -16,7 +16,10 @@ interface RetvensUrls {
     fun getOwner(@Path("Country") Country:String): Call<List<OwnersData>>
 
     @POST("hotelowner")
-    fun PostOwner(@Body ownerData: OwnersData ): Call<List<OwnersData>>
+    fun PostOwner(@Body owner: OwnersData ): Call<List<OwnersData>>
+
+    @POST("hotelowner")
+    fun PostHotels(@Body data: HotelsData ): Call<List<HotelsData>>
 
     @Multipart
     @POST("hotelowner")
@@ -25,13 +28,14 @@ interface RetvensUrls {
         @Part("Name") name: String,
         @Part("Email") email: String,
         @Part("Password") password: String,
-        @Part("Phone") phone: String,
+        @Part("Phone") phone: Number,
         @Part("owner_id") ownerId: String,
         @Part profilePhoto: MultipartBody.Part,
         @Part("Service_type") type: String,
         @Part("Country") country: String,
         @Part("token") token: String,
         @Part coverPhoto: MultipartBody.Part,
+        @Part ("__v") v: Number
 
     ): Call<List<OwnersData>>
 
