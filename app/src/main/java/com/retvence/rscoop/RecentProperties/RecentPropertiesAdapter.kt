@@ -31,7 +31,9 @@ class RecentPropertiesAdapter(val context: Context, var propertyList: List<Hotel
         Glide.with(context).load(propertyList.hotel_profile_photo).into(holder.hotelCover)
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context,HotelsLocations::class.java)
+            val intent = Intent(context,HotelsLocations::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
             intent.putExtra("Name",propertyList.hotel_name)
             intent.putExtra("image",propertyList.Cover_photo)
             intent.putExtra("logo",propertyList.hotel_profile_photo)

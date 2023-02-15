@@ -52,18 +52,20 @@ class LoginActivity : AppCompatActivity() {
                     call: Call<UserLoginData>,
                     response: Response<UserLoginData>
                 ) {
+                    if(response.isSuccessful){
+                        Toast.makeText(this@LoginActivity, response.code().toString(), Toast.LENGTH_LONG)
+                            .show()
                     val response = response.body()!!
-                    val userType = response.Type_of_acco.toString()
+
                     SharedPreferenceManagerAdmin.getInstance(this@LoginActivity).saveUser(response)
-                    if (userType == "Hotel owner") {
+
                         val intent = Intent(this@LoginActivity, OnBoardingScreen::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
 
-                    }else{
-                        startActivity(Intent(this@LoginActivity,AdminDashBoard:: class.java))
-                        Toast.makeText(this@LoginActivity, "LogIn " + userType, Toast.LENGTH_LONG)
-                            .show()
+                }else{
+                    Toast.makeText(applicationContext,"$response.errorBody()",Toast.LENGTH_LONG)
+                        .show()
                     }
                 }
                 override fun onFailure(call: Call<UserLoginData>, t: Throwable) {
