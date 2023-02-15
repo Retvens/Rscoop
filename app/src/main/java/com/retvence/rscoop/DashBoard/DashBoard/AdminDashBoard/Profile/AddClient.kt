@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -77,13 +78,14 @@ class AddClient : AppCompatActivity() {
 
         save.setOnClickListener {
 
-            uploadData()
-
+//            uploadData()
+            sendData()
         }
 
     }
 
-    private fun uploadData() {
+    private fun sendData() {
+
 
         val name = clientName.text.toString()
         val email = clientMail.text.toString()
@@ -91,48 +93,83 @@ class AddClient : AppCompatActivity() {
         val phone = clientNumber.text.toString()
         val country = clientLocation.text.toString()
 
+        val data = OwnersData(name,email,password,phone,"650147","https://th.bing.com/th?id=OIP.JPRrS4fGRYal6Kh61f0kfwHaEJ&w=334&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2"
+            ,"",country,"abc123","https://th.bing.com/th?id=OIP.JPRrS4fGRYal6Kh61f0kfwHaEJ&w=334&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2")
 
-        val profilePhoto = if (profilePhotoPart != null) {
-            val file = File(getRealPathFromURI(profilePhotoPart!!))
-            val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
-            MultipartBody.Part.createFormData("Profile_photo", file.name, requestFile)
-        } else {
-            null
-        }
+        val send = RetrofitBuilder.retrofitBuilder.PostOwner(data)
 
-        val coverPhoto = if (coverPhotoPart != null) {
-            val file = File(getRealPathFromURI(coverPhotoPart!!))
-            val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
-            MultipartBody.Part.createFormData("Cover_photo", file.name, requestFile)
-        } else {
-            null
-        }
+        send.enqueue(object : Callback<List<OwnersData>?> {
+            override fun onResponse(
+                call: Call<List<OwnersData>?>,
+                response: Response<List<OwnersData>?>
+            ) {
+                if(response.isSuccessful){
+                    Toast.makeText(this@AddClient,"ok",Toast.LENGTH_LONG).show()
+                }
+                else{
+                    Toast.makeText(this@AddClient,"${response.errorBody()}",Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
+                }
 
-        val send = RetrofitBuilder.retrofitBuilder.uploadData(
-            name,email,password,12345,"123",country,"abc123","", profilePhoto!!,coverPhoto!!
-        )
+            }
 
-      send.enqueue(object : Callback<List<OwnersData>?> {
-          override fun onResponse(
-              call: Call<List<OwnersData>?>,
-              response: Response<List<OwnersData>?>
-          ) {
-              if(response.isSuccessful){
-                  Toast.makeText(this@AddClient,"ok",Toast.LENGTH_LONG).show()
-              }
-              else{
-                  Toast.makeText(this@AddClient,"not ok",Toast.LENGTH_LONG).show()
-              }
-
-          }
-
-          override fun onFailure(call: Call<List<OwnersData>?>, t: Throwable) {
-              Toast.makeText(this@AddClient,t.message,Toast.LENGTH_LONG).show()
-          }
-      })
-
+            override fun onFailure(call: Call<List<OwnersData>?>, t: Throwable) {
+                Toast.makeText(this@AddClient,t.message,Toast.LENGTH_LONG).show()
+                Log.e("error",t.message.toString())
+            }
+        })
 
     }
+
+//    private fun uploadData() {
+//
+//        val name = clientName.text.toString().toString()
+//        val email = clientMail.text.toString()
+//        val password = clientPassword.text.toString()
+//        val phone = clientNumber.text.toString()
+//        val country = clientLocation.text.toString()
+//
+//
+//        val profilePhoto = if (profilePhotoPart != null) {
+//            val file = File(getRealPathFromURI(profilePhotoPart!!))
+//            val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+//            MultipartBody.Part.createFormData("Profile_photo", file.name, requestFile)
+//        } else {
+//            null
+//        }
+//
+//        val coverPhoto = if (coverPhotoPart != null) {
+//            val file = File(getRealPathFromURI(coverPhotoPart!!))
+//            val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+//            MultipartBody.Part.createFormData("Cover_photo", file.name, requestFile)
+//        } else {
+//            null
+//        }
+//
+//        val send = RetrofitBuilder.retrofitBuilder.uploadData(
+//            "",name,email,password, 123456,"123",profilePhoto!!,"",country,"abc123",coverPhoto!!
+//        )
+//        send.enqueue(object : Callback<List<OwnersData>?> {
+//            override fun onResponse(
+//                call: Call<List<OwnersData>?>,
+//                response: Response<List<OwnersData>?>
+//            ) {
+//                if(response.isSuccessful){
+//                    Toast.makeText(this@AddClient,"ok",Toast.LENGTH_LONG).show()
+//                }
+//                else{
+//                    Toast.makeText(this@AddClient,"not ok",Toast.LENGTH_LONG).show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<List<OwnersData>?>, t: Throwable) {
+//                Toast.makeText(this@AddClient,t.message,Toast.LENGTH_LONG).show()
+//                Log.e("error",t.message.toString())
+//            }
+//        })
+//
+//
+//    }
 
     private fun pickImageFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
@@ -144,11 +181,16 @@ class AddClient : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_PICK_CODE && resultCode == RESULT_OK) {
 
+
             if (value == true){
+
                 clientCover.setImageURI(data?.data)
+                coverPhotoPart = data?.data
+
             }
             else if (value1 == true){
                 clientProfile.setImageURI(data?.data)
+                profilePhotoPart = data?.data
             }
 
         }
