@@ -1,9 +1,6 @@
 package com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
 
-import com.retvence.rscoop.DataCollections.CountryData
-import com.retvence.rscoop.DataCollections.HotelsData
-import com.retvence.rscoop.DataCollections.OwnersData
-import com.retvence.rscoop.DataCollections.TaskData
+import com.retvence.rscoop.DataCollections.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -47,4 +44,9 @@ interface RetvensUrls {
     @GET("task")
     fun getTask(): Call<List<TaskData>>
 
+    @FormUrlEncoded
+    @POST("login1")
+    fun userLogin(@Field("Email") email: String,
+                  @Field("Password") password: String
+    ) : Call<UserLoginData>
 }
