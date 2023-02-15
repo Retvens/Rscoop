@@ -87,16 +87,17 @@ class AddClient : AppCompatActivity() {
     private fun sendData() {
 
 
-        val name = clientName.text.toString()
-        val email = clientMail.text.toString()
-        val password = clientPassword.text.toString()
-        val phone = clientNumber.text.toString()
-        val country = clientLocation.text.toString()
+        val name = clientName.text.toString().trim()
+        val email = clientMail.text.toString().trim()
+        val password = clientPassword.text.toString().trim()
+        val phone = clientNumber.text.toString().trim()
+        val country = clientLocation.text.toString().trim()
 
-        val data = OwnersData(name,email,password,phone,"650147","https://th.bing.com/th?id=OIP.JPRrS4fGRYal6Kh61f0kfwHaEJ&w=334&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2"
-            ,"",country,"abc123","https://th.bing.com/th?id=OIP.JPRrS4fGRYal6Kh61f0kfwHaEJ&w=334&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2")
+        val data = OwnersData("",name,email,password,phone,"0000","https://th.bing.com/th?id=OIP.JPRrS4fGRYal6Kh61f0kfwHaEJ&w=334&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2"
+            ,"DM",country,"abc123","https://th.bing.com/th?id=OIP.JPRrS4fGRYal6Kh61f0kfwHaEJ&w=334&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2")
 
         val send = RetrofitBuilder.retrofitBuilder.PostOwner(data)
+
 
         send.enqueue(object : Callback<List<OwnersData>?> {
             override fun onResponse(
@@ -107,7 +108,6 @@ class AddClient : AppCompatActivity() {
                     Toast.makeText(this@AddClient,"ok",Toast.LENGTH_LONG).show()
                 }
                 else{
-                    Toast.makeText(this@AddClient,"${response.errorBody()}",Toast.LENGTH_LONG).show()
                     Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
                 }
 
@@ -131,6 +131,7 @@ class AddClient : AppCompatActivity() {
 //
 //
 //        val profilePhoto = if (profilePhotoPart != null) {
+//
 //            val file = File(getRealPathFromURI(profilePhotoPart!!))
 //            val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
 //            MultipartBody.Part.createFormData("Profile_photo", file.name, requestFile)
@@ -138,6 +139,7 @@ class AddClient : AppCompatActivity() {
 //            null
 //        }
 //
+//        Log.e("",profilePhoto.toString())
 //        val coverPhoto = if (coverPhotoPart != null) {
 //            val file = File(getRealPathFromURI(coverPhotoPart!!))
 //            val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
@@ -145,9 +147,9 @@ class AddClient : AppCompatActivity() {
 //        } else {
 //            null
 //        }
-//
+//        Log.e("",profilePhoto.toString())
 //        val send = RetrofitBuilder.retrofitBuilder.uploadData(
-//            "",name,email,password, 123456,"123",profilePhoto!!,"",country,"abc123",coverPhoto!!
+//            "",name,email,password, 123456,"123",profilePhoto!!,"",country,"abc123",coverPhoto!!,0
 //        )
 //        send.enqueue(object : Callback<List<OwnersData>?> {
 //            override fun onResponse(
@@ -207,6 +209,8 @@ class AddClient : AppCompatActivity() {
             }
             cursor.close()
         }
+        Log.e("",result.toString())
         return result
+
     }
 }
