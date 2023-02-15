@@ -1,21 +1,27 @@
 package com.retvence.rscoop.RecentProperties
 
+import android.content.Context
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.retvens.rscoop.R
 
-class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateModel, position: Int) -> Unit):
+class CalendarAdapter( private val listener: (calendarDateModel: CalendarDateModel, position: Int) -> Unit):
     RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>(){
 
     private val list = ArrayList<CalendarDateModel>()
+
+    var adapterPosition = -1
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
         val inflater : LayoutInflater = LayoutInflater.from(parent.context)
@@ -26,53 +32,36 @@ class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateMode
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
-        holder.bind(list[position])
-        val itemList: CalendarDateModel = list[position]
+        val itemList = list[position]
+        holder.calendarDay.text = itemList.calendarDay
+        holder.calendarDate.text = itemList.calendarDate
 
-//        val list: CalendarDateModel = list[position]
-//        holder.calendarDay.text = list.calendarDay.toString()
-//        holder.calendarDate.text = list.calendarDate.toString()
-//        cardView.setOnClickListener {
-//            listener.invoke(calendarDateModel, adapterPosition)
-//        }
+        if (position == adapterPosition){
+            holder.calendarDay.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
+            holder.calendarDate.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
+            holder.linear.background = holder.itemView.context.getDrawable(R.drawable.round_corner_selected)
+
+        }else {
+            holder.calendarDay.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.black))
+            holder.calendarDate.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.black))
+            holder.linear.background = holder.itemView.context.getDrawable(R.drawable.round_corner)
+        }
+
+        holder.itemView.setOnClickListener {
+            adapterPosition = position
+            notifyItemRangeChanged(0, list.size)
+//            listener.invoke(itemList, adapterPosition)
+
+        }
     }
     override fun getItemCount(): Int {
         return list.size
     }
     class CalendarViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(calendarDateModel: CalendarDateModel) {
-            val calendarDay = itemView.findViewById<TextView>(R.id.tv_calendar_day)
-            val calendarDate = itemView.findViewById<TextView>(R.id.tv_calendar_date)
-            val cardView = itemView.findViewById<CardView>(R.id.card_calendar)
-            val linearView = itemView.findViewById<LinearLayout>(R.id.linear_cal)
-
-            calendarDay.text = calendarDateModel.calendarDay
-            calendarDate.text = calendarDateModel.calendarDate
-
-            cardView.setOnClickListener {
-                calendarDay.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
-                calendarDate.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
-                linearView.setBackgroundColor(ContextCompat.getColor(itemView.context,R.color.sky_blue))
-                cardView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.sky_blue))
-//                    listener.invoke(calendarDateModel, adapterPosition)
-              }
-
-
-                if (calendarDateModel.isSelected) {
-                calendarDay.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
-                calendarDate.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
-                cardView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.sky_blue))
-                linearView.setBackgroundColor(ContextCompat.getColor(itemView.context,R.color.sky_blue))
-                    } else {
-                        calendarDay.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
-                        calendarDate.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
-                        cardView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.white))
-                        linearView.setBackgroundColor(ContextCompat.getColor(itemView.context,R.color.white))
-                    }
-
-        }
+        val calendarDay = itemView.findViewById<TextView>(R.id.tv_calendar_day)
+        val calendarDate = itemView.findViewById<TextView>(R.id.tv_calendar_date)
+        val linear = itemView.findViewById<LinearLayout>(R.id.linear_calendar)
     }
-
     fun setData(calendarList: ArrayList<CalendarDateModel>) {
         list.clear()
         list.addAll(calendarList)

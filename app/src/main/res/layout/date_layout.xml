@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="60dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="65dp"
     android:layout_height="80dp"
-    android:id="@+id/card_calendar"
-    android:layout_marginHorizontal="@dimen/margin_5"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#F1F2F6"
-    app:cardCornerRadius="15dp">
-    <LinearLayout
-        android:id="@+id/linear_cal"
-        android:layout_width="60dp"
-        android:layout_height="80dp"
-        android:orientation="vertical"
-        android:background="#F1F2F6"
-        android:gravity="center"
-        android:padding="15dp">
-        <TextView
-            android:id="@+id/tv_calendar_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="11"
-            android:textSize="14sp"/>
-        <TextView
-            android:id="@+id/tv_calendar_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Mon"/>
+    android:id="@+id/linear_calendar"
+    android:layout_margin="5dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:background="@drawable/round_corner"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_calendar_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="11"
+        android:textSize="13sp" />
 
-</androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/tv_calendar_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mon"
+        android:textSize="13sp" />
+
+</LinearLayout>

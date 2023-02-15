@@ -16,7 +16,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints"
+        android:visibility="gone"
         android:id="@+id/recent_recycler"
         />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_recent_tasks_view_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recent_recycler"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:id="@+id/shimmer_layout_recent_tasks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
+            <include layout = "@layout/shimmer_for_activity"/>
+            <include layout = "@layout/shimmer_for_activity"/>
+            <include layout = "@layout/shimmer_for_activity"/>
+            <include layout = "@layout/shimmer_for_activity"/>
+            <include layout = "@layout/shimmer_for_activity"/>
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
