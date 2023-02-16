@@ -3,6 +3,7 @@ package com.retvens.rscoop.Authentication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -10,7 +11,6 @@ import com.google.android.material.textfield.TextInputEditText
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.retvence.rscoop.DataCollections.UserLoginData
-import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.OnBoardingScreen.OnBoardingScreen
 import com.retvens.rscoop.R
 import retrofit2.Call
@@ -43,26 +43,30 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginBtn.setOnClickListener {
-            val email = loginEmail.text.toString().trim()
-            val password = loginPassword.text.toString().trim()
+            val email = loginEmail.text.toString()
+            val password = loginPassword.text.toString()
 
-            val retroLogin = RetrofitBuilder.retrofitBuilder.userLogin(email,password)
+            val retroLogin = RetrofitBuilder.retrofitBuilder.userLogin("Shubham@gmail.com","Shub1234")
             retroLogin.enqueue(object : Callback<UserLoginData> {
-                override fun onResponse(
-                    call: Call<UserLoginData>,
-                    response: Response<UserLoginData>
-                ) {
+                override fun onResponse(call: Call<UserLoginData>, response: Response<UserLoginData>) {
+
                     if(response.isSuccessful){
-                        Toast.makeText(this@LoginActivity, response.code().toString(), Toast.LENGTH_LONG)
+                        Toast.makeText(this@LoginActivity, response.body()?.message.toString(), Toast.LENGTH_LONG)
                             .show()
-                    val response = response.body()!!
 
-                    SharedPreferenceManagerAdmin.getInstance(this@LoginActivity).saveUser(response)
+                        val response = response.body()!!
 
-                        val intent = Intent(this@LoginActivity, OnBoardingScreen::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
+                        response.message?.let { it1 -> Log.d("Login", it1) }
 
+                        if (response.message.toString() == "Login successful") {
+//                    SharedPreferenceManagerAdmin.getInstance(this@LoginActivity).saveUser(response)
+                            val intent = Intent(this@LoginActivity, OnBoardingScreen::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                        }else {
+                            Toast.makeText(this@LoginActivity,response.message,Toast.LENGTH_LONG)
+                                .show()
+                        }
                 }else{
                     Toast.makeText(applicationContext,"$response.errorBody()",Toast.LENGTH_LONG)
                         .show()
@@ -76,10 +80,10 @@ class LoginActivity : AppCompatActivity() {
     }
     override fun onStart() {
         super.onStart()
-        if (SharedPreferenceManagerAdmin.getInstance(this@LoginActivity).isLoggedIn){
+       /* if (SharedPreferenceManagerAdmin.getInstance(this@LoginActivity).isLoggedIn){
             val intent = Intent(this@LoginActivity,AdminDashBoard::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-         }
+         }*/
     }
 }
