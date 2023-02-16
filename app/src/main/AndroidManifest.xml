@@ -57,7 +57,8 @@
             android:exported="false" />
         <activity
             android:name=".Authentication.LoginActivity"
-            android:exported="false" />
+            android:exported="false" >
+        </activity>
         <activity
             android:name=".ClientInformation.ClientInfo"
             android:exported="false" />
