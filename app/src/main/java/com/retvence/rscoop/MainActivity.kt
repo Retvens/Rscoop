@@ -25,9 +25,7 @@ class MainActivity : AppCompatActivity() {
         phoneLogin = findViewById(R.id.phone_cv)
         loginBtn = findViewById(R.id.login_cv)
 
-        signupBtn.setOnClickListener {
-            startActivity(Intent(this, AdminDashBoard::class.java))
-        }
+
 
         loginBtn.setOnClickListener {
             startActivity( Intent(this, LoginActivity::class.java))

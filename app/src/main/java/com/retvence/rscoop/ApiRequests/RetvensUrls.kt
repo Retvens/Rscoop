@@ -3,11 +3,8 @@ package com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragmen
 import com.retvence.rscoop.DataCollections.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.*
-import java.util.Objects
 
 
 interface RetvensUrls {
@@ -21,23 +18,24 @@ interface RetvensUrls {
     @POST("hotelowner")
     fun PostHotels(@Body data: HotelsData ): Call<List<HotelsData>>
 
+
     @Multipart
+    @Headers("Content-Type: application/json")
     @POST("hotelowner")
     fun uploadData(
-        @Part("_id") _id:String,
-        @Part("Name") name: String,
-        @Part("Email") email: String,
-        @Part("Password") password: String,
-        @Part("Phone") phone: Number,
-        @Part("owner_id") ownerId: String,
+        @Part("_id") _id:RequestBody,
+        @Part("Name") Name: RequestBody,
+        @Part("Email") Email: RequestBody,
+        @Part("Password") Password: RequestBody,
+        @Part("Phone") Phone: RequestBody,
+        @Part("owner_id") owner_id: RequestBody,
         @Part profilePhoto: MultipartBody.Part,
-        @Part("Service_type") type: String,
-        @Part("Country") country: String,
-        @Part("token") token: String,
+        @Part("Service_type") Service_type: RequestBody,
+        @Part("Country") Country: RequestBody,
+        @Part("token") token: RequestBody,
         @Part coverPhoto: MultipartBody.Part,
-        @Part ("__v") v: Number
-
-    ): Call<List<OwnersData>>
+        @Part("__v") __v:RequestBody
+        ): Call<List<OwnersData>>
 
     @GET("property/{owner_id}")
     fun getHotel(@Path("owner_id") owner:String): Call<List<HotelsData>>
