@@ -25,7 +25,7 @@ class EgniterRecycler(val context: Context, var hotelList:List<HotelsData>):Recy
 
     override fun onBindViewHolder(holder: MyclassViewgolder, position: Int) {
         holder.hotelName.text = hotelList[position].hotel_name
-        Glide.with(context).load(hotelList[position].hotel_profile_photo).into(holder.hotelImage)
+        Glide.with(context).load(hotelList[position].Cover_photo).into(holder.hotelImage)
     }
 
     override fun getItemCount(): Int {

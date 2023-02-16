@@ -1,14 +1,17 @@
 package com.retvence.rscoop.DashBoardIgniter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.tabs.TabLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TodayTasks
@@ -25,11 +28,19 @@ class IgniterDashBoard : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var recyclerView: RecyclerView
     private lateinit var hotelAdapter:EgniterRecycler
+    private lateinit var shimmer: ShimmerFrameLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_igniter_dash_board)
 
+        shimmer = findViewById(R.id.Egniter_shimmer)
+
         //recyclerview
+
+        val add = findViewById<ImageView>(R.id.addTask)
+        add.setOnClickListener {
+            startActivity(Intent(this,AddNewTaskActivity::class.java))
+        }
 
         recyclerView = findViewById(R.id.Egniter_recycler)
         recyclerView.setHasFixedSize(true)
@@ -83,6 +94,9 @@ class IgniterDashBoard : AppCompatActivity() {
                 call: Call<List<HotelsData>?>,
                 response: Response<List<HotelsData>?>
             ) {
+                shimmer.stopShimmer()
+                shimmer.visibility = View.GONE
+
                 val response = response.body()
                 if (response != null ){
                     hotelAdapter = EgniterRecycler(baseContext!!, response!!)
