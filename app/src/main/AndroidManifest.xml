@@ -17,6 +17,21 @@
         android:theme="@style/Theme.RSCOOP"
         tools:targetApi="31">
         <activity
+            android:name="com.retvence.rscoop.DashBoardIgniter.IgniterDashBoard"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name="com.retvence.rscoop.DashBoardIgniter.AddNewTaskActivity"
             android:exported="false" />
         <!--
@@ -57,8 +72,7 @@
             android:exported="false" />
         <activity
             android:name=".Authentication.LoginActivity"
-            android:exported="false" >
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".ClientInformation.ClientInfo"
             android:exported="false" />
@@ -73,11 +87,6 @@
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
