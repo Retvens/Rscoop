@@ -33,6 +33,7 @@
         android:layout_toEndOf="@id/add_tasks_back_btn"/>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/save_property"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/sky_blue"
@@ -42,7 +43,6 @@
         android:layout_alignParentTop="true">
 
         <TextView
-            android:id="@+id/save_property"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save"
@@ -56,10 +56,10 @@
 
     <TextView
         android:id="@+id/select_date_heading"
-        style="@style/TextAppearance.MaterialComponents.Subtitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Select Date"
+        android:text="Select Date"
+        android:fontFamily="@font/avenir"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:layout_marginTop="18dp"
@@ -80,11 +80,11 @@
 
     <TextView
         android:id="@+id/select_prop_heading"
-        style="@style/TextAppearance.MaterialComponents.Subtitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Select Property"
+        android:text="Select Property"
         android:textSize="20sp"
+        android:fontFamily="@font/avenir"
         android:textColor="@color/black"
         android:layout_marginTop="8dp"
         android:layout_marginStart="12dp"
@@ -93,13 +93,13 @@
 
     <TextView
         android:id="@+id/view_all_added_tasks"
-        style="@style/TextAppearance.MaterialComponents.Subtitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="View All Tasks"
-        android:textSize="16sp"
+        android:text="View All Tasks"
+        android:textSize="14sp"
         android:textColor="@color/sky_blue"
         android:layout_marginEnd="12dp"
+        android:layout_marginTop="8dp"
         android:layout_alignTop="@id/select_prop_heading"
         android:layout_alignParentEnd="true"/>
 
@@ -143,13 +143,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/relative_search">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_add_all_task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginStart="20dp"/>
+        android:layout_marginStart="20dp"
+        android:orientation="horizontal"/>
+
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/recycler_add_all_task_shimmer"
         android:layout_width="match_parent"
@@ -169,11 +170,12 @@
 
         <TextView
             android:id="@+id/social_media_heading"
-            style="@style/TextAppearance.MaterialComponents.Subtitle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Social Media Task"
+            android:text="Social Media Links"
             android:textSize="20sp"
+            android:fontFamily="@font/avenir"
+            android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:layout_marginStart="12dp"
             android:layout_below="@id/relative_add_task"/>
@@ -203,7 +205,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/facebook"
-                android:layout_marginVertical="3dp"
+                android:layout_marginVertical="5dp"
                 app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -223,7 +225,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/fb">
 
                 <EditText
-                    android:id="@+id/fb_id"
+                    android:id="@+id/fb_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_number_of_post_and_videos"
@@ -252,7 +254,7 @@
                 android:id="@+id/googl"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:src="@drawable/google"
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/fb"/>
@@ -270,7 +272,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/googl">
 
                 <EditText
-                    android:id="@+id/google_id"
+                    android:id="@+id/google_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_number_of_reviews"
@@ -299,7 +301,7 @@
                 android:id="@+id/insta"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:src="@drawable/instagram"
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/googl"/>
@@ -318,7 +320,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/insta">
 
                 <EditText
-                    android:id="@+id/insta_id"
+                    android:id="@+id/instaPost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Enter number of post and reels"
@@ -347,7 +349,7 @@
                 android:id="@+id/linkedin"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:src="@drawable/linkedin"
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/insta"/>
@@ -366,7 +368,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/linkedin">
 
                 <EditText
-                    android:id="@+id/linkedin_id"
+                    android:id="@+id/linkedin_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_number_of_post_and_videos"
@@ -395,7 +397,7 @@
                 android:id="@+id/pinterest"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:src="@drawable/pinterest"
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/linkedin"/>
@@ -414,7 +416,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/pinterest">
 
                 <EditText
-                    android:id="@+id/pinterest_id"
+                    android:id="@+id/pinterest_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_number_of_post_and_videos"
@@ -443,7 +445,7 @@
                 android:id="@+id/tripad"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:src="@drawable/tripadvisor"
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/pinterest"/>
@@ -462,7 +464,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/tripad">
 
                 <EditText
-                    android:id="@+id/tripad_id"
+                    android:id="@+id/tripad_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_number_of_reviews"
@@ -491,7 +493,7 @@
                 android:id="@+id/twit"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:src="@drawable/twitter"
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/tripad"/>
@@ -510,7 +512,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/twit">
 
                 <EditText
-                    android:id="@+id/twitter_id"
+                    android:id="@+id/twitter_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_number_of_post_and_videos"
