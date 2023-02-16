@@ -19,13 +19,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recent_properties"
+        android:text="All Task"
         android:textSize="26sp"
         android:textStyle="bold"
         android:fontFamily="@font/avenir"
         android:textColor="@color/black"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="13dp"
         android:layout_toEndOf="@id/tasks_back_btn"/>
 
     <RelativeLayout

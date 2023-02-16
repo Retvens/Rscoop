@@ -74,8 +74,8 @@ class ViewAllTasks : AppCompatActivity() {
         shimmerFrameLayout = findViewById(R.id.shimmer_tasks_view_container)
         shimmerLayout = findViewById(R.id.shimmer_layout_tasks)
 
-        setUpAdapter()
         setUpClickListener()
+        setUpAdapter()
         setUpCalendar()
         allTaskData()
     }
@@ -101,8 +101,6 @@ class ViewAllTasks : AppCompatActivity() {
      * Setting up adapter for recyclerview
      */
     private fun setUpAdapter() {
-//        val spacingInPixels = resources.getDimensionPixelSize(R.dimen.single_calendar_margin)
-//        recyclerViewDate.addItemDecoration(UnitHorizontalItemDecoration(spacingInPixels))
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerViewDate)
         adapter = CalendarAdapter { calendarDateModel: CalendarDateModel, position: Int ->

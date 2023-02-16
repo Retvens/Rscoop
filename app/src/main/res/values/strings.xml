@@ -40,7 +40,7 @@
     <string name="enter_email">Enter Email</string>
     <string name="enter_default_password">Enter default password</string>
     <string name="location">Location</string>
-    
+
     <string name="have_total">Have total <b>18 Task</b></string>
 
     <style name="TabLayout">
@@ -50,5 +50,7 @@
     </style>
 
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="enter_number_of_post_and_videos">Enter number of Post and Videos</string>
+    <string name="enter_number_of_reviews">Enter number of reviews</string>
 
 </resources>
