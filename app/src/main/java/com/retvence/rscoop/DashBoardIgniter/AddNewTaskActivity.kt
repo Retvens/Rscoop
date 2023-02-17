@@ -78,7 +78,7 @@ class AddNewTaskActivity : AppCompatActivity() {
 
         viewAllAddedTask = findViewById(R.id.view_all_added_tasks)
         viewAllAddedTask.setOnClickListener {
-            startActivity(Intent(this@AddNewTaskActivity,RecentPropertiesView::class.java))
+            startActivity(Intent(this@AddNewTaskActivity,AddNewTaskRecentProperty::class.java))
         }
 
         findViewById<ImageView>(R.id.add_tasks_back_btn).setOnClickListener {
