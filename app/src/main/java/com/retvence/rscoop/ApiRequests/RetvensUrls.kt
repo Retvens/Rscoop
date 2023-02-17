@@ -4,6 +4,7 @@ import com.retvence.rscoop.DataCollections.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 
@@ -47,10 +48,14 @@ interface RetvensUrls {
     fun getTask(): Call<List<TaskData>>
 
     @FormUrlEncoded
-    @POST("login1")
+    @POST("login")
     fun userLogin(@Field("Email") email: String,
                   @Field("Password") password: String
     ) : Call<UserLoginData>
+
+    @Headers("Content-Type: application/json")
+    @POST("login")
+    fun login(@Body user: UserLoginData): Call<LoginResponse>
 
     @FormUrlEncoded
     @POST("task")

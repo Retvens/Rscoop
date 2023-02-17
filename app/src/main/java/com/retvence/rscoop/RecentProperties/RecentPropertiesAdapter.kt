@@ -28,7 +28,7 @@ class RecentPropertiesAdapter(val context: Context, var propertyList: List<Hotel
         val propertyList: HotelsData = propertyList[position]
         holder.hotelName.text = propertyList.hotel_name
         holder.ratingBar.rating = propertyList.hotel_stars.toFloat()
-        Glide.with(context).load(propertyList.hotel_profile_photo).into(holder.hotelCover)
+        Glide.with(context).load(propertyList.hotel_logo).into(holder.hotelCover)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context,HotelsLocations::class.java).apply {
@@ -36,7 +36,7 @@ class RecentPropertiesAdapter(val context: Context, var propertyList: List<Hotel
             }
             intent.putExtra("Name",propertyList.hotel_name)
             intent.putExtra("image",propertyList.Cover_photo)
-            intent.putExtra("logo",propertyList.hotel_profile_photo)
+            intent.putExtra("logo",propertyList.hotel_logo)
 
             for (location in propertyList.hotel_location){
                 intent.putExtra("latitude", location.Latitude)

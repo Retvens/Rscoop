@@ -73,48 +73,48 @@ class AddProperty : AppCompatActivity() {
         save.setOnClickListener {
 
 //            uploadData()
-            sendData()
+//            sendData()
         }
 
     }
 
-    private fun sendData() {
-        val reviews = googleReviews.text.toString().trim()
-        val trip = tripAdvisorReview.text.toString().trim()
-        val address = EnterCompleteAddress.text.toString().trim()
-        val location = location.text.toString().trim()
-        val country = propertyStarts.text.toString().trim()
-        val hotelName = hotelName.text.toString().trim()
-
-        val hotelLocations = listOf(
-            HotelsLocation("", "latitude_value_1", "longitude_value_1")
-        )
-
-        val send = HotelsData("","5050",hotelName,hotelLocations,"5","10","5","5252",
-        "https://th.bing.com/th?id=OIP.JPRrS4fGRYal6Kh61f0kfwHaEJ&w=334&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-            "https://th.bing.com/th?id=OIP.JPRrS4fGRYal6Kh61f0kfwHaEJ&w=334&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2","abc123")
-
-        val data = RetrofitBuilder.retrofitBuilder.PostHotels(send)
-
-        data.enqueue(object : Callback<List<HotelsData>?> {
-            override fun onResponse(
-                call: Call<List<HotelsData>?>,
-                response: Response<List<HotelsData>?>
-            ) {
-                if(response.isSuccessful){
-                    Toast.makeText(this@AddProperty,"Data send", Toast.LENGTH_LONG).show()
-                }
-                else{
-                    Toast.makeText(applicationContext,response.code().toString(), Toast.LENGTH_LONG).show()
-                }
-            }
-
-            override fun onFailure(call: Call<List<HotelsData>?>, t: Throwable) {
-                Toast.makeText(this@AddProperty,t.message,Toast.LENGTH_LONG).show()
-                Log.e("error",t.message.toString())
-            }
-        })
-    }
+//    private fun sendData() {
+//        val reviews = googleReviews.text.toString().trim()
+//        val trip = tripAdvisorReview.text.toString().trim()
+//        val address = EnterCompleteAddress.text.toString().trim()
+//        val location = location.text.toString().trim()
+//        val country = propertyStarts.text.toString().trim()
+//        val hotelName = hotelName.text.toString().trim()
+//
+//        val hotelLocations = listOf(
+//            HotelsLocation("", "latitude_value_1", "longitude_value_1")
+//        )
+//
+//        val send = HotelsData("","5050",hotelName,hotelLocations,"5","10","5","5252",
+//        "https://th.bing.com/th?id=OIP.JPRrS4fGRYal6Kh61f0kfwHaEJ&w=334&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
+//            "https://th.bing.com/th?id=OIP.JPRrS4fGRYal6Kh61f0kfwHaEJ&w=334&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2","abc123")
+//
+//        val data = RetrofitBuilder.retrofitBuilder.PostHotels(send)
+//
+//        data.enqueue(object : Callback<List<HotelsData>?> {
+//            override fun onResponse(
+//                call: Call<List<HotelsData>?>,
+//                response: Response<List<HotelsData>?>
+//            ) {
+//                if(response.isSuccessful){
+//                    Toast.makeText(this@AddProperty,"Data send", Toast.LENGTH_LONG).show()
+//                }
+//                else{
+//                    Toast.makeText(applicationContext,response.code().toString(), Toast.LENGTH_LONG).show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<List<HotelsData>?>, t: Throwable) {
+//                Toast.makeText(this@AddProperty,t.message,Toast.LENGTH_LONG).show()
+//                Log.e("error",t.message.toString())
+//            }
+//        })
+//    }
 
 
     private fun pickImageFromGallery() {

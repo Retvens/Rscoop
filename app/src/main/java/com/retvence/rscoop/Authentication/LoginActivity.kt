@@ -4,12 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import com.bumptech.glide.manager.RequestTracker
 import com.google.android.material.textfield.TextInputEditText
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
+import com.retvence.rscoop.DashBoardIgniter.IgniterDashBoard
+import com.retvence.rscoop.DataCollections.LoginResponse
 import com.retvence.rscoop.DataCollections.UserLoginData
 import com.retvens.rscoop.OnBoardingScreen.OnBoardingScreen
 import com.retvens.rscoop.R
@@ -23,8 +27,8 @@ class LoginActivity : AppCompatActivity() {
     lateinit var forgetPassBtn: TextView
     lateinit var loginBtn: CardView
 
-    lateinit var loginPassword: TextInputEditText
-    lateinit var loginEmail: TextInputEditText
+    lateinit var loginPassword: EditText
+    lateinit var loginEmail: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,36 +50,34 @@ class LoginActivity : AppCompatActivity() {
             val email = loginEmail.text.toString()
             val password = loginPassword.text.toString()
 
-            val retroLogin = RetrofitBuilder.retrofitBuilder.userLogin("Shubham@gmail.com","Shub1234")
-            retroLogin.enqueue(object : Callback<UserLoginData> {
-                override fun onResponse(call: Call<UserLoginData>, response: Response<UserLoginData>) {
+            val request = UserLoginData(email,password)
 
-                    if(response.isSuccessful){
-                        Toast.makeText(this@LoginActivity, response.body()?.message.toString(), Toast.LENGTH_LONG)
-                            .show()
+            val login = RetrofitBuilder.retrofitBuilder.login(request)
 
-                        val response = response.body()!!
+            login.enqueue(object : Callback<LoginResponse?> {
+                override fun onResponse(
+                    call: Call<LoginResponse?>,
+                    response: Response<LoginResponse?>
+                ) {
+                    if (response.isSuccessful){
+                        val response = response.body()
 
-                        response.message?.let { it1 -> Log.d("Login", it1) }
-
-                        if (response.message.toString() == "Login successful") {
-//                    SharedPreferenceManagerAdmin.getInstance(this@LoginActivity).saveUser(response)
-                            val intent = Intent(this@LoginActivity, OnBoardingScreen::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            startActivity(intent)
-                        }else {
-                            Toast.makeText(this@LoginActivity,response.message,Toast.LENGTH_LONG)
-                                .show()
+                        if (response!!.message == "Login successful"){
+                            startActivity(Intent(applicationContext,IgniterDashBoard::class.java))
+                        }else{
+                            Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
                         }
-                }else{
-                    Toast.makeText(applicationContext,"$response.errorBody()",Toast.LENGTH_LONG)
-                        .show()
+
+                    }else{
+                        Toast.makeText(applicationContext,response.body()!!.message,Toast.LENGTH_LONG).show()
                     }
                 }
-                override fun onFailure(call: Call<UserLoginData>, t: Throwable) {
-                    Toast.makeText(this@LoginActivity, t.localizedMessage, Toast.LENGTH_LONG).show()
+
+                override fun onFailure(call: Call<LoginResponse?>, t: Throwable) {
+                    Toast.makeText(applicationContext,t.message.toString(),Toast.LENGTH_LONG).show()
                 }
             })
+
         }
     }
     override fun onStart() {

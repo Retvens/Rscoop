@@ -33,7 +33,7 @@ class ClientAdapter(val context: Context, var userList:List<HotelsData>):Recycle
         val item = userList[position]
 
         holder.name.text = userList[position].hotel_name
-        Glide.with(context).load(userList[position].hotel_profile_photo).into(holder.image)
+        Glide.with(context).load(userList[position].hotel_logo).into(holder.image)
         holder.rating.text = userList[position].hotel_stars.toString()
 
         holder.itemView.setOnClickListener {
@@ -42,7 +42,7 @@ class ClientAdapter(val context: Context, var userList:List<HotelsData>):Recycle
             }
             intent.putExtra("Name",item.hotel_name)
             intent.putExtra("image",item.Cover_photo)
-            intent.putExtra("logo",item.hotel_profile_photo)
+            intent.putExtra("logo",item.hotel_logo)
 
             for (location in item.hotel_location){
                 intent.putExtra("latitude",location.Latitude)
