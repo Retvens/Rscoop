@@ -17,34 +17,34 @@
         >
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_marketing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="17dp"
-                android:layout_margin="8dp"
-                android:background="@color/sky_blue"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/marketing"
-                        android:textSize="14sp"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:padding="5dp"
-                        android:background="@color/sky_blue"/>
-            </androidx.cardview.widget.CardView>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/png_timer"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/card_marketing"
-                app:layout_constraintStart_toEndOf="@id/card_marketing"
-                app:layout_constraintTop_toTopOf="@id/card_marketing"
-                app:layout_constraintBottom_toBottomOf="@id/card_marketing"/>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_marketing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="17dp"
+            android:layout_margin="8dp"
+            android:background="@color/sky_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/marketing"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:background="@color/sky_blue"/>
+        </androidx.cardview.widget.CardView>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/png_timer"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/card_marketing"
+            app:layout_constraintStart_toEndOf="@id/card_marketing"
+            app:layout_constraintTop_toTopOf="@id/card_marketing"
+            app:layout_constraintBottom_toBottomOf="@id/card_marketing"/>
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/owner_Image"
@@ -73,25 +73,25 @@
             app:layout_constraintTop_toBottomOf="@id/card_marketing"
             android:layout_marginStart="11dp" />
 
-            <TextView
-                android:id="@+id/hotel_task"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Task Wireframe"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/Company_Name"
-                android:layout_marginStart="11dp"/>
+        <TextView
+            android:id="@+id/hotel_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Task Wireframe"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Company_Name"
+            android:layout_marginStart="11dp"/>
 
-            <TextView
-                android:id="@+id/hotel_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5 Feb 2023"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/hotel_task"
-                android:layout_marginStart="12dp"/>
+        <TextView
+            android:id="@+id/hotel_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5 Feb 2023"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hotel_task"
+            android:layout_marginStart="12dp"/>
 
         <ImageView
             android:id="@+id/fb_icon"
@@ -245,17 +245,17 @@
             app:layout_constraintBottom_toBottomOf="@id/twitter_icon"
             />
 
-            <TextView
-                android:id="@+id/gg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2 Post and 2 Videos"
-                android:textSize="14sp"
-                android:fontFamily="@font/avenir"
-                android:layout_marginStart="5dp"
-                app:layout_constraintStart_toEndOf="@id/ullu"
-                app:layout_constraintTop_toTopOf="@+id/ullu"
-                app:layout_constraintBottom_toBottomOf="@id/ullu"/>
+        <TextView
+            android:id="@+id/gg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 Post and 2 Videos"
+            android:textSize="14sp"
+            android:fontFamily="@font/avenir"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toEndOf="@id/ullu"
+            app:layout_constraintTop_toTopOf="@+id/ullu"
+            app:layout_constraintBottom_toBottomOf="@id/ullu"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

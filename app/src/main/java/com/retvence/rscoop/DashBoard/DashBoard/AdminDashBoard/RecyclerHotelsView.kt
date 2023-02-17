@@ -28,7 +28,7 @@ class RecyclerHotelsView(val context: Context, var hotelList:List<HotelsData>): 
 
     override fun onBindViewHolder(holder: MyclassViewHolder, position: Int) {
         holder.hotelName.text = hotelList[position].hotel_name
-        Glide.with(context).load(hotelList[position].hotel_profile_photo).into(holder.hotelImage)
+        Glide.with(context).load(hotelList[position].hotel_logo).into(holder.hotelImage)
 
 
 

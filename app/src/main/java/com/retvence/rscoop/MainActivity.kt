@@ -9,7 +9,7 @@ import androidx.cardview.widget.CardView
 import com.retvens.rscoop.Authentication.LoginActivity
 import com.retvens.rscoop.Authentication.LoginPhone
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
-import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var loginBtn : CardView
@@ -37,12 +37,5 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-    override fun onStart() {
-        super.onStart()
-        if (SharedPreferenceManagerAdmin.getInstance(this@MainActivity).isLoggedIn){
-            val intent = Intent(this@MainActivity,AdminDashBoard::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-        }
-    }
+
 }

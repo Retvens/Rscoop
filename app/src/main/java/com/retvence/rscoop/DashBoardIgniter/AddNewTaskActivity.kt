@@ -38,6 +38,7 @@ class AddNewTaskActivity : AppCompatActivity() {
     private val calendarList2 = ArrayList<CalendarDateModel>()
 
     lateinit var calendarAdapter: CalendarAdapter
+
     private lateinit var recyclerViewDate: RecyclerView
 
     private lateinit var recyclerViewSelectProperty: RecyclerView

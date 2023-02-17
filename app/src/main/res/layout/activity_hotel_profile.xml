@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".RecentProperties.HotelsLocations">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="300dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Egniter_Hotel_Name"
+            android:textSize="25dp"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/avenir"
+            android:textColor="#383842"
+            android:layout_marginTop="20dp"
+            android:textFontWeight="800"
+            android:textStyle="normal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/hotels_back"
+            android:layout_marginLeft="20dp"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/Egniter_clienthotelimg"
+            android:layout_width="370dp"
+            android:layout_height="250dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Egniter_Hotel_Name"
+            android:layout_marginTop="5dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:background="@drawable/imagecorner"
+            />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            tools:ignore="MissingConstraints"
+            android:id="@+id/Egniter_logoOfHotel"
+            app:layout_constraintTop_toTopOf="@+id/Egniter_clienthotelimg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="215dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:shapeAppearanceOverlay="@style/SpecificCornerRounded"
+            />
+
+        <ImageView
+            android:id="@+id/hotels_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_btn"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="20dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/Egniter_Hotel_Name2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/Egniter_logoOfHotel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="5dp"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:textFontWeight="800"
+            android:fontFamily="@font/avenir"
+            android:textStyle="normal"
+            android:textColor="#092C4C"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/Egniter_hotel_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Egniter_Hotel_Name2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:text="California, United States"
+            tools:ignore="MissingConstraints"
+            />
+
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:numStars="5"
+            android:progressBackgroundTint="#a8a8a8"
+            android:progressTint="#FBBC05"
+            android:rating="2.5"
+            android:scaleX="0.35"
+            android:scaleY="0.35"
+            android:stepSize="0.1"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="@+id/Egniter_hotel_country"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="-60dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-52dp" />
+
+        <ImageView
+            android:id="@+id/maliLink"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/email"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="150dp"
+            app:layout_constraintTop_toBottomOf="@+id/Egniter_Hotel_Name2"
+            app:layout_constraintStart_toEndOf="@id/Egniter_hotel_country"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="60dp"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/PhoneCall"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/phonepng"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/Egniter_Hotel_Name2"
+            app:layout_constraintStart_toEndOf="@id/Egniter_hotel_country"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginLeft="170dp"
+            tools:ignore="MissingConstraints" />
+
+
+        <ImageView
+            android:id="@+id/twitterLink"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            tools:ignore="MissingConstraints"
+            android:src="@drawable/twitter"
+            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            />
+        <ImageView
+            android:id="@+id/whatsappLink"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            tools:ignore="MissingConstraints"
+            android:src="@drawable/whatsapp"
+            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="30dp"
+            />
+        <ImageView
+            android:id="@+id/tripadivisorLink"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            tools:ignore="MissingConstraints"
+            android:src="@drawable/tripadvisor"
+            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="30dp"
+            />
+
+        <ImageView
+            android:id="@+id/pinterestLink"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            tools:ignore="MissingConstraints"
+            android:src="@drawable/pinterest"
+            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="140dp"
+            android:layout_marginTop="30dp"
+            />
+        <ImageView
+            android:id="@+id/linkdinLink"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            tools:ignore="MissingConstraints"
+            android:src="@drawable/linkedin"
+            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="180dp"
+            android:layout_marginTop="30dp"
+            />
+        <ImageView
+            android:id="@+id/instagramLink"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            tools:ignore="MissingConstraints"
+            android:src="@drawable/instagram"
+            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="220dp"
+            android:layout_marginTop="30dp"
+            />
+        <ImageView
+            android:id="@+id/googleLink"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            tools:ignore="MissingConstraints"
+            android:src="@drawable/google"
+            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="260dp"
+            android:layout_marginTop="30dp"
+            />
+        <ImageView
+            android:id="@+id/facebookLink"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            tools:ignore="MissingConstraints"
+            android:src="@drawable/facebook"
+            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="300dp"
+            android:layout_marginTop="30dp"
+            />
+
+        <TextView
+            android:id="@+id/review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/facebookLink"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            tools:ignore="MissingConstraints"
+            android:text="Ratings &amp; Reviews"
+            android:fontFamily="@font/avenir"
+            android:textFontWeight="800"
+            android:textSize="20dp"
+            android:textColor="#282828"
+            />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/review"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/google"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/review"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="70dp"
+            android:src="@drawable/tripadvisor"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            app:cardCornerRadius="5dp"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toBottomOf="@+id/review"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="20dp"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_24"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="15dp"
+                />
+
+            <TextView
+                android:text="4.3"
+                android:textSize="16dp"
+                android:id="@+id/googleRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="8dp"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            app:cardCornerRadius="5dp"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toBottomOf="@+id/review"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="70dp"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_24"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="15dp"
+                />
+
+            <TextView
+                android:id="@+id/trapadvisior"
+                android:text="4.9"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="8dp"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/review"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="160dp"
+            tools:ignore="MissingConstraints"
+            android:text="Good"
+            android:textSize="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/review"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="160dp"
+            tools:ignore="MissingConstraints"
+            android:text="From 2023 Reviews"
+            android:textSize="12dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/review"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="160dp"
+            tools:ignore="MissingConstraints"
+            android:text="Great"
+            android:textSize="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/review"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="95dp"
+            android:layout_marginLeft="160dp"
+            tools:ignore="MissingConstraints"
+            android:text="From 1024 Reviews"
+            android:textSize="12dp"
+            />
+
+
+        <TextView
+            android:id="@+id/selectDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="120dp"
+            android:fontFamily="@font/akaya_telivigala"
+            android:text="Select Date"
+            android:textSize="25dp"
+            android:textColor="#383842"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/review"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/recyclerViewDate1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/date_layout"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selectDate"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/taskRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewDate1"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="5dp"
+            tools:ignore="MissingConstraints" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</ScrollView>
