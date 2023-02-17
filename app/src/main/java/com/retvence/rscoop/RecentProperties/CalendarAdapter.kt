@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.retvens.rscoop.R
+import java.text.SimpleDateFormat
 
 class CalendarAdapter( private val listener: (calendarDateModel: CalendarDateModel, position: Int) -> Unit):
     RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>(){
@@ -36,6 +37,14 @@ class CalendarAdapter( private val listener: (calendarDateModel: CalendarDateMod
         holder.calendarDay.text = itemList.calendarDay
         holder.calendarDate.text = itemList.calendarDate
 
+        holder.itemView.setOnClickListener {
+            adapterPosition = position
+            notifyItemRangeChanged(0, list.size)
+
+            Toast.makeText(holder.itemView.context,itemList.calendarYear,Toast.LENGTH_SHORT)
+                .show()
+//            listener.invoke(itemList, adapterPosition)
+        }
         if (position == adapterPosition){
             holder.calendarDay.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
             holder.calendarDate.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.white))
@@ -47,12 +56,6 @@ class CalendarAdapter( private val listener: (calendarDateModel: CalendarDateMod
             holder.linear.background = holder.itemView.context.getDrawable(R.drawable.round_corner)
         }
 
-        holder.itemView.setOnClickListener {
-            adapterPosition = position
-            notifyItemRangeChanged(0, list.size)
-//            listener.invoke(itemList, adapterPosition)
-
-        }
     }
     override fun getItemCount(): Int {
         return list.size
