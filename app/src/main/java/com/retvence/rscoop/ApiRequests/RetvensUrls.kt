@@ -1,5 +1,6 @@
 package com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
 
+import com.retvence.rscoop.DashBoardIgniter.RecentPropertiesDataClass
 import com.retvence.rscoop.DataCollections.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -46,21 +47,16 @@ interface RetvensUrls {
     @GET("task")
     fun getTask(): Call<List<TaskData>>
 
-    @FormUrlEncoded
-    @POST("login1")
-    fun userLogin(@Field("Email") email: String,
-                  @Field("Password") password: String
+    @POST("login")
+    fun userLogin(
+        @Body login:UserLoginData
     ) : Call<UserLoginData>
 
-    @FormUrlEncoded
+    @GET("property")
+    fun getRecentProperty() : Call<List<RecentPropertiesDataClass>>
+
     @POST("task")
     fun createSocialMeadia(
-        @Field("facebook") facebook:String,
-        @Field("Linkedin") Linkedin:String,
-        @Field("instagram") instagram:String,
-        @Field("twitter") twitter : String,
-        @Field("Pinterest") Pinterest:String,
-        @Field("GMB") GMB : String,
-        @Field("Google_reviews") Google_reviews : String
+        @Body social : TaskData
     ) : Call<TaskData>
 }
