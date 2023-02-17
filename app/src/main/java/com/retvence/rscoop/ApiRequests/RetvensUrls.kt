@@ -1,5 +1,6 @@
 package com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
 
+import com.retvence.rscoop.DashBoardIgniter.AddTaskData
 import com.retvence.rscoop.DashBoardIgniter.RecentPropertiesDataClass
 import com.retvence.rscoop.DataCollections.*
 import okhttp3.MultipartBody
@@ -57,6 +58,6 @@ interface RetvensUrls {
 
     @POST("task")
     fun createSocialMeadia(
-        @Body social : TaskData
-    ) : Call<TaskData>
+        @Body social : AddTaskData
+    ) : Call<AddTaskData>
 }
