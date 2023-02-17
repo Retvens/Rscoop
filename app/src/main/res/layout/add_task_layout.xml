@@ -3,18 +3,24 @@
     android:layout_width="160dp"
     android:layout_height="250dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="5dp"
     android:layout_margin="@dimen/margin_5">
 
     <RelativeLayout
+        android:id="@+id/selectPropertyRelative"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="3dp"
+        android:background="@drawable/rectangle_background">
 
         <ImageView
             android:id="@+id/hotel_add_task_img"
-            android:layout_width="match_parent"
+            android:layout_width="155dp"
             android:layout_height="160dp"
             android:scaleType="fitXY"
+            android:layout_marginTop="2dp"
+            android:layout_centerHorizontal="true"
             android:adjustViewBounds="true"
             android:src="@drawable/round_corner"/>
 
