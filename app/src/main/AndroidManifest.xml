@@ -20,11 +20,7 @@
             android:name="com.retvence.rscoop.DashBoardIgniter.HotelProfile"
             android:exported="true">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -33,6 +29,8 @@
         <activity
             android:name="com.retvence.rscoop.DashBoardIgniter.IgniterDashBoard"
             android:exported="true">
+
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -58,6 +56,11 @@
         <activity
             android:name=".DashBoard.DashBoard.AdminDashBoard.Profile.AddClient"
             android:exported="false" />
+
+        <activity
+            android:name="com.retvence.rscoop.DashBoardIgniter.AddNewTaskRecentProperty"
+            android:exported="false" />
+
         <activity
             android:name="com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty"
             android:exported="false" />
@@ -109,6 +112,11 @@
         <activity
             android:name="com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

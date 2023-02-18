@@ -3,11 +3,14 @@ package com.retvence.rscoop.DashBoardIgniter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.SnapHelper
+import com.bumptech.glide.Glide
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DataCollections.TaskData
 import com.retvence.rscoop.RecentProperties.CalendarAdapter
@@ -35,6 +38,22 @@ class HotelProfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hotel_profile)
 
+        val hotelName = findViewById<TextView>(R.id.Egniter_Hotel_Name)
+        val hotelImage = findViewById<ImageView>(R.id.Egniter_clienthotelimg)
+        val hotelLogo = findViewById<ImageView>(R.id.Egniter_logoOfHotel)
+        val name = findViewById<TextView>(R.id.Egniter_Hotel_Name2)
+
+        val Name = intent.getStringExtra("Name")
+        val image = intent.getStringExtra("image")
+        val logo = intent.getStringExtra("logo")
+
+
+        Glide.with(baseContext).load(image).into(hotelImage)
+        Glide.with(baseContext).load(logo).into(hotelLogo)
+        hotelName.text = Name
+        name.text = Name
+
+
         recyclerViewDate = findViewById(R.id.recyclerViewDate1)
 
 
@@ -45,7 +64,6 @@ class HotelProfile : AppCompatActivity() {
 
         setUpAdapter()
         setUpCalendar()
-
         getTask()
 
     }

@@ -52,31 +52,7 @@ class LoginActivity : AppCompatActivity() {
 
             val request = UserLoginData(email,password)
 
-            val login = RetrofitBuilder.retrofitBuilder.login(request)
 
-            login.enqueue(object : Callback<LoginResponse?> {
-                override fun onResponse(
-                    call: Call<LoginResponse?>,
-                    response: Response<LoginResponse?>
-                ) {
-                    if (response.isSuccessful){
-                        val response = response.body()
-
-                        if (response!!.message == "Login successful"){
-                            startActivity(Intent(applicationContext,IgniterDashBoard::class.java))
-                        }else{
-                            Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
-                        }
-
-                    }else{
-                        Toast.makeText(applicationContext,response.body()!!.message,Toast.LENGTH_LONG).show()
-                    }
-                }
-
-                override fun onFailure(call: Call<LoginResponse?>, t: Throwable) {
-                    Toast.makeText(applicationContext,t.message.toString(),Toast.LENGTH_LONG).show()
-                }
-            })
 
         }
     }

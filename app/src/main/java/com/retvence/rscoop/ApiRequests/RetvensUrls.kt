@@ -13,8 +13,9 @@ interface RetvensUrls {
     @GET("hotelowner/{Country}")
     fun getOwner(@Path("Country") Country:String): Call<List<OwnersData>>
 
+    @Headers("Content-Type: application/json")
     @POST("hotelowner")
-    fun PostOwner(@Body owner: OwnersData ): Call<List<OwnersData>>
+    fun PostOwner(@Body owner: OwnersData ): Call<ResponseClient>
 
     @POST("hotelowner")
     fun PostHotels(@Body data: HotelsData ): Call<List<HotelsData>>
@@ -24,8 +25,6 @@ interface RetvensUrls {
     @Headers("Content-Type: application/json")
     @POST("hotelowner")
     fun uploadData(
-        @Part("_id") _id:RequestBody,
-        @Part("Name") Name: RequestBody,
         @Part("Email") Email: RequestBody,
         @Part("Password") Password: RequestBody,
         @Part("Phone") Phone: RequestBody,
@@ -34,9 +33,8 @@ interface RetvensUrls {
         @Part("Service_type") Service_type: RequestBody,
         @Part("Country") Country: RequestBody,
         @Part("token") token: RequestBody,
-        @Part coverPhoto: MultipartBody.Part,
-        @Part("__v") __v:RequestBody
-        ): Call<List<OwnersData>>
+        @Part coverPhoto: MultipartBody.Part
+        ): Call<ResponseClient>
 
     @GET("property/{owner_id}")
     fun getHotel(@Path("owner_id") owner:String): Call<List<HotelsData>>
@@ -56,7 +54,5 @@ interface RetvensUrls {
     fun getRecentProperty() : Call<List<RecentPropertiesDataClass>>
 
     @POST("task")
-    fun createSocialMeadia(
-        @Body social : TaskData
-    ) : Call<TaskData>
+    fun createSocialMeadia(@Body social : TaskData) : Call<ResponseTask>
 }

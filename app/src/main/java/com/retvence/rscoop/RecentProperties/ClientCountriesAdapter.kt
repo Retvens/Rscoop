@@ -39,7 +39,7 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
 
         holder.Name.text = userList[position].Name
         Glide.with(context).load(userList[position].Profile_photo).into(holder.image)
-        holder.number.text = data.Phone.toString()
+//        holder.number.text = data.Phone.toString()
         holder.address.text = data.Country
 
         holder.whats.setOnClickListener {
@@ -51,7 +51,7 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
             val intent = Intent(context, ClientInfo::class.java)
             intent.putExtra("client_name",data.Name)
             intent.putExtra("client_image",data.Profile_photo)
-            intent.putExtra("client_phone",data.Phone)
+//            intent.putExtra("client_phone",data.Phone)
             intent.putExtra("client_address",data.Country)
             intent.putExtra("owner",data.owner_id)
             context.startActivity(intent)

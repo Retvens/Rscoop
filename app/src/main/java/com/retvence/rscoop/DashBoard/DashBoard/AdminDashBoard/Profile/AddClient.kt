@@ -18,6 +18,7 @@ import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.UploadRequestBody
 import com.retvence.rscoop.DataCollections.OwnersData
+import com.retvence.rscoop.DataCollections.ResponseClient
 import com.retvens.rscoop.R
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -99,31 +100,29 @@ class AddClient : AppCompatActivity(), UploadRequestBody.UploadCallback {
 //        val phone = clientNumber.text.toString().trim()
 //        val country = clientLocation.text.toString().trim()
 //
-//        val data = OwnersData("",name,email,password,phone,"0000","https://th.bing.com/th?id=OIP.JPRrS4fGRYal6Kh61f0kfwHaEJ&w=334&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2"
-//            ,"DM",country,"abc123","https://th.bing.com/th?id=OIP.JPRrS4fGRYal6Kh61f0kfwHaEJ&w=334&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2")
+//        val data = OwnersData("Rahul Bhai","ppo@gmail.com","00000",1234,
+//        "6969","https://th.bing.com/th?id=OIP.rfrnhsyiblU4_bGi91wbkAHaEo&w=316&h=197&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
+//        "","Qatar","abc123","https://th.bing.com/th?id=OIP.rfrnhsyiblU4_bGi91wbkAHaEo&w=316&h=197&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2")
 //
 //        val send = RetrofitBuilder.retrofitBuilder.PostOwner(data)
 //
+//       send.enqueue(object : Callback<ResponseClient?> {
+//           override fun onResponse(
+//               call: Call<ResponseClient?>,
+//               response: Response<ResponseClient?>
+//           ) {
+//               if(response.isSuccessful){
+//                   Toast.makeText(this@AddClient,"ok",Toast.LENGTH_LONG).show()
+//               }
+//               else{
+//                   Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
+//               }
+//           }
 //
-//        send.enqueue(object : Callback<List<OwnersData>?> {
-//            override fun onResponse(
-//                call: Call<List<OwnersData>?>,
-//                response: Response<List<OwnersData>?>
-//            ) {
-//                if(response.isSuccessful){
-//                    Toast.makeText(this@AddClient,"ok",Toast.LENGTH_LONG).show()
-//                }
-//                else{
-//                    Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
-//                }
-//
-//            }
-//
-//            override fun onFailure(call: Call<List<OwnersData>?>, t: Throwable) {
-//                Toast.makeText(this@AddClient,t.message,Toast.LENGTH_LONG).show()
-//                Log.e("error",t.message.toString())
-//            }
-//        })
+//           override fun onFailure(call: Call<ResponseClient?>, t: Throwable) {
+//               Toast.makeText(this@AddClient,t.message.toString(),Toast.LENGTH_LONG).show()
+//           }
+//       })
 //
 //    }
 
@@ -153,50 +152,50 @@ class AddClient : AppCompatActivity(), UploadRequestBody.UploadCallback {
         val body = UploadRequestBody(file,"Profile_photo",this)
 
 
+        if (profilePhotoPart == null){
+            editClientCover.snackbar("Select an Image First")
+        }
+
+        val parcelFileDescriptor1 = contentResolver.openFileDescriptor(
+            profilePhotoPart!!,"r",null
+        )?:return
+
+
+
+        val inputStream1 = FileInputStream(parcelFileDescriptor1.fileDescriptor)
+        val file1 = File(cacheDir,contentResolver.getFileName(profilePhotoPart!!))
+        val outputStream1 = FileOutputStream(file)
+        inputStream.copyTo(outputStream)
+        val body1 = UploadRequestBody(file,"Cover_photo",this)
+
+
         Log.e("", file.name.toString())
         val send = RetrofitBuilder.retrofitBuilder
         send.uploadData(
-            RequestBody.create("application/json".toMediaTypeOrNull(), ""),
-            RequestBody.create("application/json".toMediaTypeOrNull(), name),
-            RequestBody.create("application/json".toMediaTypeOrNull(), email),
-            RequestBody.create("application/json".toMediaTypeOrNull(), password),
-            RequestBody.create("application/json".toMediaTypeOrNull(), phone),
+            RequestBody.create("application/json".toMediaTypeOrNull(), "name"),
+            RequestBody.create("application/json".toMediaTypeOrNull(), "email"),
+            RequestBody.create("application/json".toMediaTypeOrNull(), "password"),
             RequestBody.create("application/json".toMediaTypeOrNull(), "000"),
             MultipartBody.Part.createFormData("Profile_photo",file.name,body),
             RequestBody.create("application/json".toMediaTypeOrNull(), ""),
-            RequestBody.create("application/json".toMediaTypeOrNull(), country),
+            RequestBody.create("application/json".toMediaTypeOrNull(), "country"),
             RequestBody.create("application/json".toMediaTypeOrNull(), "abc123"),
-            MultipartBody.Part.createFormData("Profile_photo",file.name,body),
-            RequestBody.create("application/json".toMediaTypeOrNull(), "")
-        )
-            .enqueue(object : Callback<List<OwnersData>?> {
+            MultipartBody.Part.createFormData("Cover_photo",file1.name,body1),
+        ).enqueue(object : Callback<ResponseClient?> {
             override fun onResponse(
-                call: Call<List<OwnersData>?>,
-                response: Response<List<OwnersData>?>
+                call: Call<ResponseClient?>,
+                response: Response<ResponseClient?>
             ) {
-                if(response.isSuccessful){
+                if (response.isSuccessful){
+                    val response = response.body()
                     Toast.makeText(applicationContext,"success",Toast.LENGTH_LONG).show()
                 }else{
-                    val errorBody = response.errorBody()?.string()
-                    val errorMessage = if (errorBody.isNullOrEmpty()) {
-                        "Unknown error"
-                    } else {
-                        try {
-
-                            val json = JSONObject(errorBody)
-                            json.getString("message")
-                        } catch (e: Exception) {
-                            errorBody
-                        }
-                    }
-                    Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_LONG).show()
-                    Log.e("API Error", errorMessage)
+                    Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
                 }
             }
 
-            override fun onFailure(call: Call<List<OwnersData>?>, t: Throwable) {
-                Toast.makeText(applicationContext,"${t.message.toString()}",Toast.LENGTH_LONG).show()
-                Log.e("",t.message.toString())
+            override fun onFailure(call: Call<ResponseClient?>, t: Throwable) {
+                Toast.makeText(applicationContext,t.message.toString(),Toast.LENGTH_LONG).show()
             }
         })
 

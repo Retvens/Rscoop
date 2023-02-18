@@ -1,6 +1,7 @@
 package com.retvence.rscoop.DashBoardIgniter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.retvens.rscoop.R
+import com.retvens.rscoop.RecentProperties.HotelsLocations
 
 class RecentPropertiesAdapterAT(val context: Context, val recentItem: List<RecentPropertiesDataClass>) : RecyclerView.Adapter<RecentPropertiesAdapterAT.AddTaskViewHolder>()  {
 
@@ -38,8 +40,24 @@ class RecentPropertiesAdapterAT(val context: Context, val recentItem: List<Recen
         holder.googleReview.text = item.Google_review.toString()
         holder.tripadReview.text = item.trip_advisor_review.toString()
         Glide.with(context).load(item.Cover_photo).into(holder.hotelCover)
-
         holder.rating.rating = item.hotel_stars.toFloat()
+
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, HotelProfile::class.java)
+            intent.putExtra("Name",item.hotel_name)
+            intent.putExtra("image",item.Cover_photo)
+            intent.putExtra("logo",item.hotel_logo)
+
+            for (location in item.hotel_location){
+                intent.putExtra("latitude",location.Latitude)
+                intent.putExtra("longitude",location.Longitude)
+
+            }
+
+            context.startActivity(intent)
+
+        }
 
     }
 }

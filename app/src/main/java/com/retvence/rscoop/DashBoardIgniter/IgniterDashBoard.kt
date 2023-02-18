@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -34,6 +35,10 @@ class IgniterDashBoard : AppCompatActivity() {
         setContentView(R.layout.activity_igniter_dash_board)
 
         shimmer = findViewById(R.id.Egniter_shimmer)
+        val text = findViewById<TextView>(R.id.latest)
+        text.setOnClickListener {
+            startActivity(Intent(this,AddNewTaskActivity::class.java))
+        }
 
         //recyclerview
 
