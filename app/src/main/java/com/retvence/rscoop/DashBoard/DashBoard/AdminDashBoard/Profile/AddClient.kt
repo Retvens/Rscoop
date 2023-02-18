@@ -169,38 +169,6 @@ class AddClient : AppCompatActivity(), UploadRequestBody.UploadCallback {
         val body1 = UploadRequestBody(file,"Cover_photo",this)
 
 
-        Log.e("", file.name.toString())
-        val send = RetrofitBuilder.retrofitBuilder
-        send.uploadData(
-            RequestBody.create("application/json".toMediaTypeOrNull(), "name"),
-            RequestBody.create("application/json".toMediaTypeOrNull(), "email"),
-            RequestBody.create("application/json".toMediaTypeOrNull(), "password"),
-            RequestBody.create("application/json".toMediaTypeOrNull(), "000"),
-            MultipartBody.Part.createFormData("Profile_photo",file.name,body),
-            RequestBody.create("application/json".toMediaTypeOrNull(), ""),
-            RequestBody.create("application/json".toMediaTypeOrNull(), "country"),
-            RequestBody.create("application/json".toMediaTypeOrNull(), "abc123"),
-            MultipartBody.Part.createFormData("Cover_photo",file1.name,body1),
-        ).enqueue(object : Callback<ResponseClient?> {
-            override fun onResponse(
-                call: Call<ResponseClient?>,
-                response: Response<ResponseClient?>
-            ) {
-                if (response.isSuccessful){
-                    val response = response.body()
-                    Toast.makeText(applicationContext,"success",Toast.LENGTH_LONG).show()
-                }else{
-                    Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseClient?>, t: Throwable) {
-                Toast.makeText(applicationContext,t.message.toString(),Toast.LENGTH_LONG).show()
-            }
-        })
-
-
-
     }
 
     private fun pickImageFromGallery() {

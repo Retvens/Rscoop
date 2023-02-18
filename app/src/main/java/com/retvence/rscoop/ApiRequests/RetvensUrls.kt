@@ -24,7 +24,6 @@ interface RetvensUrls {
     @Headers("Content-Type: application/json")
     @POST("hotelowner")
     fun uploadData(
-        @Part("_id") _id:RequestBody,
         @Part("Name") Name: RequestBody,
         @Part("Email") Email: RequestBody,
         @Part("Password") Password: RequestBody,
@@ -35,14 +34,14 @@ interface RetvensUrls {
         @Part("Country") Country: RequestBody,
         @Part("token") token: RequestBody,
         @Part coverPhoto: MultipartBody.Part,
-        @Part("__v") __v:RequestBody
-        ): Call<List<OwnersData>>
+        ): Call<List<ResponseClient>>
 
     @GET("property/{owner_id}")
     fun getHotel(@Path("owner_id") owner:String): Call<List<HotelsData>>
 
     @GET("Country")
     fun getCountry(): Call<List<CountryData>>
+
 
     @GET("task")
     fun getTask(): Call<List<TaskData>>
@@ -58,5 +57,5 @@ interface RetvensUrls {
     @POST("task")
     fun createSocialMeadia(
         @Body social : TaskData
-    ) : Call<TaskData>
+    ) : Call<ResponseTask>
 }
