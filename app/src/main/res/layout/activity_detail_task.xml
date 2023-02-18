@@ -55,7 +55,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewDate"
+        android:id="@+id/recyclerViewDateDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/date_layout"
@@ -73,7 +73,7 @@
             app:cardElevation="5dp"
             android:layout_marginStart="14dp"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/recyclerViewDate">
+            android:layout_below="@id/recyclerViewDateDetail">
 
             <RelativeLayout
                 android:id="@+id/selectPropertyRelative"
@@ -500,11 +500,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/pending"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="26dp"
             android:layout_below="@id/card_add_links">
 
             <LinearLayout
@@ -512,14 +512,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="#F74A4A"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="8dp"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="2dp"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:src="@drawable/pending"
                     android:layout_gravity="center_vertical"/>
 
@@ -540,7 +540,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/done"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"
             android:layout_marginTop="20dp"
@@ -554,8 +554,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="#4AC1F7"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="8dp"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="2dp"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal">
 
@@ -584,11 +584,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/edit_card"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginStart="12dp"
+            android:layout_marginBottom="20dp"
             android:layout_toEndOf="@id/done"
             android:layout_below="@id/card_add_links">
 
@@ -597,8 +598,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="#1EE3B3"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="8dp"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="2dp"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal">
 

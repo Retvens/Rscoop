@@ -170,7 +170,7 @@ class AddNewTaskActivity : AppCompatActivity() {
         })
     }
 
-    /**
+       /**
          * Setting up adapter for recyclerview
          */
         private fun setUpAdapter() {
