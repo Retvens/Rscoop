@@ -65,11 +65,17 @@ class LoginActivity : AppCompatActivity() {
                if (response.isSuccessful){
                     val response = response.body()!!
                     if (response.message.toString() == "Admin login successful"){
-                        startActivity(Intent(this@LoginActivity,AdminDashBoard::class.java))
-                    }else if (response.message.toString() == "Company login successful"){
+                        val intent = Intent(this@LoginActivity,AdminDashBoard::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                    }
+                    else if (response.message.toString() == "Company login successful"){
                         Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
-                        startActivity(Intent(applicationContext,IgniterDashBoard::class.java))
-                    } else if (response.message.toString() == "Owner login successful"){
+                        val intent = Intent(this@LoginActivity,IgniterDashBoard::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                    }
+                    else if (response.message.toString() == "Owner login successful"){
                         Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
                     }
                    else{
