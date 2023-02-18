@@ -212,13 +212,13 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <RelativeLayout
-                android:layout_width="260dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_low"
                 android:paddingVertical="5dp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
-                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintHorizontal_bias="0.45"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/fb"
                 app:layout_constraintTop_toTopOf="@id/fb"
@@ -259,10 +259,10 @@
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/fb"/>
             <RelativeLayout
-                android:layout_width="260dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_low"
-                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintHorizontal_bias="0.45"
                 android:paddingVertical="5dp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
@@ -306,10 +306,10 @@
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/googl"/>
             <RelativeLayout
-                android:layout_width="260dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_low"
-                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintHorizontal_bias="0.45"
                 android:paddingVertical="5dp"
                 android:layout_marginVertical="3dp"
                 android:layout_gravity="center_vertical"
@@ -354,10 +354,10 @@
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/insta"/>
             <RelativeLayout
-                android:layout_width="260dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_low"
-                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintHorizontal_bias="0.45"
                 android:layout_marginVertical="3dp"
                 android:paddingVertical="5dp"
                 android:layout_gravity="center_vertical"
@@ -402,10 +402,10 @@
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/linkedin"/>
             <RelativeLayout
-                android:layout_width="260dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_low"
-                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintHorizontal_bias="0.45"
                 android:layout_marginVertical="3dp"
                 android:paddingVertical="5dp"
                 android:layout_gravity="center_vertical"
@@ -450,10 +450,10 @@
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/pinterest"/>
             <RelativeLayout
-                android:layout_width="260dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_low"
-                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintHorizontal_bias="0.45"
                 android:layout_marginVertical="3dp"
                 android:paddingVertical="5dp"
                 android:layout_gravity="center_vertical"
@@ -498,10 +498,10 @@
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/tripad"/>
             <RelativeLayout
-                android:layout_width="260dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_low"
-                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintHorizontal_bias="0.45"
                 android:layout_marginVertical="3dp"
                 android:paddingVertical="5dp"
                 android:layout_gravity="center_vertical"
