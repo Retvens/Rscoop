@@ -3,6 +3,7 @@ package com.retvens.rscoop.RecentProperties
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
+import com.retvence.rscoop.DashBoardIgniter.RecentPropertiesAdapterAT
+import com.retvence.rscoop.DashBoardIgniter.RecentPropertiesDataClass
 import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvens.rscoop.R
 import retrofit2.Call
@@ -48,23 +51,28 @@ class RecentPropertiesView : AppCompatActivity() {
     private fun recyclerViewData() {
         recyclerProperties.setVisibility(View.GONE)
 
-        val retrofit = RetrofitBuilder.retrofitBuilder.getHotel("")
+        val retrofit = RetrofitBuilder.retrofitBuilder.getRecentProperty()
 
-        retrofit.enqueue(object : Callback<List<HotelsData>?> {
+        retrofit.enqueue(object : Callback<List<RecentPropertiesDataClass>?> {
             override fun onResponse(
-                call: Call<List<HotelsData>?>,
-                response: Response<List<HotelsData>?>
-            ) {
-                val response = response.body()!!
-                adapter = RecentPropertiesAdapter(baseContext, response)
-                adapter.notifyDataSetChanged()
-                recyclerProperties.adapter =adapter
+                call: Call<List<RecentPropertiesDataClass>?>,
+                response: Response<List<RecentPropertiesDataClass>?>) {
+                if (response.isSuccessful) {
+                    val response = response.body()!!
+                    adapter = RecentPropertiesAdapter(this@RecentPropertiesView, response)
+                    adapter.notifyDataSetChanged()
+                    recyclerProperties.adapter = adapter
 
-                shimmerLayout.setVisibility(View.GONE)
-                recyclerProperties.visibility = View.VISIBLE
+                    shimmerLayout.setVisibility(View.GONE)
+                    recyclerProperties.visibility = View.VISIBLE
+                }else{
+                    Log.d("res",response.errorBody().toString())
+                    Toast.makeText(this@RecentPropertiesView,response.errorBody().toString(),Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
 
-            override fun onFailure(call: Call<List<HotelsData>?>, t: Throwable) {
+            override fun onFailure(call: Call<List<RecentPropertiesDataClass>?>, t: Throwable) {
                Toast.makeText(baseContext,t.localizedMessage,Toast.LENGTH_LONG)
                    .show()
             }

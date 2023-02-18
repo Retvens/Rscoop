@@ -97,8 +97,7 @@ class AddNewTaskActivity : AppCompatActivity() {
     }
 
     private fun createData() {
-        Toast.makeText(this@AddNewTaskActivity,"Clicked",Toast.LENGTH_SHORT)
-            .show()
+
         val facebook = fbPost.text.toString()
         val Linkedin = linkedinPost.text.toString()
         val instagram = instaPost.text.toString()

@@ -2,6 +2,7 @@ package com.retvens.rscoop.RecentProperties
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +12,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.retvence.rscoop.DashBoardIgniter.RecentPropertiesDataClass
 import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvence.rscoop.DataCollections.HotelsLocation
 import com.retvence.rscoop.DataCollections.TaskData
 import com.retvens.rscoop.R
 
-
-class RecentPropertiesAdapter(val context: Context, var propertyList: List<HotelsData>) : RecyclerView.Adapter<RecentPropertiesAdapter.RecentPropertiesViewHolder>(){
+class RecentPropertiesAdapter(val context: Context, var propertyList: List<RecentPropertiesDataClass>) : RecyclerView.Adapter<RecentPropertiesAdapter.RecentPropertiesViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentPropertiesViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
@@ -25,9 +26,12 @@ class RecentPropertiesAdapter(val context: Context, var propertyList: List<Hotel
         return RecentPropertiesViewHolder(view)
     }
     override fun onBindViewHolder(holder: RecentPropertiesViewHolder, position: Int) {
-        val propertyList: HotelsData = propertyList[position]
+        val propertyList: RecentPropertiesDataClass = propertyList[position]
         holder.hotelName.text = propertyList.hotel_name
+        holder.googleReview.text = propertyList.Google_review.toString()
+        holder.tripadReview.text = propertyList.trip_advisor_review.toString()
         holder.ratingBar.rating = propertyList.hotel_stars.toFloat()
+
         Glide.with(context).load(propertyList.hotel_logo).into(holder.hotelCover)
 
         holder.itemView.setOnClickListener {
@@ -51,7 +55,7 @@ class RecentPropertiesAdapter(val context: Context, var propertyList: List<Hotel
     override fun getItemCount(): Int {
         return propertyList.size
     }
-    fun updateProData(newProItems: List<HotelsData>) {
+    fun updateProData(newProItems: List<RecentPropertiesDataClass>) {
         propertyList = newProItems
         notifyDataSetChanged()
     }
@@ -59,6 +63,8 @@ class RecentPropertiesAdapter(val context: Context, var propertyList: List<Hotel
     class RecentPropertiesViewHolder(itemView: View) : ViewHolder(itemView){
         var hotelName = itemView.findViewById<TextView>(R.id.hotel_name)
         var hotelCover = itemView.findViewById<ImageView>(R.id.hotel_cover)
+        var tripadReview = itemView.findViewById<TextView>(R.id.greview_review_text)
+        var googleReview = itemView.findViewById<TextView>(R.id.google_review_text)
         var ratingBar = itemView.findViewById<RatingBar>(R.id.ratingBar)
     }
 }
