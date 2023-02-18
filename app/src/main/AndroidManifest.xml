@@ -17,26 +17,33 @@
         android:theme="@style/Theme.RSCOOP"
         tools:targetApi="31">
         <activity
+            android:name="com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard"
+            android:exported="false" />
+        <activity
+            android:name=".Authentication.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.retvence.rscoop.DashBoardIgniter.AddNewTaskRecentProperty"
+            android:exported="false" />
+        <activity
             android:name="com.retvence.rscoop.DashBoardIgniter.HotelProfile"
             android:exported="true">
-
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name="com.retvence.rscoop.DashBoardIgniter.IgniterDashBoard"
-            android:exported="true">
-
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="com.retvence.rscoop.DashBoardIgniter.AddNewTaskActivity"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -56,11 +63,6 @@
         <activity
             android:name=".DashBoard.DashBoard.AdminDashBoard.Profile.AddClient"
             android:exported="false" />
-
-        <activity
-            android:name="com.retvence.rscoop.DashBoardIgniter.AddNewTaskRecentProperty"
-            android:exported="false" />
-
         <activity
             android:name="com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty"
             android:exported="false" />
@@ -80,10 +82,8 @@
             android:name=".Authentication.ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".Authentication.LoginActivity"
-            android:exported="true">
-
-        </activity>
+            android:name="com.retvence.rscoop.DashBoardIgniter.AddNewTaskActivity"
+            android:exported="true"/>
         <activity
             android:name=".ClientInformation.ClientInfo"
             android:exported="false" />
@@ -110,13 +110,8 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard"
+            android:name="com.retvence.rscoop.DashBoardIgniter.DetailTaskActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

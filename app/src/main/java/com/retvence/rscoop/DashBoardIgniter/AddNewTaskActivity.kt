@@ -20,7 +20,6 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.retvence.rscoop.DataCollections.HotelsData
-import com.retvence.rscoop.DataCollections.ResponseTask
 import com.retvence.rscoop.DataCollections.TaskData
 import com.retvence.rscoop.RecentProperties.CalendarAdapter
 import com.retvence.rscoop.RecentProperties.CalendarDateModel
@@ -98,7 +97,8 @@ class AddNewTaskActivity : AppCompatActivity() {
     }
 
     private fun createData() {
-
+        Toast.makeText(this@AddNewTaskActivity,"Clicked",Toast.LENGTH_SHORT)
+            .show()
         val facebook = fbPost.text.toString()
         val Linkedin = linkedinPost.text.toString()
         val instagram = instaPost.text.toString()
@@ -107,27 +107,29 @@ class AddNewTaskActivity : AppCompatActivity() {
         val GMB = tripadPost.text.toString()
         val Google_review = googlePost.text.toString()
 
-        val data = TaskData("Janta Raja","6969","5-5-23","8 videos and 9 posts",
-        "8 videos and 9 posts","8 videos and 9 posts","8 videos and 9 posts","8 videos and 9 posts",
-        "11 reviews","15 reviews","https://th.bing.com/th?id=OIP.XFtuDnjIQ1uXpY88MA3MjgHaEQ&w=329&h=189&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2")
+        val upload = RetrofitBuilder.retrofitBuilder.createSocialMeadia(TaskData("","New Hotel","20/10/30",
+            facebook, Linkedin,instagram,twitter,Pinterest,GMB,Google_review,""))
+        upload.enqueue(object : Callback<TaskData?> {
+            override fun onResponse(call: Call<TaskData?>, response: Response<TaskData?>) {
 
-        val send = RetrofitBuilder.retrofitBuilder.createSocialMeadia(data)
-
-        send.enqueue(object : Callback<ResponseTask?> {
-            override fun onResponse(call: Call<ResponseTask?>, response: Response<ResponseTask?>) {
+                Log.d("post",response.code().toString())
+                Log.d("post","-----------------------")
                 if (response.isSuccessful){
-                    Toast.makeText(applicationContext,"success",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@AddNewTaskActivity,response.code().toString(),Toast.LENGTH_LONG)
+                        .show()
                 }else{
-                    Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
+                    Log.e("post", response.errorBody().toString())
+                    Toast.makeText(this@AddNewTaskActivity,response.code().toString(),Toast.LENGTH_LONG)
+                        .show()
                 }
             }
-
-            override fun onFailure(call: Call<ResponseTask?>, t: Throwable) {
-                Toast.makeText(applicationContext,t.message.toString(),Toast.LENGTH_LONG).show()
+            override fun onFailure(call: Call<TaskData?>, t: Throwable) {
+                Toast.makeText(this@AddNewTaskActivity,t.localizedMessage,Toast.LENGTH_LONG)
+                    .show()
+                Log.e("post",t.localizedMessage.toString())
+//                findViewById<TextView>(R.id.social_media_heading).text = t.localizedMessage.toString()
             }
         })
-
-
     }
 
     private fun getHotelData() {

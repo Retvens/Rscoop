@@ -47,15 +47,44 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginBtn.setOnClickListener {
-            val email = loginEmail.text.toString()
-            val password = loginPassword.text.toString()
 
-            val request = UserLoginData(email,password)
-
-
+            loginUser()
 
         }
     }
+
+    private fun loginUser() {
+        val email = loginEmail.text.toString()
+        val password = loginPassword.text.toString()
+        val login = RetrofitBuilder.retrofitBuilder.userLogin(UserLoginData(email,password,""))
+        login.enqueue(object : Callback<UserLoginData?> {
+            override fun onResponse(
+                call: Call<UserLoginData?>,
+                response: Response<UserLoginData?>
+            ) {
+               if (response.isSuccessful){
+                    val response = response.body()!!
+                    if (response.message.toString() == "Admin login successful"){
+                        startActivity(Intent(this@LoginActivity,AdminDashBoard::class.java))
+                    }else if (response.message.toString() == "Company login successful"){
+                        Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+                        startActivity(Intent(applicationContext,IgniterDashBoard::class.java))
+                    } else if (response.message.toString() == "Owner login successful"){
+                        Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+                    }
+                   else{
+                        Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+                    }
+                }else{
+                    Toast.makeText(applicationContext,response.body()!!.message,Toast.LENGTH_LONG).show()
+                }
+            }
+            override fun onFailure(call: Call<UserLoginData?>, t: Throwable) {
+                Toast.makeText(applicationContext,t.localizedMessage,Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
     override fun onStart() {
         super.onStart()
        /* if (SharedPreferenceManagerAdmin.getInstance(this@LoginActivity).isLoggedIn){
