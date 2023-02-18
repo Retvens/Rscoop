@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.retvence.rscoop.DashBoardIgniter.DetailTaskActivity">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -147,7 +146,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginStart="12dp"
             android:layout_below="@id/card_pro"/>
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_add_links"
@@ -498,6 +496,131 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/pending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="40dp"
+            android:layout_below="@id/card_add_links">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#F74A4A"
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="8dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/pending"
+                    android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pending"
+                android:background="#F74A4A"
+                android:layout_marginStart="5dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/avenir"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_centerHorizontal="true"
+            android:layout_toEndOf="@id/pending"
+            android:layout_below="@id/card_add_links">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#4AC1F7"
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="8dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/baseline_check"
+                    app:tint="@color/white"
+                    android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Done"
+                android:background="#4AC1F7"
+                android:layout_marginStart="5dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/avenir"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/edit_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_toEndOf="@id/done"
+            android:layout_below="@id/card_add_links">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#1EE3B3"
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="8dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/edit"
+                    android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:background="#1EE3B3"
+                android:layout_marginStart="5dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/avenir"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
     </RelativeLayout>
