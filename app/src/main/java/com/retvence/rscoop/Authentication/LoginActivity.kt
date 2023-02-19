@@ -15,6 +15,7 @@ import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.retvence.rscoop.DashBoardIgniter.IgniterDashBoard
 import com.retvence.rscoop.DataCollections.LoginResponse
 import com.retvence.rscoop.DataCollections.UserLoginData
+import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.OnBoardingScreen.OnBoardingScreen
 import com.retvens.rscoop.R
 import retrofit2.Call
@@ -56,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
     private fun loginUser() {
         val email = loginEmail.text.toString()
         val password = loginPassword.text.toString()
-        val login = RetrofitBuilder.retrofitBuilder.userLogin(UserLoginData(email,password,""))
+        val login = RetrofitBuilder.retrofitBuilder.userLogin(UserLoginData(email,password,"",0))
         login.enqueue(object : Callback<UserLoginData?> {
             override fun onResponse(
                 call: Call<UserLoginData?>,
@@ -65,12 +66,15 @@ class LoginActivity : AppCompatActivity() {
                if (response.isSuccessful){
                     val response = response.body()!!
                     if (response.message.toString() == "Admin login successful"){
+                        SharedPreferenceManagerAdmin.getInstance(applicationContext).saveUser(response)
+                        Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
                         val intent = Intent(this@LoginActivity,AdminDashBoard::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                     }
                     else if (response.message.toString() == "Company login successful"){
                         Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+                        SharedPreferenceManagerAdmin.getInstance(applicationContext).saveUser(response)
                         val intent = Intent(this@LoginActivity,IgniterDashBoard::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
@@ -93,10 +97,18 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-       /* if (SharedPreferenceManagerAdmin.getInstance(this@LoginActivity).isLoggedIn){
+        if (SharedPreferenceManagerAdmin.getInstance(this@LoginActivity).user.message == "Company login successful"){
+            val intent = Intent(this@LoginActivity,IgniterDashBoard::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+         }
+        else if (SharedPreferenceManagerAdmin.getInstance(this@LoginActivity).user.message == "Admin login successful"){
             val intent = Intent(this@LoginActivity,AdminDashBoard::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-         }*/
+        }
+        /*else{
+            startActivity(Intent(applicationContext,LoginActivity::class.java))
+        }*/
     }
 }
