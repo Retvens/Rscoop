@@ -28,16 +28,22 @@ import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.onItemClickListener,
     CalendarAdapter.onItemClickListener {
 
+    private lateinit var atDateMonth: TextView
+    private lateinit var atCalendarNext: ImageView
+    private lateinit var atCalendarPrevious: ImageView
+
+    private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
     private val cal = Calendar.getInstance(Locale.ENGLISH)
     private val dates = ArrayList<Date>()
     private val calendarList2 = ArrayList<CalendarDateModel>()
-
+    private val currentDate = Calendar.getInstance(Locale.ENGLISH)
     lateinit var calendarAdapter: CalendarAdapter
 
     private lateinit var recyclerViewDate: RecyclerView
@@ -80,6 +86,10 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.onItemClic
         tripadPost = findViewById(R.id.tripad_post)
         twitterPost = findViewById(R.id.twitter_post)
 
+        atCalendarNext = findViewById(R.id.at_calendar_next)
+        atCalendarPrevious = findViewById(R.id.at_calendar_previous)
+        atDateMonth = findViewById(R.id.at_date_month)
+
         viewAllAddedTask = findViewById(R.id.view_all_added_tasks)
         viewAllAddedTask.setOnClickListener {
             startActivity(Intent(this@AddNewTaskActivity,AddNewTaskRecentProperty::class.java))
@@ -94,6 +104,7 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.onItemClic
             createData()
         }
         getHotelData()
+        setUpClickListener()
         setUpAdapter()  // First We Set Adapter
         setUpCalendar() // Now Set Calendar
     }
@@ -185,6 +196,23 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.onItemClic
         })
     }
 
+    /**
+     * Set up click listener
+     */
+
+    private fun setUpClickListener() {
+        atCalendarNext.setOnClickListener {
+            cal.add(Calendar.MONTH, 1)
+            setUpCalendar()
+        }
+        atCalendarPrevious.setOnClickListener {
+            cal.add(Calendar.MONTH, -1)
+            if (cal == currentDate)
+                setUpCalendar()
+            else
+                setUpCalendar()
+        }
+    }
        /**
          * Setting up adapter for recyclerview
          */
@@ -207,6 +235,7 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.onItemClic
          */
          private fun setUpCalendar() {
             val calendarList = ArrayList<CalendarDateModel>()
+            atDateMonth.text = sdf.format(cal.time)
             val monthCalendar = cal.clone() as Calendar
             val maxDaysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
             dates.clear()
