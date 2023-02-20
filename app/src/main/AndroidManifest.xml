@@ -23,7 +23,7 @@
             android:name="com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard"
             android:exported="false" />
         <activity
-            android:name="com.retvence.rscoop.DashBoardIgniter.DetailTaskActivity"
+            android:name=".Authentication.LoginActivity"
             android:exported="true">
 
             <meta-data
@@ -31,8 +31,19 @@
                 android:value="" />
         </activity>
         <activity
+            android:name="com.retvence.rscoop.DashBoardIgniter.AddNewTaskActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
             android:name="com.retvence.rscoop.DashBoardIgniter.AddNewTaskRecentProperty"
             android:exported="false" />
+        <activity
+        android:name="com.retvence.rscoop.DashBoardIgniter.DetailTaskActivity"
+        android:exported="true" />
         <activity
             android:name="com.retvence.rscoop.DashBoardIgniter.HotelProfile"
             android:exported="true">
@@ -84,9 +95,7 @@
         <activity
             android:name=".Authentication.ForgotPassword"
             android:exported="false" />
-        <activity
-            android:name="com.retvence.rscoop.DashBoardIgniter.AddNewTaskActivity"
-            android:exported="true" />
+
         <activity
             android:name=".ClientInformation.ClientInfo"
             android:exported="false" />
@@ -112,14 +121,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".Authentication.LoginActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

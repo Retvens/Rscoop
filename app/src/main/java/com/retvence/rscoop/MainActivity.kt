@@ -6,15 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
+import com.retvence.rscoop.DashBoardIgniter.IgniterDashBoard
+import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.Authentication.LoginActivity
 import com.retvens.rscoop.Authentication.LoginPhone
-import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
-
 
 class MainActivity : AppCompatActivity() {
-    lateinit var loginBtn : CardView
-    lateinit var phoneLogin : CardView
-    lateinit var signupBtn : TextView
+    lateinit var loginBtn: CardView
+    lateinit var phoneLogin: CardView
+    lateinit var signupBtn: TextView
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,14 +30,30 @@ class MainActivity : AppCompatActivity() {
 
 
         loginBtn.setOnClickListener {
-            startActivity( Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
-        phoneLogin.setOnClickListener{
+        phoneLogin.setOnClickListener {
             startActivity(Intent(this, LoginPhone::class.java))
         }
 
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        if (SharedPreferenceManagerAdmin.getInstance(applicationContext).user.message == "Company login successful"){
+            val intent = Intent(applicationContext, IgniterDashBoard::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+        else if (SharedPreferenceManagerAdmin.getInstance(applicationContext).user.message == "Admin login successful"){
+            val intent = Intent(applicationContext,AdminDashBoard::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+        /*else{
+            startActivity(Intent(applicationContext,LoginActivity::class.java))
+        }*/
+    }
 }

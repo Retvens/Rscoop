@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.retvence.rscoop.DashBoardIgniter.AddNewTaskActivity
 import com.retvens.rscoop.R
 import java.text.SimpleDateFormat
 
@@ -21,9 +22,17 @@ class CalendarAdapter( private val listener: (calendarDateModel: CalendarDateMod
     RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
 
     private val list = ArrayList<CalendarDateModel>()
-
-
     var adapterPosition = -1
+
+    interface onItemClickListener{
+        fun onItemClickDate(text:String)
+    }
+
+    private var mListener: onItemClickListener? = null
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
@@ -43,8 +52,10 @@ class CalendarAdapter( private val listener: (calendarDateModel: CalendarDateMod
             adapterPosition = position
             notifyItemRangeChanged(0, list.size)
 
-
+            val text = itemList.calendarYear.toString()
+            mListener?.onItemClickDate(text)
         }
+
         if (position == adapterPosition) {
             holder.calendarDay.setTextColor(
                 ContextCompat.getColor(

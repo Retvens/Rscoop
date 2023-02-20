@@ -25,14 +25,14 @@ import com.retvence.rscoop.DataCollections.TaskData
 import com.retvence.rscoop.RecentProperties.CalendarAdapter
 import com.retvence.rscoop.RecentProperties.CalendarDateModel
 import com.retvens.rscoop.R
-import com.retvens.rscoop.RecentProperties.RecentPropertiesView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
-class AddNewTaskActivity : AppCompatActivity() {
+class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.onItemClickListener,
+    CalendarAdapter.onItemClickListener {
 
     private val cal = Calendar.getInstance(Locale.ENGLISH)
     private val dates = ArrayList<Date>()
@@ -47,6 +47,8 @@ class AddNewTaskActivity : AppCompatActivity() {
     lateinit var selectAdapter : SelectPropertyAdapter
     private lateinit var searchProp: EditText
 
+    lateinit var hotelName : String
+    lateinit var hotelDate : String
 
     private lateinit var fbPost: TextView
     private lateinit var googlePost: TextView
@@ -88,13 +90,24 @@ class AddNewTaskActivity : AppCompatActivity() {
 //            finish()
         }
 
-
         findViewById<CardView>(R.id.save_property).setOnClickListener {
             createData()
         }
         getHotelData()
         setUpAdapter()  // First We Set Adapter
         setUpCalendar() // Now Set Calendar
+    }
+
+    override fun onItemClickDate(text:String){
+        hotelDate = text.toString()
+        Toast.makeText(this,hotelDate,Toast.LENGTH_SHORT)
+            .show()
+    }
+
+    override fun onItemClick(text:String){
+        hotelName = text.toString()
+        Toast.makeText(this,hotelName,Toast.LENGTH_SHORT)
+            .show()
     }
 
     private fun createData() {
@@ -107,7 +120,7 @@ class AddNewTaskActivity : AppCompatActivity() {
         val GMB = tripadPost.text.toString()
         val Google_review = googlePost.text.toString()
 
-        val data = TaskData("Sarovar","5252","5-2-2023",facebook,Linkedin,instagram,twitter,Pinterest,GMB,Google_review,
+        val data = TaskData(hotelName,"6969",hotelDate,facebook,Linkedin,instagram,twitter,Pinterest,GMB,Google_review,
             "https://th.bing.com/th?id=OIP.XFtuDnjIQ1uXpY88MA3MjgHaEQ&w=329&h=189&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2","1")
 
         val send = RetrofitBuilder.retrofitBuilder.createSocialMeadia(data)
@@ -115,9 +128,12 @@ class AddNewTaskActivity : AppCompatActivity() {
         send.enqueue(object : Callback<ResponseTask?> {
             override fun onResponse(call: Call<ResponseTask?>, response: Response<ResponseTask?>) {
                 if (response.isSuccessful){
-                    Toast.makeText(applicationContext,"success",Toast.LENGTH_LONG).show()
+                    Log.d("created", response.message().toString())
+                    Toast.makeText(applicationContext, response.message().toString(),Toast.LENGTH_LONG).show()
                 }else{
                     Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,response.message().toString(),Toast.LENGTH_LONG).show()
+                    Log.d("created", response.message().toString())
                 }
             }
 
@@ -140,6 +156,7 @@ class AddNewTaskActivity : AppCompatActivity() {
                 selectAdapter = SelectPropertyAdapter(this@AddNewTaskActivity,response)
                 selectAdapter.notifyDataSetChanged()
                 recyclerViewSelectProperty.adapter = selectAdapter
+                selectAdapter.setOnItemClickListener(this@AddNewTaskActivity)
                 shimmerFrameLayout.visibility = View.GONE
 
                 searchProp.addTextChangedListener(object : TextWatcher {
@@ -168,7 +185,7 @@ class AddNewTaskActivity : AppCompatActivity() {
         })
     }
 
-    /**
+       /**
          * Setting up adapter for recyclerview
          */
         private fun setUpAdapter() {
@@ -178,6 +195,8 @@ class AddNewTaskActivity : AppCompatActivity() {
                 calendarList2.forEachIndexed { index, calendarModel ->
                     calendarModel.isSelected = index == position
                 }
+
+                calendarAdapter.setOnItemClickListener(this@AddNewTaskActivity)
                 calendarAdapter.setData(calendarList2)
             }
             recyclerViewDate.adapter = calendarAdapter
@@ -185,7 +204,7 @@ class AddNewTaskActivity : AppCompatActivity() {
 
         /**
          * Function to setup calendar for every month
-         * */
+         */
          private fun setUpCalendar() {
             val calendarList = ArrayList<CalendarDateModel>()
             val monthCalendar = cal.clone() as Calendar
@@ -199,6 +218,7 @@ class AddNewTaskActivity : AppCompatActivity() {
             }
             calendarList2.clear()
             calendarList2.addAll(calendarList)
+            calendarAdapter.setOnItemClickListener(this@AddNewTaskActivity)
             calendarAdapter.setData(calendarList)
         }
 

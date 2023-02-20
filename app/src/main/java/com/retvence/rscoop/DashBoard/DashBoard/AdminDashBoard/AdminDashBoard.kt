@@ -1,6 +1,7 @@
 package com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +9,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.ExploreFragment
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.ProfileFragment
+import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
+import com.retvens.rscoop.Authentication.LoginActivity
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.BookmarkFragment
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment.TodoFragment
 import com.retvens.rscoop.R
@@ -69,5 +72,12 @@ class AdminDashBoard : AppCompatActivity() {
             }
     }
 
-
+    override fun onStart() {
+        super.onStart()
+        if (!SharedPreferenceManagerAdmin.getInstance(applicationContext).isLoggedIn) {
+            val intent = Intent(applicationContext, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+    }
 }

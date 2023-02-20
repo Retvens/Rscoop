@@ -6,6 +6,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DashBoard.DashBoard.AdminDashBoard.NavigationFragment.ProfileFragment">
 
+    <LinearLayout
+        android:id="@+id/logOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LogOut"
+            android:fontFamily="@font/avenir"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logout_24"
+            android:layout_marginHorizontal="10dp"/>
+
+
+    </LinearLayout>
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_image"
         android:layout_width="90dp"
