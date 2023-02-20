@@ -19,6 +19,20 @@ class SelectPropertyAdapter(val context : Context, var items: List<HotelsData>) 
 
     var adapterPosition = -1
 
+    lateinit var  viewHolder : SelectPropertyViewHolder
+
+
+    interface onItemClickListener{
+        fun onItemClick(text:String)
+    }
+
+    private var mListener: onItemClickListener? = null
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
+    }
+
+
     class SelectPropertyViewHolder(itemView: View) : ViewHolder(itemView){
         val imageHotel = itemView.findViewById<ImageView>(R.id.hotel_add_task_img)
         val nameHotel = itemView.findViewById<TextView>(R.id.hotel_name_add_task)
@@ -29,11 +43,8 @@ class SelectPropertyAdapter(val context : Context, var items: List<HotelsData>) 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectPropertyViewHolder {
         val inflater : LayoutInflater = LayoutInflater.from(parent.context)
         val view:View = inflater.inflate(R.layout.add_task_layout,parent,false)
-        return SelectPropertyViewHolder(view)
-    }
-
-    override fun getItemCount(): Int {
-        return items.size
+        viewHolder = SelectPropertyViewHolder(view)
+        return viewHolder
     }
 
     override fun onBindViewHolder(holder: SelectPropertyViewHolder, position: Int) {
@@ -51,10 +62,18 @@ class SelectPropertyAdapter(val context : Context, var items: List<HotelsData>) 
         holder.itemView.setOnClickListener {
             adapterPosition = position
             notifyDataSetChanged()
-            Toast.makeText(holder.itemView.context, items.hotel_name,Toast.LENGTH_SHORT)
-                .show()
+
+            val text = items.hotel_name.toString()
+            mListener?.onItemClick(text)
+//            Toast.makeText(holder.itemView.context, items.hotel_name,Toast.LENGTH_SHORT)
+//                .show()
         }
     }
+
+    override fun getItemCount(): Int {
+        return items.size
+    }
+
     fun updateData(newData : List<HotelsData>){
         items = newData
         notifyDataSetChanged()
