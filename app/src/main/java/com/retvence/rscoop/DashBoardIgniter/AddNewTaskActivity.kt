@@ -107,10 +107,8 @@ class AddNewTaskActivity : AppCompatActivity() {
         val GMB = tripadPost.text.toString()
         val Google_review = googlePost.text.toString()
 
-
-        val data = TaskData("Janta Raja","6969","5-5-23","8 videos and 9 posts",
-        "8 videos and 9 posts","8 videos and 9 posts","8 videos and 9 posts","8 videos and 9 posts",
-        "11 reviews","15 reviews","https://th.bing.com/th?id=OIP.XFtuDnjIQ1uXpY88MA3MjgHaEQ&w=329&h=189&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2")
+        val data = TaskData("Sarovar","5252","5-2-2023",facebook,Linkedin,instagram,twitter,Pinterest,GMB,Google_review,
+            "https://th.bing.com/th?id=OIP.XFtuDnjIQ1uXpY88MA3MjgHaEQ&w=329&h=189&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2","1")
 
         val send = RetrofitBuilder.retrofitBuilder.createSocialMeadia(data)
 
@@ -187,7 +185,7 @@ class AddNewTaskActivity : AppCompatActivity() {
 
         /**
          * Function to setup calendar for every month
-         */
+         * */
          private fun setUpCalendar() {
             val calendarList = ArrayList<CalendarDateModel>()
             val monthCalendar = cal.clone() as Calendar

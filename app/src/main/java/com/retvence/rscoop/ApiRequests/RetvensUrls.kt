@@ -44,7 +44,7 @@ interface RetvensUrls {
 
 
     @GET("task")
-    fun getTask(): Call<List<TaskData>>
+    fun getTask(): Call<List<GetTaskData>>
 
     @POST("login")
     fun userLogin(
@@ -58,4 +58,11 @@ interface RetvensUrls {
     fun createSocialMeadia(
         @Body social : TaskData
     ) : Call<ResponseTask>
+
+
+    @PATCH("task/{id}")
+    fun updateTask(
+        @Path("id") id:String,
+        @Body task:UpdateTaskClass
+    ):Call<ResponseTask>
 }

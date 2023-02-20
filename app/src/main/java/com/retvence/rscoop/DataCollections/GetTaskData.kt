@@ -1,6 +1,7 @@
 package com.retvence.rscoop.DataCollections
 
-class TaskData(
+class GetTaskData(
+    val _id:String,
     val hotel_name:String,
     val owner_id:String,
     val Date:String,

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.SnapHelper
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
+import com.retvence.rscoop.DataCollections.GetTaskData
 import com.retvence.rscoop.DataCollections.TaskData
 import com.retvence.rscoop.RecentProperties.CalendarAdapter
 import com.retvence.rscoop.RecentProperties.CalendarDateModel
@@ -134,10 +135,11 @@ class ViewAllTasks : AppCompatActivity() {
 
     private fun allTaskData() {
         val allTask = RetrofitBuilder.retrofitBuilder.getTask()
-        allTask.enqueue(object : Callback<List<TaskData>?> {
+
+        allTask.enqueue(object : Callback<List<GetTaskData>?> {
             override fun onResponse(
-                call: Call<List<TaskData>?>,
-                response: Response<List<TaskData>?>
+                call: Call<List<GetTaskData>?>,
+                response: Response<List<GetTaskData>?>
             ) {
                 val response = response.body()!!
                 recentrecycler = RecentRecycler(baseContext,response)
@@ -169,9 +171,9 @@ class ViewAllTasks : AppCompatActivity() {
                 })
 
             }
-            override fun onFailure(call: Call<List<TaskData>?>, t: Throwable) {
-                Toast.makeText(this@ViewAllTasks,t.localizedMessage,Toast.LENGTH_LONG)
-                    .show()
+
+            override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
+
             }
         })
     }

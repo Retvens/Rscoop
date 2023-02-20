@@ -189,7 +189,7 @@
                 app:layout_constraintTop_toTopOf="@id/fb"
                 app:layout_constraintBottom_toBottomOf="@id/fb">
 
-                <EditText
+                <TextView
                     android:id="@+id/fb_post_deatail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -227,7 +227,7 @@
                     app:layout_constraintTop_toTopOf="@id/googl"
                     app:layout_constraintBottom_toBottomOf="@id/googl">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/google_post_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -274,7 +274,7 @@
                     app:layout_constraintTop_toTopOf="@id/insta"
                     app:layout_constraintBottom_toBottomOf="@id/insta">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/instaPost_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -323,7 +323,7 @@
                     app:layout_constraintTop_toTopOf="@id/linkedin"
                     app:layout_constraintBottom_toBottomOf="@id/linkedin">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/linkedin_post_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -371,7 +371,7 @@
                     app:layout_constraintTop_toTopOf="@id/pinterest"
                     app:layout_constraintBottom_toBottomOf="@id/pinterest">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/pinterest_post_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -419,7 +419,7 @@
                     app:layout_constraintTop_toTopOf="@id/tripad"
                     app:layout_constraintBottom_toBottomOf="@id/tripad">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tripad_post_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -467,7 +467,7 @@
                     app:layout_constraintTop_toTopOf="@id/twit"
                     app:layout_constraintBottom_toBottomOf="@id/twit">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/twitter_post"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -503,8 +503,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
             android:layout_below="@id/card_add_links">
 
             <LinearLayout

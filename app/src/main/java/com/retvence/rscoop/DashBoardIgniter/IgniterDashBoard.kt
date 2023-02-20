@@ -16,6 +16,9 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.tabs.TabLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TodayTasks
+import com.retvence.rscoop.DashBoardIgniter.TaskFragment.CompletedFragment
+import com.retvence.rscoop.DashBoardIgniter.TaskFragment.RecentFragment
+import com.retvence.rscoop.DashBoardIgniter.TaskFragment.TodayFragment
 import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerHotelsView
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.CompletedTasks
@@ -62,16 +65,16 @@ class IgniterDashBoard : AppCompatActivity() {
         tabLayout.addTab(tab3)
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.container1, RecentTasks())
+            .replace(R.id.container1, RecentFragment())
             .commit()
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val fragment = when (tab.position) {
-                    0 -> RecentTasks()
-                    1 -> TodayTasks()
-                    2 -> CompletedTasks()
-                    else -> RecentTasks()
+                    0 -> RecentFragment()
+                    1 -> TodayFragment()
+                    2 -> CompletedFragment()
+                    else -> RecentFragment()
                 }
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.container1, fragment)

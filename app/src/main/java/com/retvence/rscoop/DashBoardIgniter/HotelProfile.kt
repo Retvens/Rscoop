@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
+import com.retvence.rscoop.DataCollections.GetTaskData
 import com.retvence.rscoop.DataCollections.TaskData
 import com.retvence.rscoop.RecentProperties.CalendarAdapter
 import com.retvence.rscoop.RecentProperties.CalendarDateModel
@@ -71,27 +72,27 @@ class HotelProfile : AppCompatActivity() {
     private fun getTask() {
         val data = RetrofitBuilder.retrofitBuilder.getTask()
 
-        data.enqueue(object : Callback<List<TaskData>?> {
-            override fun onResponse(
-                call: Call<List<TaskData>?>,
-                response: Response<List<TaskData>?>
-            ) {
-                val response = response.body()!!
+       data.enqueue(object : Callback<List<GetTaskData>?> {
+           override fun onResponse(
+               call: Call<List<GetTaskData>?>,
+               response: Response<List<GetTaskData>?>
+           ) {
+               val response = response.body()!!
 
-                if(response != null) {
-                    adapter = HotelTaskAdapter(baseContext, response)
-                    adapter.notifyDataSetChanged()
-                    taskRecyclerView.adapter = adapter
+               if(response != null) {
+                   adapter = HotelTaskAdapter(baseContext, response)
+                   adapter.notifyDataSetChanged()
+                   taskRecyclerView.adapter = adapter
 
 
 
-                }
-            }
+               }
+           }
 
-            override fun onFailure(call: Call<List<TaskData>?>, t: Throwable) {
+           override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
 
-            }
-        })
+           }
+       })
     }
 
     private fun setUpAdapter() {

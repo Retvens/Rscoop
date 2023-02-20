@@ -8,11 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.retvence.rscoop.DataCollections.GetTaskData
 import com.retvence.rscoop.DataCollections.TaskData
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
 import com.retvens.rscoop.R
 
-class HotelTaskAdapter(val context: Context, var userList:List<TaskData>):RecyclerView.Adapter<HotelTaskAdapter.viewHolder>() {
+class HotelTaskAdapter(val context: Context, var userList:List<GetTaskData>):RecyclerView.Adapter<HotelTaskAdapter.viewHolder>() {
 
 
     class viewHolder(itemview:View):RecyclerView.ViewHolder(itemview) {

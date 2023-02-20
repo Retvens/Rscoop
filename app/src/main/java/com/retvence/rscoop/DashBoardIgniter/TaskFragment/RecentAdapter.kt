@@ -1,7 +1,5 @@
-package com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter
+package com.retvence.rscoop.DashBoardIgniter.TaskFragment
 
-import android.content.ActivityNotFoundException
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -10,19 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.retvence.rscoop.DashBoardIgniter.AddNewTaskActivity
 import com.retvence.rscoop.DashBoardIgniter.DetailTaskActivity
 import com.retvence.rscoop.DataCollections.GetTaskData
 import com.retvence.rscoop.DataCollections.TaskData
+import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
 import com.retvens.rscoop.R
 
-
-class RecentRecycler(val context: Context, var userList:List<GetTaskData>) : RecyclerView.Adapter<RecentRecycler.MyViewHolder>(){
-
-    class MyViewHolder(itemview: View):RecyclerView.ViewHolder(itemview){
-
+class RecentAdapter(val context: Context, var userList:List<GetTaskData>):RecyclerView.Adapter<RecentAdapter.holderclass>() {
+    class holderclass(itemview: View):RecyclerView.ViewHolder(itemview) {
         var name = itemview.findViewById<TextView>(R.id.Company_Name)
         var image = itemview.findViewById<ImageView>(R.id.owner_Image)
 
@@ -41,16 +39,32 @@ class RecentRecycler(val context: Context, var userList:List<GetTaskData>) : Rec
         var pinterestIcon = itemView.findViewById<ImageView>(R.id.pinterest_icon)
         var tripadViserIcon = itemView.findViewById<ImageView>(R.id.ullu)
         var googleIcon = itemView.findViewById<ImageView>(R.id.google_icon)
-
-
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): holderclass {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recentcard,parent,false)
-        return MyViewHolder(view)
+        return holderclass(view)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: holderclass, position: Int) {
+
+        val item = userList[position]
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context,DetailTaskActivity::class.java)
+            intent.putExtra("id",item._id)
+            intent.putExtra("name",item.hotel_name)
+            intent.putExtra("image",item.owner_pic)
+            intent.putExtra("facebook",item.facebook)
+            intent.putExtra("instagram",item.instagram)
+            intent.putExtra("linkedin",item.Linkedin)
+            intent.putExtra("twitter",item.twitter)
+            intent.putExtra("google",item.Google_reviews)
+            intent.putExtra("tripad",item.GMB)
+            intent.putExtra("pinterest",item.Pinterest)
+            context.startActivity(intent)
+
+        }
+
 
         holder.facebook.text = userList[position].facebook
         holder.instagram.text = userList[position].instagram
@@ -63,7 +77,7 @@ class RecentRecycler(val context: Context, var userList:List<GetTaskData>) : Rec
         holder.name.text = userList[position].hotel_name
 
         holder.fbIcon.setOnClickListener{
-            val uriForFB :Uri = Uri.parse("https://facebook.com")
+            val uriForFB : Uri = Uri.parse("https://facebook.com")
             val openFB = Intent(Intent.ACTION_VIEW,uriForFB)
             context.startActivity(openFB)
         }
@@ -82,7 +96,7 @@ class RecentRecycler(val context: Context, var userList:List<GetTaskData>) : Rec
             context.startActivity(openTwitter)
         }
         holder.pinterestIcon.setOnClickListener{
-            val uriForPinterest :Uri = Uri.parse("https://pinterest.com")
+            val uriForPinterest : Uri = Uri.parse("https://pinterest.com")
             val openPint = Intent(Intent.ACTION_VIEW,uriForPinterest)
             context.startActivity(openPint)
         }
@@ -98,13 +112,10 @@ class RecentRecycler(val context: Context, var userList:List<GetTaskData>) : Rec
         }
 
 
+
     }
 
     override fun getItemCount(): Int {
         return userList.size
-    }
-    fun updateData(newItems: List<GetTaskData>) {
-        userList = newItems
-        notifyDataSetChanged()
     }
 }
