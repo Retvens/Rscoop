@@ -537,11 +537,10 @@
 
     </androidx.cardview.widget.CardView>
 
-
         <androidx.cardview.widget.CardView
             android:id="@+id/done"
-            android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:layout_width="110dp"
             app:cardCornerRadius="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginStart="12dp"
@@ -580,16 +579,14 @@
 
     </androidx.cardview.widget.CardView>
 
-
-
         <androidx.cardview.widget.CardView
             android:id="@+id/edit_card"
-            android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:layout_width="110dp"
             app:cardCornerRadius="10dp"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="12dp"
             android:layout_marginBottom="20dp"
+            android:layout_marginStart="12dp"
             android:layout_toEndOf="@id/done"
             android:layout_below="@id/card_add_links">
 
