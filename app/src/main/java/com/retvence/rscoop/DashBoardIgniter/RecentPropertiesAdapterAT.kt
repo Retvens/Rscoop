@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
@@ -48,12 +49,7 @@ class RecentPropertiesAdapterAT(val context: Context, val recentItem: List<Recen
             intent.putExtra("Name",item.hotel_name)
             intent.putExtra("image",item.Cover_photo)
             intent.putExtra("logo",item.hotel_logo)
-
-            for (location in item.hotel_location){
-                intent.putExtra("latitude",location.Latitude)
-                intent.putExtra("longitude",location.Longitude)
-
-            }
+            intent.putExtra("id",item.hotel_id)
 
             context.startActivity(intent)
 

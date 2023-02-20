@@ -45,15 +45,17 @@ class SelectPropertyAdapter(val context : Context, var items: List<HotelsData>) 
         holder.itemView.setOnClickListener {
 
             listener?.onItemClick(items)
-
-            if (adapterPosition == position){
-                holder.relativeLayout.background = context.getDrawable(R.drawable.rectangle_outline)
-            }else{
-                holder.relativeLayout.background = context.getDrawable(R.drawable.rectangle_background)
-            }
-
+            adapterPosition = position
+            notifyDataSetChanged()
 
         }
+
+        if (adapterPosition == position){
+            holder.relativeLayout.background = context.getDrawable(R.drawable.rectangle_outline)
+        }else{
+            holder.relativeLayout.background = context.getDrawable(R.drawable.rectangle_background)
+        }
+
     }
     fun updateData(newData : List<HotelsData>){
         items = newData

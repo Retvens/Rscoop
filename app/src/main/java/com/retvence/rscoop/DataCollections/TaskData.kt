@@ -12,6 +12,7 @@ class TaskData(
     val GMB:String,
     val Google_reviews:String,
     val owner_pic:String,
-    val hotel_id:String
+    val hotel_id:String,
+    val Status:String
 ) {
 }

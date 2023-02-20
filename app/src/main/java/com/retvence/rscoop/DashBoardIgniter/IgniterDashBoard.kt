@@ -40,7 +40,7 @@ class IgniterDashBoard : AppCompatActivity() {
         shimmer = findViewById(R.id.Egniter_shimmer)
         val text = findViewById<TextView>(R.id.latest)
         text.setOnClickListener {
-            startActivity(Intent(this,AddNewTaskActivity::class.java))
+            startActivity(Intent(this,AddNewTaskRecentProperty::class.java))
         }
 
         //recyclerview
