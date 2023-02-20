@@ -32,7 +32,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.onItemClickListener,
+class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.OnItemClickListener,
     CalendarAdapter.onItemClickListener {
 
     private lateinit var atDateMonth: TextView
@@ -55,6 +55,9 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.onItemClic
 
     lateinit var hotelName : String
     lateinit var hotelDate : String
+    lateinit var hotelImage :String
+    lateinit var hotelId: String
+    lateinit var ownerId:String
 
     private lateinit var fbPost: TextView
     private lateinit var googlePost: TextView
@@ -114,11 +117,12 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.onItemClic
         Toast.makeText(this,hotelDate,Toast.LENGTH_SHORT)
             .show()
     }
+    override fun onItemClick(item: HotelsData) {
+        hotelName = item.hotel_name
+        hotelImage = item.Cover_photo
+        hotelId  = item.hotel_id
+        ownerId = item.owner_id
 
-    override fun onItemClick(text:String){
-        hotelName = text.toString()
-        Toast.makeText(this,hotelName,Toast.LENGTH_SHORT)
-            .show()
     }
 
     private fun createData() {
@@ -131,20 +135,17 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.onItemClic
         val GMB = tripadPost.text.toString()
         val Google_review = googlePost.text.toString()
 
-        val data = TaskData(hotelName,"6969",hotelDate,facebook,Linkedin,instagram,twitter,Pinterest,GMB,Google_review,
-            "https://th.bing.com/th?id=OIP.XFtuDnjIQ1uXpY88MA3MjgHaEQ&w=329&h=189&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2","1")
+        val data = TaskData(hotelName,ownerId,hotelDate,facebook,Linkedin,instagram,twitter,Pinterest,GMB,Google_review,
+            hotelImage,hotelId,"Pending")
 
         val send = RetrofitBuilder.retrofitBuilder.createSocialMeadia(data)
-
         send.enqueue(object : Callback<ResponseTask?> {
             override fun onResponse(call: Call<ResponseTask?>, response: Response<ResponseTask?>) {
                 if (response.isSuccessful){
-                    Log.d("created", response.message().toString())
-                    Toast.makeText(applicationContext, response.message().toString(),Toast.LENGTH_LONG).show()
+                    val response = response.body()!!
+                    Toast.makeText(applicationContext,response.message.toString(),Toast.LENGTH_LONG).show()
                 }else{
                     Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
-                    Toast.makeText(applicationContext,response.message().toString(),Toast.LENGTH_LONG).show()
-                    Log.d("created", response.message().toString())
                 }
             }
 
@@ -152,6 +153,7 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.onItemClic
                 Toast.makeText(applicationContext,t.message.toString(),Toast.LENGTH_LONG).show()
             }
         })
+
 
 
     }
@@ -250,5 +252,7 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.onItemClic
             calendarAdapter.setOnItemClickListener(this@AddNewTaskActivity)
             calendarAdapter.setData(calendarList)
         }
+
+
 
 }

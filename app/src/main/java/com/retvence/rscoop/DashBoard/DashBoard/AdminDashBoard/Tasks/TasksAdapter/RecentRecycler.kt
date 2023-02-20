@@ -13,11 +13,13 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.retvence.rscoop.DashBoardIgniter.DetailTaskActivity
+import com.retvence.rscoop.DataCollections.GetTaskData
 import com.retvence.rscoop.DataCollections.TaskData
 import com.retvens.rscoop.R
 
 
-class RecentRecycler(val context: Context, var userList:List<TaskData>) : RecyclerView.Adapter<RecentRecycler.MyViewHolder>(){
+class RecentRecycler(val context: Context, var userList:List<GetTaskData>) : RecyclerView.Adapter<RecentRecycler.MyViewHolder>(){
 
     class MyViewHolder(itemview: View):RecyclerView.ViewHolder(itemview){
 
@@ -94,12 +96,14 @@ class RecentRecycler(val context: Context, var userList:List<TaskData>) : Recycl
             val openGoogle = Intent(Intent.ACTION_VIEW,uriForGogle)
             context.startActivity(openGoogle)
         }
+
+
     }
 
     override fun getItemCount(): Int {
         return userList.size
     }
-    fun updateData(newItems: List<TaskData>) {
+    fun updateData(newItems: List<GetTaskData>) {
         userList = newItems
         notifyDataSetChanged()
     }

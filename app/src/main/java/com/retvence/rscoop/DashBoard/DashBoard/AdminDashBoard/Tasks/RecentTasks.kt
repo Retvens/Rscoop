@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
+import com.retvence.rscoop.DataCollections.GetTaskData
 import com.retvence.rscoop.DataCollections.TaskData
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
 import com.retvens.rscoop.R
@@ -54,28 +55,27 @@ class RecentTasks : Fragment() {
 
         val data = RetrofitBuilder.retrofitBuilder.getTask()
 
-        data.enqueue(object : Callback<List<TaskData>?> {
-            override fun onResponse(
-                call: Call<List<TaskData>?>,
-                response: Response<List<TaskData>?>
-            ) {
-                val response = response.body()!!
+       data.enqueue(object : Callback<List<GetTaskData>?> {
+           override fun onResponse(
+               call: Call<List<GetTaskData>?>,
+               response: Response<List<GetTaskData>?>
+           ) {
+               val response = response.body()!!
 
-                if(isAdded) {
-                    recentrecycler = RecentRecycler(requireActivity(), response)
-                    recentrecycler.notifyDataSetChanged()
-                    recyclerView.adapter = recentrecycler
+               if (isAdded) {
+                   recentrecycler = RecentRecycler(requireActivity(), response)
+                   recentrecycler.notifyDataSetChanged()
+                   recyclerView.adapter = recentrecycler
 
-                    recyclerView.visibility = View.VISIBLE
-                    shimmerLayout.setVisibility(View.GONE)
+                   recyclerView.visibility = View.VISIBLE
+                   shimmerLayout.setVisibility(View.GONE)
+               }
+           }
 
-                }
-            }
+           override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
 
-            override fun onFailure(call: Call<List<TaskData>?>, t: Throwable) {
-
-            }
-        })
+           }
+       })
 
     }
 

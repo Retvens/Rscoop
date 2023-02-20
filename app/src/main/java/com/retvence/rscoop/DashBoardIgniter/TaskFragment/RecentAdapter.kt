@@ -1,4 +1,4 @@
-package com.retvence.rscoop.DashBoardIgniter
+package com.retvence.rscoop.DashBoardIgniter.TaskFragment
 
 import android.content.Context
 import android.content.Intent
@@ -8,17 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.retvence.rscoop.DashBoardIgniter.AddNewTaskActivity
+import com.retvence.rscoop.DashBoardIgniter.DetailTaskActivity
 import com.retvence.rscoop.DataCollections.GetTaskData
 import com.retvence.rscoop.DataCollections.TaskData
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
 import com.retvens.rscoop.R
 
-class HotelTaskAdapter(val context: Context, var userList:GetTaskData):RecyclerView.Adapter<HotelTaskAdapter.viewHolder>() {
-
-
-    class viewHolder(itemview:View):RecyclerView.ViewHolder(itemview) {
+class RecentAdapter(val context: Context, var userList:List<GetTaskData>):RecyclerView.Adapter<RecentAdapter.holderclass>() {
+    class holderclass(itemview: View):RecyclerView.ViewHolder(itemview) {
         var name = itemview.findViewById<TextView>(R.id.Company_Name)
         var image = itemview.findViewById<ImageView>(R.id.owner_Image)
 
@@ -39,21 +41,40 @@ class HotelTaskAdapter(val context: Context, var userList:GetTaskData):RecyclerV
         var googleIcon = itemView.findViewById<ImageView>(R.id.google_icon)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): holderclass {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recentcard,parent,false)
-        return viewHolder(view)
+        return holderclass(view)
     }
 
-    override fun onBindViewHolder(holder: viewHolder, position: Int) {
-        holder.facebook.text = userList.facebook
-        holder.instagram.text = userList.instagram
-        holder.linkdin.text = userList.Linkedin
-        holder.twitter.text = userList.twitter
-        holder.pinterest.text = userList.Pinterest
-        holder.gmb.text = userList.GMB
-        holder.google.text = userList.Google_reviews
-        Glide.with(context).load(userList.owner_pic).into(holder.image)
-        holder.name.text = userList.hotel_name
+    override fun onBindViewHolder(holder: holderclass, position: Int) {
+
+        val item = userList[position]
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context,DetailTaskActivity::class.java)
+            intent.putExtra("id",item._id)
+            intent.putExtra("name",item.hotel_name)
+            intent.putExtra("image",item.owner_pic)
+            intent.putExtra("facebook",item.facebook)
+            intent.putExtra("instagram",item.instagram)
+            intent.putExtra("linkedin",item.Linkedin)
+            intent.putExtra("twitter",item.twitter)
+            intent.putExtra("google",item.Google_reviews)
+            intent.putExtra("tripad",item.GMB)
+            intent.putExtra("pinterest",item.Pinterest)
+            context.startActivity(intent)
+
+        }
+
+
+        holder.facebook.text = userList[position].facebook
+        holder.instagram.text = userList[position].instagram
+        holder.linkdin.text = userList[position].Linkedin
+        holder.twitter.text = userList[position].twitter
+        holder.pinterest.text = userList[position].Pinterest
+        holder.gmb.text = userList[position].GMB
+        holder.google.text = userList[position].Google_reviews
+        Glide.with(context).load(userList[position].owner_pic).into(holder.image)
+        holder.name.text = userList[position].hotel_name
 
         holder.fbIcon.setOnClickListener{
             val uriForFB : Uri = Uri.parse("https://facebook.com")
@@ -90,11 +111,11 @@ class HotelTaskAdapter(val context: Context, var userList:GetTaskData):RecyclerV
             context.startActivity(openGoogle)
         }
 
+
+
     }
 
     override fun getItemCount(): Int {
-            return 2
+        return userList.size
     }
-
-
 }

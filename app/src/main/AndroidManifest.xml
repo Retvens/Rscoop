@@ -58,7 +58,9 @@
         </activity>
         <activity
             android:name="com.retvence.rscoop.DashBoardIgniter.IgniterDashBoard"
-            android:exported="false" />
+            android:exported="true">
+
+        </activity>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 

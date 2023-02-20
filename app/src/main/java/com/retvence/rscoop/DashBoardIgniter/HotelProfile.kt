@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
+import com.retvence.rscoop.DataCollections.GetTaskData
 import com.retvence.rscoop.DataCollections.TaskData
 import com.retvence.rscoop.RecentProperties.CalendarAdapter
 import com.retvence.rscoop.RecentProperties.CalendarDateModel
@@ -69,29 +71,29 @@ class HotelProfile : AppCompatActivity() {
     }
 
     private fun getTask() {
-        val data = RetrofitBuilder.retrofitBuilder.getTask()
 
-        data.enqueue(object : Callback<List<TaskData>?> {
-            override fun onResponse(
-                call: Call<List<TaskData>?>,
-                response: Response<List<TaskData>?>
-            ) {
-                val response = response.body()!!
+        val id = intent.getStringExtra("id")
 
-                if(response != null) {
-                    adapter = HotelTaskAdapter(baseContext, response)
-                    adapter.notifyDataSetChanged()
-                    taskRecyclerView.adapter = adapter
+        val data = RetrofitBuilder.retrofitBuilder.individualTask(id!!)
 
+      data.enqueue(object : Callback<GetTaskData?> {
+          override fun onResponse(call: Call<GetTaskData?>, response: Response<GetTaskData?>) {
+              if (response.isSuccessful) {
+                  val response = response.body()
+                  adapter = HotelTaskAdapter(baseContext, response!!)
+                  adapter.notifyDataSetChanged()
+                  taskRecyclerView.adapter = adapter
 
+              }else{
+                  Toast.makeText(applicationContext,response.code(),Toast.LENGTH_LONG).show()
+              }
+          }
 
-                }
-            }
+          override fun onFailure(call: Call<GetTaskData?>, t: Throwable) {
 
-            override fun onFailure(call: Call<List<TaskData>?>, t: Throwable) {
+          }
+      })
 
-            }
-        })
     }
 
     private fun setUpAdapter() {
