@@ -63,19 +63,47 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:layout_marginTop="18dp"
+        android:layout_marginBottom="@dimen/margin_10"
         android:layout_marginStart="12dp"
         android:layout_below="@id/add_tasks_back_btn"/>
 
-    <androidx.recyclerview.widget.RecyclerView
+        <ImageView
+            android:id="@+id/at_calendar_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forword_arrow"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/at_date_month"
+            android:layout_below="@id/select_date_heading"/>
+        <ImageView
+            android:id="@+id/at_calendar_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_arrow"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/at_date_month"
+            android:layout_below="@id/select_date_heading"/>
+
+        <TextView
+            android:id="@+id/at_date_month"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="December 2020"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/select_date_heading" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/date_layout"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginVertical="8dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_below="@id/select_date_heading"/>
+        android:layout_below="@id/at_date_month"/>
 
 
     <TextView
@@ -183,7 +211,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_add_links"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="15dp"
@@ -196,8 +224,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
             android:padding ="20dp">
 
             <ImageView
@@ -205,336 +232,204 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/facebook"
-                android:layout_marginVertical="5dp"
-                app:layout_constraintHorizontal_bias="0.05"
+                android:layout_marginVertical="8dp"
+                app:layout_constraintHorizontal_bias="0.02"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <RelativeLayout
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_low"
-                android:paddingVertical="5dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                app:layout_constraintHorizontal_bias="0.45"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/fb"
-                app:layout_constraintTop_toTopOf="@id/fb"
-                app:layout_constraintBottom_toBottomOf="@id/fb">
 
                 <EditText
                     android:id="@+id/fb_post"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Body1"
                     android:hint="@string/enter_number_of_post_and_videos"
                     android:textSize="13sp"
+                    android:layout_marginStart="60dp"
+                    android:padding="5dp"
+                    android:background="@drawable/round_low"
                     android:textColor="@color/add_details"
-                    android:background="@null"
-                    style="@style/TextAppearance.AppCompat.Body1"
                     android:fontFamily="@font/avenir"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_alignParentStart="true"/>
-
-               <!-- <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    style="@style/SpecificCornerRounded"
-                    android:src="@drawable/png_edit"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"/>-->
-
-            </RelativeLayout>
-
+                    app:layout_constraintHorizontal_bias="0.45"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/fb"
+                    app:layout_constraintTop_toTopOf="@id/fb"
+                    app:layout_constraintBottom_toBottomOf="@id/fb"/>
 
             <ImageView
                 android:id="@+id/googl"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/google"
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/fb"/>
-            <RelativeLayout
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_low"
-                app:layout_constraintHorizontal_bias="0.45"
-                android:paddingVertical="5dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                app:layout_constraintStart_toEndOf="@id/googl"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/googl"
-                app:layout_constraintBottom_toBottomOf="@id/googl">
+
 
                 <EditText
                     android:id="@+id/google_post"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    app:layout_constraintHorizontal_bias="0.45"
+                    android:padding="5dp"
+                    app:layout_constraintStart_toEndOf="@id/googl"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/googl"
+                    app:layout_constraintBottom_toBottomOf="@id/googl"
                     android:hint="@string/enter_number_of_reviews"
                     android:textSize="13sp"
                     android:textColor="@color/add_details"
-                    android:background="@null"
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:fontFamily="@font/avenir"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_alignParentStart="true"/>
-
-               <!-- <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    style="@style/SpecificCornerRounded"
-                    android:src="@drawable/png_edit"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"/>-->
-
-            </RelativeLayout>
+                    android:layout_marginStart="60dp"/>
 
 
             <ImageView
                 android:id="@+id/insta"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/instagram"
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/googl"/>
-            <RelativeLayout
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_low"
-                app:layout_constraintHorizontal_bias="0.45"
-                android:paddingVertical="5dp"
-                android:layout_marginVertical="3dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                app:layout_constraintStart_toEndOf="@id/insta"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/insta"
-                app:layout_constraintBottom_toBottomOf="@id/insta">
+
 
                 <EditText
                     android:id="@+id/instaPost"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    android:padding="5dp"
+                    android:layout_marginStart="60dp"
                     android:hint="Enter number of post and reels"
                     android:textSize="13sp"
                     android:textColor="@color/add_details"
-                    android:background="@null"
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:fontFamily="@font/avenir"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_alignParentStart="true"/>
-
-                <!--<ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    style="@style/SpecificCornerRounded"
-                    android:src="@drawable/png_edit"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"/>-->
-
-            </RelativeLayout>
+                    app:layout_constraintHorizontal_bias="0.45"
+                    app:layout_constraintStart_toEndOf="@id/insta"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/insta"
+                    app:layout_constraintBottom_toBottomOf="@id/insta"/>
 
 
             <ImageView
                 android:id="@+id/linkedin"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/linkedin"
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/insta"/>
-            <RelativeLayout
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_low"
-                app:layout_constraintHorizontal_bias="0.45"
-                android:layout_marginVertical="3dp"
-                android:paddingVertical="5dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                app:layout_constraintStart_toEndOf="@id/linkedin"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/linkedin"
-                app:layout_constraintBottom_toBottomOf="@id/linkedin">
+
 
                 <EditText
                     android:id="@+id/linkedin_post"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    app:layout_constraintHorizontal_bias="0.45"
+                    android:padding="5dp"
+                    app:layout_constraintStart_toEndOf="@id/linkedin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/linkedin"
+                    app:layout_constraintBottom_toBottomOf="@id/linkedin"
                     android:hint="@string/enter_number_of_post_and_videos"
                     android:textSize="13sp"
                     android:textColor="@color/add_details"
-                    android:background="@null"
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:fontFamily="@font/avenir"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_alignParentStart="true"/>
-
-                <!--<ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    style="@style/SpecificCornerRounded"
-                    android:src="@drawable/png_edit"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"/>-->
-
-            </RelativeLayout>
+                    android:layout_marginStart="60dp"/>
 
 
             <ImageView
                 android:id="@+id/pinterest"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/pinterest"
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/linkedin"/>
-            <RelativeLayout
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_low"
-                app:layout_constraintHorizontal_bias="0.45"
-                android:layout_marginVertical="3dp"
-                android:paddingVertical="5dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                app:layout_constraintStart_toEndOf="@id/pinterest"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/pinterest"
-                app:layout_constraintBottom_toBottomOf="@id/pinterest">
+
 
                 <EditText
                     android:id="@+id/pinterest_post"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    app:layout_constraintHorizontal_bias="0.45"
+                    android:padding="5dp"
+                    app:layout_constraintStart_toEndOf="@id/pinterest"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/pinterest"
+                    app:layout_constraintBottom_toBottomOf="@id/pinterest"
                     android:hint="@string/enter_number_of_post_and_videos"
                     android:textSize="13sp"
                     android:textColor="@color/add_details"
-                    android:background="@null"
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:fontFamily="@font/avenir"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_alignParentStart="true"/>
-
-                <!--<ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    style="@style/SpecificCornerRounded"
-                    android:src="@drawable/png_edit"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"/>-->
-
-            </RelativeLayout>
+                    android:layout_marginStart="60dp"/>
 
 
             <ImageView
                 android:id="@+id/tripad"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/tripadvisor"
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/pinterest"/>
-            <RelativeLayout
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_low"
-                app:layout_constraintHorizontal_bias="0.45"
-                android:layout_marginVertical="3dp"
-                android:paddingVertical="5dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                app:layout_constraintStart_toEndOf="@id/tripad"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tripad"
-                app:layout_constraintBottom_toBottomOf="@id/tripad">
+
 
                 <EditText
                     android:id="@+id/tripad_post"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    app:layout_constraintHorizontal_bias="0.45"
+                    android:padding="5dp"
+                    app:layout_constraintStart_toEndOf="@id/tripad"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tripad"
+                    app:layout_constraintBottom_toBottomOf="@id/tripad"
                     android:hint="@string/enter_number_of_reviews"
                     android:textSize="13sp"
                     android:textColor="@color/add_details"
-                    android:background="@null"
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:fontFamily="@font/avenir"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_alignParentStart="true"/>
-
-                <!--<ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    style="@style/SpecificCornerRounded"
-                    android:src="@drawable/png_edit"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"/>-->
-
-            </RelativeLayout>
+                    android:layout_marginStart="60dp"/>
 
 
             <ImageView
                 android:id="@+id/twit"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/twitter"
                 app:layout_constraintStart_toStartOf="@id/fb"
                 app:layout_constraintTop_toBottomOf="@id/tripad"/>
-            <RelativeLayout
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_low"
-                app:layout_constraintHorizontal_bias="0.45"
-                android:layout_marginVertical="3dp"
-                android:paddingVertical="5dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                app:layout_constraintStart_toEndOf="@id/twit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/twit"
-                app:layout_constraintBottom_toBottomOf="@id/twit">
+
 
                 <EditText
                     android:id="@+id/twitter_post"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/round_low"
+                    app:layout_constraintHorizontal_bias="0.45"
+                    app:layout_constraintStart_toEndOf="@id/twit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/twit"
+                    app:layout_constraintBottom_toBottomOf="@id/twit"
+                    android:padding="5dp"
                     android:hint="@string/enter_number_of_post_and_videos"
                     android:textSize="13sp"
                     android:textColor="@color/add_details"
-                    android:background="@null"
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:fontFamily="@font/avenir"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_alignParentStart="true"/>
+                    android:layout_marginStart="60dp"/>
 
-               <!-- <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    style="@style/SpecificCornerRounded"
-                    android:src="@drawable/png_edit"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"/>-->
-
-            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
