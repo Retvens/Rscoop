@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.retvence.rscoop.DashBoardClient.ClientDetailTaskActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/detail_task_client_back_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/back_btn"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detail Task"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/avenir"
+                android:textColor="@color/black"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@id/detail_task_client_back_btn"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/save_property"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/sky_blue"
+                app:cardCornerRadius="16dp"
+                android:layout_marginVertical="20dp"
+                android:layout_marginStart="12dp"
+                android:layout_below="@id/detail_task_client_back_btn">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Marketing"
+                    android:paddingHorizontal="25dp"
+                    android:paddingVertical= "3dp"
+                    android:background="@color/sky_blue"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/avenir"
+                    android:textColor="@color/white"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <ImageView
+                android:id="@+id/dtc_calendar_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/forword_arrow"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/dtc_date_month"
+                android:layout_below="@id/save_property"/>
+            <ImageView
+                android:id="@+id/dtc_calendar_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back_arrow"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/dtc_date_month"
+                android:layout_below="@id/save_property"/>
+
+            <TextView
+                android:id="@+id/dtc_date_month"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="December 2020"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/save_property" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewDateDetailClient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/date_layout"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="25dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_below="@id/save_property"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_pro"
+                android:layout_width="160dp"
+                android:layout_height="255dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="5dp"
+                android:layout_marginStart="14dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/recyclerViewDateDetailClient">
+
+                <RelativeLayout
+                    android:id="@+id/selectPropertyRelative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="3dp"
+                    android:background="@drawable/rectangle_background">
+
+                    <ImageView
+                        android:id="@+id/hotel_add_task_client_img"
+                        android:layout_width="155dp"
+                        android:layout_height="160dp"
+                        android:scaleType="fitXY"
+                        android:layout_marginTop="2dp"
+                        android:layout_centerHorizontal="true"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/png_hotel"/>
+
+                    <TextView
+                        android:id="@+id/hotel_name_add_task_client"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:textSize="16dp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/avenir"
+                        android:layout_below="@+id/hotel_add_task_client_img"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginVertical="2dp"/>
+
+                    <ImageView
+                        android:id="@+id/st"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_baseline_star_24"
+                        android:layout_marginStart="6dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"/>
+
+                    <TextView
+                        android:id="@+id/star_rate_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:layout_marginBottom="26dp"
+                        android:textSize="13sp"
+                        android:layout_marginStart="25dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_0_5_km"
+                        android:layout_marginEnd="6dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/social_media_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Social Media Tasks"
+                android:textSize="22dp"
+                android:fontFamily="@font/avenir"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="12dp"
+                android:layout_below="@id/card_pro"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_add_links"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="15dp"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="8dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/social_media_heading">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding ="20dp">
+                    <ImageView
+                        android:id="@+id/fb"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/facebook"
+                        android:layout_marginVertical="5dp"
+                        app:layout_constraintHorizontal_bias="0.02"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <EditText
+                        android:id="@+id/fb_post_detail_client"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:hint="@string/enter_number_of_post_and_videos"
+                        android:textSize="14dp"
+                        android:layout_marginStart="60dp"
+                        android:padding="5dp"
+                        android:background="@drawable/round_low"
+                        android:textColor="@color/add_details"
+                        android:fontFamily="@font/avenir"
+                        app:layout_constraintHorizontal_bias="0.45"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/fb"
+                        app:layout_constraintTop_toTopOf="@id/fb"
+                        app:layout_constraintBottom_toBottomOf="@id/fb"/>
+
+
+
+                    <ImageView
+                        android:id="@+id/googl"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/google"
+                        app:layout_constraintStart_toStartOf="@id/fb"
+                        app:layout_constraintTop_toBottomOf="@id/fb"/>
+
+                    <EditText
+                        android:id="@+id/google_post_detail_client"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_low"
+                        app:layout_constraintHorizontal_bias="0.45"
+                        android:padding="5dp"
+                        app:layout_constraintStart_toEndOf="@id/googl"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/googl"
+                        app:layout_constraintBottom_toBottomOf="@id/googl"
+                        android:hint="@string/enter_number_of_reviews"
+                        android:textSize="14dp"
+                        android:textColor="@color/add_details"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_marginStart="60dp"/>
+
+                    <ImageView
+                        android:id="@+id/insta"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/instagram"
+                        app:layout_constraintStart_toStartOf="@id/fb"
+                        app:layout_constraintTop_toBottomOf="@id/googl"/>
+
+
+                    <EditText
+                        android:id="@+id/instaPost_detail_client"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_low"
+                        android:padding="5dp"
+                        android:layout_marginStart="60dp"
+                        android:hint="Enter number of post and reels"
+                        android:textSize="14dp"
+                        android:textColor="@color/add_details"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        app:layout_constraintHorizontal_bias="0.45"
+                        app:layout_constraintStart_toEndOf="@id/insta"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/insta"
+                        app:layout_constraintBottom_toBottomOf="@id/insta"/>
+
+
+                    <ImageView
+                        android:id="@+id/linkedin"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/linkedin"
+                        app:layout_constraintStart_toStartOf="@id/fb"
+                        app:layout_constraintTop_toBottomOf="@id/insta"/>
+
+                    <EditText
+                        android:id="@+id/linkedin_post_detail_client"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_low"
+                        app:layout_constraintHorizontal_bias="0.45"
+                        android:padding="5dp"
+                        app:layout_constraintStart_toEndOf="@id/linkedin"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/linkedin"
+                        app:layout_constraintBottom_toBottomOf="@id/linkedin"
+                        android:hint="@string/enter_number_of_post_and_videos"
+                        android:textSize="14dp"
+                        android:textColor="@color/add_details"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_marginStart="60dp"/>
+
+
+                    <ImageView
+                        android:id="@+id/pinterest"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/pinterest"
+                        app:layout_constraintStart_toStartOf="@id/fb"
+                        app:layout_constraintTop_toBottomOf="@id/linkedin"/>
+
+                    <EditText
+                        android:id="@+id/pinterest_post_detail_client"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_low"
+                        app:layout_constraintHorizontal_bias="0.45"
+                        android:padding="5dp"
+                        app:layout_constraintStart_toEndOf="@id/pinterest"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/pinterest"
+                        app:layout_constraintBottom_toBottomOf="@id/pinterest"
+                        android:hint="@string/enter_number_of_post_and_videos"
+                        android:textSize="14dp"
+                        android:textColor="@color/add_details"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_marginStart="60dp"/>
+
+
+                    <ImageView
+                        android:id="@+id/tripad"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/tripadvisor"
+                        app:layout_constraintStart_toStartOf="@id/fb"
+                        app:layout_constraintTop_toBottomOf="@id/pinterest"/>
+
+                    <EditText
+                        android:id="@+id/tripad_post_detail_client"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_low"
+                        app:layout_constraintHorizontal_bias="0.45"
+                        android:padding="5dp"
+                        app:layout_constraintStart_toEndOf="@id/tripad"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tripad"
+                        app:layout_constraintBottom_toBottomOf="@id/tripad"
+                        android:hint="@string/enter_number_of_reviews"
+                        android:textSize="14dp"
+                        android:textColor="@color/add_details"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_marginStart="60dp"/>
+
+
+                    <ImageView
+                        android:id="@+id/twit"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/twitter"
+                        app:layout_constraintStart_toStartOf="@id/fb"
+                        app:layout_constraintTop_toBottomOf="@id/tripad"/>
+
+
+                    <EditText
+                        android:id="@+id/twitter_post_detail_client"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_low"
+                        app:layout_constraintHorizontal_bias="0.45"
+                        app:layout_constraintStart_toEndOf="@id/twit"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/twit"
+                        app:layout_constraintBottom_toBottomOf="@id/twit"
+                        android:padding="5dp"
+                        android:hint="@string/enter_number_of_post_and_videos"
+                        android:textSize="14dp"
+                        android:textColor="@color/add_details"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:fontFamily="@font/avenir"
+                        android:layout_marginStart="60dp"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@id/card_add_links"
+                android:layout_marginBottom="30dp"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pendingClient"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="#F74A4A"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="2dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/pending"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pending"
+                android:background="#F74A4A"
+                android:layout_marginStart="5dp"
+                android:textSize="17dp"
+                android:fontFamily="@font/avenir"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/done_client"
+        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#4AC1F7"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="2dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/baseline_check"
+                app:tint="@color/white"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Done"
+                android:background="#4AC1F7"
+                android:layout_marginStart="5dp"
+                android:textSize="17dp"
+                android:fontFamily="@font/avenir"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
