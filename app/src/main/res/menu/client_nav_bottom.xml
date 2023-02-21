@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<item
+    android:id="@+id/explore_client"
+    android:icon="@drawable/exploreicon"
+    android:title="Explore" />
+    <item
+        android:id="@+id/calender_client"
+        android:icon="@drawable/calender_icon"
+        android:title="To-Do" />
+    <item
+        android:id="@+id/favorite_client"
+        android:icon="@drawable/bookmark_icon"
+        android:title="Favorite" />
+    <item
+        android:id="@+id/profile_client"
+        android:icon="@drawable/person_icon"
+        android:title="Profile" />
+
+</menu>
