@@ -70,7 +70,6 @@ class ClientProfileFragment : Fragment() {
         recycler.setHasFixedSize(true)
         recycler.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
 
-
         getHotelData()
     }
     private fun getHotelData() {
@@ -88,12 +87,10 @@ class ClientProfileFragment : Fragment() {
                 recycler.visibility = View.VISIBLE
                 shimmerFrameLayout.visibility = View.GONE
             }
-
             override fun onFailure(call: Call<List<HotelsData>?>, t: Throwable) {
                 Toast.makeText(context,t.localizedMessage, Toast.LENGTH_LONG)
                     .show()
             }
         })
     }
-
 }

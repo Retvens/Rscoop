@@ -11,7 +11,7 @@
         android:title="To-Do" />
     <item
         android:id="@+id/favorite_client"
-        android:icon="@drawable/bookmark_icon"
+        android:icon="@drawable/favorite"
         android:title="Favorite" />
     <item
         android:id="@+id/profile_client"
