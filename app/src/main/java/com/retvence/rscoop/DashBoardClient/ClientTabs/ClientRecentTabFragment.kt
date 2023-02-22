@@ -1,5 +1,6 @@
 package com.retvence.rscoop.DashBoardClient.ClientTabs
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -43,22 +44,18 @@ class ClientRecentTabFragment : Fragment() {
     private fun allTaskData() {
         val getData = RetrofitBuilder.retrofitBuilder.getTask()
         getData.enqueue(object : Callback<List<GetTaskData>?> {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
                 call: Call<List<GetTaskData>?>,
                 response: Response<List<GetTaskData>?>
             ) {
-                if (response.isSuccessful){
+
                     val response = response.body()!!
                     clientTaskAdapter = ClientTaskAdapter(context!!,response)
                     clientTaskAdapter.notifyDataSetChanged()
                     recyclerView.adapter = clientTaskAdapter
 
-                }else{
-                    Toast.makeText(context,response.code(), Toast.LENGTH_SHORT)
-                        .show()
-                }
             }
-
             override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
                 Toast.makeText(context,t.localizedMessage, Toast.LENGTH_SHORT)
                     .show()
