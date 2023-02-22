@@ -1,5 +1,6 @@
 package com.retvence.rscoop.DashBoardClient.ClientNavigation
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -90,6 +91,7 @@ class ClientProfileFragment : Fragment() {
     private fun getHotelData() {
         val retrofit = RetrofitBuilder.retrofitBuilder.getHotel("")
         retrofit.enqueue(object : Callback<List<HotelsData>?> {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
                 call: Call<List<HotelsData>?>,
                 response: Response<List<HotelsData>?>

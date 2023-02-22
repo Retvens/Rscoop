@@ -3,6 +3,7 @@ package com.retvence.rscoop.DashBoardClient
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -10,6 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
+import com.bumptech.glide.Glide
 import com.retvence.rscoop.RecentProperties.CalendarAdapter
 import com.retvence.rscoop.RecentProperties.CalendarDateModel
 import com.retvens.rscoop.R
@@ -26,7 +28,19 @@ class ClientDetailTaskActivity : AppCompatActivity() {
 
     private lateinit var pending: CardView
     private lateinit var done: CardView
-    private lateinit var back: ImageView
+
+    private lateinit var coverImg: ImageView
+    private lateinit var nameHotel: TextView
+    private lateinit var star: TextView
+
+    private lateinit var facebook: EditText
+    private lateinit var google: EditText
+    private lateinit var insta: EditText
+    private lateinit var linkedin: EditText
+    private lateinit var pinterest: EditText
+    private lateinit var tripod: EditText
+    private lateinit var twitter: EditText
+
 
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
     private val cal = Calendar.getInstance(Locale.ENGLISH)
@@ -39,17 +53,44 @@ class ClientDetailTaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_client_detail_task)
 
+        findViewById<ImageView>(R.id.detail_task_client_back_btn).setOnClickListener {
+            startActivity(Intent(this@ClientDetailTaskActivity,ClientDashboardActivity:: class.java))
+            finish()
+        }
+
+        coverImg = findViewById(R.id.hotel_add_task_client_img)
+        nameHotel = findViewById(R.id.hotel_name_add_task_client)
+        star = findViewById(R.id.star_rate_number_client)
+
+        facebook = findViewById(R.id.fb_post_detail_client)
+        google = findViewById(R.id.google_post_detail_client)
+        insta = findViewById(R.id.instaPost_detail_client)
+        linkedin = findViewById(R.id.linkedin_post_detail_client)
+        pinterest = findViewById(R.id.pinterest_post_detail_client)
+        tripod = findViewById(R.id.tripad_post_detail_client)
+        twitter = findViewById(R.id.twitter_post_detail_client)
+
+        val cover = intent.getStringExtra("imageCover")
+        val name = intent.getStringExtra("nameHotel")
+        val facebookT = intent.getStringExtra("facebook")
+        val instagramT = intent.getStringExtra("instagram")
+        val googleT = intent.getStringExtra("google")
+        val linkedinT = intent.getStringExtra("linkedin")
+        val tripadT = intent.getStringExtra("tripad")
+        val twitterT =intent.getStringExtra("twitter")
+        val pinterestT = intent.getStringExtra("pinterest")
+
+        Glide.with(baseContext).load(cover).into(coverImg)
+        nameHotel.text = name
+//        facebook.text = facebookT
+
+
         recyclerViewDate = findViewById(R.id.recyclerViewDateDetailClient)
         dtcCalendarNext = findViewById(R.id.dtc_calendar_next)
         dtcCalendarPrevious = findViewById(R.id.dtc_calendar_previous)
         dtcDateMonth = findViewById(R.id.dtc_date_month)
         pending = findViewById(R.id.pendingClient)
         done = findViewById(R.id.done_client)
-
-        back = findViewById(R.id.detail_task_client_back_btn)
-        back.setOnClickListener {
-            startActivity(Intent(this@ClientDetailTaskActivity,ViewAllTaskOfProperty::class.java))
-        }
 
         done.setOnClickListener {
             Toast.makeText(this@ClientDetailTaskActivity,"Done",Toast.LENGTH_SHORT)

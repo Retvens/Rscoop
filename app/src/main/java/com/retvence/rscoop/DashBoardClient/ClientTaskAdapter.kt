@@ -62,8 +62,17 @@ class ClientTaskAdapter(val context: Context, var userList:List<GetTaskData>) : 
         holder.favorite.visibility = View.VISIBLE
 
         holder.itemView.setOnClickListener {
-            context.startActivity(Intent(context,ClientDetailTaskActivity::class.java))
-
+            val intent = Intent(context,ClientDetailTaskActivity::class.java)
+            intent.putExtra("nameHotel",userList[position].hotel_name)
+            intent.putExtra("imageCover",userList[position].owner_pic)
+            intent.putExtra("facebook",userList[position].facebook)
+            intent.putExtra("instagram",userList[position].instagram)
+            intent.putExtra("linkedin",userList[position].Linkedin)
+            intent.putExtra("twitter",userList[position].twitter)
+            intent.putExtra("google",userList[position].Google_reviews)
+            intent.putExtra("tripad",userList[position].GMB)
+            intent.putExtra("pinterest",userList[position].Pinterest)
+            context.startActivity(intent)
         }
 
         holder.fbIcon.setOnClickListener{

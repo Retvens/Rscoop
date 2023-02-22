@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvens.rscoop.R
 
-class ProfilePropertyAdapter(val context: Context,val item : List<HotelsData>) : RecyclerView.Adapter<ProfilePropertyAdapter.ProfileViewHolder>() {
+class ProfilePropertyAdapter(val context: Context,val itemC : List<HotelsData>) : RecyclerView.Adapter<ProfilePropertyAdapter.ProfileViewHolder>() {
 
     class ProfileViewHolder(itemView: View) : ViewHolder(itemView){
         val imageHotel = itemView.findViewById<ImageView>(R.id.hotel_add_task_img)
@@ -28,11 +28,11 @@ class ProfilePropertyAdapter(val context: Context,val item : List<HotelsData>) :
     }
 
     override fun getItemCount(): Int {
-        return item.size
+        return itemC.size
     }
 
     override fun onBindViewHolder(holder: ProfileViewHolder, position: Int) {
-        val items = item[position]
+        val items = itemC[position]
         holder.nameHotel.text = items.hotel_name
         holder.starHotel.text = items.hotel_stars
         Glide.with(context).load(items.Cover_photo).into(holder.imageHotel)
