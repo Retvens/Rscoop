@@ -45,7 +45,7 @@
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:background="@drawable/imagecorner"
-        app:layout_constraintTop_toBottomOf="@+id/hotels_back_client"
+        app:layout_constraintTop_toBottomOf="@+id/client_Hotel_Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -69,6 +69,7 @@
         android:layout_height="wrap_content"
         android:text="Hotel Name"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="2dp"
         android:textAlignment="center"
         android:textSize="20dp"
         android:fontFamily="@font/avenir"
@@ -77,27 +78,32 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toBottomOf="@+id/client_hotel_profile"
         app:layout_constraintStart_toStartOf="@id/client_hotel_profile"
-        app:layout_constraintEnd_toEndOf="@id/client_hotel_profile"/>
+        app:layout_constraintEnd_toEndOf="@id/client_hotel_profile"
+        app:layout_constraintBottom_toTopOf="@id/Client_hotel_country"/>
 
 
         <TextView
             android:id="@+id/Client_hotel_country"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginStart="20dp"
+            android:layout_marginEnd="30dp"
             android:text="California, United States"
             android:textSize="17dp"
             tools:ignore="MissingConstraints"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Client_Hotel_Name2" />
+            app:layout_constraintTop_toBottomOf="@+id/Client_Hotel_Name2"
+            app:layout_constraintBottom_toTopOf="@id/ratingBar_client"/>
 
 
         <RatingBar
             android:id="@+id/ratingBar_client"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="24dp"
             android:numStars="5"
             android:progressBackgroundTint="#a8a8a8"
             android:progressTint="#FBBC05"
@@ -110,7 +116,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="-60dp"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="-52dp" />
+            tools:layout_editor_absoluteX="-42dp" />
 
         <ImageView
             android:id="@+id/mali_client"

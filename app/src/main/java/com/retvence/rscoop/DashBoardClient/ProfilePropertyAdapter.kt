@@ -38,7 +38,13 @@ class ProfilePropertyAdapter(val context: Context,val item : List<HotelsData>) :
         Glide.with(context).load(items.Cover_photo).into(holder.imageHotel)
 
         holder.itemView.setOnClickListener {
-            context.startActivity(Intent(context,ViewAllTaskOfProperty::class.java))
+            val intent = Intent(context,ViewAllTaskOfProperty::class.java)
+            intent.putExtra("coverH",items.Cover_photo)
+            intent.putExtra("logoH",items.hotel_logo)
+            intent.putExtra("nameH",items.hotel_name)
+            intent.putExtra("addH",items.Address)
+            intent.putExtra("ratingH",items.hotel_stars)
+            context.startActivity(intent)
         }
 
     }

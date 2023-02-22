@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
+import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DataCollections.GetTaskData
@@ -46,13 +48,25 @@ class ViewAllTaskOfProperty : AppCompatActivity() {
 
     lateinit var call : ImageView
     lateinit var mail : ImageView
-
     lateinit var whatsapp : ImageView
 
+    private lateinit var nameTop : TextView
+    private lateinit var nameMid : TextView
+    private lateinit var address : TextView
+    private lateinit var ratingBar: RatingBar
+    lateinit var clientCover : ImageView
+    lateinit var clientProfile : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_all_task_of_property)
+
+        address = findViewById(R.id.Client_hotel_country)
+        ratingBar = findViewById(R.id.ratingBar_client)
+        nameTop = findViewById(R.id.client_Hotel_Name)
+        nameMid = findViewById(R.id.Client_Hotel_Name2)
+        clientProfile = findViewById(R.id.client_hotel_profile)
+        clientCover = findViewById(R.id.client_hotel_cover)
 
         textDateMonth = findViewById(R.id.c_date_month)
         ivCalendarNext = findViewById(R.id.c_calendar_next)
@@ -126,6 +140,20 @@ class ViewAllTaskOfProperty : AppCompatActivity() {
             val openGoogle = Intent(Intent.ACTION_VIEW,uriForGogle)
             startActivity(openGoogle)
         }
+
+        //getting data from intent
+        val hotelName = intent.getStringExtra("nameH")
+        val hotelCover = intent.getStringExtra("coverH")
+        val addressHotel = intent.getStringExtra("addH")
+        val rate = intent.getStringExtra("ratingH")
+        val logoHotel = intent.getStringExtra("logoH")
+
+        nameTop.text = hotelName
+        Glide.with(baseContext).load(hotelCover).into(clientCover)
+        nameMid.text = hotelName
+        Glide.with(baseContext).load(logoHotel).into(clientProfile)
+        address.text = addressHotel.toString()
+        ratingBar.rating = rate?.toFloat()!!
 
         setUpClickListener()
         setUpAdapter()
