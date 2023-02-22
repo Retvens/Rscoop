@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -20,9 +21,11 @@ import com.retvence.rscoop.DashBoardIgniter.TaskFragment.CompletedFragment
 import com.retvence.rscoop.DashBoardIgniter.TaskFragment.RecentFragment
 import com.retvence.rscoop.DashBoardIgniter.TaskFragment.TodayFragment
 import com.retvence.rscoop.DataCollections.HotelsData
+import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerHotelsView
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.CompletedTasks
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.RecentTasks
+import com.retvens.rscoop.MainActivity
 import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,9 +36,22 @@ class IgniterDashBoard : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var hotelAdapter:EgniterRecycler
     private lateinit var shimmer: ShimmerFrameLayout
+
+    private lateinit var logOut:ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_igniter_dash_board)
+
+
+        logOut = findViewById(R.id.logout_igniter)
+        logOut.setOnClickListener {
+            SharedPreferenceManagerAdmin.getInstance(this).clear()
+            val intent = Intent(this@IgniterDashBoard, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            Toast.makeText(this@IgniterDashBoard,"Logged Out", Toast.LENGTH_SHORT).show()
+        }
 
         shimmer = findViewById(R.id.Egniter_shimmer)
         val text = findViewById<TextView>(R.id.latest)
