@@ -108,9 +108,9 @@ class ClientDashboardFragment : Fragment() {
             ) {
 
                 if (response.isSuccessful){
-                    val response = response.body()!!
-                    hotelAdapter = EgniterRecycler(context!!, response)
-                    hotelAdapter.notifyDataSetChanged()
+//                    val response = response.body()!!
+//                    hotelAdapter = EgniterRecycler(context!!, response)
+//                    hotelAdapter.notifyDataSetChanged()
 //                    recyclerViewC.adapter = hotelAdapter
 
                 }
