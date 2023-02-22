@@ -38,7 +38,7 @@ class ProfilePropertyAdapter(val context: Context,val item : List<HotelsData>) :
         Glide.with(context).load(items.Cover_photo).into(holder.imageHotel)
 
         holder.itemView.setOnClickListener {
-            context.startActivity(Intent(context,ClientDetailTaskActivity::class.java))
+            context.startActivity(Intent(context,ViewAllTaskOfProperty::class.java))
         }
 
     }

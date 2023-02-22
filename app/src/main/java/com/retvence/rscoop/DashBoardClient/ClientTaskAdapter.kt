@@ -61,6 +61,11 @@ class ClientTaskAdapter(val context: Context, var userList:List<GetTaskData>) : 
 
         holder.favorite.visibility = View.VISIBLE
 
+        holder.itemView.setOnClickListener {
+            context.startActivity(Intent(context,ClientDetailTaskActivity::class.java))
+
+        }
+
         holder.fbIcon.setOnClickListener{
             val uriForFB : Uri = Uri.parse("https://facebook.com")
             val openFB = Intent(Intent.ACTION_VIEW,uriForFB)
