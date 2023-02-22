@@ -12,6 +12,7 @@ import com.bumptech.glide.manager.RequestTracker
 import com.google.android.material.textfield.TextInputEditText
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
+import com.retvence.rscoop.DashBoardClient.ClientDashboardActivity
 import com.retvence.rscoop.DashBoardIgniter.IgniterDashBoard
 import com.retvence.rscoop.DataCollections.LoginResponse
 import com.retvence.rscoop.DataCollections.UserLoginData
@@ -81,6 +82,10 @@ class LoginActivity : AppCompatActivity() {
                     }
                     else if (response.message.toString() == "Owner login successful"){
                         Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+                        SharedPreferenceManagerAdmin.getInstance(applicationContext).saveUser(response)
+                        val intent = Intent(this@LoginActivity,ClientDashboardActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
                     }
                    else{
                         Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
@@ -107,8 +112,10 @@ class LoginActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
-        /*else{
-            startActivity(Intent(applicationContext,LoginActivity::class.java))
-        }*/
+        else if (SharedPreferenceManagerAdmin.getInstance(this@LoginActivity).user.message == "Owner login successful"){
+            val intent = Intent(this@LoginActivity,ClientDashboardActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
     }
 }
