@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +19,9 @@ import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoardClient.ProfilePropertyAdapter
 import com.retvence.rscoop.DashBoardIgniter.SelectPropertyAdapter
 import com.retvence.rscoop.DataCollections.HotelsData
+import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
+import com.retvens.rscoop.MainActivity
 import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,6 +37,8 @@ class ClientProfileFragment : Fragment() {
     lateinit var call : ImageView
     lateinit var mail : ImageView
 
+    private lateinit var logOut: LinearLayout
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,6 +48,16 @@ class ClientProfileFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        logOut = view.findViewById(R.id.logOut_client)
+        logOut.setOnClickListener {
+            context?.let { it1 -> SharedPreferenceManagerAdmin.getInstance(it1).clear() }
+            val intent = Intent(context, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            Toast.makeText(context,"Logged Out",Toast.LENGTH_SHORT).show()
+        }
+
 
         whatsapp = view.findViewById(R.id.whatsapp_client_profile)
         call = view.findViewById(R.id.PhoneCall_client_profile)
