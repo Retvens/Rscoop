@@ -60,15 +60,21 @@ interface RetvensUrls {
     ) : Call<ResponseTask>
 
 
-    @PATCH("task/{id}")
+    @PATCH("task/{_id}")
     fun updateTask(
         @Path("_id") id:String,
         @Body task:UpdateTaskClass
     ):Call<ResponseTask>
 
-    @Headers("Content-Type: application/json")
+
     @GET("tasks/{hotel_id}")
     fun individualTask(
         @Path("hotel_id") hotel_id:String
     ):Call<GetTaskData>
+
+    @PATCH("task/{_id}")
+    fun updateStatus(
+        @Path("_id") id:String,
+        @Body task:StatusClass
+    ):Call<ResponseTask>
 }

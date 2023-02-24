@@ -8,17 +8,25 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
+import com.retvence.rscoop.ApiRequests.RetrofitBuilder
+import com.retvence.rscoop.DataCollections.ResponseTask
+import com.retvence.rscoop.DataCollections.StatusClass
 import com.retvens.rscoop.R
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class DetailTaskActivity : AppCompatActivity() {
 
     lateinit var edit : CardView
+    lateinit var done: CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_task)
 
         edit = findViewById(R.id.edit_card)
+        done = findViewById(R.id.done)
 
 
         val image = findViewById<ImageView>(R.id.hotel_add_task_img)
@@ -69,5 +77,31 @@ class DetailTaskActivity : AppCompatActivity() {
 
         }
 
+        done.setOnClickListener {
+            updateStatus()
+        }
+
+    }
+
+    private fun updateStatus() {
+        val id = intent.getStringExtra("id")
+        val Status = "Done"
+        val send = RetrofitBuilder.retrofitBuilder.updateStatus(id!!,StatusClass(Status))
+
+        send.enqueue(object : Callback<ResponseTask?> {
+            override fun onResponse(call: Call<ResponseTask?>, response: Response<ResponseTask?>) {
+                if (response.isSuccessful){
+                    val response = response.body()!!
+                    Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+                }
+                else{
+                    Toast.makeText(applicationContext,response.code(),Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseTask?>, t: Throwable) {
+                Toast.makeText(applicationContext,t.message.toString(),Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }
