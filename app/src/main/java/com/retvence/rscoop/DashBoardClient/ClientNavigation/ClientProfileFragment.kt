@@ -89,20 +89,27 @@ class ClientProfileFragment : Fragment() {
         getHotelData()
     }
     private fun getHotelData() {
-        val retrofit = RetrofitBuilder.retrofitBuilder.getHotel("")
+        val retrofit = RetrofitBuilder.retrofitBuilder.getHotel("5252")
         retrofit.enqueue(object : Callback<List<HotelsData>?> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
                 call: Call<List<HotelsData>?>,
                 response: Response<List<HotelsData>?>
             ) {
+                shimmerFrameLayout.stopShimmer()
+                shimmerFrameLayout.visibility = View.GONE
+
                 val response = response.body()!!
+
+                if (response != null && view != null){
+
                 profilePropertyAdapter = ProfilePropertyAdapter(context!!,response)
                 profilePropertyAdapter.notifyDataSetChanged()
                 recycler.adapter = profilePropertyAdapter
 
                 recycler.visibility = View.VISIBLE
-                shimmerFrameLayout.visibility = View.GONE
+
+                }
             }
             override fun onFailure(call: Call<List<HotelsData>?>, t: Throwable) {
                 Toast.makeText(context,t.localizedMessage, Toast.LENGTH_LONG)
