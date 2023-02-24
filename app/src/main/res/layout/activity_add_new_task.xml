@@ -90,6 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="December 2020"
+            android:textSize="15dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/select_date_heading" />
 
@@ -124,7 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View All Tasks"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:textColor="@color/sky_blue"
         android:layout_marginEnd="12dp"
         android:layout_marginTop="8dp"
@@ -161,7 +162,7 @@
                 android:background="@null"
                 android:hint="@string/try_to_enter_any_hotel_name"
                 android:textColorHint="@color/add_details"
-                android:textSize="14sp" />
+                android:textSize="15dp" />
 
         </RelativeLayout>
 
