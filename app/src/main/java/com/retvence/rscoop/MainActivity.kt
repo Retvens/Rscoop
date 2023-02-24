@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
+import com.retvence.rscoop.DashBoardClient.ClientDashboardActivity
 import com.retvence.rscoop.DashBoardIgniter.IgniterDashBoard
 import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.Authentication.LoginActivity
@@ -52,8 +53,10 @@ class MainActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
-        /*else{
-            startActivity(Intent(applicationContext,LoginActivity::class.java))
-        }*/
+        else if (SharedPreferenceManagerAdmin.getInstance(this@MainActivity).user.message == "Owner login successful"){
+            val intent = Intent(this@MainActivity, ClientDashboardActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
     }
 }

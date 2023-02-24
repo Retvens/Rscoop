@@ -73,7 +73,7 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.OnItemClic
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_task)
 
-        recyclerViewDate = findViewById(R.id.recyclerViewDate)
+        recyclerViewDate = findViewById(R.id.recyclerViewDateNewTask)
 
         searchProp = findViewById(R.id.search_add_all_tasks)
         shimmerFrameLayout = findViewById(R.id.recycler_add_all_task_shimmer)

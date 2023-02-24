@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DashBoard.DashBoard.AdminDashBoard.NavigationFragment.TodoFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
     <TextView
         android:id="@+id/task_date"
@@ -44,14 +49,14 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/png_check"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="2dp"
         android:layout_below="@id/task_date"
         android:layout_alignParentEnd="true"/>
 
     <RelativeLayout
         android:id="@+id/relativ_task"
-        android:layout_width="270dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="25dp"
@@ -65,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             android:src="@drawable/ic_baseline_search_24"
             app:tint="@color/add_details" />
 
@@ -75,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="35dp"
             android:background="@null"
             android:hint="@string/try_to_enter_any_hotel_name"
             android:textColorHint="@color/add_details"
@@ -114,21 +119,23 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_todo"
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginStart="25dp"
         android:layout_below="@id/progressBar"
         android:layout_alignParentStart="true">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:src="@drawable/png_rect_s" />
+                android:layout_height="match_parent"
+                android:src="@drawable/png_rect_s"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <TextView
                 android:id="@+id/todo"
@@ -138,11 +145,12 @@
                 android:textStyle="bold|normal"
                 android:fontFamily="@font/avenir"
                 android:textSize="16sp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
                 android:textColor="@color/black"
                 android:layout_marginTop="4dp"
-                android:layout_marginStart="14dp"/>
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
             <TextView
                 android:id="@+id/todo_text"
                 android:layout_width="wrap_content"
@@ -153,29 +161,33 @@
                 android:textSize="14sp"
                 android:layout_below="@id/todo"
                 android:textColor="@color/add_details"
-                android:layout_marginBottom="@dimen/margin_5"
-                android:layout_marginStart="15dp"/>
-        </RelativeLayout>
+                android:layout_marginBottom="5dp"
+                app:layout_constraintStart_toStartOf="@id/todo"
+                app:layout_constraintTop_toBottomOf="@id/todo" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
         android:layout_below="@id/progressBar"
         android:layout_toEndOf="@id/card_todo">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
+                android:layout_height="match_parent"
                 android:src="@drawable/png_rect_s"
-                app:tint="#4FC123"/>
+                app:tint="#4FC123"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/todo_done"
@@ -185,11 +197,12 @@
                 android:textStyle="bold|normal"
                 android:fontFamily="@font/avenir"
                 android:textSize="16sp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
                 android:textColor="@color/black"
                 android:layout_marginTop="4dp"
-                android:layout_marginStart="14dp"/>
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
             <TextView
                 android:id="@+id/todo_done_text"
                 android:layout_width="wrap_content"
@@ -198,11 +211,10 @@
                 android:textStyle="normal"
                 android:fontFamily="@font/avenir"
                 android:textSize="14sp"
-                android:layout_below="@id/todo_done"
                 android:textColor="@color/add_details"
-                android:layout_marginBottom="@dimen/margin_5"
-                android:layout_marginStart="15dp"/>
-        </RelativeLayout>
+                app:layout_constraintTop_toBottomOf="@id/todo_done"
+                app:layout_constraintStart_toStartOf="@id/todo_done"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
@@ -237,4 +249,6 @@
         android:layout_below="@id/tabs"/>
 
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

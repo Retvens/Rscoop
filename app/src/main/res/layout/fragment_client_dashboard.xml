@@ -1,0 +1,355 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.retvence.rscoop.DashBoardClient.ClientNavigation.ClientDashboardFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recycler1"
+            tools:ignore="MissingConstraints">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recycler2"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true">
+
+                <ImageView
+                    android:id="@+id/exploreProfile"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    tools:ignore="MissingConstraints"
+                    android:src="@drawable/png_peop"
+                    />
+
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="94dp"
+                    android:fontFamily="@font/avenir"
+                    android:text="Hello \nHere are all your reports"
+                    android:textSize="30dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/recycler2"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true">
+
+
+                <TextView
+                    android:id="@+id/Month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="October 22 2020 "
+                    android:textColor="#4B4B58"
+                    android:fontFamily="@font/avenir"
+                    android:textFontWeight="400"
+                    android:textStyle="normal"
+                    android:textSize="20dp"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:textSize="30dp"
+                    android:text="Today"
+                    android:textColor="#4C4C57"
+                    android:fontFamily="@font/avenir"
+                    android:textFontWeight="400"
+                    android:textStyle="normal"
+                    tools:ignore="MissingConstraints" />
+
+
+                <RelativeLayout
+                    android:id="@+id/relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/round_low"
+                    android:padding="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/today"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_baseline_search_24"
+                        app:tint="@color/add_details" />
+
+                    <EditText
+                        android:id="@+id/search_property_add_task"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="40dp"
+                        android:background="@null"
+                        android:hint="@string/try_to_enter_any_hotel_name"
+                        android:textColorHint="@color/add_details"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/total_task"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/have_total"
+                    android:fontFamily="@font/avenir"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/relative"
+                    app:layout_constraintStart_toStartOf="@id/relative"
+                    app:layout_constraintBottom_toTopOf="@id/progressBarCD"/>
+
+                <com.mackhartley.roundedprogressbar.RoundedProgressBar
+                    android:id="@+id/progressBarCD"
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    app:rpbBackgroundColor="#4FC123"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:layout_marginBottom="@dimen/margin_10"
+                    android:layout_marginHorizontal="25dp"
+                    app:rpbCornerRadius="20dp"
+                    app:rpbProgress="40"
+                    app:rpbProgressColor="@color/sky_blue"
+                    app:rpbShowProgressText="false"
+                    app:layout_constraintTop_toBottomOf="@id/total_task"
+                    app:layout_constraintStart_toStartOf="@id/total_task"/>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_todo"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintTop_toBottomOf="@id/progressBarCD"
+                    app:layout_constraintStart_toStartOf="@id/total_task">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/png_rect_s"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/todo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="To Do"
+                            android:textStyle="bold|normal"
+                            android:fontFamily="@font/avenir"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintHorizontal_bias="0.3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/todo_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="6 Tasks "
+                            android:textStyle="normal"
+                            android:fontFamily="@font/avenir"
+                            android:textSize="14sp"
+                            android:layout_below="@id/todo"
+                            android:textColor="@color/add_details"
+                            android:layout_marginBottom="5dp"
+                            app:layout_constraintStart_toStartOf="@id/todo"
+                            app:layout_constraintTop_toBottomOf="@id/todo" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintStart_toEndOf="@id/card_todo"
+                    app:layout_constraintTop_toBottomOf="@id/progressBarCD">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/png_rect_s"
+                            app:tint="#4FC123"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/todo_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Done"
+                            android:textStyle="bold|normal"
+                            android:fontFamily="@font/avenir"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintHorizontal_bias="0.3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+                        <TextView
+                            android:id="@+id/todo_done_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8 Tasks "
+                            android:textStyle="normal"
+                            android:fontFamily="@font/avenir"
+                            android:textSize="14sp"
+                            android:textColor="@color/add_details"
+                            app:layout_constraintTop_toBottomOf="@id/todo_done"
+                            app:layout_constraintStart_toStartOf="@id/todo_done"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/njm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your all properties"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:layout_margin="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_todo"/>
+
+                <TextView
+                    android:id="@+id/view_all_dash_client"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="view all Properties"
+                    android:textColor="@color/sky_blue"
+                    android:textSize="15dp"
+                    android:layout_marginEnd="15dp"
+                    app:layout_constraintTop_toTopOf="@id/njm"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/client_recycler_dash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/njm"
+                    tools:ignore="MissingConstraints" />
+
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/client_shimmer_dash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/njm"
+                    tools:ignore="MissingConstraints">
+                    <include layout="@layout/egintershimmer"/>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cons">
+
+                <TextView
+                    android:id="@+id/my"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Task"
+                    android:fontFamily="@font/avenir"
+                    android:textStyle="bold"
+                    android:layout_marginTop="20dp"
+                    android:textSize="22sp"
+                    android:textColor="@color/black"
+                    android:layout_marginHorizontal="24dp"/>
+
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/client_tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    style="@style/TabLayout"
+                    app:tabSelectedTextColor="@color/sky_blue"
+                    app:tabTextColor="@color/add_details"
+                    app:tabTextAppearance="@style/TabLayout"
+                    android:layout_below="@id/my"/>
+                <FrameLayout
+                    android:id="@+id/fragment_client_tabs_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="700dp"
+                    android:background="@color/white"
+                    android:layout_below="@id/client_tabs"/>
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

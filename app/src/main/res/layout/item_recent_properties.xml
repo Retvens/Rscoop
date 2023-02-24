@@ -30,18 +30,16 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="8dp"
                 android:src="@drawable/png_hotel_profile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/hotel_cover" />
 
             <TextView
                 android:id="@+id/hotel_name"
-                android:layout_width="wrap_content"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:paddingRight="5dp"
                 android:layout_marginStart="6dp"
-                android:layout_marginTop="8dp"
                 android:layout_toEndOf="@+id/hotel_profile"
                 android:fontFamily="@font/arvo"
                 android:text="Marriott Hotels"
@@ -49,16 +47,15 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/hotel_profile"
-                app:layout_constraintTop_toBottomOf="@id/hotel_cover" />
+                app:layout_constraintTop_toTopOf="@id/hotel_profile"/>
 
             <TextView
                 android:id="@+id/hotel_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
                 android:text="Indore, India"
                 android:textSize="10sp"
-                app:layout_constraintStart_toEndOf="@id/hotel_profile"
+                app:layout_constraintStart_toStartOf="@id/hotel_name"
                 app:layout_constraintTop_toBottomOf="@id/hotel_name" />
 
             <ImageView
@@ -67,7 +64,7 @@
                 android:layout_height="16dp"
                 android:layout_marginTop="4dp"
                 android:src="@drawable/google"
-                app:layout_constraintStart_toEndOf="@id/hotel_profile"
+                app:layout_constraintStart_toStartOf="@id/hotel_name"
                 app:layout_constraintTop_toBottomOf="@id/hotel_location" />
 
             <TextView
@@ -75,11 +72,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:layout_marginTop="4dp"
                 android:text="4.5"
                 android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/hotel_google_review"
-                app:layout_constraintTop_toBottomOf="@id/hotel_location" />
+                app:layout_constraintTop_toTopOf="@id/hotel_google_review"
+                app:layout_constraintBottom_toBottomOf="@id/hotel_google_review"/>
 
 
             <ImageView
@@ -89,22 +86,20 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="5dp"
                 android:src="@drawable/tripadvisor"
-                app:layout_constraintStart_toEndOf="@id/hotel_profile"
+                app:layout_constraintStart_toStartOf="@id/hotel_name"
                 app:layout_constraintTop_toBottomOf="@id/hotel_google_review"
-                app:layout_constraintBottom_toBottomOf="parent"
-
-                />
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <TextView
                 android:id="@+id/greview_review_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:layout_marginTop="6dp"
                 android:text="4.5"
                 android:textSize="10sp"
+                app:layout_constraintTop_toBottomOf="@id/greview"
                 app:layout_constraintStart_toEndOf="@+id/greview"
-                app:layout_constraintTop_toBottomOf="@id/google_review_text" />
+                app:layout_constraintTop_toTopOf="@id/greview"/>
 
             <RatingBar
                 android:id="@+id/ratingBar"

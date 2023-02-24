@@ -12,10 +12,11 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.retvence.rscoop.DataCollections.TaskData
 import com.retvens.rscoop.R
 import com.retvens.rscoop.RecentProperties.HotelsLocations
 
-class RecentPropertiesAdapterAT(val context: Context, val recentItem: List<RecentPropertiesDataClass>) : RecyclerView.Adapter<RecentPropertiesAdapterAT.AddTaskViewHolder>()  {
+class RecentPropertiesAdapterAT(val context: Context, var recentItem: List<RecentPropertiesDataClass>) : RecyclerView.Adapter<RecentPropertiesAdapterAT.AddTaskViewHolder>()  {
 
     class AddTaskViewHolder(itemView: View) : ViewHolder(itemView){
         val hotelName = itemView.findViewById<TextView>(R.id.hotel_name)
@@ -55,5 +56,10 @@ class RecentPropertiesAdapterAT(val context: Context, val recentItem: List<Recen
 
         }
 
+    }
+
+    fun updateData(newItems: List<RecentPropertiesDataClass>) {
+        recentItem = newItems
+        notifyDataSetChanged()
     }
 }

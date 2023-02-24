@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,12 +23,14 @@
             android:text="LogOut"
             android:fontFamily="@font/avenir"
             android:textStyle="bold"
+            android:layout_gravity="center_vertical"
             android:textColor="@color/black"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/logout_24"
+            android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="10dp"/>
 
 
@@ -52,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Retvens Services"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:fontFamily="@font/avenir"
         android:textColor="@color/black"
         android:layout_marginStart="10dp"
@@ -66,6 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:background="#FF2D55"
         app:layout_constraintVertical_bias="0.65"
         app:cardCornerRadius="5dp"
@@ -90,6 +94,7 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/avenir"
                 android:layout_marginStart="6dp"
+                android:textSize="14dp"
                 android:text="Admin"/>
 
     </LinearLayout>

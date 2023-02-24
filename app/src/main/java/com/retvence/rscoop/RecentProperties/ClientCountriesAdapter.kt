@@ -24,6 +24,7 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
         var Name = itemview.findViewById<TextView>(R.id.clientName)
         var image = itemview.findViewById<ImageView>(R.id.clientImage)
         var whats = itemview.findViewById<ImageView>(R.id.whatsappCountry)
+        var call = itemview.findViewById<ImageView>(R.id.call)
         val number = itemview.findViewById<TextView>(R.id.NumberOfClient)
         val address = itemview.findViewById<TextView>(R.id.addOfClient)
     }
@@ -39,8 +40,13 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
 
         holder.Name.text = userList[position].Name
         Glide.with(context).load(userList[position].Profile_photo).into(holder.image)
-//        holder.number.text = data.Phone.toString()
         holder.address.text = data.Country
+
+        holder.call.setOnClickListener {
+            val dailIntent = Intent(Intent.ACTION_DIAL)
+            dailIntent.data = Uri.parse("tel:" + "7905845935")
+            context.startActivity(dailIntent)
+        }
 
         holder.whats.setOnClickListener {
             val uriWhats : Uri = Uri.parse("https://whatsapp.com")

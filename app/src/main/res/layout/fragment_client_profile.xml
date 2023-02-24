@@ -1,0 +1,204 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.retvence.rscoop.DashBoardClient.ClientNavigation.ClientProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/client_Hotel_Name_profile"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:text="Hotel Name"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/avenir"
+        android:textColor="#383842"
+        android:layout_margin="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/client_hotel_cover_profile"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:src="@drawable/png_hotel"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="15dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:background="@drawable/imagecorner"
+        app:layout_constraintTop_toBottomOf="@+id/client_Hotel_Name_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <LinearLayout
+            android:id="@+id/logOut_client"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LogOut"
+                android:textSize="14dp"
+                android:fontFamily="@font/avenir"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/black"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logout_24"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="8dp"/>
+
+
+        </LinearLayout>
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/client_hotel_profile"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/png_hotel_profile"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/client_hotel_cover_profile"
+        app:layout_constraintTop_toBottomOf="@+id/client_hotel_cover_profile"
+        app:shapeAppearanceOverlay="@style/SpecificCornerRounded"/>
+
+    <TextView
+        android:id="@+id/Client_Hotel_Name2_profile"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:text="Hotel Name"
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:fontFamily="@font/avenir"
+        android:textStyle="normal"
+        android:textColor="#092C4C"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/client_hotel_profile"
+        app:layout_constraintStart_toStartOf="@id/client_hotel_profile"
+        app:layout_constraintEnd_toEndOf="@id/client_hotel_profile"/>
+
+    <TextView
+        android:id="@+id/client_hotel_contact_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:text="7905845935"
+        android:textSize="17dp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Client_Hotel_Name2_profile" />
+
+    <TextView
+        android:id="@+id/Client_hotel_country_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="California, United States"
+        android:textSize="17dp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/client_hotel_contact_profile" />
+
+
+    <ImageView
+        android:id="@+id/mali_client_profile"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/email"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/client_hotel_contact_profile"
+        app:layout_constraintBottom_toBottomOf="@id/Client_hotel_country_profile"/>
+
+    <ImageView
+        android:id="@+id/PhoneCall_client_profile"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/phonepng"
+        android:layout_marginEnd="@dimen/margin_10"
+        app:layout_constraintEnd_toStartOf="@id/mali_client_profile"
+        app:layout_constraintTop_toTopOf="@id/mali_client_profile"
+        app:layout_constraintBottom_toBottomOf="@id/mali_client_profile"/>
+
+    <ImageView
+        android:id="@+id/whatsapp_client_profile"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/whatsapp"
+        android:layout_marginEnd="@dimen/margin_10"
+        app:layout_constraintEnd_toStartOf="@id/PhoneCall_client_profile"
+        app:layout_constraintTop_toTopOf="@id/PhoneCall_client_profile"
+        app:layout_constraintBottom_toBottomOf="@id/PhoneCall_client_profile"/>
+
+    <TextView
+        android:id="@+id/recentHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recent Property"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/avenir"
+        android:textColor="#383842"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toBottomOf="@id/Client_hotel_country_profile"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:layout_marginStart="15dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/recentHeading"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/recycler_shimmer_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="15dp"
+            app:layout_constraintTop_toBottomOf="@id/recentHeading"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <include layout="@layout/shimmer_add_all_task"/>
+                <include layout="@layout/shimmer_add_all_task"/>
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
