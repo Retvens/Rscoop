@@ -38,8 +38,7 @@ class HotelsLocations : AppCompatActivity() {
 
         val backbtn = findViewById<ImageView>(R.id.hotels_back)
         backbtn.setOnClickListener {
-            startActivity(Intent(this, AdminDashBoard::class.java))
-            finish()
+            onBackPressed()
         }
 
         mMapFragment = SupportMapFragment.newInstance()
