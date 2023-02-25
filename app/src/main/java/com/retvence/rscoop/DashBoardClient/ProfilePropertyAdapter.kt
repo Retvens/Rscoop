@@ -43,6 +43,7 @@ class ProfilePropertyAdapter(val context: Context,val itemC : List<HotelsData>) 
             intent.putExtra("logoH",items.hotel_logo)
             intent.putExtra("nameH",items.hotel_name)
             intent.putExtra("addH",items.Address)
+            intent.putExtra("hotel_id",items.hotel_id)
             intent.putExtra("ratingH",items.hotel_stars)
             context.startActivity(intent)
         }
