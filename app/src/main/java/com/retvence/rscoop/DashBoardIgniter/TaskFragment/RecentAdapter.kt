@@ -23,6 +23,8 @@ class RecentAdapter(val context: Context, var userList:List<GetTaskData>):Recycl
     class holderclass(itemview: View):RecyclerView.ViewHolder(itemview) {
         var name = itemview.findViewById<TextView>(R.id.Company_Name)
         var image = itemview.findViewById<ImageView>(R.id.owner_Image)
+        var date = itemview.findViewById<TextView>(R.id.hotel_date)
+        var status = itemview.findViewById<ImageView>(R.id.status_Image)
 
         var facebook = itemview.findViewById<TextView>(R.id.facebooktask)
         var instagram = itemview.findViewById<TextView>(R.id.instatask)
@@ -65,7 +67,6 @@ class RecentAdapter(val context: Context, var userList:List<GetTaskData>):Recycl
 
         }
 
-
         holder.facebook.text = userList[position].facebook
         holder.instagram.text = userList[position].instagram
         holder.linkdin.text = userList[position].Linkedin
@@ -75,6 +76,14 @@ class RecentAdapter(val context: Context, var userList:List<GetTaskData>):Recycl
         holder.google.text = userList[position].Google_reviews
         Glide.with(context).load(userList[position].owner_pic).into(holder.image)
         holder.name.text = userList[position].hotel_name
+        holder.date.text = userList[position].Date
+
+        //Status for task
+        if (userList[position].Status == "Done"){
+            holder.status.setImageResource(R.drawable.png_check)
+        }else{
+            holder.status.setImageResource(R.drawable.png_timer)
+        }
 
         holder.fbIcon.setOnClickListener{
             val uriForFB : Uri = Uri.parse("https://facebook.com")

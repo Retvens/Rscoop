@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.retvence.rscoop.DataCollections.CountryData
 import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerHotelsView
 import com.retvens.rscoop.R
@@ -30,5 +31,10 @@ class EgniterRecycler(val context: Context, var hotelList:List<HotelsData>):Recy
 
     override fun getItemCount(): Int {
         return hotelList.size
+    }
+
+    fun updateData(newItems: List<HotelsData>) {
+        hotelList = newItems
+        notifyDataSetChanged()
     }
 }

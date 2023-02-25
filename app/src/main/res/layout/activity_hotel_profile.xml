@@ -84,7 +84,7 @@
 
         <TextView
             android:id="@+id/Egniter_hotel_country"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Egniter_Hotel_Name2"
@@ -99,7 +99,7 @@
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginLeft="-60dp"
             android:numStars="5"
             android:progressBackgroundTint="#a8a8a8"
             android:progressTint="#FBBC05"
@@ -108,11 +108,10 @@
             android:scaleY="0.35"
             android:stepSize="0.1"
             android:visibility="visible"
-            app:layout_constraintTop_toTopOf="@+id/Egniter_hotel_country"
+            android:layout_marginTop="-15dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="-60dp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="-52dp" />
+            app:layout_constraintTop_toBottomOf="@+id/Egniter_hotel_country"
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/maliLink"
@@ -120,9 +119,7 @@
             android:layout_height="30dp"
             android:src="@drawable/email"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="150dp"
             app:layout_constraintTop_toBottomOf="@+id/Egniter_Hotel_Name2"
-            app:layout_constraintStart_toEndOf="@id/Egniter_hotel_country"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="60dp"
             tools:ignore="MissingConstraints" />
@@ -134,9 +131,8 @@
             android:src="@drawable/phonepng"
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@+id/Egniter_Hotel_Name2"
-            app:layout_constraintStart_toEndOf="@id/Egniter_hotel_country"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginLeft="170dp"
+            android:layout_marginRight="20dp"
             tools:ignore="MissingConstraints" />
 
 
@@ -146,10 +142,10 @@
             android:layout_height="30dp"
             tools:ignore="MissingConstraints"
             android:src="@drawable/twitter"
-            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             />
         <ImageView
             android:id="@+id/whatsappLink"
@@ -157,10 +153,10 @@
             android:layout_height="30dp"
             tools:ignore="MissingConstraints"
             android:src="@drawable/whatsapp"
-            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             />
         <ImageView
             android:id="@+id/tripadivisorLink"
@@ -168,10 +164,10 @@
             android:layout_height="30dp"
             tools:ignore="MissingConstraints"
             android:src="@drawable/tripadvisor"
-            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="100dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             />
 
         <ImageView
@@ -180,10 +176,10 @@
             android:layout_height="30dp"
             tools:ignore="MissingConstraints"
             android:src="@drawable/pinterest"
-            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="140dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             />
         <ImageView
             android:id="@+id/linkdinLink"
@@ -191,10 +187,10 @@
             android:layout_height="30dp"
             tools:ignore="MissingConstraints"
             android:src="@drawable/linkedin"
-            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="180dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             />
         <ImageView
             android:id="@+id/instagramLink"
@@ -202,10 +198,10 @@
             android:layout_height="30dp"
             tools:ignore="MissingConstraints"
             android:src="@drawable/instagram"
-            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="220dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             />
         <ImageView
             android:id="@+id/googleLink"
@@ -213,10 +209,10 @@
             android:layout_height="30dp"
             tools:ignore="MissingConstraints"
             android:src="@drawable/google"
-            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="260dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             />
         <ImageView
             android:id="@+id/facebookLink"
@@ -224,10 +220,10 @@
             android:layout_height="30dp"
             tools:ignore="MissingConstraints"
             android:src="@drawable/facebook"
-            app:layout_constraintTop_toBottomOf="@+id/PhoneCall"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="300dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             />
 
         <TextView
@@ -285,7 +281,7 @@
                 />
 
             <TextView
-                android:text="4.3"
+                android:textColor="#282828"
                 android:textSize="16dp"
                 android:id="@+id/googleRating"
                 android:layout_width="wrap_content"
@@ -315,7 +311,7 @@
 
             <TextView
                 android:id="@+id/trapadvisior"
-                android:text="4.9"
+                android:textColor="#282828"
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

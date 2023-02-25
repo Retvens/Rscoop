@@ -43,7 +43,7 @@ interface RetvensUrls {
     fun getCountry(): Call<List<CountryData>>
 
 
-    @GET("task")
+    @GET("tasks")
     fun getTask(): Call<List<GetTaskData>>
 
     @POST("login")
@@ -54,15 +54,16 @@ interface RetvensUrls {
     @GET("property")
     fun getRecentProperty() : Call<List<RecentPropertiesDataClass>>
 
-    @POST("task")
+    @POST("tasks")
     fun createSocialMeadia(
         @Body social : TaskData
     ) : Call<ResponseTask>
 
 
-    @PATCH("task/{_id}")
+
+    @PATCH("tasks/{id}")
     fun updateTask(
-        @Path("_id") id:String,
+        @Path("id") id:String,
         @Body task:UpdateTaskClass
     ):Call<ResponseTask>
 
@@ -70,11 +71,22 @@ interface RetvensUrls {
     @GET("tasks/{hotel_id}")
     fun individualTask(
         @Path("hotel_id") hotel_id:String
-    ):Call<GetTaskData>
+    ):Call<List<GetTaskData>>
 
-    @PATCH("task/{_id}")
+    @PATCH("tasks/{id}")
     fun updateStatus(
-        @Path("_id") id:String,
+        @Path("id") id:String,
         @Body task:StatusClass
     ):Call<ResponseTask>
+
+
+    @GET("tasks/{Status}")
+    fun completeTask(
+        @Path("Status") Status:String
+    ):Call<List<GetTaskData>>
+
+    @GET("tasks/{Date}")
+    fun TodayTask(
+        @Path("Date") Date:String
+    ):Call<List<GetTaskData>>
 }

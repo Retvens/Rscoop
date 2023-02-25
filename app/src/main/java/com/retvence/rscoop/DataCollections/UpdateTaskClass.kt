@@ -1,6 +1,6 @@
 package com.retvence.rscoop.DataCollections
 
-class UpdateTaskClass(
+data class UpdateTaskClass(
     val facebook:String,
     val Linkedin:String,
     val instagram:String,

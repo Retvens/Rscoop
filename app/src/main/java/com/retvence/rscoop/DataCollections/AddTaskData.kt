@@ -1,4 +1,4 @@
-package com.retvence.rscoop.DashBoardIgniter
+package com.retvence.rscoop.DataCollections
 
 data class AddTaskData(
     val Date: String,
