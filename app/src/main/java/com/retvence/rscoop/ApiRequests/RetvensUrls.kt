@@ -1,5 +1,6 @@
 package com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
 
+import com.retvence.rscoop.DashBoardClient.ClientProfileData
 import com.retvence.rscoop.DashBoardIgniter.RecentPropertiesDataClass
 import com.retvence.rscoop.DataCollections.*
 import okhttp3.MultipartBody
@@ -21,17 +22,20 @@ interface RetvensUrls {
 
 
     @Multipart
+    @Headers("Content-Type: application/json")
     @POST("hotelowner")
     fun uploadData(
-        @Part("Name") Name: String,
-        @Part("Email") Email: String,
-        @Part("Password") Password: String,
-        @Part("Phone") Phone: String,
-        @Part Profile_photo: MultipartBody.Part,
-        @Part("Service_type") Service_type: String,
-        @Part("Country") Country: String,
-        @Part Cover_photo: MultipartBody.Part,
-        ): Call<ResponseClient>
+        @Part("Name") Name: RequestBody,
+        @Part("Email") Email: RequestBody,
+        @Part("Password") Password: RequestBody,
+        @Part("Phone") Phone: RequestBody,
+        @Part("owner_id") owner_id: RequestBody,
+        @Part profilePhoto: MultipartBody.Part,
+        @Part("Service_type") Service_type: RequestBody,
+        @Part("Country") Country: RequestBody,
+        @Part("token") token: RequestBody,
+        @Part coverPhoto: MultipartBody.Part,
+        ): Call<List<ResponseClient>>
 
     @GET("property/{owner_id}")
     fun getHotel(@Path("owner_id") owner:String): Call<List<HotelsData>>
@@ -87,6 +91,11 @@ interface RetvensUrls {
         @Path("Date") Date:String
     ):Call<List<GetTaskData>>
 
-    @POST("hotelowner")
-    fun uploadOwner(@Body owner:PostOwner):Call<ResponseClient>
+    @GET("hotelowner/{owner_id}")
+    fun getClient(
+        @Path("owner_id") owner_id: String
+    ): Call<List<ClientProfileData>>
+
+    @GET("property/{owner_id}")
+    fun getClientHotel(@Path("owner_id") owner:String): Call<List<RecentPropertiesDataClass>>
 }
