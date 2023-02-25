@@ -18,6 +18,7 @@ class SharedPreferenceManagerAdmin private constructor(private val context : Con
                 sharedPreferences.getString("Email",null),
                 sharedPreferences.getString("Password", null),
                 sharedPreferences.getString("message", null),
+                sharedPreferences.getString("owner_id", null),
                 sharedPreferences.getInt("__v",-1)
             )
         }
@@ -30,6 +31,7 @@ class SharedPreferenceManagerAdmin private constructor(private val context : Con
         editor.putString("Email", user.Email)
         editor.putString("Password", user.Password)
         editor.putString("message", user.message)
+        editor.putString("owner_id", user.owner_id)
         editor.putInt("__v",user.__v)
         editor.apply()
 
