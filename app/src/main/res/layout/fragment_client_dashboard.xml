@@ -117,7 +117,7 @@
                         app:tint="@color/add_details" />
 
                     <EditText
-                        android:id="@+id/search_property_add_task"
+                        android:id="@+id/search_property_client_dashboard"
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

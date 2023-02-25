@@ -3,11 +3,14 @@ package com.retvence.rscoop.DashBoardClient.ClientNavigation
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.tabs.TabLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
+import com.retvence.rscoop.DashBoardClient.ClientMiniPropertyAdapter
 import com.retvence.rscoop.DashBoardClient.ClientTabs.ClientCompletedTabFragment
 import com.retvence.rscoop.DashBoardClient.ClientTabs.ClientRecentTabFragment
 import com.retvence.rscoop.DashBoardClient.ClientTabs.ClientTodayTabFragment
+import com.retvence.rscoop.DashBoardClient.ViewAllPropertiesActivity
 import com.retvence.rscoop.DashBoardClient.ViewAllTaskOfProperty
 import com.retvence.rscoop.DashBoardIgniter.AddNewTaskRecentProperty
 import com.retvence.rscoop.DashBoardIgniter.EgniterRecycler
@@ -25,6 +30,7 @@ import com.retvence.rscoop.DashBoardIgniter.TaskFragment.CompletedFragment
 import com.retvence.rscoop.DashBoardIgniter.TaskFragment.RecentFragment
 import com.retvence.rscoop.DashBoardIgniter.TaskFragment.TodayFragment
 import com.retvence.rscoop.DataCollections.HotelsData
+import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,8 +40,10 @@ class ClientDashboardFragment : Fragment() {
 
     private lateinit var tabLayout: TabLayout
     private lateinit var recyclerViewC: RecyclerView
-    private lateinit var hotelAdapter: EgniterRecycler
+    private lateinit var hotelAdapter: ClientMiniPropertyAdapter
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
+
+    private lateinit var search: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,9 +58,11 @@ class ClientDashboardFragment : Fragment() {
 
         val viewAll = view.findViewById<TextView>(R.id.view_all_dash_client)
         viewAll.setOnClickListener {
-            startActivity(Intent(context, ViewAllTaskOfProperty::class.java))
+            startActivity(Intent(context, ViewAllPropertiesActivity::class.java))
         }
 
+
+        search = view.findViewById(R.id.search_property_client_dashboard)
 
         shimmerFrameLayout = view.findViewById(R.id.client_shimmer_dash)
         recyclerViewC = view.findViewById(R.id.client_recycler_dash)
@@ -94,11 +104,12 @@ class ClientDashboardFragment : Fragment() {
         tabLayout.getTabAt(0)?.select()
 
 
-//        getHotels()
+        getHotels()
     }
 
     private fun getHotels() {
-        val data = RetrofitBuilder.retrofitBuilder.getHotel("")
+        val owner_id = SharedPreferenceManagerAdmin.getInstance(context!!).user.owner_id.toString()
+        val data = RetrofitBuilder.retrofitBuilder.getHotel(owner_id)
 
         data.enqueue(object : Callback<List<HotelsData>?> {
             @SuppressLint("NotifyDataSetChanged")
@@ -107,16 +118,39 @@ class ClientDashboardFragment : Fragment() {
                 response: Response<List<HotelsData>?>
             ) {
 
-                if (response.isSuccessful){
-//                    val response = response.body()!!
-//                    hotelAdapter = EgniterRecycler(context!!, response)
-//                    hotelAdapter.notifyDataSetChanged()
-//                    recyclerViewC.adapter = hotelAdapter
+                shimmerFrameLayout.stopShimmer()
+                shimmerFrameLayout.visibility = View.GONE
 
+                val response = response.body()!!
+
+                if (response != null && view != null){
+
+                    hotelAdapter = ClientMiniPropertyAdapter(context!!, response)
+                    hotelAdapter.notifyDataSetChanged()
+                    recyclerViewC.adapter = hotelAdapter
+                    recyclerViewC.visibility = View.VISIBLE
+
+                    search.addTextChangedListener(object : TextWatcher {
+                        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                        }
+
+                        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                            val originalData = response.toList()
+                            val filterData = originalData.filter { item ->
+                                item.hotel_name.contains(p0.toString(),ignoreCase = true)
+                            }
+                            hotelAdapter.updateData(filterData)
+                        }
+
+                        override fun afterTextChanged(p0: Editable?) {
+
+                        }
+                    })
                 }
             }
             override fun onFailure(call: Call<List<HotelsData>?>, t: Throwable) {
-                Toast.makeText(requireContext(),t.localizedMessage, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), t.localizedMessage!!.toString(), Toast.LENGTH_LONG).show()
             }
         })
     }

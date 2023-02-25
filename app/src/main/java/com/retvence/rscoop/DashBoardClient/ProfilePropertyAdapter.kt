@@ -10,10 +10,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.retvence.rscoop.DashBoardIgniter.RecentPropertiesDataClass
 import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvens.rscoop.R
 
-class ProfilePropertyAdapter(val context: Context,val itemC : List<HotelsData>) : RecyclerView.Adapter<ProfilePropertyAdapter.ProfileViewHolder>() {
+class ProfilePropertyAdapter(val context: Context,val itemC : List<RecentPropertiesDataClass>) : RecyclerView.Adapter<ProfilePropertyAdapter.ProfileViewHolder>() {
 
     class ProfileViewHolder(itemView: View) : ViewHolder(itemView){
         val imageHotel = itemView.findViewById<ImageView>(R.id.hotel_add_task_img)
