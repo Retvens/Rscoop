@@ -34,7 +34,7 @@ class ProfilePropertyAdapter(val context: Context,val itemC : List<HotelsData>) 
     override fun onBindViewHolder(holder: ProfileViewHolder, position: Int) {
         val items = itemC[position]
         holder.nameHotel.text = items.hotel_name
-        holder.starHotel.text = items.hotel_stars
+        holder.starHotel.text = items.hotel_stars.toString()
         Glide.with(context).load(items.Cover_photo).into(holder.imageHotel)
 
         holder.itemView.setOnClickListener {

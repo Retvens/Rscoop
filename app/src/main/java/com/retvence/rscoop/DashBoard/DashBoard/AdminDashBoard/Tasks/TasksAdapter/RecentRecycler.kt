@@ -33,6 +33,8 @@ class RecentRecycler(val context: Context, var userList:List<GetTaskData>) : Rec
         var pinterest = itemview.findViewById<TextView>(R.id.pinterest)
         var gmb = itemview.findViewById<TextView>(R.id.gg)
         var google = itemview.findViewById<TextView>(R.id.google)
+        var data = itemview.findViewById<TextView>(R.id.hotel_date)
+        var status = itemview.findViewById<ImageView>(R.id.status_Image)
 
         var fbIcon = itemView.findViewById<ImageView>(R.id.fb_icon)
         var linkIcon = itemView.findViewById<ImageView>(R.id.linkdin_icon)
@@ -61,6 +63,15 @@ class RecentRecycler(val context: Context, var userList:List<GetTaskData>) : Rec
         holder.google.text = userList[position].Google_reviews
         Glide.with(context).load(userList[position].owner_pic).into(holder.image)
         holder.name.text = userList[position].hotel_name
+        holder.data.text = userList[position].Date
+
+
+
+        if (userList[position].Status == "Done"){
+            holder.status.setImageResource(R.drawable.png_check)
+        }else{
+            holder.status.setImageResource(R.drawable.png_timer)
+        }
 
         holder.fbIcon.setOnClickListener{
             val uriForFB :Uri = Uri.parse("https://facebook.com")
