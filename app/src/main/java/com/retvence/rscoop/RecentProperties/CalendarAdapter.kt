@@ -18,7 +18,7 @@ import com.retvence.rscoop.DashBoardIgniter.AddNewTaskActivity
 import com.retvens.rscoop.R
 import java.text.SimpleDateFormat
 
-class CalendarAdapter( private val listener: (calendarDateModel: CalendarDateModel, position: Int) -> Unit):
+class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateModel, position: Int) -> Unit):
     RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
 
     private val list = ArrayList<CalendarDateModel>()

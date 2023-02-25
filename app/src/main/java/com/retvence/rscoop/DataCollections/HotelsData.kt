@@ -5,7 +5,7 @@ data class HotelsData(
     val hotel_id:String,
     val hotel_name:String,
     val hotel_location: List<HotelsLocation>,
-    val hotel_stars:String,
+    val hotel_stars:Int,
     val hotel_room:String,
     val Number_of_banquet:String,
     val owner_id:String,

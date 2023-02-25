@@ -7,6 +7,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.OpenableColumns
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -18,8 +19,10 @@ import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.UploadRequestBody
 import com.retvence.rscoop.DataCollections.OwnersData
+import com.retvence.rscoop.DataCollections.PostOwner
 import com.retvence.rscoop.DataCollections.ResponseClient
 import com.retvens.rscoop.R
+import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -133,7 +136,17 @@ class AddClient : AppCompatActivity(), UploadRequestBody.UploadCallback {
         val password = clientPassword.text.toString().trim()
         val phone = clientNumber.text.toString().trim()
         val country = clientLocation.text.toString().trim()
+        val token = "abc123"
+        val serviceType = "DM"
 
+
+
+        val namePart = MultipartBody.Part.createFormData("Name", name)
+        val emailPart = MultipartBody.Part.createFormData("Email", email)
+        val passwordPart = MultipartBody.Part.createFormData("Password", password)
+        val phonePart = MultipartBody.Part.createFormData("Phone", phone.toString())
+        val serviceTypePart = MultipartBody.Part.createFormData("Service_type", serviceType)
+        val countryPart = MultipartBody.Part.createFormData("Country", country)
 
        if (coverPhotoPart == null){
            editClientCover.snackbar("Select an Image First")
@@ -149,8 +162,14 @@ class AddClient : AppCompatActivity(), UploadRequestBody.UploadCallback {
         val file = File(cacheDir,contentResolver.getFileName(coverPhotoPart!!))
         val outputStream = FileOutputStream(file)
         inputStream.copyTo(outputStream)
-        val body = UploadRequestBody(file,"Profile_photo",this)
+        val body = UploadRequestBody(file,"image",this)
 
+        val contentResolver = getContentResolver()
+
+        val imageFile = File(cacheDir,contentResolver.getFileName(coverPhotoPart!!))
+        val imageByteArray = imageFile.readBytes()
+
+        val imageBase64 = Base64.encodeToString(imageByteArray, Base64.DEFAULT)
 
         if (profilePhotoPart == null){
             editClientCover.snackbar("Select an Image First")
@@ -165,9 +184,31 @@ class AddClient : AppCompatActivity(), UploadRequestBody.UploadCallback {
         val inputStream1 = FileInputStream(parcelFileDescriptor1.fileDescriptor)
         val file1 = File(cacheDir,contentResolver.getFileName(profilePhotoPart!!))
         val outputStream1 = FileOutputStream(file)
-        inputStream.copyTo(outputStream)
-        val body1 = UploadRequestBody(file,"Cover_photo",this)
+        inputStream.copyTo(outputStream1)
+        val body1 = UploadRequestBody(file,"image",this)
 
+        Toast.makeText(applicationContext,imageBase64,Toast.LENGTH_LONG).show()
+        val owner = PostOwner(name,email,password,imageBase64,"DM",
+        country,imageBase64)
+       val send = RetrofitBuilder.retrofitBuilder.uploadOwner(owner)
+
+        send.enqueue(object : Callback<ResponseClient?> {
+            override fun onResponse(
+                call: Call<ResponseClient?>,
+                response: Response<ResponseClient?>
+            ) {
+                if (response.isSuccessful){
+                    val response = response.body()!!
+                    Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+                }else{
+                    Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseClient?>, t: Throwable) {
+                Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
+            }
+        })
 
     }
 
@@ -205,28 +246,29 @@ class AddClient : AppCompatActivity(), UploadRequestBody.UploadCallback {
 
     }
 
-}
+    private fun ContentResolver.getFileName(coverPhotoPart: Uri): String {
 
-private fun ContentResolver.getFileName(coverPhotoPart: Uri): String {
-
-    var name = ""
-    val returnCursor = this.query(coverPhotoPart,null,null,null,null)
-    if (returnCursor!=null){
-        val nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-        returnCursor.moveToFirst()
-        name = returnCursor.getString(nameIndex)
-        returnCursor.close()
-    }
-        return name
-}
-
-private fun View.snackbar(s: String) {
-    Snackbar.make(this, s, Snackbar.LENGTH_LONG).also { snackbar ->
-        snackbar.setAction("Ok") {
-            snackbar.dismiss()
+        var name = ""
+        val returnCursor = this.query(coverPhotoPart,null,null,null,null)
+        if (returnCursor!=null){
+            val nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+            returnCursor.moveToFirst()
+            name = returnCursor.getString(nameIndex)
+            returnCursor.close()
         }
-    }.show()
+        return name
+    }
+
+    private fun View.snackbar(s: String) {
+        Snackbar.make(this, s, Snackbar.LENGTH_LONG).also { snackbar ->
+            snackbar.setAction("Ok") {
+                snackbar.dismiss()
+            }
+        }.show()
+    }
 }
+
+
 
  // content://media/external/images/media/1425
 

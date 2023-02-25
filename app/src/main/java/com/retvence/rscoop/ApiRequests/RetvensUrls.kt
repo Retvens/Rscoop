@@ -1,6 +1,5 @@
 package com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
 
-import com.retvence.rscoop.DashBoardClient.ClientProfileData
 import com.retvence.rscoop.DashBoardIgniter.RecentPropertiesDataClass
 import com.retvence.rscoop.DataCollections.*
 import okhttp3.MultipartBody
@@ -90,8 +89,4 @@ interface RetvensUrls {
     fun TodayTask(
         @Path("Date") Date:String
     ):Call<List<GetTaskData>>
-
-    @GET("hotelowner/{owner_id}")
-    fun getClient(@Path("owner_id") owner_id:String): Call<ClientProfileData>
-
 }

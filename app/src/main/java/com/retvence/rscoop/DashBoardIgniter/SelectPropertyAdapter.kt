@@ -39,7 +39,7 @@ class SelectPropertyAdapter(val context : Context, var items: List<HotelsData>) 
     override fun onBindViewHolder(holder: SelectPropertyViewHolder, position: Int) {
         val items = items[position]
         holder.nameHotel.text = items.hotel_name
-        holder.starHotel.text = items.hotel_stars
+        holder.starHotel.text = items.hotel_stars.toString()
         Glide.with(context).load(items.Cover_photo).into(holder.imageHotel)
 
         holder.itemView.setOnClickListener {

@@ -112,7 +112,7 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.OnItemClic
     }
 
     override fun onItemClickDate(text:String){
-        hotelDate = text.toString()
+        hotelDate = text
         Toast.makeText(this,hotelDate,Toast.LENGTH_SHORT)
             .show()
     }
