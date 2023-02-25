@@ -6,20 +6,24 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
+import com.retvence.rscoop.DashBoardClient.ClientProfileData
 import com.retvence.rscoop.DashBoardClient.ProfilePropertyAdapter
 import com.retvence.rscoop.DashBoardIgniter.SelectPropertyAdapter
 import com.retvence.rscoop.DataCollections.HotelsData
+import com.retvence.rscoop.DataCollections.OwnersData
 import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
 import com.retvens.rscoop.MainActivity
@@ -38,6 +42,16 @@ class ClientProfileFragment : Fragment() {
     lateinit var call : ImageView
     lateinit var mail : ImageView
 
+    private lateinit var owner_id : String
+
+    private lateinit var name : TextView
+    private lateinit var nameHotel : TextView
+    private lateinit var number : TextView
+    private lateinit var country : TextView
+
+    private lateinit var cover : ImageView
+    private lateinit var profile : ImageView
+
     private lateinit var logOut: LinearLayout
 
     override fun onCreateView(
@@ -50,6 +64,8 @@ class ClientProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        owner_id = SharedPreferenceManagerAdmin.getInstance(context!!).user.owner_id.toString()
+
         logOut = view.findViewById(R.id.logOut_client)
         logOut.setOnClickListener {
             context?.let { it1 -> SharedPreferenceManagerAdmin.getInstance(it1).clear() }
@@ -58,6 +74,14 @@ class ClientProfileFragment : Fragment() {
             startActivity(intent)
             Toast.makeText(context,"Logged Out",Toast.LENGTH_SHORT).show()
         }
+
+        name = view.findViewById(R.id.client_Hotel_Name_profile)
+        nameHotel = view.findViewById(R.id.Client_Hotel_Name2_profile)
+        number = view.findViewById(R.id.client_hotel_contact_profile)
+        country = view.findViewById(R.id.Client_hotel_country_profile)
+
+        cover = view.findViewById(R.id.client_hotel_cover_profile)
+        profile = view.findViewById(R.id.client_hotel_profile)
 
 
         whatsapp = view.findViewById(R.id.whatsapp_client_profile)
@@ -86,10 +110,28 @@ class ClientProfileFragment : Fragment() {
         recycler.setHasFixedSize(true)
         recycler.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
 
+//        getClientData()
+
         getHotelData()
     }
+
+    private fun getClientData() {
+
+        val client = RetrofitBuilder.retrofitBuilder.getClient(owner_id)
+        client.enqueue(object : Callback<ClientProfileData?> {
+            override fun onResponse(call: Call<ClientProfileData?>, response: Response<ClientProfileData?>) {
+                name.text = response.body()?.Name.toString()
+                Log.d("name",response.body()?.Name.toString())
+            }
+
+            override fun onFailure(call: Call<ClientProfileData?>, t: Throwable) {
+                Toast.makeText(context,t.localizedMessage,Toast.LENGTH_SHORT).show()
+                Log.d("name",t.localizedMessage!!)
+            }
+        })
+    }
     private fun getHotelData() {
-        val retrofit = RetrofitBuilder.retrofitBuilder.getHotel("5252")
+        val retrofit = RetrofitBuilder.retrofitBuilder.getHotel(owner_id)
         retrofit.enqueue(object : Callback<List<HotelsData>?> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(

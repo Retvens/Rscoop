@@ -28,7 +28,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ViewAllTaskOfProperty : AppCompatActivity() {
+class ViewAllTaskOfProperty : AppCompatActivity(),
+    CalendarAdapter.onItemClickListener {
+
+    private lateinit var taskDate : String
 
     private lateinit var textDateMonth: TextView
     private lateinit var ivCalendarNext: ImageView
@@ -160,9 +163,15 @@ class ViewAllTaskOfProperty : AppCompatActivity() {
         setUpCalendar()
         allTaskData()
     }
-
+    override fun onItemClickDate(text:String) {
+        taskDate = text.toString()
+        Toast.makeText(this, taskDate, Toast.LENGTH_SHORT)
+            .show()
+    }
     private fun allTaskData() {
-        val getData = RetrofitBuilder.retrofitBuilder.getTask()
+        val hotel_id =intent.getStringExtra("hotel_id").toString()
+
+        val getData = RetrofitBuilder.retrofitBuilder.individualTask(hotel_id)
         getData.enqueue(object : Callback<List<GetTaskData>?> {
             override fun onResponse(
                 call: Call<List<GetTaskData>?>,
@@ -218,6 +227,7 @@ class ViewAllTaskOfProperty : AppCompatActivity() {
             calendarList2.forEachIndexed { index, calendarModel ->
                 calendarModel.isSelected = index == position
             }
+            adapter.setOnItemClickListener(this@ViewAllTaskOfProperty)
             adapter.setData(calendarList2)
         }
         recyclerViewDate.adapter = adapter
@@ -240,6 +250,7 @@ class ViewAllTaskOfProperty : AppCompatActivity() {
         }
         calendarList2.clear()
         calendarList2.addAll(calendarList)
+        adapter.setOnItemClickListener(this@ViewAllTaskOfProperty)
         adapter.setData(calendarList)
     }
 
