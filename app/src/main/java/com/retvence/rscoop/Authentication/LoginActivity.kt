@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
     private fun loginUser() {
         val email = loginEmail.text.toString()
         val password = loginPassword.text.toString()
-        val login = RetrofitBuilder.retrofitBuilder.userLogin(UserLoginData(email,password,"",0))
+        val login = RetrofitBuilder.retrofitBuilder.userLogin(UserLoginData(email,password,"","",0))
         login.enqueue(object : Callback<UserLoginData?> {
             override fun onResponse(
                 call: Call<UserLoginData?>,
@@ -81,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     else if (response.message.toString() == "Owner login successful"){
-                        Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext,response.owner_id,Toast.LENGTH_LONG).show()
                         SharedPreferenceManagerAdmin.getInstance(applicationContext).saveUser(response)
                         val intent = Intent(this@LoginActivity,ClientDashboardActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
