@@ -41,8 +41,7 @@ class AddProperty : AppCompatActivity() {
 
         val backbtn = findViewById<ImageView>(R.id.addproperty_back_btn)
         backbtn.setOnClickListener {
-            startActivity(Intent(this, AdminDashBoard::class.java))
-            finish()
+            onBackPressed()
         }
 
 
