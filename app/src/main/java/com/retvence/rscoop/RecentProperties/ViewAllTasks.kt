@@ -29,8 +29,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ViewAllTasks : AppCompatActivity(),
-    CalendarAdapter.onItemClickListener {
+class ViewAllTasks : AppCompatActivity(), CalendarAdapter.onItemClickListener {
 
     private lateinit var taskDate : String
 
@@ -84,11 +83,13 @@ class ViewAllTasks : AppCompatActivity(),
         allTaskData()
     }
 
-    override fun onItemClickDate(text:String) {
-        taskDate = text.toString()
-        Toast.makeText(this, taskDate, Toast.LENGTH_SHORT)
-            .show()
-    }
+
+        override fun onItemClickDate(text:String) {
+            taskDate = text.toString()
+            Toast.makeText(this, taskDate, Toast.LENGTH_SHORT)
+                .show()
+        }
+
     /**
      * Set up click listener
      */
