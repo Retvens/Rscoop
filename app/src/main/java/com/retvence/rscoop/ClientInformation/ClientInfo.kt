@@ -29,7 +29,7 @@ class ClientInfo : AppCompatActivity() {
 
         val backbtn = findViewById<ImageView>(R.id.backarrow)
         backbtn.setOnClickListener {
-            startActivity(Intent(this, AdminDashBoard::class.java))
+            onBackPressed()
         }
 
         //defined items
