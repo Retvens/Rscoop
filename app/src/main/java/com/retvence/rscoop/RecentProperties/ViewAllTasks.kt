@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.SnapHelper
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
+import com.retvence.rscoop.DashBoardIgniter.SelectPropertyAdapter
 import com.retvence.rscoop.DataCollections.GetTaskData
+import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvence.rscoop.DataCollections.TaskData
 import com.retvence.rscoop.RecentProperties.CalendarAdapter
 import com.retvence.rscoop.RecentProperties.CalendarDateModel
@@ -27,8 +29,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ViewAllTasks : AppCompatActivity() {
+class ViewAllTasks : AppCompatActivity(),
+    CalendarAdapter.onItemClickListener {
 
+    private lateinit var taskDate : String
 
     private lateinit var tvDateMonth: TextView
     private lateinit var ivCalendarNext: ImageView
@@ -79,6 +83,12 @@ class ViewAllTasks : AppCompatActivity() {
         setUpCalendar()
         allTaskData()
     }
+
+    override fun onItemClickDate(text:String) {
+        taskDate = text.toString()
+        Toast.makeText(this, taskDate, Toast.LENGTH_SHORT)
+            .show()
+    }
     /**
      * Set up click listener
      */
@@ -107,6 +117,7 @@ class ViewAllTasks : AppCompatActivity() {
             calendarList2.forEachIndexed { index, calendarModel ->
                 calendarModel.isSelected = index == position
             }
+            adapter.setOnItemClickListener(this@ViewAllTasks)
             adapter.setData(calendarList2)
         }
         recyclerViewDate.adapter = adapter
@@ -129,6 +140,7 @@ class ViewAllTasks : AppCompatActivity() {
         }
         calendarList2.clear()
         calendarList2.addAll(calendarList)
+        adapter.setOnItemClickListener(this@ViewAllTasks)
         adapter.setData(calendarList)
     }
 
