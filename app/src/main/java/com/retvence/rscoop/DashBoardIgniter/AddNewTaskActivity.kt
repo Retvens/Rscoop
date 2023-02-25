@@ -99,8 +99,7 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.OnItemClic
         }
 
         findViewById<ImageView>(R.id.add_tasks_back_btn).setOnClickListener {
-            startActivity(Intent(this, AdminDashBoard::class.java))
-//            finish()
+            onBackPressed()
         }
 
         findViewById<CardView>(R.id.save_property).setOnClickListener {
@@ -124,7 +123,9 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.OnItemClic
         ownerId = item.owner_id
 
     }
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
     private fun createData() {
 
         val facebook = fbPost.text.toString()
