@@ -1,8 +1,11 @@
 package com.retvence.rscoop.DashBoardIgniter
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -36,6 +39,12 @@ class HotelProfile : AppCompatActivity() {
     private lateinit var taskRecyclerView: RecyclerView
     private lateinit var adapter:HotelTaskAdapter
 
+
+
+    lateinit var call : ImageView
+    lateinit var mail : ImageView
+    lateinit var whatsapp : ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hotel_profile)
@@ -66,6 +75,71 @@ class HotelProfile : AppCompatActivity() {
         findViewById<ImageView>(R.id.hotels_back_hp).setOnClickListener {
             onBackPressed()
         }
+
+
+        call = findViewById(R.id.PhoneCall)
+        mail = findViewById(R.id.maliLink)
+        call.setOnClickListener {
+            val uriCall : Uri = Uri.parse("tel:"+"7905845935")
+            val intentCall = Intent(Intent.ACTION_DIAL,uriCall)
+            startActivity(intentCall)
+        }
+        mail.setOnClickListener {
+            val uriMail: Uri = Uri.parse("mailto:"+"arjungupta0817@gmail.com")
+            val intentMail = Intent(Intent.ACTION_SENDTO,uriMail)
+            intentMail.putExtra(Intent.EXTRA_SUBJECT,"test")
+            startActivity(intentMail)
+        }
+
+        whatsapp = findViewById(R.id.whatsappLink)
+        var fbIcon = findViewById<ImageView>(R.id.facebookLink)
+        var linkIcon = findViewById<ImageView>(R.id.linkdinLink)
+        var instaIcon = findViewById<ImageView>(R.id.instagramLink)
+        var twitterIcon = findViewById<ImageView>(R.id.twitterLink)
+        var pinterestIcon = findViewById<ImageView>(R.id.pinterestLink)
+        var tripadViserIcon = findViewById<ImageView>(R.id.tripadivisorLink)
+        var googleIcon = findViewById<ImageView>(R.id.googleLink)
+
+        whatsapp.setOnClickListener {
+            val uri : Uri = Uri.parse("http://whatsapp.com")
+            val intent = Intent(Intent.ACTION_VIEW,uri)
+            startActivity(intent)
+        }
+        fbIcon.setOnClickListener{
+            val uriForFB : Uri = Uri.parse("https://facebook.com")
+            val openFB = Intent(Intent.ACTION_VIEW,uriForFB)
+            startActivity(openFB)
+        }
+        instaIcon.setOnClickListener {
+            val uriForinsta: Uri = Uri.parse("http://instagram.com")
+            val forinsta = Intent(Intent.ACTION_VIEW, uriForinsta)
+            startActivity(forinsta)
+        }
+        linkIcon.setOnClickListener {
+            val uriForLink : Uri = Uri.parse("https://linkedin.com")
+            startActivity(Intent(Intent.ACTION_VIEW,uriForLink))
+        }
+        twitterIcon.setOnClickListener{
+            val uriFortwitter : Uri = Uri.parse("https://twitter.com")
+            val openTwitter = Intent(Intent.ACTION_VIEW,uriFortwitter)
+            startActivity(openTwitter)
+        }
+        pinterestIcon.setOnClickListener{
+            val uriForPinterest : Uri = Uri.parse("https://pinterest.com")
+            val openPint = Intent(Intent.ACTION_VIEW,uriForPinterest)
+            startActivity(openPint)
+        }
+        tripadViserIcon.setOnClickListener{
+            val uriForTripod : Uri = Uri.parse("https://tripadvisor.com")
+            val openTripadVisor = Intent(Intent.ACTION_VIEW,uriForTripod)
+            startActivity(openTripadVisor)
+        }
+        googleIcon.setOnClickListener {
+            val uriForGogle : Uri = Uri.parse("https://google.com")
+            val openGoogle = Intent(Intent.ACTION_VIEW,uriForGogle)
+            startActivity(openGoogle)
+        }
+
 
         recyclerViewDate = findViewById(R.id.recyclerViewDate1)
 
