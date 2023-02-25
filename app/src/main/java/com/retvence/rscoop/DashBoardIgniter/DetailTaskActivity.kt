@@ -48,6 +48,10 @@ class DetailTaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_task)
 
+        findViewById<ImageView>(R.id.d_tasks_back_btn).setOnClickListener {
+            onBackPressed()
+        }
+
         dtCalendarPrevious = findViewById(R.id.dt_calendar_previous)
         dtCalendarNext = findViewById(R.id.dt_calendar_next)
         dtDateMonth = findViewById(R.id.dt_date_month)
@@ -113,6 +117,10 @@ class DetailTaskActivity : AppCompatActivity() {
         setUpCalendar() // Now Set Calendar
 
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 
     private fun updateTask() {
