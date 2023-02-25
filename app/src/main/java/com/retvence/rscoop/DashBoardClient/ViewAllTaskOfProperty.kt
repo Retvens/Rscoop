@@ -156,7 +156,9 @@ class ViewAllTaskOfProperty : AppCompatActivity(),
         nameMid.text = hotelName
         Glide.with(baseContext).load(logoHotel).into(clientProfile)
         address.text = addressHotel.toString()
-//        ratingBar.rating = rate?.toFloat()!!
+        if (rate != null) {
+            ratingBar.rating = rate.toFloat()
+        }
 
         setUpClickListener()
         setUpAdapter()
