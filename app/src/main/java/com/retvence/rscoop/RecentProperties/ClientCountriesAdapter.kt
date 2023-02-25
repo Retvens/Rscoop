@@ -27,6 +27,7 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
         var call = itemview.findViewById<ImageView>(R.id.call)
         val number = itemview.findViewById<TextView>(R.id.NumberOfClient)
         val address = itemview.findViewById<TextView>(R.id.addOfClient)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolderClass {
@@ -41,6 +42,7 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
         holder.Name.text = userList[position].Name
         Glide.with(context).load(userList[position].Profile_photo).into(holder.image)
         holder.address.text = data.Country
+        holder.number.text = data.Phone.toString()
 
         holder.call.setOnClickListener {
             val dailIntent = Intent(Intent.ACTION_DIAL)
@@ -57,7 +59,7 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
             val intent = Intent(context, ClientInfo::class.java)
             intent.putExtra("client_name",data.Name)
             intent.putExtra("client_image",data.Profile_photo)
-//            intent.putExtra("client_phone",data.Phone)
+            intent.putExtra("client_phone",data.Phone.toString())
             intent.putExtra("client_address",data.Country)
             intent.putExtra("owner",data.owner_id)
             context.startActivity(intent)

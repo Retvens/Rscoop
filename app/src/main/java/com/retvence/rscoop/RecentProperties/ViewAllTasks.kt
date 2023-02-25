@@ -1,6 +1,7 @@
 package com.retvens.rscoop.RecentProperties
 
 import android.content.Intent
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -86,9 +87,38 @@ class ViewAllTasks : AppCompatActivity(), CalendarAdapter.onItemClickListener {
 
         override fun onItemClickDate(text:String) {
             taskDate = text.toString()
-            Toast.makeText(this, taskDate, Toast.LENGTH_SHORT)
-                .show()
+
+            getTask()
+
         }
+
+    private fun getTask() {
+
+
+        val send = RetrofitBuilder.retrofitBuilder.TodayTask(taskDate)
+
+        send.enqueue(object : Callback<List<GetTaskData>?> {
+            override fun onResponse(
+                call: Call<List<GetTaskData>?>,
+                response: Response<List<GetTaskData>?>
+            ) {
+                val response = response.body()!!
+                val text = findViewById<TextView>(R.id.task_msg)
+
+                recentrecycler = RecentRecycler(baseContext,response)
+                recentrecycler.notifyDataSetChanged()
+                recyclerView.adapter = recentrecycler
+                shimmerLayout.setVisibility(View.GONE)
+                recyclerView.visibility = View.VISIBLE
+
+
+            }
+
+            override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
+                Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
+            }
+        })
+    }
 
     /**
      * Set up click listener
@@ -189,4 +219,6 @@ class ViewAllTasks : AppCompatActivity(), CalendarAdapter.onItemClickListener {
             }
         })
     }
+
+
 }
