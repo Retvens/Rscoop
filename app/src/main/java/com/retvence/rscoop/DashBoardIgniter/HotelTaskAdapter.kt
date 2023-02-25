@@ -15,12 +15,14 @@ import com.retvence.rscoop.DataCollections.TaskData
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
 import com.retvens.rscoop.R
 
-class HotelTaskAdapter(val context: Context, var userList:GetTaskData):RecyclerView.Adapter<HotelTaskAdapter.viewHolder>() {
+class HotelTaskAdapter(val context: Context, var userList:List<GetTaskData>):RecyclerView.Adapter<HotelTaskAdapter.viewHolder>() {
 
 
     class viewHolder(itemview:View):RecyclerView.ViewHolder(itemview) {
         var name = itemview.findViewById<TextView>(R.id.Company_Name)
         var image = itemview.findViewById<ImageView>(R.id.owner_Image)
+        var date = itemview.findViewById<TextView>(R.id.hotel_date)
+        var status = itemview.findViewById<ImageView>(R.id.status_Image)
 
         var facebook = itemview.findViewById<TextView>(R.id.facebooktask)
         var instagram = itemview.findViewById<TextView>(R.id.instatask)
@@ -45,15 +47,22 @@ class HotelTaskAdapter(val context: Context, var userList:GetTaskData):RecyclerV
     }
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
-        holder.facebook.text = userList.facebook
-        holder.instagram.text = userList.instagram
-        holder.linkdin.text = userList.Linkedin
-        holder.twitter.text = userList.twitter
-        holder.pinterest.text = userList.Pinterest
-        holder.gmb.text = userList.GMB
-        holder.google.text = userList.Google_reviews
-        Glide.with(context).load(userList.owner_pic).into(holder.image)
-        holder.name.text = userList.hotel_name
+        holder.facebook.text = userList[position].facebook
+        holder.instagram.text = userList[position].instagram
+        holder.linkdin.text = userList[position].Linkedin
+        holder.twitter.text = userList[position].twitter
+        holder.pinterest.text = userList[position].Pinterest
+        holder.gmb.text = userList[position].GMB
+        holder.google.text = userList[position].Google_reviews
+        Glide.with(context).load(userList[position].owner_pic).into(holder.image)
+        holder.name.text = userList[position].hotel_name
+        holder.date.text = userList[position].Date
+
+        if (userList[position].Status == "Done"){
+            holder.status.setImageResource(R.drawable.png_check)
+        }else{
+            holder.status.setImageResource(R.drawable.png_timer)
+        }
 
         holder.fbIcon.setOnClickListener{
             val uriForFB : Uri = Uri.parse("https://facebook.com")
@@ -93,7 +102,7 @@ class HotelTaskAdapter(val context: Context, var userList:GetTaskData):RecyclerV
     }
 
     override fun getItemCount(): Int {
-            return 2
+            return userList.size
     }
 
 

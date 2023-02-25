@@ -51,7 +51,10 @@ class RecentPropertiesAdapterAT(val context: Context, var recentItem: List<Recen
             intent.putExtra("image",item.Cover_photo)
             intent.putExtra("logo",item.hotel_logo)
             intent.putExtra("id",item.hotel_id)
-
+            intent.putExtra("address",item.Address)
+            intent.putExtra("google",item.Google_review.toString())
+            intent.putExtra("trip",item.trip_advisor_review
+                .toString())
             context.startActivity(intent)
 
         }

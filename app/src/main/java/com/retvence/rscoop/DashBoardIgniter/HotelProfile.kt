@@ -44,16 +44,24 @@ class HotelProfile : AppCompatActivity() {
         val hotelImage = findViewById<ImageView>(R.id.Egniter_clienthotelimg)
         val hotelLogo = findViewById<ImageView>(R.id.Egniter_logoOfHotel)
         val name = findViewById<TextView>(R.id.Egniter_Hotel_Name2)
+        val address = findViewById<TextView>(R.id.Egniter_hotel_country)
+        val googleRating = findViewById<TextView>(R.id.googleRating)
+        val tripAdvisorRating = findViewById<TextView>(R.id.trapadvisior)
 
         val Name = intent.getStringExtra("Name")
         val image = intent.getStringExtra("image")
         val logo = intent.getStringExtra("logo")
-
+        val add = intent.getStringExtra("address")
+        val googlereview = intent.getStringExtra("google")
+        val tripAdvisor = intent.getStringExtra("trip")
 
         Glide.with(baseContext).load(image).into(hotelImage)
         Glide.with(baseContext).load(logo).into(hotelLogo)
         hotelName.text = Name
         name.text = Name
+        address.text = add
+        googleRating.text = googlereview
+        tripAdvisorRating.text = tripAdvisor
 
 
         recyclerViewDate = findViewById(R.id.recyclerViewDate1)
@@ -76,23 +84,27 @@ class HotelProfile : AppCompatActivity() {
 
         val data = RetrofitBuilder.retrofitBuilder.individualTask(id!!)
 
-      data.enqueue(object : Callback<GetTaskData?> {
-          override fun onResponse(call: Call<GetTaskData?>, response: Response<GetTaskData?>) {
-              if (response.isSuccessful) {
-                  val response = response.body()
-                  adapter = HotelTaskAdapter(baseContext, response!!)
-                  adapter.notifyDataSetChanged()
-                  taskRecyclerView.adapter = adapter
 
-              }else{
-                  Toast.makeText(applicationContext,response.code(),Toast.LENGTH_LONG).show()
-              }
-          }
+        data.enqueue(object : Callback<List<GetTaskData>?> {
+            override fun onResponse(
+                call: Call<List<GetTaskData>?>,
+                response: Response<List<GetTaskData>?>
+            ) {
+                if (response.isSuccessful) {
+                    val response = response.body()
+                    adapter = HotelTaskAdapter(baseContext, response!!)
+                    adapter.notifyDataSetChanged()
+                    taskRecyclerView.adapter = adapter
 
-          override fun onFailure(call: Call<GetTaskData?>, t: Throwable) {
+                }else{
+                    Toast.makeText(applicationContext,response.code(),Toast.LENGTH_LONG).show()
+                }
+            }
 
-          }
-      })
+            override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
+
+            }
+        })
 
     }
 

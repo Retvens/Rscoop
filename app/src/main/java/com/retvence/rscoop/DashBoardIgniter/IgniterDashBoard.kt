@@ -8,9 +8,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -30,19 +32,36 @@ import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.DateFormatSymbols
+import java.util.*
 
 class IgniterDashBoard : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var recyclerView: RecyclerView
     private lateinit var hotelAdapter:EgniterRecycler
     private lateinit var shimmer: ShimmerFrameLayout
-
+    private lateinit var searchBar:EditText
     private lateinit var logOut:ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_igniter_dash_board)
 
+        val month = findViewById<TextView>(R.id.Month)
+        val day = findViewById<TextView>(R.id.current_Date)
+        val year = findViewById<TextView>(R.id.year)
+
+        val calendar = Calendar.getInstance()
+        val Year = calendar.get(Calendar.YEAR)
+        val Month = calendar.get(Calendar.MONTH)
+        val Day = calendar.get(Calendar.DAY_OF_MONTH)
+        val monthName = DateFormatSymbols().months[Month]
+
+        month.text = monthName
+        day.text = Day.toString()
+        year.text = Year.toString()
+
+        searchBar = findViewById(R.id.Egniter_search)
 
         logOut = findViewById(R.id.logout_igniter)
         logOut.setOnClickListener {
@@ -123,9 +142,36 @@ class IgniterDashBoard : AppCompatActivity() {
 
                 val response = response.body()
                 if (response != null ){
+                    val originalData = response.toList()
+
                     hotelAdapter = EgniterRecycler(baseContext!!, response!!)
                     hotelAdapter.notifyDataSetChanged()
                     recyclerView.adapter = hotelAdapter
+
+                    searchBar.addTextChangedListener(object : TextWatcher {
+                        override fun beforeTextChanged(
+                            p0: CharSequence?,
+                            p1: Int,
+                            p2: Int,
+                            p3: Int
+                        ) {
+
+                        }
+
+                        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                            val filterData = originalData.filter { item ->
+                                item.hotel_name.contains(p0.toString(),ignoreCase = true)
+                            }
+
+                            hotelAdapter.updateData(filterData)
+
+                        }
+
+                        override fun afterTextChanged(p0: Editable?) {
+
+                        }
+                    })
+
                 }
 
             }

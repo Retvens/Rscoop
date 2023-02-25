@@ -11,9 +11,15 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
+import com.retvence.rscoop.ApiRequests.RetrofitBuilder
+import com.retvence.rscoop.DataCollections.ResponseTask
+import com.retvence.rscoop.DataCollections.StatusClass
 import com.retvence.rscoop.RecentProperties.CalendarAdapter
 import com.retvence.rscoop.RecentProperties.CalendarDateModel
 import com.retvens.rscoop.R
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -35,6 +41,8 @@ class DetailTaskActivity : AppCompatActivity() {
 
 
     lateinit var edit : CardView
+    lateinit var done :CardView
+    lateinit var getid:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +54,7 @@ class DetailTaskActivity : AppCompatActivity() {
         recyclerViewDate = findViewById(R.id.recyclerViewDateDetail)
 
         edit = findViewById(R.id.edit_card)
-
+        done = findViewById(R.id.done)
 
         val image = findViewById<ImageView>(R.id.hotel_add_task_img)
         val name = findViewById<TextView>(R.id.hotel_name_add_task)
@@ -59,7 +67,7 @@ class DetailTaskActivity : AppCompatActivity() {
         val pinterest = findViewById<TextView>(R.id.pinterest_post_detail)
 
 
-        val getid = intent.getStringExtra("id")
+        getid = intent.getStringExtra("id").toString()
         val getimage = intent.getStringExtra("image")
         val getname = intent.getStringExtra("name")
         val getfacebook = intent.getStringExtra("facebook")
@@ -95,9 +103,36 @@ class DetailTaskActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+
+        done.setOnClickListener {
+            updateTask()
+        }
+
         setUpClickListener()
         setUpAdapter()  // First We Set Adapter
         setUpCalendar() // Now Set Calendar
+
+
+    }
+
+    private fun updateTask() {
+        val data:String = "Done"
+        val id = getid
+        val send = RetrofitBuilder.retrofitBuilder.updateStatus(id,StatusClass(data))
+        send.enqueue(object : Callback<ResponseTask?> {
+            override fun onResponse(call: Call<ResponseTask?>, response: Response<ResponseTask?>) {
+                if (response.isSuccessful){
+                    val response = response.body()!!
+                    Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+                }else{
+                    Toast.makeText(applicationContext,response.code(),Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseTask?>, t: Throwable) {
+                Toast.makeText(applicationContext,t.message.toString(),Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun setUpClickListener() {

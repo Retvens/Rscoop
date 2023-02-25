@@ -59,13 +59,13 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.OnItemClic
     lateinit var hotelId: String
     lateinit var ownerId:String
 
-    private lateinit var fbPost: TextView
-    private lateinit var googlePost: TextView
-    private lateinit var instaPost: TextView
-    private lateinit var linkedinPost: TextView
-    private lateinit var pinterestPost: TextView
-    private lateinit var tripadPost: TextView
-    private lateinit var twitterPost: TextView
+    private lateinit var fbPost: EditText
+    private lateinit var googlePost: EditText
+    private lateinit var instaPost: EditText
+    private lateinit var linkedinPost: EditText
+    private lateinit var pinterestPost: EditText
+    private lateinit var tripadPost: EditText
+    private lateinit var twitterPost: EditText
     private lateinit var viewAllAddedTask: TextView
 
 
