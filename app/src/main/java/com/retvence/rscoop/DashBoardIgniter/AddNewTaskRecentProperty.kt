@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -29,6 +30,10 @@ class AddNewTaskRecentProperty : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_task_recent_property)
+
+        findViewById<ImageView>(R.id.properties_back_btn_add_task).setOnClickListener {
+            onBackPressed()
+        }
 
         search = findViewById(R.id.search_property_add_task)
 
