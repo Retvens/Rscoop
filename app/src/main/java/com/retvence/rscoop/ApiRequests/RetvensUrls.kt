@@ -92,6 +92,8 @@ interface RetvensUrls {
     ):Call<List<GetTaskData>>
 
     @GET("hotelowner/{owner_id}")
-    fun getClient(@Path("owner_id") owner_id: String ): Call<ClientProfileData>
+    fun getClient(
+        @Path("owner_id") owner_id: String
+    ): Call<List<ClientProfileData>>
 
 }
