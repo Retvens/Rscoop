@@ -33,8 +33,7 @@ class ClientCountries : AppCompatActivity() {
 
         val backbtn = findViewById<ImageView>(R.id.Client_backbtn)
         backbtn.setOnClickListener {
-            startActivity(Intent(this, AdminDashBoard::class.java))
-            finish()
+            onBackPressed()
         }
 
         //recycler define
