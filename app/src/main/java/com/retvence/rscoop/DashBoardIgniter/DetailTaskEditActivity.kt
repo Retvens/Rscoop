@@ -54,6 +54,10 @@ class DetailTaskEditActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail_task_edit)
         recyclerEdit = findViewById(R.id.recyclerViewDateEdit)
 
+        findViewById<ImageView>(R.id.add_tasks_back_btn_Edit).setOnClickListener {
+            onBackPressed()
+        }
+
         dteDateMonth = findViewById(R.id.dte_date_month)
         dteCalendarPrevious = findViewById(R.id.dte_calendar_previous)
         dteCalendarNext = findViewById(R.id.dte_calendar_next)
@@ -84,6 +88,10 @@ class DetailTaskEditActivity : AppCompatActivity() {
         Glide.with(baseContext).load(img).into(image)
         Name.text = name
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 
     private fun UpdateTask() {
