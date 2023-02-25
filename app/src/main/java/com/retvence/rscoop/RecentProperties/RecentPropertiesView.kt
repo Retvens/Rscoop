@@ -42,8 +42,7 @@ class RecentPropertiesView : AppCompatActivity() {
 
         val backbtn = findViewById<ImageView>(R.id.properties_back_btn)
         backbtn.setOnClickListener {
-            startActivity(Intent(this, AdminDashBoard::class.java))
-            finish()
+            onBackPressed()
         }
 
         recyclerProperties = findViewById(R.id.recycler_properties)
