@@ -63,6 +63,9 @@ class HotelProfile : AppCompatActivity() {
         googleRating.text = googlereview
         tripAdvisorRating.text = tripAdvisor
 
+        findViewById<ImageView>(R.id.hotels_back_hp).setOnClickListener {
+            onBackPressed()
+        }
 
         recyclerViewDate = findViewById(R.id.recyclerViewDate1)
 
@@ -136,4 +139,7 @@ class HotelProfile : AppCompatActivity() {
         calendarAdapter.setData(calendarList)
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
 }
