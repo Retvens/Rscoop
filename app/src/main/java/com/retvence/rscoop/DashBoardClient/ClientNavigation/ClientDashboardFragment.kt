@@ -94,7 +94,7 @@ class ClientDashboardFragment : Fragment() {
         tabLayout.getTabAt(0)?.select()
 
 
-        getHotels()
+//        getHotels()
     }
 
     private fun getHotels() {
@@ -116,7 +116,7 @@ class ClientDashboardFragment : Fragment() {
                 }
             }
             override fun onFailure(call: Call<List<HotelsData>?>, t: Throwable) {
-                Toast.makeText(requireContext(),t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(),t.localizedMessage, Toast.LENGTH_LONG).show()
             }
         })
     }

@@ -44,17 +44,17 @@ class ClientRecentTabFragment : Fragment() {
     private fun allTaskData() {
         val getData = RetrofitBuilder.retrofitBuilder.getTask()
         getData.enqueue(object : Callback<List<GetTaskData>?> {
-            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
                 call: Call<List<GetTaskData>?>,
                 response: Response<List<GetTaskData>?>
             ) {
 
-                    val response = response.body()!!
-                    clientTaskAdapter = ClientTaskAdapter(context!!,response)
+                val response = response.body()!!
+                if (response != null && view != null) {
+                    clientTaskAdapter = ClientTaskAdapter(context!!, response)
                     clientTaskAdapter.notifyDataSetChanged()
                     recyclerView.adapter = clientTaskAdapter
-
+                }
             }
             override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
                 Toast.makeText(context,t.localizedMessage, Toast.LENGTH_SHORT)

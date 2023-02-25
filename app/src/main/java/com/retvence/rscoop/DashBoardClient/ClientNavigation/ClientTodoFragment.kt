@@ -72,19 +72,19 @@ class ClientTodoFragment : Fragment() {
                 call: Call<List<GetTaskData>?>,
                 response: Response<List<GetTaskData>?>
             ) {
-                if (response.isSuccessful){
-                    val response = response.body()!!
+                val response = response.body()!!
+                if (response != null && view != null){
                     clientTaskAdapter = ClientTaskAdapter(context!!,response)
                     clientTaskAdapter.notifyDataSetChanged()
                     recyclerView.adapter = clientTaskAdapter
 
                     shimmerFrameLayout.visibility = View.GONE
                     recyclerView.visibility = View.VISIBLE
-
-                }else{
-                    Toast.makeText(context,response.code().toString(), Toast.LENGTH_SHORT)
-                        .show()
                 }
+//                else{
+//                    Toast.makeText(context,response.code().toString(), Toast.LENGTH_SHORT)
+//                        .show()
+//                }
             }
 
             override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
