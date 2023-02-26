@@ -15,4 +15,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_tasks_r_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/shimmer_layout_tasks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
+            <include layout = "@layout/shimmer_for_activity"/>
+            <include layout = "@layout/shimmer_for_activity"/>
+            <include layout = "@layout/shimmer_for_activity"/>
+            <include layout = "@layout/shimmer_for_activity"/>
+            <include layout = "@layout/shimmer_for_activity"/>
+            <include layout = "@layout/shimmer_for_activity"/>
+            <include layout = "@layout/shimmer_for_activity"/>
+            <include layout = "@layout/shimmer_for_activity"/>
+            <include layout = "@layout/shimmer_for_activity"/>
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
