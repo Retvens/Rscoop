@@ -21,6 +21,7 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoardClient.ClientProfileData
 import com.retvence.rscoop.DashBoardClient.ProfilePropertyAdapter
+import com.retvence.rscoop.DashBoardIgniter.RecentPropertiesDataClass
 import com.retvence.rscoop.DashBoardIgniter.SelectPropertyAdapter
 import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvence.rscoop.DataCollections.OwnersData
@@ -28,6 +29,7 @@ import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
 import com.retvens.rscoop.MainActivity
 import com.retvens.rscoop.R
+import okhttp3.internal.http.promisesBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -118,25 +120,27 @@ class ClientProfileFragment : Fragment() {
     private fun getClientData() {
 
         val client = RetrofitBuilder.retrofitBuilder.getClient(owner_id)
-        client.enqueue(object : Callback<ClientProfileData?> {
-            override fun onResponse(call: Call<ClientProfileData?>, response: Response<ClientProfileData?>) {
-                name.text = response.body()?.Name.toString()
-                Log.d("name",response.body()?.Name.toString())
+
+        client.enqueue(object : Callback<List<ClientProfileData>?> {
+            override fun onResponse(
+                call: Call<List<ClientProfileData>?>,
+                response: Response<List<ClientProfileData>?>
+            ) {
+                name.text = response.body().toString()
             }
 
-            override fun onFailure(call: Call<ClientProfileData?>, t: Throwable) {
+            override fun onFailure(call: Call<List<ClientProfileData>?>, t: Throwable) {
                 Toast.makeText(context,t.localizedMessage,Toast.LENGTH_SHORT).show()
-                Log.d("name",t.localizedMessage!!)
             }
         })
     }
     private fun getHotelData() {
-        val retrofit = RetrofitBuilder.retrofitBuilder.getHotel(owner_id)
-        retrofit.enqueue(object : Callback<List<HotelsData>?> {
+        val retrofit = RetrofitBuilder.retrofitBuilder.getClientHotel(owner_id)
+        retrofit.enqueue(object : Callback<List<RecentPropertiesDataClass>?> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
-                call: Call<List<HotelsData>?>,
-                response: Response<List<HotelsData>?>
+                call: Call<List<RecentPropertiesDataClass>?>,
+                response: Response<List<RecentPropertiesDataClass>?>
             ) {
                 shimmerFrameLayout.stopShimmer()
                 shimmerFrameLayout.visibility = View.GONE
@@ -153,7 +157,7 @@ class ClientProfileFragment : Fragment() {
 
                 }
             }
-            override fun onFailure(call: Call<List<HotelsData>?>, t: Throwable) {
+            override fun onFailure(call: Call<List<RecentPropertiesDataClass>?>, t: Throwable) {
                 Toast.makeText(context,t.localizedMessage, Toast.LENGTH_LONG)
                     .show()
             }
