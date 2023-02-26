@@ -98,4 +98,8 @@ interface RetvensUrls {
 
     @GET("property/{owner_id}")
     fun getClientHotel(@Path("owner_id") owner:String): Call<List<RecentPropertiesDataClass>>
+
+    @GET("tasks/{owner_id}")
+    fun getCTask(
+        @Path("owner_id") owner_id:String):Call<List<GetTaskData>>
 }

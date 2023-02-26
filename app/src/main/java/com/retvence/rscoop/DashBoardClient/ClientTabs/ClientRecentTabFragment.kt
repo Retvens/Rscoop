@@ -13,12 +13,15 @@ import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoardClient.ClientTaskAdapter
 import com.retvence.rscoop.DashBoardIgniter.TaskFragment.RecentAdapter
 import com.retvence.rscoop.DataCollections.GetTaskData
+import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ClientRecentTabFragment : Fragment() {
+
+    private lateinit var owner_id: String
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var clientTaskAdapter:ClientTaskAdapter
@@ -33,6 +36,10 @@ class ClientRecentTabFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        owner_id = SharedPreferenceManagerAdmin.getInstance(context!!).user.owner_id.toString()
+
+
         //recycler
         recyclerView = view.findViewById(R.id.client_recent_tab_tasks)
         recyclerView.setHasFixedSize(true)
@@ -42,7 +49,7 @@ class ClientRecentTabFragment : Fragment() {
     }
 
     private fun allTaskData() {
-        val getData = RetrofitBuilder.retrofitBuilder.getTask()
+        val getData = RetrofitBuilder.retrofitBuilder.getCTask(owner_id)
         getData.enqueue(object : Callback<List<GetTaskData>?> {
             override fun onResponse(
                 call: Call<List<GetTaskData>?>,
@@ -54,10 +61,12 @@ class ClientRecentTabFragment : Fragment() {
                     clientTaskAdapter = ClientTaskAdapter(context!!, response)
                     clientTaskAdapter.notifyDataSetChanged()
                     recyclerView.adapter = clientTaskAdapter
+                }else{
+                    Toast.makeText(context,response.toString(),Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
-                Toast.makeText(context,t.localizedMessage, Toast.LENGTH_SHORT)
+                Toast.makeText(context,t.localizedMessage?.toString(), Toast.LENGTH_SHORT)
                     .show()
             }
         })
