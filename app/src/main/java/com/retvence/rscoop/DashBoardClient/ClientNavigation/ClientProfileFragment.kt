@@ -17,6 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoardClient.ClientProfileData
@@ -112,7 +113,7 @@ class ClientProfileFragment : Fragment() {
         recycler.setHasFixedSize(true)
         recycler.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
 
-//        getClientData()
+        getClientData()
 
         getHotelData()
     }
@@ -126,7 +127,20 @@ class ClientProfileFragment : Fragment() {
                 call: Call<List<ClientProfileData>?>,
                 response: Response<List<ClientProfileData>?>
             ) {
-                name.text = response.body().toString()
+                if (response.isSuccessful){
+                    val response = response.body()!!
+
+                    val data = response.get(0)
+                    name.text = data.Name
+                    nameHotel.text = data.Name
+                    number.text = data.Phone.toString()
+                    country.text = data.Country
+                    Glide.with(context!!).load(data.Cover_photo).into(cover)
+                    Glide.with(context!!).load(data.Profile_photo).into(profile)
+                }else{
+                    Toast.makeText(context,response.code().toString(),Toast.LENGTH_LONG).show()
+                }
+
             }
 
             override fun onFailure(call: Call<List<ClientProfileData>?>, t: Throwable) {

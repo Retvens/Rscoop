@@ -152,30 +152,30 @@ class AddClient : AppCompatActivity(){
 
 
 
-        val send = RetrofitBuilder.retrofitBuilder.uploadData(
-            name,email,password,123456,
-            MultipartBody.Part.createFormData("image", file.name, body),
-            "DM",country,
-            MultipartBody.Part.createFormData("image", file1.name, body1)
-        )
-
-       send.enqueue(object : Callback<ResponseClient?> {
-           override fun onResponse(
-               call: Call<ResponseClient?>,
-               response: Response<ResponseClient?>
-           ) {
-               if (response.isSuccessful){
-                   val response = response.body()!!
-                   Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
-               }else{
-                   Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
-               }
-           }
-
-           override fun onFailure(call: Call<ResponseClient?>, t: Throwable) {
-               Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
-           }
-       })
+//        val send = RetrofitBuilder.retrofitBuilder.uploadData(
+//            name,email,password,123456,
+//            MultipartBody.Part.createFormData("image", file.name, body),
+//            "DM",country,
+//            MultipartBody.Part.createFormData("image", file1.name, body1)
+//        )
+//
+//       send.enqueue(object : Callback<ResponseClient?> {
+//           override fun onResponse(
+//               call: Call<ResponseClient?>,
+//               response: Response<ResponseClient?>
+//           ) {
+//               if (response.isSuccessful){
+//                   val response = response.body()!!
+//                   Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+//               }else{
+//                   Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
+//               }
+//           }
+//
+//           override fun onFailure(call: Call<ResponseClient?>, t: Throwable) {
+//               Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
+//           }
+//       })
 
 
     }
