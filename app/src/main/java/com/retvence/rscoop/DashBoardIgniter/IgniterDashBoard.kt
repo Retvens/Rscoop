@@ -17,11 +17,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.tabs.TabLayout
+import com.mackhartley.roundedprogressbar.RoundedProgressBar
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TodayTasks
 import com.retvence.rscoop.DashBoardIgniter.TaskFragment.CompletedFragment
 import com.retvence.rscoop.DashBoardIgniter.TaskFragment.RecentFragment
 import com.retvence.rscoop.DashBoardIgniter.TaskFragment.TodayFragment
+import com.retvence.rscoop.DataCollections.GetTaskData
 import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.RecyclerHotelsView
@@ -42,6 +44,9 @@ class IgniterDashBoard : AppCompatActivity() {
     private lateinit var shimmer: ShimmerFrameLayout
     private lateinit var searchBar:EditText
     private lateinit var logOut:ImageView
+    private lateinit var tasks:TextView
+    private lateinit var pending:TextView
+    private lateinit var complete:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +55,9 @@ class IgniterDashBoard : AppCompatActivity() {
         val month = findViewById<TextView>(R.id.Month)
         val day = findViewById<TextView>(R.id.current_Date)
         val year = findViewById<TextView>(R.id.year)
+        tasks = findViewById(R.id.igniter_task)
+        pending = findViewById(R.id.todo_text1)
+        complete = findViewById(R.id.todo_done_text1)
 
         val calendar = Calendar.getInstance()
         val Year = calendar.get(Calendar.YEAR)
@@ -125,6 +133,11 @@ class IgniterDashBoard : AppCompatActivity() {
 
 
         getHotels()
+        getTask()
+        getPendingTask()
+        getComplteTask()
+
+
 
     }
 
@@ -182,4 +195,103 @@ class IgniterDashBoard : AppCompatActivity() {
         })
     }
 
+    private fun getComplteTask() {
+        val status = "Done"
+        val data = RetrofitBuilder.retrofitBuilder.completeTask(status)
+
+        data.enqueue(object : Callback<List<GetTaskData>?> {
+            override fun onResponse(
+                call: Call<List<GetTaskData>?>,
+                response: Response<List<GetTaskData>?>
+            ) {
+                if (response.isSuccessful){
+                    val response = response.body()!!
+                    complete.setText("${response.size} Tasks")
+
+                }else{
+                    Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
+
+            }
+        })
+    }
+
+    private fun getPendingTask() {
+        val status = "Pending"
+        val data = RetrofitBuilder.retrofitBuilder.completeTask(status)
+
+        data.enqueue(object : Callback<List<GetTaskData>?> {
+            override fun onResponse(
+                call: Call<List<GetTaskData>?>,
+                response: Response<List<GetTaskData>?>
+            ) {
+                if (response.isSuccessful){
+                    val response = response.body()!!
+                    pending.setText("${response.size} Tasks")
+
+
+
+                }else{
+                    Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
+            }
+        })
+    }
+
+    private fun getTask() {
+        val data = RetrofitBuilder.retrofitBuilder.getTask()
+        data.enqueue(object : Callback<List<GetTaskData>?> {
+            override fun onResponse(
+                call: Call<List<GetTaskData>?>,
+                response: Response<List<GetTaskData>?>
+            ) {
+                if (response.isSuccessful){
+                    val response = response.body()!!
+                    tasks.setText("${response.size} Task")
+
+                    val overallTask = response.size.toDouble()
+
+
+                    val send = RetrofitBuilder.retrofitBuilder.completeTask("Done")
+                    send.enqueue(object : Callback<List<GetTaskData>?> {
+                        override fun onResponse(
+                            call: Call<List<GetTaskData>?>,
+                            response: Response<List<GetTaskData>?>
+                        ) {
+                            if (response.isSuccessful){
+                                val response1 = response.body()!!
+                                val progressBar = findViewById<RoundedProgressBar>(R.id.progressBar)
+                                val totalTasks = overallTask
+                                val completedTasks = response1.size.toDouble()
+                                val pendingTasks = totalTasks - completedTasks
+                                val pendingPercentage = (pendingTasks.toDouble() / totalTasks.toDouble()) * 100.0
+                                progressBar.setProgressPercentage(pendingPercentage)
+
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
+
+                        }
+                    })
+
+
+                }else{
+                    Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
+                }
+
+
+            }
+
+            override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
+
+            }
+        })
+    }
 }

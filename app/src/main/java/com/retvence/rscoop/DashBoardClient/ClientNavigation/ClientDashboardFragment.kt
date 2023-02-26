@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.tabs.TabLayout
+import com.mackhartley.roundedprogressbar.RoundedProgressBar
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoardClient.ClientMiniPropertyAdapter
 import com.retvence.rscoop.DashBoardClient.ClientTabs.ClientCompletedTabFragment
@@ -29,6 +30,7 @@ import com.retvence.rscoop.DashBoardIgniter.EgniterRecycler
 import com.retvence.rscoop.DashBoardIgniter.TaskFragment.CompletedFragment
 import com.retvence.rscoop.DashBoardIgniter.TaskFragment.RecentFragment
 import com.retvence.rscoop.DashBoardIgniter.TaskFragment.TodayFragment
+import com.retvence.rscoop.DataCollections.GetTaskData
 import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.R
@@ -46,6 +48,9 @@ class ClientDashboardFragment : Fragment() {
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
 
     private lateinit var search: EditText
+    private lateinit var tasks:TextView
+    private lateinit var pending:TextView
+    private lateinit var complete:TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +67,10 @@ class ClientDashboardFragment : Fragment() {
         viewAll.setOnClickListener {
             startActivity(Intent(context, ViewAllPropertiesActivity::class.java))
         }
+
+        tasks = view.findViewById(R.id.total_task3)
+        pending = view.findViewById(R.id.todo_text3)
+        complete = view.findViewById(R.id.todo_done_text3)
 
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
@@ -116,6 +125,10 @@ class ClientDashboardFragment : Fragment() {
 
 
         getHotels()
+        getTask()
+        getPendingTask()
+        getComplteTask()
+
     }
 
     private fun getHotels() {
@@ -162,6 +175,106 @@ class ClientDashboardFragment : Fragment() {
             }
             override fun onFailure(call: Call<List<HotelsData>?>, t: Throwable) {
                 Toast.makeText(requireContext(), t.localizedMessage!!.toString(), Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+    private fun getComplteTask() {
+        val status = "Done"
+        val data = RetrofitBuilder.retrofitBuilder.completeTask(status)
+
+        data.enqueue(object : Callback<List<GetTaskData>?> {
+            override fun onResponse(
+                call: Call<List<GetTaskData>?>,
+                response: Response<List<GetTaskData>?>
+            ) {
+                if (response.isSuccessful){
+                    val response = response.body()!!
+                    complete.setText("${response.size} Tasks")
+
+
+                }else{
+                    Toast.makeText(context,response.code().toString(),Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
+
+            }
+        })
+    }
+
+    private fun getPendingTask() {
+        val status = "Pending"
+        val data = RetrofitBuilder.retrofitBuilder.completeTask(status)
+
+        data.enqueue(object : Callback<List<GetTaskData>?> {
+            override fun onResponse(
+                call: Call<List<GetTaskData>?>,
+                response: Response<List<GetTaskData>?>
+            ) {
+                if (response.isSuccessful){
+                    val response = response.body()!!
+                    pending.setText("${response.size} Tasks")
+
+
+
+                }else{
+                    Toast.makeText(context,response.code().toString(),Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
+            }
+        })
+    }
+
+    private fun getTask() {
+        val data = RetrofitBuilder.retrofitBuilder.getTask()
+        data.enqueue(object : Callback<List<GetTaskData>?> {
+            override fun onResponse(
+                call: Call<List<GetTaskData>?>,
+                response: Response<List<GetTaskData>?>
+            ) {
+                if (response.isSuccessful){
+                    val response = response.body()!!
+                    tasks.setText("Have total ${response.size} Task")
+
+                    val overallTask = response.size.toDouble()
+
+
+                    val send = RetrofitBuilder.retrofitBuilder.completeTask("Done")
+                    send.enqueue(object : Callback<List<GetTaskData>?> {
+                        override fun onResponse(
+                            call: Call<List<GetTaskData>?>,
+                            response: Response<List<GetTaskData>?>
+                        ) {
+                            if (response.isSuccessful){
+                                val response1 = response.body()!!
+                                val progressBar = view!!.findViewById<RoundedProgressBar>(R.id.progressBarCD)
+                                val totalTasks = overallTask
+                                val completedTasks = response1.size.toDouble()
+                                val pendingTasks = totalTasks - completedTasks
+                                val pendingPercentage = (pendingTasks.toDouble() / totalTasks.toDouble()) * 100.0
+                                progressBar.setProgressPercentage(pendingPercentage)
+
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
+
+                        }
+                    })
+
+
+                }else{
+                    Toast.makeText(context,response.code().toString(),Toast.LENGTH_LONG).show()
+                }
+
+
+            }
+
+            override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
+
             }
         })
     }

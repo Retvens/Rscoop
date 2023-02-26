@@ -125,6 +125,7 @@
         />
 
     <TextView
+        android:id="@+id/igniter_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/Egniter_search"
@@ -193,7 +194,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <TextView
-                    android:id="@+id/todo_text"
+                    android:id="@+id/todo_text1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="6 Tasks "
@@ -245,7 +246,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
                 <TextView
-                    android:id="@+id/todo_done_text"
+                    android:id="@+id/todo_done_text1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="8 Tasks "
