@@ -46,6 +46,8 @@ class ClientProfileFragment : Fragment() {
     lateinit var mail : ImageView
 
     private lateinit var owner_id : String
+    private lateinit var phone : String
+    private lateinit var mailid : String
 
     private lateinit var name : TextView
     private lateinit var nameHotel : TextView
@@ -97,12 +99,12 @@ class ClientProfileFragment : Fragment() {
         startActivity(intent)
         }
         call.setOnClickListener {
-            val uriCall : Uri = Uri.parse("tel:"+"7905845935")
+            val uriCall : Uri = Uri.parse("tel:"+ phone)
             val intentCall = Intent(Intent.ACTION_DIAL,uriCall)
             startActivity(intentCall)
         }
         mail.setOnClickListener {
-            val uriMail:Uri = Uri.parse("mailto:"+"arjungupta0817@gmail.com")
+            val uriMail:Uri = Uri.parse("mailto:"+ mailid)
             val intentMail = Intent(Intent.ACTION_SENDTO,uriMail)
             intentMail.putExtra(Intent.EXTRA_SUBJECT,"test")
             startActivity(intentMail)
@@ -127,8 +129,10 @@ class ClientProfileFragment : Fragment() {
                 call: Call<List<ClientProfileData>?>,
                 response: Response<List<ClientProfileData>?>
             ) {
-                if (response.isSuccessful){
-                    val response = response.body()!!
+                val response = response.body()!!
+
+                if (response != null && view != null){
+
 
                     val data = response.get(0)
                     name.text = data.Name
@@ -137,8 +141,9 @@ class ClientProfileFragment : Fragment() {
                     country.text = data.Country
                     Glide.with(context!!).load(data.Cover_photo).into(cover)
                     Glide.with(context!!).load(data.Profile_photo).into(profile)
-                }else{
-                    Toast.makeText(context,response.code().toString(),Toast.LENGTH_LONG).show()
+
+                    phone = data.Phone.toString()
+                    mailid = data.Email
                 }
 
             }
