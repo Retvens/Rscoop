@@ -60,7 +60,7 @@ class ClientTodoFragment : Fragment() {
 
         get = view.findViewById(R.id.get_calendar)
 
-        get.setOnClickListener{
+        get.setOnClickListener {
 
         val selectedDates = calendarPicker.getSelectedDates()
 
