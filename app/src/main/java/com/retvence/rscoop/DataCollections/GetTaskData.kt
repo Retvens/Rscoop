@@ -15,5 +15,6 @@ class GetTaskData(
     val owner_pic:String,
     val hotel_id:String,
     val Status:String,
+    val favourite:Boolean,
 ) {
 }

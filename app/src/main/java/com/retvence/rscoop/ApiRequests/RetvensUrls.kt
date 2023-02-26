@@ -1,6 +1,7 @@
 package com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.NavigationFragment
 
 import com.retvence.rscoop.DashBoardClient.ClientProfileData
+import com.retvence.rscoop.DashBoardClient.FavouriteDataClass
 import com.retvence.rscoop.DashBoardIgniter.RecentPropertiesDataClass
 import com.retvence.rscoop.DataCollections.*
 import okhttp3.MultipartBody
@@ -102,4 +103,11 @@ interface RetvensUrls {
     @GET("tasks/{owner_id}")
     fun getCTask(
         @Path("owner_id") owner_id:String):Call<List<GetTaskData>>
+
+    @PATCH("tasks/{id}")
+    fun setFav(
+        @Path("id") id:String,
+        @Body favouriteDataClass:FavouriteDataClass
+    ):Call<ResponseTask>
+
 }
