@@ -46,7 +46,7 @@ class ViewAllTaskOfProperty : AppCompatActivity(),
     private val calendarList2 = ArrayList<CalendarDateModel>()
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recentrecycler: RecentRecycler
+    private lateinit var clientTaskAdapter: ClientTaskAdapter
     lateinit var shimmerFrameLayout: ShimmerFrameLayout
 
     lateinit var call : ImageView
@@ -181,9 +181,9 @@ class ViewAllTaskOfProperty : AppCompatActivity(),
             ) {
                 if (response.isSuccessful){
                     val response = response.body()!!
-                    recentrecycler = RecentRecycler(this@ViewAllTaskOfProperty,response)
-                    recentrecycler.notifyDataSetChanged()
-                    recyclerView.adapter = recentrecycler
+                    clientTaskAdapter = ClientTaskAdapter(this@ViewAllTaskOfProperty,response)
+                    clientTaskAdapter.notifyDataSetChanged()
+                    recyclerView.adapter = clientTaskAdapter
 
                     shimmerFrameLayout.visibility = View.GONE
                     recyclerView.visibility = View.VISIBLE

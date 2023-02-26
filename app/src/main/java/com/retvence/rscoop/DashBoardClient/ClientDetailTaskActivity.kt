@@ -3,6 +3,7 @@ package com.retvence.rscoop.DashBoardClient
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -101,6 +102,14 @@ class ClientDetailTaskActivity : AppCompatActivity() {
             Toast.makeText(this@ClientDetailTaskActivity,"Pending",Toast.LENGTH_SHORT)
                 .show()
         }
+        val status = intent.getStringExtra("status").toString()
+
+        if (status == "Done"){
+            pending.visibility = View.GONE
+        }else{
+            done.visibility = View.GONE
+        }
+
 
         setUpClickListener()
         setUpAdapter()  // First We Set Adapter

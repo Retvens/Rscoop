@@ -110,6 +110,7 @@ class ClientTaskAdapter(val context: Context, var userList:List<GetTaskData>) : 
             intent.putExtra("google",userList[position].Google_reviews)
             intent.putExtra("tripad",userList[position].GMB)
             intent.putExtra("pinterest",userList[position].Pinterest)
+            intent.putExtra("status",userList[position].Status)
             context.startActivity(intent)
         }
         holder.fbIcon.setOnClickListener{
