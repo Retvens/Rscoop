@@ -22,6 +22,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ClientTodoFragment : Fragment() {
@@ -65,9 +66,11 @@ class ClientTodoFragment : Fragment() {
         val selectedDates = calendarPicker.getSelectedDates()
 
         if (selectedDates != null) {
+            val fd = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Date(selectedDates.first))
+            val sd = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Date(selectedDates.second))
             val firstDate = DateFormat.getDateInstance().format(Date(selectedDates.first))
             val secondDate = DateFormat.getDateInstance().format(Date(selectedDates.second))
-            Toast.makeText(context,firstDate.toString() + " to " + secondDate.toString(),Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,fd.toString() + " to " + sd.toString(),Toast.LENGTH_SHORT).show()
           }
 
         }
