@@ -1,6 +1,6 @@
 package com.retvence.rscoop.DataCollections
 
-class TaskData(
+data class TaskData(
     val hotel_name:String,
     val owner_id:String,
     val Date:String,
@@ -13,6 +13,7 @@ class TaskData(
     val Google_reviews:String,
     val owner_pic:String,
     val hotel_id:String,
-    val Status:String
+    val Status:String,
+    val favourite:Boolean
 ) {
 }

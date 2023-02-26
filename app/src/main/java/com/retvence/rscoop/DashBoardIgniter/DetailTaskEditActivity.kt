@@ -96,6 +96,8 @@ class DetailTaskEditActivity : AppCompatActivity() {
 
     private fun UpdateTask() {
         val facebook = facebook.text.toString().trim()
+        
+
         val google = google.text.toString().trim()
         val instagram = instagram.text.toString().trim()
         val linkedin = linkedin.text.toString().trim()

@@ -3,6 +3,8 @@ package com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile
 import android.app.Activity
 import android.content.ContentResolver
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,11 +32,12 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
-class AddClient : AppCompatActivity(), UploadRequestBody.UploadCallback {
+class AddClient : AppCompatActivity(){
 
     private lateinit var clientCover:ImageView
     private lateinit var clientProfile:ImageView
@@ -89,45 +92,11 @@ class AddClient : AppCompatActivity(), UploadRequestBody.UploadCallback {
         save.setOnClickListener {
 
             uploadData()
-//            sendData()
         }
 
     }
 
-//    private fun sendData() {
 //
-//
-//        val name = clientName.text.toString().trim()
-//        val email = clientMail.text.toString().trim()
-//        val password = clientPassword.text.toString().trim()
-//        val phone = clientNumber.text.toString().trim()
-//        val country = clientLocation.text.toString().trim()
-//
-//        val data = OwnersData("Rahul Bhai","ppo@gmail.com","00000",1234,
-//        "6969","https://th.bing.com/th?id=OIP.rfrnhsyiblU4_bGi91wbkAHaEo&w=316&h=197&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
-//        "","Qatar","abc123","https://th.bing.com/th?id=OIP.rfrnhsyiblU4_bGi91wbkAHaEo&w=316&h=197&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2")
-//
-//        val send = RetrofitBuilder.retrofitBuilder.PostOwner(data)
-//
-//       send.enqueue(object : Callback<ResponseClient?> {
-//           override fun onResponse(
-//               call: Call<ResponseClient?>,
-//               response: Response<ResponseClient?>
-//           ) {
-//               if(response.isSuccessful){
-//                   Toast.makeText(this@AddClient,"ok",Toast.LENGTH_LONG).show()
-//               }
-//               else{
-//                   Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
-//               }
-//           }
-//
-//           override fun onFailure(call: Call<ResponseClient?>, t: Throwable) {
-//               Toast.makeText(this@AddClient,t.message.toString(),Toast.LENGTH_LONG).show()
-//           }
-//       })
-//
-//    }
 
     private fun uploadData() {
 
@@ -162,9 +131,7 @@ class AddClient : AppCompatActivity(), UploadRequestBody.UploadCallback {
         val file = File(cacheDir,contentResolver.getFileName(coverPhotoPart!!))
         val outputStream = FileOutputStream(file)
         inputStream.copyTo(outputStream)
-        val body = UploadRequestBody(file,"image",this)
-
-        val contentResolver = getContentResolver()
+        val body = UploadRequestBody(file,"image")
 
 
         if (profilePhotoPart == null){
@@ -180,9 +147,35 @@ class AddClient : AppCompatActivity(), UploadRequestBody.UploadCallback {
         val inputStream1 = FileInputStream(parcelFileDescriptor1.fileDescriptor)
         val file1 = File(cacheDir,contentResolver.getFileName(profilePhotoPart!!))
         val outputStream1 = FileOutputStream(file)
-        inputStream.copyTo(outputStream1)
-        val body1 = UploadRequestBody(file,"image",this)
+        inputStream1.copyTo(outputStream1)
+        val body1 = UploadRequestBody(file,"image")
 
+
+
+        val send = RetrofitBuilder.retrofitBuilder.uploadData(
+            name,email,password,123456,
+            MultipartBody.Part.createFormData("image", file.name, body),
+            "DM",country,
+            MultipartBody.Part.createFormData("image", file1.name, body1)
+        )
+
+       send.enqueue(object : Callback<ResponseClient?> {
+           override fun onResponse(
+               call: Call<ResponseClient?>,
+               response: Response<ResponseClient?>
+           ) {
+               if (response.isSuccessful){
+                   val response = response.body()!!
+                   Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+               }else{
+                   Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
+               }
+           }
+
+           override fun onFailure(call: Call<ResponseClient?>, t: Throwable) {
+               Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
+           }
+       })
 
 
     }
@@ -213,11 +206,6 @@ class AddClient : AppCompatActivity(), UploadRequestBody.UploadCallback {
             }
 
         }
-
-    }
-
-    override fun onProgressUpdate(percentage: Int) {
-        Toast.makeText(this,"loading",Toast.LENGTH_LONG).show()
 
     }
 
