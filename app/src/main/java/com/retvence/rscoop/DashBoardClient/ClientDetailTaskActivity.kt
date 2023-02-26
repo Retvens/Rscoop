@@ -1,6 +1,5 @@
 package com.retvence.rscoop.DashBoardClient
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -34,13 +33,13 @@ class ClientDetailTaskActivity : AppCompatActivity() {
     private lateinit var nameHotel: TextView
     private lateinit var star: TextView
 
-    private lateinit var facebook: EditText
-    private lateinit var google: EditText
-    private lateinit var insta: EditText
-    private lateinit var linkedin: EditText
-    private lateinit var pinterest: EditText
-    private lateinit var tripod: EditText
-    private lateinit var twitter: EditText
+    private lateinit var facebookText : TextView
+    private lateinit var google: TextView
+    private lateinit var insta: TextView
+    private lateinit var linkedin: TextView
+    private lateinit var pinterest: TextView
+    private lateinit var tripod: TextView
+    private lateinit var twitter: TextView
 
 
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
@@ -55,15 +54,14 @@ class ClientDetailTaskActivity : AppCompatActivity() {
         setContentView(R.layout.activity_client_detail_task)
 
         findViewById<ImageView>(R.id.detail_task_client_back_btn).setOnClickListener {
-            startActivity(Intent(this@ClientDetailTaskActivity,ClientDashboardActivity:: class.java))
-            finish()
+           onBackPressed()
         }
 
         coverImg = findViewById(R.id.hotel_add_task_client_img)
         nameHotel = findViewById(R.id.hotel_name_add_task_client)
         star = findViewById(R.id.star_rate_number_client)
 
-        facebook = findViewById(R.id.fb_post_detail_client)
+        facebookText = findViewById(R.id.fb_post_detail_client)
         google = findViewById(R.id.google_post_detail_client)
         insta = findViewById(R.id.instaPost_detail_client)
         linkedin = findViewById(R.id.linkedin_post_detail_client)
@@ -83,7 +81,13 @@ class ClientDetailTaskActivity : AppCompatActivity() {
 
         Glide.with(baseContext).load(cover).into(coverImg)
         nameHotel.text = name
-//        facebook.text = facebookT
+        facebookText.text = facebookT
+        insta.text = instagramT
+        google.text  =  googleT
+        linkedin.text = linkedinT
+        tripod.text = tripadT
+        twitter.text = twitterT
+        pinterest.text = pinterestT
 
 
         recyclerViewDate = findViewById(R.id.recyclerViewDateDetailClient)
