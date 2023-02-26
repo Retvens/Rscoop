@@ -41,15 +41,29 @@ class ClientInfo : AppCompatActivity() {
         val number = findViewById<TextView>(R.id.client_number)
         val add = findViewById<TextView>(R.id.client_address)
 
+
+        val name = intent.getStringExtra("client_name")
+        val image = intent.getStringExtra("client_image")
+        val phone = intent.getStringExtra("client_phone")
+        val mail = intent.getStringExtra("client_e")
+        val address = intent.getStringExtra("client_address")
+
         whatsappClient.setOnClickListener {
             val uriForWhat: Uri = Uri.parse("https://whatsapp.com")
             startActivity(Intent(Intent.ACTION_VIEW,uriForWhat))
         }
 
-        val name = intent.getStringExtra("client_name")
-        val image = intent.getStringExtra("client_image")
-        val phone = intent.getStringExtra("client_phone")
-        val address = intent.getStringExtra("client_address")
+        findViewById<ImageView>(R.id.call).setOnClickListener {
+            val dailIntent = Intent(Intent.ACTION_DIAL)
+            dailIntent.data = Uri.parse("tel:" + phone.toString())
+            startActivity(dailIntent)
+        }
+        findViewById<ImageView>(R.id.email).setOnClickListener {
+            val uriMail: Uri = Uri.parse("mailto:"+ mail.toString())
+            val intentMail = Intent(Intent.ACTION_SENDTO,uriMail)
+            intentMail.putExtra(Intent.EXTRA_SUBJECT,"test")
+            startActivity(intentMail)
+        }
 
         client_Name2.text = name
         client_Name.text = name.toString()

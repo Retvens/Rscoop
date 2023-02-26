@@ -124,6 +124,7 @@
             tools:ignore="MissingConstraints" />
 
         <ImageView
+            android:id="@+id/call"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:src="@drawable/phonepng"
@@ -133,6 +134,7 @@
         android:layout_marginRight="60dp"
         tools:ignore="MissingConstraints" />
     <ImageView
+        android:id="@+id/email"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:src="@drawable/email"

@@ -64,8 +64,6 @@ class ClientTodayTabFragment : Fragment() {
                 if (response != null && view != null) {
                     clientTaskAdapter = ClientTodayTaskAdapter(context!!, response)
                     clientTaskAdapter.notifyDataSetChanged()
-                    val data = clientTaskAdapter.adapterPosition
-                    clientTaskAdapter.notifyItemRemoved(3)
 
                 }
             }

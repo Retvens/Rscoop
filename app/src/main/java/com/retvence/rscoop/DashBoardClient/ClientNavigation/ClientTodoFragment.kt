@@ -97,10 +97,6 @@ class ClientTodoFragment : Fragment() {
                     shimmerFrameLayout.visibility = View.GONE
                     recyclerView.visibility = View.VISIBLE
                 }
-                else{
-                    Toast.makeText(context,response.toString(), Toast.LENGTH_SHORT)
-                        .show()
-                }
             }
 
             override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {

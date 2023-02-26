@@ -9,7 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -211,12 +212,11 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/fb_post_detail_client"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/TextAppearance.AppCompat.Body1"
-                        android:hint="@string/enter_number_of_post_and_videos"
                         android:textSize="14dp"
                         android:layout_marginStart="60dp"
                         android:padding="5dp"
@@ -240,7 +240,7 @@
                         app:layout_constraintStart_toStartOf="@id/fb"
                         app:layout_constraintTop_toBottomOf="@id/fb"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/google_post_detail_client"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -251,7 +251,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/googl"
                         app:layout_constraintBottom_toBottomOf="@id/googl"
-                        android:hint="@string/enter_number_of_reviews"
                         android:textSize="14dp"
                         android:textColor="@color/add_details"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -268,14 +267,13 @@
                         app:layout_constraintTop_toBottomOf="@id/googl"/>
 
 
-                    <EditText
+                    <TextView
                         android:id="@+id/instaPost_detail_client"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/round_low"
                         android:padding="5dp"
                         android:layout_marginStart="60dp"
-                        android:hint="Enter number of post and reels"
                         android:textSize="14dp"
                         android:textColor="@color/add_details"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -296,7 +294,7 @@
                         app:layout_constraintStart_toStartOf="@id/fb"
                         app:layout_constraintTop_toBottomOf="@id/insta"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/linkedin_post_detail_client"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -307,7 +305,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/linkedin"
                         app:layout_constraintBottom_toBottomOf="@id/linkedin"
-                        android:hint="@string/enter_number_of_post_and_videos"
                         android:textSize="14dp"
                         android:textColor="@color/add_details"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -324,7 +321,7 @@
                         app:layout_constraintStart_toStartOf="@id/fb"
                         app:layout_constraintTop_toBottomOf="@id/linkedin"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/pinterest_post_detail_client"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -335,7 +332,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/pinterest"
                         app:layout_constraintBottom_toBottomOf="@id/pinterest"
-                        android:hint="@string/enter_number_of_post_and_videos"
                         android:textSize="14dp"
                         android:textColor="@color/add_details"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -352,7 +348,7 @@
                         app:layout_constraintStart_toStartOf="@id/fb"
                         app:layout_constraintTop_toBottomOf="@id/pinterest"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tripad_post_detail_client"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -363,7 +359,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tripad"
                         app:layout_constraintBottom_toBottomOf="@id/tripad"
-                        android:hint="@string/enter_number_of_reviews"
                         android:textSize="14dp"
                         android:textColor="@color/add_details"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -381,7 +376,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tripad"/>
 
 
-                    <EditText
+                    <TextView
                         android:id="@+id/twitter_post_detail_client"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -392,7 +387,6 @@
                         app:layout_constraintTop_toTopOf="@id/twit"
                         app:layout_constraintBottom_toBottomOf="@id/twit"
                         android:padding="5dp"
-                        android:hint="@string/enter_number_of_post_and_videos"
                         android:textSize="14dp"
                         android:textColor="@color/add_details"
                         style="@style/TextAppearance.AppCompat.Body1"

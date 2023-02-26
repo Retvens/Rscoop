@@ -25,6 +25,7 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
         var image = itemview.findViewById<ImageView>(R.id.clientImage)
         var whats = itemview.findViewById<ImageView>(R.id.whatsappCountry)
         var call = itemview.findViewById<ImageView>(R.id.call)
+        var mail = itemview.findViewById<ImageView>(R.id.mail)
         val number = itemview.findViewById<TextView>(R.id.NumberOfClient)
         val address = itemview.findViewById<TextView>(R.id.addOfClient)
 
@@ -46,8 +47,14 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
 
         holder.call.setOnClickListener {
             val dailIntent = Intent(Intent.ACTION_DIAL)
-            dailIntent.data = Uri.parse("tel:" + "7905845935")
+            dailIntent.data = Uri.parse("tel:" + data.Phone.toString())
             context.startActivity(dailIntent)
+        }
+        holder.mail.setOnClickListener {
+            val uriMail: Uri = Uri.parse("mailto:"+ data.Email.toString())
+            val intentMail = Intent(Intent.ACTION_SENDTO,uriMail)
+            intentMail.putExtra(Intent.EXTRA_SUBJECT,"test")
+            context.startActivity(intentMail)
         }
 
         holder.whats.setOnClickListener {
@@ -55,11 +62,13 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
             context.startActivity(Intent(Intent.ACTION_VIEW,uriWhats))
         }
 
+
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ClientInfo::class.java)
             intent.putExtra("client_name",data.Name)
             intent.putExtra("client_image",data.Profile_photo)
             intent.putExtra("client_phone",data.Phone.toString())
+            intent.putExtra("client_e",data.Email.toString())
             intent.putExtra("client_address",data.Country)
             intent.putExtra("owner",data.owner_id)
             context.startActivity(intent)
