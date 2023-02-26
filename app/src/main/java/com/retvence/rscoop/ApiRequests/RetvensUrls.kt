@@ -23,20 +23,17 @@ interface RetvensUrls {
 
 
     @Multipart
-    @Headers("Content-Type: application/json")
     @POST("hotelowner")
     fun uploadData(
         @Part("Name") Name: RequestBody,
         @Part("Email") Email: RequestBody,
         @Part("Password") Password: RequestBody,
         @Part("Phone") Phone: RequestBody,
-        @Part("owner_id") owner_id: RequestBody,
-        @Part profilePhoto: MultipartBody.Part,
+        @Part Profile_photo: MultipartBody.Part,
         @Part("Service_type") Service_type: RequestBody,
         @Part("Country") Country: RequestBody,
-        @Part("token") token: RequestBody,
-        @Part coverPhoto: MultipartBody.Part,
-        ): Call<List<ResponseClient>>
+        @Part Cover_photo: MultipartBody.Part,
+        ): Call<ResponseClient>
 
     @GET("property/{owner_id}")
     fun getHotel(@Path("owner_id") owner:String): Call<List<HotelsData>>
