@@ -35,6 +35,8 @@ import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.DateFormatSymbols
+import java.util.*
 
 class ClientDashboardFragment : Fragment() {
 
@@ -61,6 +63,15 @@ class ClientDashboardFragment : Fragment() {
             startActivity(Intent(context, ViewAllPropertiesActivity::class.java))
         }
 
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val monthName = DateFormatSymbols().months[month]
+
+        val currentDate = "$monthName"+" "+"$day"+" "+"$year"
+
+        view.findViewById<TextView>(R.id.Month).text = currentDate
 
         search = view.findViewById(R.id.search_property_client_dashboard)
 

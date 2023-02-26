@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
+import com.retvence.rscoop.DashBoardClient.ClientFavouriteTaskAdapter
 import com.retvence.rscoop.DashBoardClient.ClientTaskAdapter
 import com.retvence.rscoop.DataCollections.GetTaskData
+import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Tasks.TasksAdapter.RecentRecycler
 import com.retvens.rscoop.R
 import retrofit2.Call
@@ -20,8 +22,10 @@ import retrofit2.Response
 
 class ClientFavoriteFragment : Fragment() {
 
+    private lateinit var owner_id : String
+
     private lateinit var recyclerView: RecyclerView
-    private lateinit var clientTaskAdapter: ClientTaskAdapter
+    private lateinit var clientTaskAdapter: ClientFavouriteTaskAdapter
     lateinit var shimmerFrameLayout: ShimmerFrameLayout
 
     override fun onCreateView(
@@ -35,6 +39,9 @@ class ClientFavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        owner_id = SharedPreferenceManagerAdmin.getInstance(context!!).user.owner_id.toString()
+
+
         recyclerView = view.findViewById(R.id.recycler_Tasks_favorite)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -44,7 +51,7 @@ class ClientFavoriteFragment : Fragment() {
     }
 
     private fun allTaskData() {
-        val getData = RetrofitBuilder.retrofitBuilder.getTask()
+        val getData = RetrofitBuilder.retrofitBuilder.getCTask(owner_id)
         getData.enqueue(object : Callback<List<GetTaskData>?> {
             override fun onResponse(
                 call: Call<List<GetTaskData>?>,
@@ -55,17 +62,17 @@ class ClientFavoriteFragment : Fragment() {
 
                 val response = response.body()!!
                 if (response != null && view != null){
-                    clientTaskAdapter = ClientTaskAdapter(context!!,response)
+                    clientTaskAdapter = ClientFavouriteTaskAdapter(context!!,response)
                     clientTaskAdapter.notifyDataSetChanged()
                     recyclerView.adapter = clientTaskAdapter
 
                     recyclerView.visibility = View.VISIBLE
 
                 }
-//                else{
-//                    Toast.makeText(context,response.code().toString(), Toast.LENGTH_SHORT)
-//                        .show()
-//                }
+                else{
+                    Toast.makeText(context,response.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
 
             override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
