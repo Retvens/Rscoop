@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +15,7 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoardClient.ClientTaskAdapter
 import com.retvence.rscoop.DataCollections.GetTaskData
+import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.R
 import dev.joshhalvorson.calendar_date_range_picker.calendar.CalendarPicker
 import retrofit2.Call
@@ -24,12 +27,16 @@ import java.util.*
 class ClientTodoFragment : Fragment() {
 
 
+    private lateinit var owner_id : String
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var clientTaskAdapter: ClientTaskAdapter
     lateinit var shimmerFrameLayout: ShimmerFrameLayout
 
     private lateinit var calendarPicker: CalendarPicker
     private lateinit var get: CardView
+
+    private lateinit var tool : androidx.appcompat.widget.Toolbar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +49,15 @@ class ClientTodoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        owner_id = SharedPreferenceManagerAdmin.getInstance(context!!).user.owner_id.toString()
+
         calendarPicker = view.findViewById(R.id.calendarPicker)
+
+        tool = view.findViewById(R.id.toolbar)
+        (activity as AppCompatActivity?)!!.setSupportActionBar(tool as androidx.appcompat.widget.Toolbar?)
+
+
+
         get = view.findViewById(R.id.get_calendar)
 
         get.setOnClickListener{
@@ -57,6 +72,7 @@ class ClientTodoFragment : Fragment() {
 
         }
 
+
         recyclerView = view.findViewById(R.id.recycler_Tasks_todo_client)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -66,7 +82,7 @@ class ClientTodoFragment : Fragment() {
     }
 
     private fun allTaskData() {
-        val getData = RetrofitBuilder.retrofitBuilder.getTask()
+        val getData = RetrofitBuilder.retrofitBuilder.getCTask(owner_id)
         getData.enqueue(object : Callback<List<GetTaskData>?> {
             override fun onResponse(
                 call: Call<List<GetTaskData>?>,
@@ -81,10 +97,10 @@ class ClientTodoFragment : Fragment() {
                     shimmerFrameLayout.visibility = View.GONE
                     recyclerView.visibility = View.VISIBLE
                 }
-//                else{
-//                    Toast.makeText(context,response.code().toString(), Toast.LENGTH_SHORT)
-//                        .show()
-//                }
+                else{
+                    Toast.makeText(context,response.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
 
             override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {

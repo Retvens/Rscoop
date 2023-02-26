@@ -1,66 +1,86 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.retvence.rscoop.DashBoardClient.ClientNavigation.ClientTodoFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-    <TextView
-        android:id="@+id/sdate"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Date"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/avenir"
-        android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
 
-    <dev.joshhalvorson.calendar_date_range_picker.calendar.CalendarPicker
-        android:id="@+id/calendarPicker"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:dayTextColor="@color/black"
-        app:daysOfWeekTextColor="@color/black"
-        app:selectedDateCircleColor="@color/sky_blue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sdate"/>
+        app:contentScrim="@color/white"
+        app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap"
+        app:toolbarId="@+id/toolBar">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/get_calendar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/sky_blue"
-            app:cardCornerRadius="16dp"
-            android:layout_margin="40dp"
-            app:layout_constraintBottom_toBottomOf="@id/calendarPicker"
-            app:layout_constraintEnd_toEndOf="@id/calendarPicker">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <dev.joshhalvorson.calendar_date_range_picker.calendar.CalendarPicker
+                android:id="@+id/calendarPicker"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Get"
-                android:paddingHorizontal="25dp"
-                android:paddingVertical= "3dp"
-                android:background="@color/sky_blue"
-                android:textSize="14sp"
-                android:fontFamily="@font/avenir"
-                android:textColor="@color/white"/>
+                app:dayTextColor="@color/black"
+                app:daysOfWeekTextColor="@color/black"
+                app:selectedDateCircleColor="@color/sky_blue"
+                app:layout_collapseMode="parallax"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" />
 
-        </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/get_calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/sky_blue"
+                    app:cardCornerRadius="16dp"
+                    android:layout_margin="40dp"
+                    app:layout_constraintBottom_toBottomOf="@id/calendarPicker"
+                    app:layout_constraintEnd_toEndOf="@id/calendarPicker">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Get"
+                        android:paddingHorizontal="25dp"
+                        android:paddingVertical= "3dp"
+                        android:background="@color/sky_blue"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/avenir"
+                        android:textColor="@color/white"/>
+
+                </androidx.cardview.widget.CardView>
 
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Select Date"/>
+
+    </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_Tasks_todo_client"
@@ -68,9 +88,10 @@
         android:layout_height="wrap_content"
         tools:listitem="@layout/recentcard"
         android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/calendarPicker"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_tasks_container_todo_c"
@@ -78,7 +99,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/calendarPicker">
+        app:layout_constraintTop_toTopOf="@id/recycler_Tasks_todo_client">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -101,5 +122,7 @@
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
