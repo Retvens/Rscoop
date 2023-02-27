@@ -105,5 +105,10 @@ class HotelTaskAdapter(val context: Context, var userList:List<GetTaskData>):Rec
             return userList.size
     }
 
+    fun updateData(newItem : List<GetTaskData>){
+        userList = newItem
+        notifyDataSetChanged()
+    }
+
 
 }

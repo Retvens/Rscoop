@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -29,7 +31,7 @@ import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HotelProfile : AppCompatActivity() {
+class HotelProfile : AppCompatActivity(), CalendarAdapter.onItemClickListener {
 
     private val cal = Calendar.getInstance(Locale.ENGLISH)
     private val dates = ArrayList<Date>()
@@ -40,6 +42,7 @@ class HotelProfile : AppCompatActivity() {
     private lateinit var taskRecyclerView: RecyclerView
     private lateinit var adapter:HotelTaskAdapter
 
+    private lateinit var setD : TextView
 
 
     lateinit var call : ImageView
@@ -147,6 +150,7 @@ class HotelProfile : AppCompatActivity() {
             startActivity(openGoogle)
         }
 
+        setD = findViewById(R.id.showDate)
 
         recyclerViewDate = findViewById(R.id.recyclerViewDate1)
 
@@ -180,6 +184,33 @@ class HotelProfile : AppCompatActivity() {
                     adapter.notifyDataSetChanged()
                     taskRecyclerView.adapter = adapter
 
+                    setD.addTextChangedListener(object : TextWatcher {
+                        override fun beforeTextChanged(
+                            s: CharSequence?,
+                            start: Int,
+                            count: Int,
+                            after: Int
+                        ) {
+
+                        }
+
+                        override fun onTextChanged(
+                            s: CharSequence?,
+                            start: Int,
+                            before: Int,
+                            count: Int
+                        ) {
+                            val originalData = response.toList()
+                            val filterData = originalData.filter { c ->
+                                c.Date.contains(s.toString(),ignoreCase = true)
+                            }
+                            adapter.updateData(filterData)
+                        }
+
+                        override fun afterTextChanged(s: Editable?) {
+                        }
+                    })
+
                 }else{
                     Toast.makeText(applicationContext,response.code(),Toast.LENGTH_LONG).show()
                 }
@@ -199,6 +230,7 @@ class HotelProfile : AppCompatActivity() {
             calendarList2.forEachIndexed { index, calendarModel ->
                 calendarModel.isSelected = index == position
             }
+            calendarAdapter.setOnItemClickListener(this)
             calendarAdapter.setData(calendarList2)
         }
         recyclerViewDate.adapter = calendarAdapter
@@ -217,10 +249,15 @@ class HotelProfile : AppCompatActivity() {
         }
         calendarList2.clear()
         calendarList2.addAll(calendarList)
+        calendarAdapter.setOnItemClickListener(this)
         calendarAdapter.setData(calendarList)
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
+    }
+
+    override fun onItemClickDate(text: String) {
+        setD.text = text
     }
 }
