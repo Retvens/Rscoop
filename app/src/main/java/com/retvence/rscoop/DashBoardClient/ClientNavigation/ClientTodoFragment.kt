@@ -36,7 +36,8 @@ class ClientTodoFragment : Fragment() {
 
     private lateinit var calendarPicker: CalendarPicker
     private lateinit var get: CardView
-
+    private lateinit var fd:String
+    private lateinit var sd:String
     private lateinit var tool : androidx.appcompat.widget.Toolbar
 
     override fun onCreateView(
@@ -66,12 +67,62 @@ class ClientTodoFragment : Fragment() {
         val selectedDates = calendarPicker.getSelectedDates()
 
         if (selectedDates != null) {
-            val fd = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Date(selectedDates.first))
-            val sd = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Date(selectedDates.second))
-            val firstDate = DateFormat.getDateInstance().format(Date(selectedDates.first))
-            val secondDate = DateFormat.getDateInstance().format(Date(selectedDates.second))
-            Toast.makeText(context,fd.toString() + " to " + sd.toString(),Toast.LENGTH_SHORT).show()
+//            fd = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Date(selectedDates.first))
+//            sd = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Date(selectedDates.second))
+//            val firstDate = DateFormat.getDateInstance().format(Date(selectedDates.first))
+//            val secondDate = DateFormat.getDateInstance().format(Date(selectedDates.second))
+//            Toast.makeText(context,fd.toString() + " to " + sd.toString(),Toast.LENGTH_SHORT).show()
+            val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+
+            val startDate = Calendar.getInstance()
+            startDate.time = Date(selectedDates.first)
+
+            val endDate = Calendar.getInstance()
+            endDate.time = Date(selectedDates.second)
+
+            val calendar = startDate.clone() as Calendar
+            while (calendar.timeInMillis <= endDate.timeInMillis) {
+                val formattedDate = dateFormat.format(calendar.time)
+                calendar.add(Calendar.DATE, 1)
+
+                val getData = RetrofitBuilder.retrofitBuilder.getCTask(owner_id)
+                getData.enqueue(object : Callback<List<GetTaskData>?> {
+                    override fun onResponse(
+                        call: Call<List<GetTaskData>?>,
+                        response: Response<List<GetTaskData>?>
+                    ) {
+                        val response = response.body()!!
+
+                        for (x in response){
+                            if (x.Date == formattedDate){
+                                clientTaskAdapter = ClientTaskAdapter(context!!,response)
+                                clientTaskAdapter.notifyDataSetChanged()
+                                recyclerView.adapter = clientTaskAdapter
+                            }else{
+
+                            }
+                            continue
+                        }
+
+
+
+
+
+                    }
+
+                    override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
+                        Toast.makeText(context,t.localizedMessage, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                })
+
+            }
+
+
+
           }
+
+
 
         }
 
@@ -99,7 +150,9 @@ class ClientTodoFragment : Fragment() {
 
                     shimmerFrameLayout.visibility = View.GONE
                     recyclerView.visibility = View.VISIBLE
+
                 }
+
             }
 
             override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {

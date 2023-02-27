@@ -22,6 +22,7 @@ class ClientAllPropertyAdapter(val context: Context, var hotelList: List<RecentP
         val googleReview = itemView.findViewById<TextView>(R.id.google_review_text)
         val tripadReview = itemView.findViewById<TextView>(R.id.greview_review_text)
         val rating = itemView.findViewById<RatingBar>(R.id.ratingBar)
+        val country = itemView.findViewById<TextView>(R.id.hotel_location)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllViewHolder {
@@ -36,6 +37,7 @@ class ClientAllPropertyAdapter(val context: Context, var hotelList: List<RecentP
         holder.tripadReview.text = items.trip_advisor_review.toString()
         Glide.with(context).load(items.Cover_photo).into(holder.hotelCover)
         holder.rating.rating = items.hotel_stars.toFloat()
+        holder.country.text = items.Country
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context,ViewAllTaskOfProperty::class.java)

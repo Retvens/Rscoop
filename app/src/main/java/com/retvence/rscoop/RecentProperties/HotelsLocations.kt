@@ -5,7 +5,9 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -53,6 +55,26 @@ class HotelsLocations : AppCompatActivity() {
         val latitude = intent.getStringExtra("latitude")
         val longitude = intent.getStringExtra("longitude")
         val logoOfHotel = intent.getStringExtra("logo")
+        val address = intent.getStringExtra("address")
+        val about = intent.getStringExtra("about")
+        val star = intent.getIntExtra("star",0)
+        val google_review = intent.getIntExtra("google",0)
+        val trip_review = intent.getIntExtra("trip",0)
+
+        val star1 = star.toFloat()
+
+        val add = findViewById<TextView>(R.id.hotel_country)
+        val About = findViewById<TextView>(R.id.About)
+        val rating = findViewById<RatingBar>(R.id.ratingBar)
+        val google = findViewById<TextView>(R.id.googleRating)
+        val trip = findViewById<TextView>(R.id.trapadvisior)
+
+
+        google.text = google_review.toString()
+        trip.text = trip_review.toString()
+        About.text = about
+        add.text = address
+        rating.rating = star1
 
         val lat = latitude!!.toDouble()
         val long = longitude!!.toDouble()

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -56,6 +57,7 @@ class HotelProfile : AppCompatActivity() {
         val address = findViewById<TextView>(R.id.Egniter_hotel_country)
         val googleRating = findViewById<TextView>(R.id.googleRating)
         val tripAdvisorRating = findViewById<TextView>(R.id.trapadvisior)
+        val star = findViewById<RatingBar>(R.id.ratingBar)
 
         val Name = intent.getStringExtra("Name")
         val image = intent.getStringExtra("image")
@@ -63,6 +65,11 @@ class HotelProfile : AppCompatActivity() {
         val add = intent.getStringExtra("address")
         val googlereview = intent.getStringExtra("google")
         val tripAdvisor = intent.getStringExtra("trip")
+        val rating = intent.getIntExtra("hotel_Star",0)
+
+        val hotel_Star = rating.toFloat()
+
+        star.rating = hotel_Star
 
         Glide.with(baseContext).load(image).into(hotelImage)
         Glide.with(baseContext).load(logo).into(hotelLogo)

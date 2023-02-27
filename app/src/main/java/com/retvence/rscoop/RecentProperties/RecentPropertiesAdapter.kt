@@ -31,8 +31,10 @@ class RecentPropertiesAdapter(val context: Context, var propertyList: List<Recen
         holder.googleReview.text = propertyList.Google_review.toString()
         holder.tripadReview.text = propertyList.trip_advisor_review.toString()
         holder.ratingBar.rating = propertyList.hotel_stars.toFloat()
+        holder.country.text = propertyList.Country
 
         Glide.with(context).load(propertyList.hotel_logo).into(holder.hotelCover)
+        Glide.with(context).load(propertyList.hotel_logo).into(holder.hotel_profile)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context,HotelsLocations::class.java).apply {
@@ -41,6 +43,11 @@ class RecentPropertiesAdapter(val context: Context, var propertyList: List<Recen
             intent.putExtra("Name",propertyList.hotel_name)
             intent.putExtra("image",propertyList.Cover_photo)
             intent.putExtra("logo",propertyList.hotel_logo)
+            intent.putExtra("address",propertyList.Address)
+            intent.putExtra("about",propertyList.About)
+            intent.putExtra("star",propertyList.hotel_stars)
+            intent.putExtra("google",propertyList.Google_review)
+            intent.putExtra("trip",propertyList.trip_advisor_review)
 
             for (location in propertyList.hotel_location){
                 intent.putExtra("latitude", location.Latitude)
@@ -66,5 +73,7 @@ class RecentPropertiesAdapter(val context: Context, var propertyList: List<Recen
         var tripadReview = itemView.findViewById<TextView>(R.id.greview_review_text)
         var googleReview = itemView.findViewById<TextView>(R.id.google_review_text)
         var ratingBar = itemView.findViewById<RatingBar>(R.id.ratingBar)
+        var country = itemView.findViewById<TextView>(R.id.hotel_location)
+        var hotel_profile = itemView.findViewById<ImageView>(R.id.hotel_profile)
     }
 }

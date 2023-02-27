@@ -43,6 +43,12 @@ class ClientAdapter(val context: Context, var userList:List<HotelsData>):Recycle
             intent.putExtra("Name",item.hotel_name)
             intent.putExtra("image",item.Cover_photo)
             intent.putExtra("logo",item.hotel_logo)
+            intent.putExtra("address",item.Address)
+            intent.putExtra("about",item.About)
+            intent.putExtra("star",item.hotel_stars)
+            intent.putExtra("google",item.Google_review)
+            intent.putExtra("trip",item.trip_advisor_review)
+
 
             for (location in item.hotel_location){
                 intent.putExtra("latitude",location.Latitude)
