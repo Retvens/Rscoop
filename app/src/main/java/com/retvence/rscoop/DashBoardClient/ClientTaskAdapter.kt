@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
+import com.retvence.rscoop.DashBoardIgniter.RecentPropertiesDataClass
 import com.retvence.rscoop.DataCollections.GetTaskData
 import com.retvence.rscoop.DataCollections.ResponseTask
 import com.retvens.rscoop.R
@@ -166,5 +167,9 @@ class ClientTaskAdapter(val context: Context, var userList:List<GetTaskData>) : 
                 Toast.makeText(context,t.localizedMessage!!.toString(), Toast.LENGTH_LONG).show()
             }
         })
+    }
+    fun updateData(newItems: List<GetTaskData>) {
+        userList = newItems
+        notifyDataSetChanged()
     }
 }
