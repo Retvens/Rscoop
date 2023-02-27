@@ -60,7 +60,7 @@ class ClientTodayTabFragment : Fragment() {
 
         val currentDate = "$day"+" "+"$monthName"+" "+"$year"
 
-        val getData = RetrofitBuilder.retrofitBuilder.getTodayTask(owner_id,currentDate.toString())
+        val getData = RetrofitBuilder.retrofitBuilder.getTodayTask(owner_id,currentDate)
         getData.enqueue(object : Callback<List<GetTaskData>?> {
             override fun onResponse(
                 call: Call<List<GetTaskData>?>,
@@ -74,6 +74,7 @@ class ClientTodayTabFragment : Fragment() {
                 if (response != null && view != null) {
                     clientTaskAdapter = ClientTodayTaskAdapter(context!!, response)
                     clientTaskAdapter.notifyDataSetChanged()
+                    recyclerView.adapter = clientTaskAdapter
 
                 }
             }
