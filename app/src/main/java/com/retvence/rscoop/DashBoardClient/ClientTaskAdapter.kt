@@ -63,7 +63,7 @@ class ClientTaskAdapter(val context: Context, var userList:List<GetTaskData>) : 
     override fun onBindViewHolder(holder: ClientTaskViewHolder, position: Int) {
 
         if(adapterPosition == position){
-            holder.favorite.setColorFilter(context.getResources().getColor(R.color.sky_blue))
+            holder.favorite.setColorFilter(context.getResources().getColor(R.color.red_favourite))
         }else{
             holder.favorite.setColorFilter(context.getResources().getColor(R.color.light_grey))
         }
@@ -74,7 +74,7 @@ class ClientTaskAdapter(val context: Context, var userList:List<GetTaskData>) : 
         }
 
         if (userList[position].favourite == true) {
-            holder.favorite.setColorFilter(context.getResources().getColor(R.color.sky_blue))
+            holder.favorite.setColorFilter(context.getResources().getColor(R.color.red_favourite))
         }
 
         holder.favorite.setOnClickListener {

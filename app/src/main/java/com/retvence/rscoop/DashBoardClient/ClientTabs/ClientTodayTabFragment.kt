@@ -17,6 +17,8 @@ import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.DateFormatSymbols
+import java.util.*
 
 class ClientTodayTabFragment : Fragment() {
 
@@ -50,7 +52,15 @@ class ClientTodayTabFragment : Fragment() {
     }
 
     private fun allTaskData() {
-        val getData = RetrofitBuilder.retrofitBuilder.getCTask(owner_id)
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val monthName = DateFormatSymbols().months[month]
+
+        val currentDate = "$day"+" "+"$monthName"+" "+"$year"
+
+        val getData = RetrofitBuilder.retrofitBuilder.getTodayTask(owner_id,currentDate.toString())
         getData.enqueue(object : Callback<List<GetTaskData>?> {
             override fun onResponse(
                 call: Call<List<GetTaskData>?>,

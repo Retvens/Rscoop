@@ -63,7 +63,7 @@ class ClientTodayTaskAdapter(val context: Context, var userList:List<GetTaskData
     override fun onBindViewHolder(holder: ClientTodayTaskViewHolder, position: Int) {
 
         if(adapterPosition == position){
-            holder.favorite.setColorFilter(context.getResources().getColor(R.color.sky_blue))
+            holder.favorite.setColorFilter(context.getResources().getColor(R.color.red_favourite))
         }else{
             holder.favorite.setColorFilter(context.getResources().getColor(R.color.light_grey))
         }
@@ -74,7 +74,7 @@ class ClientTodayTaskAdapter(val context: Context, var userList:List<GetTaskData
         }
 
         if (userList[position].favourite == true) {
-            holder.favorite.setColorFilter(context.getResources().getColor(R.color.sky_blue))
+            holder.favorite.setColorFilter(context.getResources().getColor(R.color.red_favourite))
         }
 
         holder.favorite.setOnClickListener {
@@ -84,20 +84,6 @@ class ClientTodayTaskAdapter(val context: Context, var userList:List<GetTaskData
             val id = userList[position]._id
             setFavourite(id)
         }
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-        val monthName = DateFormatSymbols().months[month]
-
-        val currentDate = "$day"+" "+"$monthName"+" "+"$year"
-
-        if (userList[position].Date.toString() == currentDate){
-            holder.itemView.visibility = View.VISIBLE
-        }else{
-            holder.itemView.visibility = View.GONE
-        }
-
 
             holder.facebook.text = userList[position].facebook
             holder.instagram.text = userList[position].instagram
