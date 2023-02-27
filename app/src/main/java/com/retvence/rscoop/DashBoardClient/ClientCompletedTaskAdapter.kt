@@ -73,7 +73,7 @@ class ClientCompletedTaskAdapter(val context: Context, var userList:List<GetTask
         }
 
         if (userList[position].favourite == true) {
-            holder.favorite.setColorFilter(context.getResources().getColor(R.color.sky_blue))
+            holder.favorite.setColorFilter(context.getResources().getColor(R.color.red_favourite))
         }
 
         holder.favorite.setOnClickListener {

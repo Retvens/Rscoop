@@ -57,7 +57,7 @@ class ClientFavouriteTaskAdapter(val context: Context, var userList:List<GetTask
     override fun onBindViewHolder(holder: ClientFavouriteTaskViewHolder, position: Int) {
 
         if (adapterPosition == position) {
-            holder.favorite.setColorFilter(context.getResources().getColor(R.color.sky_blue))
+            holder.favorite.setColorFilter(context.getResources().getColor(R.color.red_favourite))
         } else {
             holder.favorite.setColorFilter(context.getResources().getColor(R.color.light_grey))
         }
@@ -72,7 +72,7 @@ class ClientFavouriteTaskAdapter(val context: Context, var userList:List<GetTask
             holder.status.setImageResource(R.drawable.png_timer)
         }
         if (userList[position].favourite == true) {
-            holder.favorite.setColorFilter(context.getResources().getColor(R.color.sky_blue))
+            holder.favorite.setColorFilter(context.getResources().getColor(R.color.red_favourite))
         }
 
         holder.facebook.text = userList[position].facebook
