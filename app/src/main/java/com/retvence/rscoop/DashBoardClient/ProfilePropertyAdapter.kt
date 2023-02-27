@@ -46,6 +46,8 @@ class ProfilePropertyAdapter(val context: Context,val itemC : List<RecentPropert
             intent.putExtra("addH",items.Address)
             intent.putExtra("hotel_id",items.hotel_id)
             intent.putExtra("ratingH",items.hotel_stars)
+            intent.putExtra("googleReview",items.Google_review)
+            intent.putExtra("tripReview",items.trip_advisor_review)
             context.startActivity(intent)
         }
 

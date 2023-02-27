@@ -45,6 +45,8 @@ class ClientAllPropertyAdapter(val context: Context, var hotelList: List<RecentP
             intent.putExtra("addH",items.Address)
             intent.putExtra("hotel_id",items.hotel_id)
             intent.putExtra("ratingH",items.hotel_stars)
+            intent.putExtra("googleReview",items.Google_review)
+            intent.putExtra("tripReview",items.trip_advisor_review)
             context.startActivity(intent)
         }
     }

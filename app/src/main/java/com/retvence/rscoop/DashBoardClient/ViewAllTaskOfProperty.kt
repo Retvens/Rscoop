@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.ImageView
 import android.widget.RatingBar
@@ -32,6 +34,10 @@ class ViewAllTaskOfProperty : AppCompatActivity(),
     CalendarAdapter.onItemClickListener {
 
     private lateinit var taskDate : String
+
+    private lateinit var googleReview: TextView
+    private lateinit var tripAdvisorReview: TextView
+    private lateinit var c_dat: TextView
 
     private lateinit var textDateMonth: TextView
     private lateinit var ivCalendarNext: ImageView
@@ -70,6 +76,10 @@ class ViewAllTaskOfProperty : AppCompatActivity(),
         nameMid = findViewById(R.id.Client_Hotel_Name2)
         clientProfile = findViewById(R.id.client_hotel_profile)
         clientCover = findViewById(R.id.client_hotel_cover)
+
+        googleReview = findViewById(R.id.googleReview)
+        tripAdvisorReview = findViewById(R.id.tripAdvisorReview)
+        c_dat = findViewById(R.id.c_dat)
 
         textDateMonth = findViewById(R.id.c_date_month)
         ivCalendarNext = findViewById(R.id.c_calendar_next)
@@ -150,12 +160,16 @@ class ViewAllTaskOfProperty : AppCompatActivity(),
         val addressHotel = intent.getStringExtra("addH")
         val rate = intent.getStringExtra("ratingH")
         val logoHotel = intent.getStringExtra("logoH")
+        val googleReviewI = intent.getStringExtra("googleReview")
+        val tripReview = intent.getStringExtra("tripReview")
 
         nameTop.text = hotelName
         Glide.with(baseContext).load(hotelCover).into(clientCover)
         nameMid.text = hotelName
         Glide.with(baseContext).load(logoHotel).into(clientProfile)
         address.text = addressHotel.toString()
+        googleReview.text = "From $googleReviewI reviews"
+        tripAdvisorReview.text = "From $tripReview reviews"
         if (rate != null) {
             ratingBar.rating = rate.toFloat()
         }
@@ -167,8 +181,7 @@ class ViewAllTaskOfProperty : AppCompatActivity(),
     }
     override fun onItemClickDate(text:String) {
         taskDate = text.toString()
-        Toast.makeText(this, taskDate, Toast.LENGTH_SHORT)
-            .show()
+        c_dat.text = taskDate
     }
     private fun allTaskData() {
         val hotel_id =intent.getStringExtra("hotel_id").toString()
@@ -188,8 +201,35 @@ class ViewAllTaskOfProperty : AppCompatActivity(),
                     shimmerFrameLayout.visibility = View.GONE
                     recyclerView.visibility = View.VISIBLE
 
+                    c_dat.addTextChangedListener(object : TextWatcher {
+                        override fun beforeTextChanged(
+                            s: CharSequence?,
+                            start: Int,
+                            count: Int,
+                            after: Int
+                        ) {
+
+                        }
+
+                        override fun onTextChanged(
+                            s: CharSequence?,
+                            start: Int,
+                            before: Int,
+                            count: Int
+                        ) {
+                            val originalData = response.toList()
+                            val filterData = originalData.filter { taskData ->
+                                taskData.Date.contains(s.toString(),ignoreCase = true)
+                            }
+                            clientTaskAdapter.updateData(filterData)
+                        }
+
+                        override fun afterTextChanged(s: Editable?) {
+                        }
+                    })
+
                 }else{
-                    Toast.makeText(this@ViewAllTaskOfProperty,response.code(),Toast.LENGTH_SHORT)
+                    Toast.makeText(this@ViewAllTaskOfProperty,response.code().toString(),Toast.LENGTH_SHORT)
                         .show()
                 }
             }
