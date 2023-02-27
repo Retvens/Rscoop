@@ -14,8 +14,8 @@ data class HotelsData(
     val token:String,
     val About:String,
     val Address:String,
-    val Google_review:String,
-    val trip_advisor_review:String,
+    val Google_review:Int,
+    val trip_advisor_review:Int,
 
 ){
 

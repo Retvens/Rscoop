@@ -210,7 +210,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-                <EditText
+                <TextView
                     android:id="@+id/fb_post_deatail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -239,7 +239,7 @@
                     app:layout_constraintStart_toStartOf="@id/fb"
                     app:layout_constraintTop_toBottomOf="@id/fb"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/google_post_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -267,7 +267,7 @@
                     app:layout_constraintTop_toBottomOf="@id/googl"/>
 
 
-                    <EditText
+                    <TextView
                         android:id="@+id/instaPost_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -295,7 +295,7 @@
                     app:layout_constraintStart_toStartOf="@id/fb"
                     app:layout_constraintTop_toBottomOf="@id/insta"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/linkedin_post_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -323,7 +323,7 @@
                     app:layout_constraintStart_toStartOf="@id/fb"
                     app:layout_constraintTop_toBottomOf="@id/linkedin"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/pinterest_post_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -351,7 +351,7 @@
                     app:layout_constraintStart_toStartOf="@id/fb"
                     app:layout_constraintTop_toBottomOf="@id/pinterest"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tripad_post_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -380,7 +380,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tripad"/>
 
 
-                    <EditText
+                    <TextView
                         android:id="@+id/twitter_post"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

@@ -75,6 +75,7 @@ class DetailTaskEditActivity : AppCompatActivity() {
         val img = intent.getStringExtra("image")
         val name = intent.getStringExtra("name")
 
+
         val image = findViewById<ImageView>(R.id.hotel_add_task_img)
         val Name = findViewById<TextView>(R.id.hotel_name_add_task_Edit)
         facebook = findViewById(R.id.fb_post_deatail_Edit)
@@ -95,19 +96,60 @@ class DetailTaskEditActivity : AppCompatActivity() {
     }
 
     private fun UpdateTask() {
-        val facebook = facebook.text.toString().trim()
-        
 
-        val google = google.text.toString().trim()
-        val instagram = instagram.text.toString().trim()
-        val linkedin = linkedin.text.toString().trim()
-        val pinterest = pinterest.text.toString().trim()
-        val tripadvisor = tripadvisor.text.toString().trim()
-        val twitter = twitter.text.toString().trim()
+
+        val getfacebook = intent.getStringExtra("facebook")
+        val getinstagram = intent.getStringExtra("instagram")
+        val getgoogle = intent.getStringExtra("google")
+        val getlinkedin = intent.getStringExtra("linkedin")
+        val gettripad = intent.getStringExtra("tripad")
+        val gettwitter =intent.getStringExtra("twitter")
+        val getpinterest = intent.getStringExtra("pinterest")
+
+
+
+        val facebook = facebook.text.toString()
+        val fbinput = facebook.split(",")
+        val facebook1 = fbinput[0]
+        val facebook2 = fbinput[1]
+        val facebookString = "$facebook1 Video's and $facebook2 Posts"
+
+
+
+        val Linkedin = linkedin.text.toString()
+        val Linkinput = Linkedin.split(",")
+        val Linkedin1 = Linkinput[0]
+        val Linkedin2 = Linkinput[1]
+        val LinkedinString = "$Linkedin1 Video's and $Linkedin2 Posts"
+
+
+        val instagram = instagram.text.toString()
+        val instaInput = instagram.split(",")
+        val insta1 = instaInput[0]
+        val insta2 = instaInput[1]
+        val instagramString = "$insta1 Video's and $insta2 Posts"
+
+        val twitter = twitter.text.toString()
+        val twittInput = twitter.split(",")
+        val twitter1 = twittInput[0]
+        val twitter2 = twittInput[1]
+        val twitterString = "$twitter1 Video's and $twitter2 Posts"
+
+        val Pinterest = pinterest.text.toString()
+        val pinterestInput = Pinterest.split(",")
+        val pin1 = pinterestInput[0]
+        val pin2 = pinterestInput[1]
+        val pinterestString = "$pin1 Video's and $pin2 Posts"
+
+        val GMB = tripadvisor.text.toString()
+        val GMBString = "$GMB Reviews"
+
+        val Google_review = google.text.toString()
+        val googleString = "$Google_review Reviews"
         val id = getId
 
         val send =  RetrofitBuilder.retrofitBuilder.updateTask(id, UpdateTaskClass(
-            facebook,linkedin,instagram,twitter,pinterest,tripadvisor,google
+            facebookString,LinkedinString,instagramString,twitterString,pinterestString,GMBString,googleString
         ))
 
         send.enqueue(object : Callback<ResponseTask?> {

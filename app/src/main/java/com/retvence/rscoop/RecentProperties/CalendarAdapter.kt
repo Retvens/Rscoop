@@ -26,6 +26,7 @@ class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateMode
 
     interface onItemClickListener{
         fun onItemClickDate(text:String)
+
     }
 
     private var mListener: onItemClickListener? = null

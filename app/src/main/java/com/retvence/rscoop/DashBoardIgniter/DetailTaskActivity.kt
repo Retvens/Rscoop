@@ -43,6 +43,7 @@ class DetailTaskActivity : AppCompatActivity() {
     lateinit var edit : CardView
     lateinit var done :CardView
     lateinit var getid:String
+    lateinit var pending:CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +60,7 @@ class DetailTaskActivity : AppCompatActivity() {
 
         edit = findViewById(R.id.edit_card)
         done = findViewById(R.id.done)
+        pending = findViewById(R.id.pending)
 
         val image = findViewById<ImageView>(R.id.hotel_add_task_img)
         val name = findViewById<TextView>(R.id.hotel_name_add_task)
@@ -112,11 +114,35 @@ class DetailTaskActivity : AppCompatActivity() {
             updateTask()
         }
 
+        pending.setOnClickListener {
+            PendingTask()
+        }
+
         setUpClickListener()
         setUpAdapter()  // First We Set Adapter
         setUpCalendar() // Now Set Calendar
 
 
+    }
+
+    private fun PendingTask() {
+        val data:String = "Pending"
+        val id = getid
+        val send = RetrofitBuilder.retrofitBuilder.updateStatus(id,StatusClass(data))
+        send.enqueue(object : Callback<ResponseTask?> {
+            override fun onResponse(call: Call<ResponseTask?>, response: Response<ResponseTask?>) {
+                if (response.isSuccessful){
+                    val response = response.body()!!
+                    Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+                }else{
+                    Toast.makeText(applicationContext,response.code(),Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseTask?>, t: Throwable) {
+                Toast.makeText(applicationContext,t.message.toString(),Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     override fun onBackPressed() {

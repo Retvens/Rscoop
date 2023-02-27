@@ -13,5 +13,6 @@ data class RecentPropertiesDataClass(
     val hotel_name: String,
     val hotel_stars: Int,
     val owner_id: String,
-    val trip_advisor_review: Int
+    val trip_advisor_review: Int,
+    val Country:String
 )

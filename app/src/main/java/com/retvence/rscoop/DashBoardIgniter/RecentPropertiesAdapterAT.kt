@@ -24,6 +24,7 @@ class RecentPropertiesAdapterAT(val context: Context, var recentItem: List<Recen
         val googleReview = itemView.findViewById<TextView>(R.id.google_review_text)
         val tripadReview = itemView.findViewById<TextView>(R.id.greview_review_text)
         val rating = itemView.findViewById<RatingBar>(R.id.ratingBar)
+        val profile = itemView.findViewById<ImageView>(R.id.hotel_profile)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddTaskViewHolder {
@@ -43,6 +44,7 @@ class RecentPropertiesAdapterAT(val context: Context, var recentItem: List<Recen
         holder.tripadReview.text = item.trip_advisor_review.toString()
         Glide.with(context).load(item.Cover_photo).into(holder.hotelCover)
         holder.rating.rating = item.hotel_stars.toFloat()
+        Glide.with(context).load(item.hotel_logo).into(holder.profile)
 
 
         holder.itemView.setOnClickListener {
@@ -53,8 +55,8 @@ class RecentPropertiesAdapterAT(val context: Context, var recentItem: List<Recen
             intent.putExtra("id",item.hotel_id)
             intent.putExtra("address",item.Address)
             intent.putExtra("google",item.Google_review.toString())
-            intent.putExtra("trip",item.trip_advisor_review
-                .toString())
+            intent.putExtra("trip",item.trip_advisor_review.toString())
+            intent.putExtra("hotel_Star",item.hotel_stars)
             context.startActivity(intent)
 
         }
