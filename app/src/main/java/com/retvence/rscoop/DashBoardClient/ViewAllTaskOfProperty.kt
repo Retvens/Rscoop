@@ -158,10 +158,10 @@ class ViewAllTaskOfProperty : AppCompatActivity(),
         val hotelName = intent.getStringExtra("nameH")
         val hotelCover = intent.getStringExtra("coverH")
         val addressHotel = intent.getStringExtra("addH")
-        val rate = intent.getStringExtra("ratingH")
+        val rate = intent.getIntExtra("ratingH",4)
         val logoHotel = intent.getStringExtra("logoH")
-        val googleReviewI = intent.getStringExtra("googleReview")
-        val tripReview = intent.getStringExtra("tripReview")
+        val googleReviewI = intent.getIntExtra("googleReview",20)
+        val tripReview = intent.getIntExtra("tripReview",40)
 
         nameTop.text = hotelName
         Glide.with(baseContext).load(hotelCover).into(clientCover)
@@ -170,9 +170,7 @@ class ViewAllTaskOfProperty : AppCompatActivity(),
         address.text = addressHotel.toString()
         googleReview.text = "From $googleReviewI reviews"
         tripAdvisorReview.text = "From $tripReview reviews"
-        if (rate != null) {
-            ratingBar.rating = rate.toFloat()
-        }
+        ratingBar.rating = rate.toFloat()
 
         setUpClickListener()
         setUpAdapter()
