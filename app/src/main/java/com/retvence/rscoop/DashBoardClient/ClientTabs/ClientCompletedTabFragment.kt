@@ -50,7 +50,7 @@ class ClientCompletedTabFragment : Fragment() {
     }
 
     private fun allTaskData() {
-        val getData = RetrofitBuilder.retrofitBuilder.getCTask(owner_id)
+        val getData = RetrofitBuilder.retrofitBuilder.getCDoneTask(owner_id)
         getData.enqueue(object : Callback<List<GetTaskData>?> {
             override fun onResponse(
                 call: Call<List<GetTaskData>?>,

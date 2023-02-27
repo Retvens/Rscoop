@@ -62,7 +62,7 @@ class ClientCompletedTaskAdapter(val context: Context, var userList:List<GetTask
     override fun onBindViewHolder(holder: ClientCompletedTaskViewHolder, position: Int) {
 
         if(adapterPosition == position){
-            holder.favorite.setColorFilter(context.getResources().getColor(R.color.sky_blue))
+            holder.favorite.setColorFilter(context.getResources().getColor(R.color.red_favourite))
         }else{
             holder.favorite.setColorFilter(context.getResources().getColor(R.color.light_grey))
         }
@@ -82,13 +82,6 @@ class ClientCompletedTaskAdapter(val context: Context, var userList:List<GetTask
             favourite = true
             val id = userList[position]._id
             setFavourite(id)
-        }
-
-
-        if (userList[position].Status.toString() == "Done") {
-            holder.itemView.visibility = View.VISIBLE
-        }else{
-            holder.itemView.visibility = View.GONE
         }
 
             holder.facebook.text = userList[position].facebook
