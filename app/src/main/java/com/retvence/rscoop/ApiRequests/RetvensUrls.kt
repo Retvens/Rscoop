@@ -107,4 +107,19 @@ interface RetvensUrls {
         @Body favouriteDataClass:FavouriteDataClass
     ):Call<ResponseTask>
 
+    @GET("tasks/{owner_id}/{Date}")
+    fun getTodayTask(
+        @Path("owner_id") owner_id:String,
+        @Path("Date") Date: String
+    ):Call<List<GetTaskData>>
+
+    @GET("tasks/{owner_id}/Done")
+    fun getCDoneTask(
+        @Path("owner_id") owner_id:String
+    ):Call<List<GetTaskData>>
+
+    @GET("tasks/{owner_id}/true")
+    fun getCFavouriteTask(
+        @Path("owner_id") owner_id:String
+    ):Call<List<GetTaskData>>
 }

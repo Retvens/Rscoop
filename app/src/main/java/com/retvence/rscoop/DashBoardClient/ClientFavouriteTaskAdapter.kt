@@ -17,8 +17,7 @@ import com.retvens.rscoop.R
 class ClientFavouriteTaskAdapter(val context: Context, var userList:List<GetTaskData>) : RecyclerView.Adapter<ClientFavouriteTaskAdapter.ClientFavouriteTaskViewHolder>() {
 
     var adapterPosition = -1
-
-    class ClientFavouriteTaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ClientFavouriteTaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var name = itemView.findViewById<TextView>(R.id.Company_Name)
         var image = itemView.findViewById<ImageView>(R.id.owner_Image)
@@ -43,8 +42,11 @@ class ClientFavouriteTaskAdapter(val context: Context, var userList:List<GetTask
         var googleIcon = itemView.findViewById<ImageView>(R.id.google_icon)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClientFavouriteTaskViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recentcard,parent,false)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ClientFavouriteTaskViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.recentcard, parent, false)
         return ClientFavouriteTaskViewHolder(view)
     }
 
@@ -54,9 +56,9 @@ class ClientFavouriteTaskAdapter(val context: Context, var userList:List<GetTask
 
     override fun onBindViewHolder(holder: ClientFavouriteTaskViewHolder, position: Int) {
 
-        if(adapterPosition == position){
+        if (adapterPosition == position) {
             holder.favorite.setColorFilter(context.getResources().getColor(R.color.sky_blue))
-        }else{
+        } else {
             holder.favorite.setColorFilter(context.getResources().getColor(R.color.light_grey))
         }
 
@@ -64,49 +66,46 @@ class ClientFavouriteTaskAdapter(val context: Context, var userList:List<GetTask
             adapterPosition = position
             notifyDataSetChanged()
         }
-        if (userList[position].Status == "Done"){
+        if (userList[position].Status == "Done") {
             holder.status.setImageResource(R.drawable.png_check)
-        }else{
+        } else {
             holder.status.setImageResource(R.drawable.png_timer)
         }
         if (userList[position].favourite == true) {
-            holder.itemView.visibility = View.VISIBLE
             holder.favorite.setColorFilter(context.getResources().getColor(R.color.sky_blue))
-        }else{
-            holder.itemView.visibility = View.GONE
         }
 
-            holder.facebook.text = userList[position].facebook
-            holder.instagram.text = userList[position].instagram
-            holder.linkdin.text = userList[position].Linkedin
-            holder.twitter.text = userList[position].twitter
-            holder.pinterest.text = userList[position].Pinterest
-            holder.gmb.text = userList[position].GMB
-            holder.google.text = userList[position].Google_reviews
-            Glide.with(context).load(userList[position].owner_pic).into(holder.image)
-            holder.name.text = userList[position].hotel_name
+        holder.facebook.text = userList[position].facebook
+        holder.instagram.text = userList[position].instagram
+        holder.linkdin.text = userList[position].Linkedin
+        holder.twitter.text = userList[position].twitter
+        holder.pinterest.text = userList[position].Pinterest
+        holder.gmb.text = userList[position].GMB
+        holder.google.text = userList[position].Google_reviews
+        Glide.with(context).load(userList[position].owner_pic).into(holder.image)
+        holder.name.text = userList[position].hotel_name
 
-            holder.date.text = userList[position].Date
+        holder.date.text = userList[position].Date
 
-            holder.favorite.visibility = View.VISIBLE
+        holder.favorite.visibility = View.VISIBLE
 
-            holder.itemView.setOnClickListener {
-                val intent = Intent(context, ClientDetailTaskActivity::class.java)
-                intent.putExtra("nameHotel", userList[position].hotel_name)
-                intent.putExtra("imageCover", userList[position].owner_pic)
-                intent.putExtra("facebook", userList[position].facebook)
-                intent.putExtra("instagram", userList[position].instagram)
-                intent.putExtra("linkedin", userList[position].Linkedin)
-                intent.putExtra("twitter", userList[position].twitter)
-                intent.putExtra("google", userList[position].Google_reviews)
-                intent.putExtra("tripad", userList[position].GMB)
-                intent.putExtra("pinterest", userList[position].Pinterest)
-                intent.putExtra("status",userList[position].Status)
-                context.startActivity(intent)
-            }
-        holder.fbIcon.setOnClickListener{
-            val uriForFB : Uri = Uri.parse("https://facebook.com")
-            val openFB = Intent(Intent.ACTION_VIEW,uriForFB)
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, ClientDetailTaskActivity::class.java)
+            intent.putExtra("nameHotel", userList[position].hotel_name)
+            intent.putExtra("imageCover", userList[position].owner_pic)
+            intent.putExtra("facebook", userList[position].facebook)
+            intent.putExtra("instagram", userList[position].instagram)
+            intent.putExtra("linkedin", userList[position].Linkedin)
+            intent.putExtra("twitter", userList[position].twitter)
+            intent.putExtra("google", userList[position].Google_reviews)
+            intent.putExtra("tripad", userList[position].GMB)
+            intent.putExtra("pinterest", userList[position].Pinterest)
+            intent.putExtra("status", userList[position].Status)
+            context.startActivity(intent)
+        }
+        holder.fbIcon.setOnClickListener {
+            val uriForFB: Uri = Uri.parse("https://facebook.com")
+            val openFB = Intent(Intent.ACTION_VIEW, uriForFB)
             context.startActivity(openFB)
         }
         holder.instaIcon.setOnClickListener {
@@ -115,27 +114,27 @@ class ClientFavouriteTaskAdapter(val context: Context, var userList:List<GetTask
             context.startActivity(forinsta)
         }
         holder.linkIcon.setOnClickListener {
-            val uriForLink : Uri = Uri.parse("https://linkedin.com")
-            context.startActivity(Intent(Intent.ACTION_VIEW,uriForLink))
+            val uriForLink: Uri = Uri.parse("https://linkedin.com")
+            context.startActivity(Intent(Intent.ACTION_VIEW, uriForLink))
         }
-        holder.twitterIcon.setOnClickListener{
-            val uriFortwitter : Uri = Uri.parse("https://twitter.com")
-            val openTwitter = Intent(Intent.ACTION_VIEW,uriFortwitter)
+        holder.twitterIcon.setOnClickListener {
+            val uriFortwitter: Uri = Uri.parse("https://twitter.com")
+            val openTwitter = Intent(Intent.ACTION_VIEW, uriFortwitter)
             context.startActivity(openTwitter)
         }
-        holder.pinterestIcon.setOnClickListener{
-            val uriForPinterest : Uri = Uri.parse("https://pinterest.com")
-            val openPint = Intent(Intent.ACTION_VIEW,uriForPinterest)
+        holder.pinterestIcon.setOnClickListener {
+            val uriForPinterest: Uri = Uri.parse("https://pinterest.com")
+            val openPint = Intent(Intent.ACTION_VIEW, uriForPinterest)
             context.startActivity(openPint)
         }
-        holder.tripadViserIcon.setOnClickListener{
-            val uriForTripod : Uri = Uri.parse("https://tripadvisor.com")
-            val openTripadVisor = Intent(Intent.ACTION_VIEW,uriForTripod)
+        holder.tripadViserIcon.setOnClickListener {
+            val uriForTripod: Uri = Uri.parse("https://tripadvisor.com")
+            val openTripadVisor = Intent(Intent.ACTION_VIEW, uriForTripod)
             context.startActivity(openTripadVisor)
         }
         holder.googleIcon.setOnClickListener {
-            val uriForGogle : Uri = Uri.parse("https://google.com")
-            val openGoogle = Intent(Intent.ACTION_VIEW,uriForGogle)
+            val uriForGogle: Uri = Uri.parse("https://google.com")
+            val openGoogle = Intent(Intent.ACTION_VIEW, uriForGogle)
             context.startActivity(openGoogle)
         }
 

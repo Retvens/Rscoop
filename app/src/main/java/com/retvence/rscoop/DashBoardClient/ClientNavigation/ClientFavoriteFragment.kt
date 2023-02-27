@@ -51,7 +51,7 @@ class ClientFavoriteFragment : Fragment() {
     }
 
     private fun allTaskData() {
-        val getData = RetrofitBuilder.retrofitBuilder.getCTask(owner_id)
+        val getData = RetrofitBuilder.retrofitBuilder.getCFavouriteTask(owner_id)
         getData.enqueue(object : Callback<List<GetTaskData>?> {
             override fun onResponse(
                 call: Call<List<GetTaskData>?>,
