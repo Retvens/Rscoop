@@ -23,6 +23,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ClientTodoFragment : Fragment() {
@@ -67,23 +71,19 @@ class ClientTodoFragment : Fragment() {
         val selectedDates = calendarPicker.getSelectedDates()
 
         if (selectedDates != null) {
-//            fd = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Date(selectedDates.first))
-//            sd = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Date(selectedDates.second))
+            fd = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Date(selectedDates.first))
+            sd = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(Date(selectedDates.second))
 //            val firstDate = DateFormat.getDateInstance().format(Date(selectedDates.first))
 //            val secondDate = DateFormat.getDateInstance().format(Date(selectedDates.second))
 //            Toast.makeText(context,fd.toString() + " to " + sd.toString(),Toast.LENGTH_SHORT).show()
             val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
 
-            val startDate = Calendar.getInstance()
-            startDate.time = Date(selectedDates.first)
+            val startDate = Instant.ofEpochMilli(selectedDates.first).atZone(ZoneId.systemDefault()).toLocalDate()
 
-            val endDate = Calendar.getInstance()
-            endDate.time = Date(selectedDates.second)
 
-            val calendar = startDate.clone() as Calendar
-            while (calendar.timeInMillis <= endDate.timeInMillis) {
-                val formattedDate = dateFormat.format(calendar.time)
-                calendar.add(Calendar.DATE, 1)
+            val endDate = Instant.ofEpochMilli(selectedDates.second).atZone(ZoneId.systemDefault()).toLocalDate()
+
+            val tasksInRange = mutableListOf<GetTaskData>()
 
                 val getData = RetrofitBuilder.retrofitBuilder.getCTask(owner_id)
                 getData.enqueue(object : Callback<List<GetTaskData>?> {
@@ -91,38 +91,37 @@ class ClientTodoFragment : Fragment() {
                         call: Call<List<GetTaskData>?>,
                         response: Response<List<GetTaskData>?>
                     ) {
-                        val response = response.body()!!
 
-                        for (x in response){
-                            if (x.Date == formattedDate){
-                                clientTaskAdapter = ClientTaskAdapter(context!!,response)
-                                clientTaskAdapter.notifyDataSetChanged()
+                        if (response.isSuccessful) {
+                            val responseList = response.body()
+                            if (responseList != null) {
+                                for (task in responseList) {
+                                    val dueDate = dateFormat.parse(task.Date)
+                                    if (dueDate != null) {
+                                        val localDate = LocalDate.parse(task.Date, DateTimeFormatter.ofPattern("dd MMMM yyyy"))
+                                        if (localDate >= startDate && localDate <= endDate) {
+                                            tasksInRange.add(task)
+                                        }
+                                    }
+                                }
+                                clientTaskAdapter = ClientTaskAdapter(context!!, tasksInRange)
                                 recyclerView.adapter = clientTaskAdapter
-                            }else{
-
                             }
-                            continue
+
+                        }else{
+                            Toast.makeText(context,"error", Toast.LENGTH_SHORT)
+                                .show()
                         }
-
-
-
-
 
                     }
 
                     override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
-                        Toast.makeText(context,t.localizedMessage, Toast.LENGTH_SHORT)
-                            .show()
+
                     }
                 })
 
+
             }
-
-
-
-          }
-
-
 
         }
 

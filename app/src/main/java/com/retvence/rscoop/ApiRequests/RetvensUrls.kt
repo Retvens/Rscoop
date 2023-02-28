@@ -79,6 +79,8 @@ interface RetvensUrls {
     ):Call<ResponseTask>
 
 
+
+
     @GET("tasks/{Status}")
     fun completeTask(
         @Path("Status") Status:String
@@ -88,6 +90,7 @@ interface RetvensUrls {
     fun TodayTask(
         @Path("Date") Date:String
     ):Call<List<GetTaskData>>
+
 
     @GET("hotelowner/{owner_id}")
     fun getClient(
@@ -121,5 +124,11 @@ interface RetvensUrls {
     @GET("tasks/{owner_id}/true")
     fun getCFavouriteTask(
         @Path("owner_id") owner_id:String
+    ):Call<List<GetTaskData>>
+
+    @GET("tasks/{owner_id}/{Date}")
+    fun getFilterTask(
+        @Path("owner_id") owner_id: String,
+        @Path("Date") Date: String
     ):Call<List<GetTaskData>>
 }
