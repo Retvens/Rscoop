@@ -62,7 +62,7 @@ class ProfileFragment : Fragment() {
         }
 
         propertyLayout.setOnClickListener {
-            startActivity(Intent(context, AddProperty::class.java))
+            startActivity(Intent(context, com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty::class.java))
         }
 
 

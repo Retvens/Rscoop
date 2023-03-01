@@ -179,8 +179,9 @@ class ClientDashboardFragment : Fragment() {
         })
     }
     private fun getComplteTask() {
+        val owner_id = SharedPreferenceManagerAdmin.getInstance(context!!).user.owner_id.toString()
         val status = "Done"
-        val data = RetrofitBuilder.retrofitBuilder.completeTask(status)
+        val data = RetrofitBuilder.retrofitBuilder.individualCompleteTask(owner_id,status)
 
         data.enqueue(object : Callback<List<GetTaskData>?> {
             override fun onResponse(
@@ -204,8 +205,9 @@ class ClientDashboardFragment : Fragment() {
     }
 
     private fun getPendingTask() {
+        val owner_id = SharedPreferenceManagerAdmin.getInstance(context!!).user.owner_id.toString()
         val status = "Pending"
-        val data = RetrofitBuilder.retrofitBuilder.completeTask(status)
+        val data = RetrofitBuilder.retrofitBuilder.individualCompleteTask(owner_id,status)
 
         data.enqueue(object : Callback<List<GetTaskData>?> {
             override fun onResponse(
@@ -229,7 +231,8 @@ class ClientDashboardFragment : Fragment() {
     }
 
     private fun getTask() {
-        val data = RetrofitBuilder.retrofitBuilder.getTask()
+        val owner_id = SharedPreferenceManagerAdmin.getInstance(context!!).user.owner_id.toString()
+        val data = RetrofitBuilder.retrofitBuilder.getCTask(owner_id)
         data.enqueue(object : Callback<List<GetTaskData>?> {
             override fun onResponse(
                 call: Call<List<GetTaskData>?>,
@@ -242,7 +245,7 @@ class ClientDashboardFragment : Fragment() {
                     val overallTask = response.size.toDouble()
 
 
-                    val send = RetrofitBuilder.retrofitBuilder.completeTask("Done")
+                    val send = RetrofitBuilder.retrofitBuilder.individualCompleteTask(owner_id,"Done")
                     send.enqueue(object : Callback<List<GetTaskData>?> {
                         override fun onResponse(
                             call: Call<List<GetTaskData>?>,

@@ -91,7 +91,13 @@ class AddClient : AppCompatActivity(){
 
         save.setOnClickListener {
 
-            uploadData()
+            if (clientName.text.isNotEmpty() && clientMail.text.isNotEmpty() && clientPassword.text.isNotEmpty() && clientNumber.text.isNotEmpty() && clientLocation.text.isNotEmpty()){
+                uploadData()
+            }else{
+                Toast.makeText(applicationContext,"Enter Proper Details",Toast.LENGTH_LONG).show()
+            }
+
+
         }
 
     }
@@ -108,14 +114,6 @@ class AddClient : AppCompatActivity(){
         val token = "abc123"
         val serviceType = "DM"
 
-
-
-        val namePart = MultipartBody.Part.createFormData("Name", name)
-        val emailPart = MultipartBody.Part.createFormData("Email", email)
-        val passwordPart = MultipartBody.Part.createFormData("Password", password)
-        val phonePart = MultipartBody.Part.createFormData("Phone", phone.toString())
-        val serviceTypePart = MultipartBody.Part.createFormData("Service_type", serviceType)
-        val countryPart = MultipartBody.Part.createFormData("Country", country)
 
        if (coverPhotoPart == null){
            editClientCover.snackbar("Select an Image First")
@@ -146,36 +144,39 @@ class AddClient : AppCompatActivity(){
 
         val inputStream1 = FileInputStream(parcelFileDescriptor1.fileDescriptor)
         val file1 = File(cacheDir,contentResolver.getFileName(profilePhotoPart!!))
-        val outputStream1 = FileOutputStream(file)
+        val outputStream1 = FileOutputStream(file1)
         inputStream1.copyTo(outputStream1)
-        val body1 = UploadRequestBody(file,"image")
+        val body1 = UploadRequestBody(file1,"image")
 
 
+        val send = RetrofitBuilder.retrofitBuilder.uploadData(
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(),name),
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(),email),
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(),password),
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(),phone),
+            MultipartBody.Part.createFormData("Cover_photo", file.name, body),
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(),"DM"),
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(),country),
+            MultipartBody.Part.createFormData("Profile_photo", file1.name, body1)
+        )
 
-//        val send = RetrofitBuilder.retrofitBuilder.uploadData(
-//            name,email,password,123456,
-//            MultipartBody.Part.createFormData("image", file.name, body),
-//            "DM",country,
-//            MultipartBody.Part.createFormData("image", file1.name, body1)
-//        )
-//
-//       send.enqueue(object : Callback<ResponseClient?> {
-//           override fun onResponse(
-//               call: Call<ResponseClient?>,
-//               response: Response<ResponseClient?>
-//           ) {
-//               if (response.isSuccessful){
-//                   val response = response.body()!!
-//                   Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
-//               }else{
-//                   Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
-//               }
-//           }
-//
-//           override fun onFailure(call: Call<ResponseClient?>, t: Throwable) {
-//               Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
-//           }
-//       })
+       send.enqueue(object : Callback<ResponseClient?> {
+           override fun onResponse(
+               call: Call<ResponseClient?>,
+               response: Response<ResponseClient?>
+           ) {
+               if (response.isSuccessful){
+                   val response = response.body()!!
+                   Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+               }else{
+                   Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
+               }
+           }
+
+           override fun onFailure(call: Call<ResponseClient?>, t: Throwable) {
+               Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
+           }
+       })
 
 
     }

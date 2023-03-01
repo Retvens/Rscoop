@@ -124,17 +124,17 @@ class ClientProfileFragment : Fragment() {
 
         val client = RetrofitBuilder.retrofitBuilder.getClient(owner_id)
 
-        client.enqueue(object : Callback<List<ClientProfileData>?> {
+        client.enqueue(object : Callback<ClientProfileData?> {
             override fun onResponse(
-                call: Call<List<ClientProfileData>?>,
-                response: Response<List<ClientProfileData>?>
+                call: Call<ClientProfileData?>,
+                response: Response<ClientProfileData?>
             ) {
+
+                if (response.isSuccessful && view != null){
                 val response = response.body()!!
 
-                if (response != null && view != null){
 
-
-                    val data = response.get(0)
+                    val data  = response
                     name.text = data.Name
                     nameHotel.text = data.Name
                     number.text = data.Phone.toString()
@@ -142,14 +142,16 @@ class ClientProfileFragment : Fragment() {
                     Glide.with(context!!).load(data.Cover_photo).into(cover)
                     Glide.with(context!!).load(data.Profile_photo).into(profile)
 
-                    phone = data.Phone.toString()
-                    mailid = data.Email
+                }else{
+                    Toast.makeText(context,response.code().toString(), Toast.LENGTH_LONG)
+                        .show()
                 }
-
             }
 
-            override fun onFailure(call: Call<List<ClientProfileData>?>, t: Throwable) {
-                Toast.makeText(context,t.localizedMessage,Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<ClientProfileData?>, t: Throwable) {
+                Toast.makeText(context,t.localizedMessage, Toast.LENGTH_LONG)
+                    .show()
+                Log.v("",t.message.toString())
             }
         })
     }

@@ -113,7 +113,7 @@
             android:id="@+id/hotel_name_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hotel Name"
+            android:hint="Hotel Name"
             android:textSize="17dp"
             app:layout_constraintTop_toBottomOf="@id/property_profile"
             android:fontFamily="@font/avenir"
@@ -265,7 +265,7 @@
                         android:id="@+id/property_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/location"
+                        android:hint="Country"
                         android:textSize="18dp"
                         android:background="@null"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -291,7 +291,6 @@
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="10dp"
                     android:paddingVertical="18dp"
-                    android:layout_marginTop="6dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/round_corner"
                     android:layout_gravity="center_vertical"
@@ -301,7 +300,7 @@
                         android:id="@+id/property_starts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Property Starts"
+                        android:hint="Property Stars"
                         android:textSize="18dp"
                         android:background="@null"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -320,10 +319,11 @@
                         android:layout_marginEnd="8dp"/>
 
                 </RelativeLayout>
-
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+
 
         <TextView
             android:id="@+id/social_text"
