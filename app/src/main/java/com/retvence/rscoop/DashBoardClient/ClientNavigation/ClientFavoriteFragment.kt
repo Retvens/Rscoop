@@ -61,7 +61,7 @@ class ClientFavoriteFragment : Fragment() {
                 shimmerFrameLayout.visibility = View.GONE
 
                 val response = response.body()!!
-                if (response != null && view != null){
+                if (view != null){
                     clientTaskAdapter = ClientFavouriteTaskAdapter(context!!,response)
                     clientTaskAdapter.notifyDataSetChanged()
                     recyclerView.adapter = clientTaskAdapter

@@ -1,10 +1,13 @@
 package com.retvence.rscoop.DashBoardClient.ClientNavigation
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
@@ -62,10 +65,7 @@ class ClientTodoFragment : Fragment() {
         tool = view.findViewById(R.id.toolbar)
         (activity as AppCompatActivity?)!!.setSupportActionBar(tool as androidx.appcompat.widget.Toolbar?)
 
-
-
         get = view.findViewById(R.id.get_calendar)
-
         get.setOnClickListener {
 
         val selectedDates = calendarPicker.getSelectedDates()
@@ -92,25 +92,19 @@ class ClientTodoFragment : Fragment() {
                         response: Response<List<GetTaskData>?>
                     ) {
 
-                        if (response.isSuccessful) {
-                            val responseList = response.body()
-                            if (responseList != null) {
-                                for (task in responseList) {
-                                    val dueDate = dateFormat.parse(task.Date)
-                                    if (dueDate != null) {
-                                        val localDate = LocalDate.parse(task.Date, DateTimeFormatter.ofPattern("dd MMMM yyyy"))
-                                        if (localDate >= startDate && localDate <= endDate) {
-                                            tasksInRange.add(task)
-                                        }
+                        val responseList = response.body()
+                        if (responseList != null && view != null) {
+                            for (task in responseList) {
+                                val dueDate = dateFormat.parse(task.Date)
+                                if (dueDate != null) {
+                                    val localDate = LocalDate.parse(task.Date, DateTimeFormatter.ofPattern("dd MMMM yyyy"))
+                                    if (localDate >= startDate && localDate <= endDate) {
+                                        tasksInRange.add(task)
                                     }
                                 }
-                                clientTaskAdapter = ClientTaskAdapter(context!!, tasksInRange)
-                                recyclerView.adapter = clientTaskAdapter
                             }
-
-                        }else{
-                            Toast.makeText(context,"error", Toast.LENGTH_SHORT)
-                                .show()
+                            clientTaskAdapter = ClientTaskAdapter(context!!, tasksInRange)
+                            recyclerView.adapter = clientTaskAdapter
                         }
 
                     }
@@ -142,7 +136,7 @@ class ClientTodoFragment : Fragment() {
                 response: Response<List<GetTaskData>?>
             ) {
                 val response = response.body()!!
-                if (response != null && view != null){
+                if (view != null){
                     clientTaskAdapter = ClientTaskAdapter(context!!,response)
                     clientTaskAdapter.notifyDataSetChanged()
                     recyclerView.adapter = clientTaskAdapter

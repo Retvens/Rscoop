@@ -147,7 +147,7 @@ class ClientDashboardFragment : Fragment() {
 
                 val response = response.body()!!
 
-                if (response != null && view != null){
+                if (view != null){
 
                     hotelAdapter = ClientMiniPropertyAdapter(context!!, response)
                     hotelAdapter.notifyDataSetChanged()
@@ -187,13 +187,11 @@ class ClientDashboardFragment : Fragment() {
                 call: Call<List<GetTaskData>?>,
                 response: Response<List<GetTaskData>?>
             ) {
-                if (response.isSuccessful){
+                if (view != null){
                     val response = response.body()!!
                     complete.setText("${response.size} Tasks")
 
 
-                }else{
-                    Toast.makeText(context,response.code().toString(),Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -212,14 +210,10 @@ class ClientDashboardFragment : Fragment() {
                 call: Call<List<GetTaskData>?>,
                 response: Response<List<GetTaskData>?>
             ) {
-                if (response.isSuccessful){
+                if (view != null){
                     val response = response.body()!!
                     pending.setText("${response.size} Tasks")
 
-
-
-                }else{
-                    Toast.makeText(context,response.code().toString(),Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -235,7 +229,7 @@ class ClientDashboardFragment : Fragment() {
                 call: Call<List<GetTaskData>?>,
                 response: Response<List<GetTaskData>?>
             ) {
-                if (response.isSuccessful){
+                if (view != null){
                     val response = response.body()!!
                     tasks.setText("Have total ${response.size} Task")
 
@@ -248,7 +242,7 @@ class ClientDashboardFragment : Fragment() {
                             call: Call<List<GetTaskData>?>,
                             response: Response<List<GetTaskData>?>
                         ) {
-                            if (response.isSuccessful){
+                            if (view != null){
                                 val response1 = response.body()!!
                                 val progressBar = view!!.findViewById<RoundedProgressBar>(R.id.progressBarCD)
                                 val totalTasks = overallTask
@@ -266,11 +260,7 @@ class ClientDashboardFragment : Fragment() {
                     })
 
 
-                }else{
-                    Toast.makeText(context,response.code().toString(),Toast.LENGTH_LONG).show()
                 }
-
-
             }
 
             override fun onFailure(call: Call<List<GetTaskData>?>, t: Throwable) {
