@@ -131,7 +131,7 @@ class ClientProfileFragment : Fragment() {
             ) {
                 val response = response.body()!!
 
-                if (response != null && view != null){
+                if (view != null){
 
 
                     val data = response.get(0)
@@ -166,7 +166,7 @@ class ClientProfileFragment : Fragment() {
 
                 val response = response.body()!!
 
-                if (response != null && view != null){
+                if (view != null){
 
                 profilePropertyAdapter = ProfilePropertyAdapter(context!!,response)
                 profilePropertyAdapter.notifyDataSetChanged()
