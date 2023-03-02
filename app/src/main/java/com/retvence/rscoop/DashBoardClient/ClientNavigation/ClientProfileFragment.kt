@@ -142,9 +142,6 @@ class ClientProfileFragment : Fragment() {
                     Glide.with(context!!).load(data.Cover_photo).into(cover)
                     Glide.with(context!!).load(data.Profile_photo).into(profile)
 
-                }else{
-                    Toast.makeText(context,response.code().toString(), Toast.LENGTH_LONG)
-                        .show()
                 }
             }
 
