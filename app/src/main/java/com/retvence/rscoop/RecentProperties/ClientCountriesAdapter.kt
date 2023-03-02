@@ -67,6 +67,7 @@ class ClientCountriesAdapter(val context: Context, var userList:List<OwnersData>
             val intent = Intent(context, ClientInfo::class.java)
             intent.putExtra("client_name",data.Name)
             intent.putExtra("client_image",data.Profile_photo)
+            intent.putExtra("client_cover",data.Cover_photo)
             intent.putExtra("client_phone",data.Phone.toString())
             intent.putExtra("client_e",data.Email.toString())
             intent.putExtra("client_address",data.Country)

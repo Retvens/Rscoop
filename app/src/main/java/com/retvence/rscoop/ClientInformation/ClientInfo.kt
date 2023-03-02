@@ -43,10 +43,11 @@ class ClientInfo : AppCompatActivity() {
 
 
         val name = intent.getStringExtra("client_name")
-        val image = intent.getStringExtra("client_image")
+        val profile = intent.getStringExtra("client_image")
         val phone = intent.getStringExtra("client_phone")
         val mail = intent.getStringExtra("client_e")
         val address = intent.getStringExtra("client_address")
+        val cover = intent.getStringExtra("client_cover")
 
         whatsappClient.setOnClickListener {
             val uriForWhat: Uri = Uri.parse("https://whatsapp.com")
@@ -69,8 +70,8 @@ class ClientInfo : AppCompatActivity() {
         client_Name.text = name.toString()
         number.text = phone
         add.text = address
-        Glide.with(baseContext).load(image).into(hotelImage)
-        Glide.with(baseContext).load(image).into(clientImage)
+        Glide.with(baseContext).load(cover).into(hotelImage)
+        Glide.with(baseContext).load(profile).into(clientImage)
 
         //recycler
         recyclerView  = findViewById(R.id.recyclerClientinfo)

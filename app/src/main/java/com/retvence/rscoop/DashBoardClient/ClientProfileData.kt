@@ -6,11 +6,7 @@ data class ClientProfileData(
     val Email: String,
     val Name: String,
     val Password: String,
-    val Phone: Int,
+    val Phone: Number,
     val Profile_photo: String,
-    val Service_type: String,
-    val __v: Int,
-    val _id: String,
-    val owner_id: String,
-    val token: String
+    val Service_type: String
 )

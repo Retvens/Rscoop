@@ -86,16 +86,22 @@ interface RetvensUrls {
         @Path("Status") Status:String
     ):Call<List<GetTaskData>>
 
+    @GET("tasks/{owner_id}/{Status}")
+    fun individualCompleteTask(
+        @Path("owner_id") owner_id: String,
+        @Path("Status") Status:String
+    ):Call<List<GetTaskData>>
+
     @GET("tasks/{Date}")
     fun TodayTask(
         @Path("Date") Date:String
     ):Call<List<GetTaskData>>
 
 
-    @GET("hotelowner/{owner_id}")
+    @GET("hotelowners/{owner_id}")
     fun getClient(
         @Path("owner_id") owner_id: String
-    ): Call<List<ClientProfileData>>
+    ): Call<ClientProfileData>
 
     @GET("property/{owner_id}")
     fun getClientHotel(@Path("owner_id") owner:String): Call<List<RecentPropertiesDataClass>>
@@ -131,4 +137,20 @@ interface RetvensUrls {
         @Path("owner_id") owner_id: String,
         @Path("Date") Date: String
     ):Call<List<GetTaskData>>
+
+
+    @Multipart
+    @POST("property")
+    fun uploadHotelData(
+        @Part("hotel_name") Name: RequestBody,
+        @Part("Google_review") review: RequestBody,
+        @Part("hotel_stars") hotel_stars: RequestBody,
+        @Part("trip_advisor_review") trip_advisor_review: RequestBody,
+        @Part hotel_logo: MultipartBody.Part,
+        @Part("Country") Country: RequestBody,
+        @Part Cover_photo: MultipartBody.Part,
+        @Part("About") About:RequestBody,
+        @Part("owner_id") owner_id:RequestBody,
+        @Part("Address") Address:RequestBody
+    ): Call<ResponseClient>
 }
