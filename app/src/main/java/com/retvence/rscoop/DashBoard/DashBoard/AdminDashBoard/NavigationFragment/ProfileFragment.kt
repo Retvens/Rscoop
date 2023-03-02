@@ -11,6 +11,7 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty
+import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.SelectClient
 import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
 import com.retvens.rscoop.Authentication.LoginActivity
 import com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddClient
@@ -62,7 +63,7 @@ class ProfileFragment : Fragment() {
         }
 
         propertyLayout.setOnClickListener {
-            startActivity(Intent(context, com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty::class.java))
+            startActivity(Intent(context, SelectClient::class.java))
         }
 
 
