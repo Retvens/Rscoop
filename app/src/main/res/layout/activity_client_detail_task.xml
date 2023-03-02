@@ -60,24 +60,6 @@
 
             </androidx.cardview.widget.CardView>
 
-
-            <ImageView
-                android:id="@+id/dtc_calendar_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/forword_arrow"
-                android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@+id/dtc_date_month"
-                android:layout_below="@id/save_property"/>
-            <ImageView
-                android:id="@+id/dtc_calendar_previous"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/back_arrow"
-                android:layout_alignParentStart="true"
-                android:layout_toStartOf="@+id/dtc_date_month"
-                android:layout_below="@id/save_property"/>
-
             <TextView
                 android:id="@+id/dtc_date_month"
                 style="@style/TextAppearance.MaterialComponents.Subtitle2"
