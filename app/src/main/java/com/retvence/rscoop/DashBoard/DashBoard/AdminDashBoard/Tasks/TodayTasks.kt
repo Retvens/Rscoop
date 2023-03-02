@@ -47,7 +47,7 @@ class TodayTasks : Fragment() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val monthName = DateFormatSymbols().months[month]
 
-        currentDate = "$day"+" "+"$monthName"+" "+"$year"
+        currentDate = String.format("%02d %s %04d", day, monthName, year)
 
         getData()
 

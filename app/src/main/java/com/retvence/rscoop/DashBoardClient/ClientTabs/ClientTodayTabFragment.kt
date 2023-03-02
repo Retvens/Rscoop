@@ -58,7 +58,7 @@ class ClientTodayTabFragment : Fragment() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val monthName = DateFormatSymbols().months[month]
 
-        val currentDate = "$day"+" "+"$monthName"+" "+"$year"
+        val currentDate = String.format("%02d %s %04d", day, monthName, year)
 
         val getData = RetrofitBuilder.retrofitBuilder.getTodayTask(owner_id,currentDate)
         getData.enqueue(object : Callback<List<GetTaskData>?> {
