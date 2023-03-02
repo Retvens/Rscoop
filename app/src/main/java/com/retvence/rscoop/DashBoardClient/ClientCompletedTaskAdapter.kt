@@ -110,6 +110,7 @@ class ClientCompletedTaskAdapter(val context: Context, var userList:List<GetTask
                 intent.putExtra("tripad", userList[position].GMB)
                 intent.putExtra("pinterest", userList[position].Pinterest)
                 intent.putExtra("status",userList[position].Status)
+                intent.putExtra("Date",userList[position].Date)
                 context.startActivity(intent)
             }
 
