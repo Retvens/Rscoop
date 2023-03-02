@@ -63,6 +63,7 @@ class RecentAdapter(val context: Context, var userList:List<GetTaskData>):Recycl
             intent.putExtra("google",item.Google_reviews)
             intent.putExtra("tripad",item.GMB)
             intent.putExtra("pinterest",item.Pinterest)
+            intent.putExtra("Date",item.Date)
             context.startActivity(intent)
 
         }

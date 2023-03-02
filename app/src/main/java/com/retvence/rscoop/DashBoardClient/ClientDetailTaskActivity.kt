@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
+import com.retvence.rscoop.DashBoardIgniter.CalendarAdapterFixed
 import com.retvence.rscoop.RecentProperties.CalendarAdapter
 import com.retvence.rscoop.RecentProperties.CalendarDateModel
 import com.retvens.rscoop.R
@@ -22,8 +23,6 @@ import kotlin.collections.ArrayList
 class ClientDetailTaskActivity : AppCompatActivity() {
 
     private lateinit var dtcDateMonth: TextView
-    private lateinit var dtcCalendarNext: ImageView
-    private lateinit var dtcCalendarPrevious: ImageView
     private lateinit var recyclerViewDate: RecyclerView
 
     private lateinit var pending: CardView
@@ -47,7 +46,7 @@ class ClientDetailTaskActivity : AppCompatActivity() {
     private val dates = ArrayList<Date>()
     private val calendarList2 = ArrayList<CalendarDateModel>()
     private val currentDate = Calendar.getInstance(Locale.ENGLISH)
-    lateinit var calendarAdapter: CalendarAdapter
+    lateinit var calendarAdapter: CalendarAdapterFixed
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,11 +90,19 @@ class ClientDetailTaskActivity : AppCompatActivity() {
 
 
         recyclerViewDate = findViewById(R.id.recyclerViewDateDetailClient)
-        dtcCalendarNext = findViewById(R.id.dtc_calendar_next)
-        dtcCalendarPrevious = findViewById(R.id.dtc_calendar_previous)
         dtcDateMonth = findViewById(R.id.dtc_date_month)
         pending = findViewById(R.id.pendingClient)
         done = findViewById(R.id.done_client)
+
+
+        val date = intent.getStringExtra("Date")
+        val inputDate = SimpleDateFormat("dd MMMM yyyy",Locale.ENGLISH)
+        val outputDate = SimpleDateFormat("MMMM yyyy",Locale.ENGLISH)
+
+        val dateFormate = inputDate.parse(date)
+        val dateFinale= outputDate.format(dateFormate)
+
+        dtcDateMonth.text = dateFinale
 
         done.setOnClickListener {
             Toast.makeText(this@ClientDetailTaskActivity,"Done",Toast.LENGTH_SHORT)
@@ -115,36 +122,22 @@ class ClientDetailTaskActivity : AppCompatActivity() {
         }
 
 
-        setUpClickListener()
         setUpAdapter()  // First We Set Adapter
         setUpCalendar() // Now Set Calendar
     }
 
-    private fun setUpClickListener() {
-        dtcCalendarNext.setOnClickListener {
-            cal.add(Calendar.MONTH, 1)
-            setUpCalendar()
-        }
-        dtcCalendarPrevious.setOnClickListener {
-            cal.add(Calendar.MONTH, -1)
-            if (cal == currentDate)
-                setUpCalendar()
-            else
-                setUpCalendar()
-        }
-    }
-    /**
+  /**
      * Setting up adapter for recyclerview
      */
     private fun setUpAdapter() {
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerViewDate)
-        calendarAdapter = CalendarAdapter { calendarDateModel: CalendarDateModel, position: Int ->
+        calendarAdapter = CalendarAdapterFixed { calendarDateModel: CalendarDateModel, position: Int ->
             calendarList2.forEachIndexed { index, calendarModel ->
                 calendarModel.isSelected = index == position
             }
 
-            calendarAdapter.setData(calendarList2)
+            calendarAdapter.setData(calendarList2,"3")
         }
         recyclerViewDate.adapter = calendarAdapter
     }
@@ -153,8 +146,15 @@ class ClientDetailTaskActivity : AppCompatActivity() {
      * Function to setup calendar for every month
      */
     private fun setUpCalendar() {
+        val date = intent.getStringExtra("Date")
+        val inputDate = SimpleDateFormat("dd MMMM yyyy",Locale.ENGLISH)
+        val outputDate = SimpleDateFormat("d",Locale.ENGLISH)
+
+        val dateFormate = inputDate.parse(date)
+        val dateFinale= outputDate.format(dateFormate)
+
         val calendarList = ArrayList<CalendarDateModel>()
-        dtcDateMonth.text = sdf.format(cal.time)
+
         val monthCalendar = cal.clone() as Calendar
         val maxDaysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
         dates.clear()
@@ -166,7 +166,12 @@ class ClientDetailTaskActivity : AppCompatActivity() {
         }
         calendarList2.clear()
         calendarList2.addAll(calendarList)
-        calendarAdapter.setData(calendarList)
+
+        val position = calendarAdapter.setData(calendarList,dateFinale)
+        if (position != RecyclerView.NO_POSITION){
+            recyclerViewDate.scrollToPosition(position)
+
+        }
     }
 
 
