@@ -105,7 +105,7 @@
             android:name=".DashBoard.DashBoard.AdminDashBoard.Profile.AddClient"
             android:exported="false" />
         <activity
-            android:name=".DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty"
+            android:name="com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.AddProperty"
             android:exported="false" />
         <activity
             android:name=".RecentProperties.ViewAllTasks"

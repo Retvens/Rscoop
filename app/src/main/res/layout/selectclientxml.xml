@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    app:cardCornerRadius="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="10dp"
+        tools:ignore="MissingConstraints"
+        android:background="#F3F3F5"
+        >
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/clientImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/png_peop"
+            android:layout_marginStart="15dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:shapeAppearanceOverlay="@style/SpecificCornerRounded"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/clientName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="20sp"
+            android:fontFamily="@font/avenir"
+            android:textStyle="normal"
+            android:textColor="#092C4C"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/clientImage"/>
+
+        <TextView
+            android:id="@+id/NumberOfClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir"
+            android:text="7905845935"
+            android:textColor="#95959D"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@id/clientName"
+            app:layout_constraintTop_toBottomOf="@id/clientName"/>
+
+        <TextView
+            android:id="@+id/addOfClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir"
+            android:text="Mumbai,India"
+            android:textColor="#95959D"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:layout_constraintTop_toBottomOf="@id/NumberOfClient"
+            app:layout_constraintStart_toStartOf="@id/NumberOfClient"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

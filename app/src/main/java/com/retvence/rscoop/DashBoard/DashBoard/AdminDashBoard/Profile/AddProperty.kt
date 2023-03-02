@@ -50,6 +50,7 @@ class AddProperty : AppCompatActivity() {
     private lateinit var propertyStarts: EditText
     private lateinit var hotelName:EditText
     private lateinit var About:EditText
+    private lateinit var id:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_property)
@@ -72,6 +73,7 @@ class AddProperty : AppCompatActivity() {
         propertyStarts = findViewById<EditText>(R.id.property_starts)
         hotelName = findViewById(R.id.hotel_name_text)
 
+        id = intent.getStringExtra("id").toString()
 
 
         editPropertyCover.setOnClickListener {
@@ -89,7 +91,7 @@ class AddProperty : AppCompatActivity() {
         val save = findViewById<TextView>(R.id.save_property)
         save.setOnClickListener {
             if (hotelName.text.isNotEmpty() && googleReviews.text.isNotEmpty() && tripAdvisorReview.text.isNotEmpty() && EnterCompleteAddress.text.isNotEmpty()
-                && location.text.isNotEmpty() && propertyStarts.text.isNotEmpty() && About.text.isNotEmpty()){
+                && location.text.isNotEmpty() && propertyStarts.text.isNotEmpty() && About.text.isNotEmpty() && id.isNotEmpty()){
                 uploadData()
             }else{
                 Toast.makeText(applicationContext,"Enter Proper Details",Toast.LENGTH_LONG).show()
@@ -162,7 +164,7 @@ class AddProperty : AppCompatActivity() {
             RequestBody.create("multipart/form-data".toMediaTypeOrNull(),country),
             MultipartBody.Part.createFormData("Cover_photo", file.name, body),
             RequestBody.create("multipart/form-data".toMediaTypeOrNull(),about),
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(),"qQL-RPghW"),
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(),id),
             RequestBody.create("multipart/form-data".toMediaTypeOrNull(),address)
         )
 
