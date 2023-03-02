@@ -3,10 +3,13 @@ package com.retvence.rscoop.DashBoardIgniter
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
@@ -20,6 +23,7 @@ import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.nio.file.Paths.get
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -27,15 +31,13 @@ import kotlin.collections.ArrayList
 class DetailTaskActivity : AppCompatActivity() {
 
     private lateinit var dtDateMonth: TextView
-    private lateinit var dtCalendarNext: ImageView
-    private lateinit var dtCalendarPrevious: ImageView
 
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
     private val cal = Calendar.getInstance(Locale.ENGLISH)
     private val dates = ArrayList<Date>()
     private val calendarList2 = ArrayList<CalendarDateModel>()
     private val currentDate = Calendar.getInstance(Locale.ENGLISH)
-    lateinit var calendarAdapter: CalendarAdapter
+    lateinit var calendarAdapter: CalendarAdapterFixed
 
     private lateinit var recyclerViewDate: RecyclerView
 
@@ -53,10 +55,18 @@ class DetailTaskActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        dtCalendarPrevious = findViewById(R.id.dt_calendar_previous)
-        dtCalendarNext = findViewById(R.id.dt_calendar_next)
         dtDateMonth = findViewById(R.id.dt_date_month)
         recyclerViewDate = findViewById(R.id.recyclerViewDateDetail)
+
+
+        val date = intent.getStringExtra("Date")
+        val inputDate = SimpleDateFormat("dd MMMM yyyy",Locale.ENGLISH)
+        val outputDate = SimpleDateFormat("MMMM yyyy",Locale.ENGLISH)
+
+        val dateFormate = inputDate.parse(date)
+        val dateFinale= outputDate.format(dateFormate)
+        dtDateMonth.text = dateFinale
+
 
         edit = findViewById(R.id.edit_card)
         done = findViewById(R.id.done)
@@ -118,7 +128,7 @@ class DetailTaskActivity : AppCompatActivity() {
             PendingTask()
         }
 
-        setUpClickListener()
+
         setUpAdapter()  // First We Set Adapter
         setUpCalendar() // Now Set Calendar
 
@@ -169,41 +179,39 @@ class DetailTaskActivity : AppCompatActivity() {
         })
     }
 
-    private fun setUpClickListener() {
-        dtCalendarNext.setOnClickListener {
-            cal.add(Calendar.MONTH, 1)
-            setUpCalendar()
-        }
-        dtCalendarPrevious.setOnClickListener {
-            cal.add(Calendar.MONTH, -1)
-            if (cal == currentDate)
-                setUpCalendar()
-            else
-                setUpCalendar()
-        }
-    }
     /**
      * Setting up adapter for recyclerview
      */
     private fun setUpAdapter() {
+        val date = intent.getStringExtra("Date")
+
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerViewDate)
-        calendarAdapter = CalendarAdapter { calendarDateModel: CalendarDateModel, position: Int ->
+        calendarAdapter = CalendarAdapterFixed { calendarDateModel: CalendarDateModel, position: Int ->
             calendarList2.forEachIndexed { index, calendarModel ->
                 calendarModel.isSelected = index == position
             }
 
-            calendarAdapter.setData(calendarList2)
+           calendarAdapter.setData(calendarList2,"07")
+
         }
         recyclerViewDate.adapter = calendarAdapter
+
     }
 
     /**
-     * Function to setup calendar for every month
+      * Function to setup calendar for every month
      */
-    private fun setUpCalendar() {
+    private fun setUpCalendar()  {
+        val date = intent.getStringExtra("Date")
+        val inputDate = SimpleDateFormat("dd MMMM yyyy",Locale.ENGLISH)
+        val outputDate = SimpleDateFormat("d",Locale.ENGLISH)
+
+        val dateFormate = inputDate.parse(date)
+        val dateFinale= outputDate.format(dateFormate)
+
         val calendarList = ArrayList<CalendarDateModel>()
-        dtDateMonth.text = sdf.format(cal.time)
+
         val monthCalendar = cal.clone() as Calendar
         val maxDaysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
         dates.clear()
@@ -215,8 +223,12 @@ class DetailTaskActivity : AppCompatActivity() {
         }
         calendarList2.clear()
         calendarList2.addAll(calendarList)
-        calendarAdapter.setData(calendarList)
-    }
 
+        val position = calendarAdapter.setData(calendarList,dateFinale)
+        if (position != RecyclerView.NO_POSITION){
+            recyclerViewDate.scrollToPosition(position)
+
+        }
+    }
 
 }
