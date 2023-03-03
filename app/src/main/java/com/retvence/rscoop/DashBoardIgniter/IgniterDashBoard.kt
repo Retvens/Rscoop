@@ -1,17 +1,18 @@
 package com.retvence.rscoop.DashBoardIgniter
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.view.Window
+import android.widget.*
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -73,11 +74,7 @@ class IgniterDashBoard : AppCompatActivity() {
 
         logOut = findViewById(R.id.logout_igniter)
         logOut.setOnClickListener {
-            SharedPreferenceManagerAdmin.getInstance(this).clear()
-            val intent = Intent(this@IgniterDashBoard, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            Toast.makeText(this@IgniterDashBoard,"Logged Out", Toast.LENGTH_SHORT).show()
+           showCustomDialogBox()
         }
 
         shimmer = findViewById(R.id.Egniter_shimmer)
@@ -294,4 +291,30 @@ class IgniterDashBoard : AppCompatActivity() {
             }
         })
     }
+
+    private fun showCustomDialogBox() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.custom_dialoge)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val tvMessage: TextView = dialog.findViewById(R.id.tvMessage)
+        val btnYes: Button = dialog.findViewById(R.id.btnYes)
+        val btnNo: Button = dialog.findViewById(R.id.btnNo)
+
+        btnYes.setOnClickListener {
+            SharedPreferenceManagerAdmin.getInstance(this).clear()
+            val intent = Intent(this@IgniterDashBoard, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            Toast.makeText(this@IgniterDashBoard,"Logged Out", Toast.LENGTH_SHORT).show()
+        }
+
+        btnNo.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
 }
