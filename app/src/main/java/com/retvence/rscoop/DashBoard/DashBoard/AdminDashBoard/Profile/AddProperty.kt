@@ -1,13 +1,17 @@
 package com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile
 
+import android.app.Dialog
 import android.content.ContentResolver
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -103,6 +107,13 @@ class AddProperty : AppCompatActivity() {
 
     private fun uploadData() {
 
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.custom_dialoge_progress)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.show()
+
         val hotelName = hotelName.text.toString()
         val googleReview = googleReviews.text.toString()
         val tripAdvisor = tripAdvisorReview.text.toString()
@@ -175,14 +186,20 @@ class AddProperty : AppCompatActivity() {
             ) {
                 if (response.isSuccessful){
                     val response = response.body()!!
+                    dialog.dismiss()
                     Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+                    val intent = Intent(this@AddProperty,AdminDashBoard::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
                 }else{
                     Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
+                    dialog.dismiss()
                 }
             }
 
             override fun onFailure(call: Call<ResponseClient?>, t: Throwable) {
                 Toast.makeText(applicationContext,t.message.toString(),Toast.LENGTH_LONG).show()
+                dialog.dismiss()
             }
         })
     }
