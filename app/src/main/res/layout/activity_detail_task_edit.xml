@@ -49,6 +49,7 @@
             android:background="@color/sky_blue"
             android:fontFamily="@font/avenir"
             android:paddingHorizontal="25dp"
+            android:paddingVertical="3dp"
             android:text="Save"
             android:textColor="@color/white"
             android:textSize="15sp" />

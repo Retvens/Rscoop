@@ -7,6 +7,7 @@ data class UpdateTaskClass(
     val twitter:String,
     val Pinterest:String,
     val GMB:String,
+    val Date:String,
     val Google_reviews:String
 ) {
 }

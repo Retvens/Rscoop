@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class DetailTaskEditActivity : AppCompatActivity() {
+class DetailTaskEditActivity : AppCompatActivity() , CalendarAdapter.onItemClickListener{
 
     private lateinit var dteDateMonth: TextView
     private lateinit var dteCalendarNext: ImageView
@@ -43,6 +43,8 @@ class DetailTaskEditActivity : AppCompatActivity() {
     private lateinit var tripadvisor:EditText
     private lateinit var twitter:EditText
     lateinit var getId:String
+
+    lateinit var getDate:String
 
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
     private val cal = Calendar.getInstance(Locale.ENGLISH)
@@ -97,6 +99,11 @@ class DetailTaskEditActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+    }
+
+    override fun onItemClickDate(text: String) {
+        getDate = text.toString()
+        Toast.makeText(this,getDate,Toast.LENGTH_SHORT).show()
     }
 
     private fun UpdateTask() {
@@ -159,7 +166,7 @@ class DetailTaskEditActivity : AppCompatActivity() {
         val id = getId
 
         val send =  RetrofitBuilder.retrofitBuilder.updateTask(id, UpdateTaskClass(
-            facebookString,LinkedinString,instagramString,twitterString,pinterestString,GMBString,googleString
+            facebookString,LinkedinString,instagramString,twitterString,pinterestString,GMBString,getDate,googleString
         ))
 
         send.enqueue(object : Callback<ResponseTask?> {
@@ -206,6 +213,7 @@ class DetailTaskEditActivity : AppCompatActivity() {
                 calendarModel.isSelected = index == position
             }
             calendarAdapter.setData(calendarList2)
+            calendarAdapter.setOnItemClickListener(this)
         }
         recyclerEdit.adapter = calendarAdapter
     }
@@ -228,6 +236,7 @@ class DetailTaskEditActivity : AppCompatActivity() {
         calendarList2.clear()
         calendarList2.addAll(calendarList)
         calendarAdapter.setData(calendarList)
+        calendarAdapter.setOnItemClickListener(this)
     }
 
 
