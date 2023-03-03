@@ -1,7 +1,11 @@
 package com.retvence.rscoop.DashBoardIgniter
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -97,6 +101,12 @@ class DetailTaskEditActivity : AppCompatActivity() {
 
     private fun UpdateTask() {
 
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.custom_dialoge_progress)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.show()
 
         val getfacebook = intent.getStringExtra("facebook")
         val getinstagram = intent.getStringExtra("instagram")
@@ -156,14 +166,18 @@ class DetailTaskEditActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ResponseTask?>, response: Response<ResponseTask?>) {
                 if (response.isSuccessful){
                     val response = response.body()!!
+                    dialog.dismiss()
                     Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+                    onBackPressed()
                 }else{
                     Toast.makeText(applicationContext,response.code(),Toast.LENGTH_LONG).show()
+                    dialog.dismiss()
                 }
             }
 
             override fun onFailure(call: Call<ResponseTask?>, t: Throwable) {
                 Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
+                dialog.dismiss()
             }
         })
     }
