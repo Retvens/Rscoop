@@ -1,10 +1,14 @@
 package com.retvens.rscoop.Authentication
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -33,7 +37,6 @@ class LoginActivity : AppCompatActivity() {
     lateinit var loginPassword: EditText
     lateinit var loginEmail: EditText
 
-    lateinit var loadingView: NestedProgress
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +47,6 @@ class LoginActivity : AppCompatActivity() {
         loginEmail = findViewById(R.id.login_email)
 
         signupBtn = findViewById(R.id.signup_btn)
-        loadingView = findViewById(R.id.loading)
         forgetPassBtn = findViewById(R.id.forget_password_btn)
         loginBtn = findViewById(R.id.login_btn)
 
@@ -61,7 +63,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser() {
-        loadingView.visibility = View.VISIBLE
+
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.custom_dialoge_progress)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.show()
+
         val email = loginEmail.text.toString()
         val password = loginPassword.text.toString()
         val login = RetrofitBuilder.retrofitBuilder.userLogin(UserLoginData(email,password,"","",0))
@@ -71,7 +80,7 @@ class LoginActivity : AppCompatActivity() {
                 response: Response<UserLoginData?>
             ) {
                if (response.isSuccessful){
-                   loadingView.visibility = View.GONE
+                   dialog.dismiss()
                     val response = response.body()!!
                     if (response.message.toString() == "Admin login successful"){
                         SharedPreferenceManagerAdmin.getInstance(applicationContext).saveUser(response)
@@ -99,12 +108,12 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }else{
                     Toast.makeText(applicationContext,response.body()!!.message,Toast.LENGTH_LONG).show()
-                   loadingView.visibility = View.GONE
+                   dialog.dismiss()
                 }
             }
             override fun onFailure(call: Call<UserLoginData?>, t: Throwable) {
                 Toast.makeText(applicationContext,t.localizedMessage,Toast.LENGTH_LONG).show()
-                loadingView.visibility = View.GONE
+                dialog.dismiss()
             }
         })
     }

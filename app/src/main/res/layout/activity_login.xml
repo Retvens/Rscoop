@@ -163,20 +163,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_btn"/>
 
-        <com.sn.lib.NestedProgress
-            android:id="@+id/loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:innerAnimInterpolator="linear"
-            app:outerAnimInterpolator="overshoot"
-            app:outerLoaderAnimDuration="1500"
-            android:visibility="gone"
-            tools:visibility="visible"
-            app:layout_constraintTop_toBottomOf="@id/login_password_layout"
-            app:layout_constraintBottom_toTopOf="@id/login_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
