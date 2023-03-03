@@ -1,7 +1,10 @@
 package com.retvence.rscoop.DashBoardClient.ClientNavigation
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -11,10 +14,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.view.Window
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -73,11 +74,7 @@ class ClientProfileFragment : Fragment() {
 
         logOut = view.findViewById(R.id.logOut_client)
         logOut.setOnClickListener {
-            context?.let { it1 -> SharedPreferenceManagerAdmin.getInstance(it1).clear() }
-            val intent = Intent(context, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            Toast.makeText(context,"Logged Out",Toast.LENGTH_SHORT).show()
+            showCustomDialogBox()
         }
 
         name = view.findViewById(R.id.client_Hotel_Name_profile)
@@ -118,6 +115,31 @@ class ClientProfileFragment : Fragment() {
         getClientData()
 
         getHotelData()
+    }
+
+    private fun showCustomDialogBox() {
+        val dialog = Dialog(context!!)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.custom_dialoge)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val tvMessage: TextView = dialog.findViewById(R.id.tvMessage)
+        val btnYes: Button = dialog.findViewById(R.id.btnYes)
+        val btnNo: Button = dialog.findViewById(R.id.btnNo)
+
+        btnYes.setOnClickListener {
+            context?.let { it1 -> SharedPreferenceManagerAdmin.getInstance(it1).clear() }
+            val intent = Intent(context, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            Toast.makeText(context,"Logged Out",Toast.LENGTH_SHORT).show()
+        }
+
+        btnNo.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
     private fun getClientData() {
