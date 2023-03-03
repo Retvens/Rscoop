@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -17,8 +18,8 @@ import com.retvence.rscoop.DashBoardIgniter.IgniterDashBoard
 import com.retvence.rscoop.DataCollections.LoginResponse
 import com.retvence.rscoop.DataCollections.UserLoginData
 import com.retvence.rscoop.SharedStorage.SharedPreferenceManagerAdmin
-import com.retvens.rscoop.OnBoardingScreen.OnBoardingScreen
 import com.retvens.rscoop.R
+import com.sn.lib.NestedProgress
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,6 +33,8 @@ class LoginActivity : AppCompatActivity() {
     lateinit var loginPassword: EditText
     lateinit var loginEmail: EditText
 
+    lateinit var loadingView: NestedProgress
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -41,8 +44,10 @@ class LoginActivity : AppCompatActivity() {
         loginEmail = findViewById(R.id.login_email)
 
         signupBtn = findViewById(R.id.signup_btn)
+        loadingView = findViewById(R.id.loading)
         forgetPassBtn = findViewById(R.id.forget_password_btn)
         loginBtn = findViewById(R.id.login_btn)
+
 
         forgetPassBtn.setOnClickListener {
             startActivity(Intent(this,ForgotPassword::class.java))
@@ -56,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser() {
+        loadingView.visibility = View.VISIBLE
         val email = loginEmail.text.toString()
         val password = loginPassword.text.toString()
         val login = RetrofitBuilder.retrofitBuilder.userLogin(UserLoginData(email,password,"","",0))
@@ -65,6 +71,7 @@ class LoginActivity : AppCompatActivity() {
                 response: Response<UserLoginData?>
             ) {
                if (response.isSuccessful){
+                   loadingView.visibility = View.GONE
                     val response = response.body()!!
                     if (response.message.toString() == "Admin login successful"){
                         SharedPreferenceManagerAdmin.getInstance(applicationContext).saveUser(response)
@@ -92,10 +99,12 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }else{
                     Toast.makeText(applicationContext,response.body()!!.message,Toast.LENGTH_LONG).show()
+                   loadingView.visibility = View.GONE
                 }
             }
             override fun onFailure(call: Call<UserLoginData?>, t: Throwable) {
                 Toast.makeText(applicationContext,t.localizedMessage,Toast.LENGTH_LONG).show()
+                loadingView.visibility = View.GONE
             }
         })
     }

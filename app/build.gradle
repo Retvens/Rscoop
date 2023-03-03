@@ -85,4 +85,7 @@ dependencies {
     implementation 'com.github.MackHartley:RoundedProgressBar:3.0.0'
 
     implementation 'com.github.JoshHalvorson:calendar-date-range-picker:0.2.0'
+
+    //Custom ProgressBar
+    implementation 'com.github.emreesen27:Android-Nested-Progress:v1.0.2'
 }
