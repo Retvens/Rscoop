@@ -160,6 +160,7 @@ class ClientProfileFragment : Fragment() {
                     name.text = data.Name
                     nameHotel.text = data.Name
                     number.text = data.Phone.toString()
+                    phone = data.Phone.toString()
                     country.text = data.Country
                     Glide.with(context!!).load(data.Cover_photo).into(cover)
                     Glide.with(context!!).load(data.Profile_photo).into(profile)

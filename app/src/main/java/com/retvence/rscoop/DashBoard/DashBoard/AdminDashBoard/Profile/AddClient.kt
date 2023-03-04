@@ -1,24 +1,31 @@
 package com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.ContentResolver
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.OpenableColumns
+import android.text.InputFilter
 import android.util.Base64
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
+import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.SelectClient
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.UploadRequestBody
 import com.retvence.rscoop.DataCollections.OwnersData
 import com.retvence.rscoop.DataCollections.PostOwner
@@ -68,6 +75,11 @@ class AddClient : AppCompatActivity(){
          clientLocation = findViewById<EditText>(R.id.client_location)
          clientName = findViewById<EditText>(R.id.client_name_text)
 
+        val next = findViewById<LinearLayout>(R.id.nextActivity)
+
+        next.setOnClickListener {
+            startActivity(Intent(this,SelectClient::class.java))
+        }
 
         editClientCover.setOnClickListener {
             pickImageFromGallery()
@@ -105,6 +117,13 @@ class AddClient : AppCompatActivity(){
 //
 
     private fun uploadData() {
+
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.custom_dialoge_progress)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.show()
 
         val name = clientName.text.toString().trim()
         val email = clientMail.text.toString().trim()
@@ -167,14 +186,21 @@ class AddClient : AppCompatActivity(){
            ) {
                if (response.isSuccessful){
                    val response = response.body()!!
+                   dialog.dismiss()
                    Toast.makeText(applicationContext,response.message,Toast.LENGTH_LONG).show()
+                   val intent = Intent(this@AddClient,AdminDashBoard::class.java)
+                   intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                   startActivity(intent)
+
                }else{
                    Toast.makeText(applicationContext,response.code().toString(),Toast.LENGTH_LONG).show()
+                   dialog.dismiss()
                }
            }
 
            override fun onFailure(call: Call<ResponseClient?>, t: Throwable) {
                Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
+               dialog.dismiss()
            }
        })
 

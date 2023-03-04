@@ -159,6 +159,7 @@
 
                     <EditText
                         android:id="@+id/property_google"
+                        android:inputType="numberDecimal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="Enter Google total reviews"
@@ -194,6 +195,7 @@
 
                     <EditText
                         android:id="@+id/property_trip"
+                        android:inputType="numberDecimal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="Enter trip adviser total reviews"
@@ -297,7 +299,9 @@
                     android:gravity="center_vertical">
 
                     <EditText
+
                         android:id="@+id/property_starts"
+                        android:inputType="numberDecimal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="Property Stars"

@@ -58,7 +58,7 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.OnItemClic
     private lateinit var searchProp: EditText
 
     lateinit var hotelName : String
-    lateinit var hotelDate : String
+    var hotelDate : String = ""
     lateinit var hotelImage :String
     lateinit var hotelId: String
     lateinit var ownerId:String
@@ -107,7 +107,13 @@ class AddNewTaskActivity : AppCompatActivity(), SelectPropertyAdapter.OnItemClic
         }
 
         findViewById<CardView>(R.id.save_property).setOnClickListener {
-            createData()
+            if (fbPost.text.isNotEmpty() && linkedinPost.text.isNotEmpty() && instaPost.text.isNotEmpty() && twitterPost.text.isNotEmpty()
+                && pinterestPost.text.isNotEmpty() && tripadPost.text.isNotEmpty() && googlePost.text.isNotEmpty() && hotelDate.isNotEmpty()){
+                createData()
+            }else{
+                Toast.makeText(applicationContext,"Enter Task Properly",Toast.LENGTH_LONG).show()
+            }
+
         }
         getHotelData()
         setUpClickListener()

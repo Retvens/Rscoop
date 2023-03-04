@@ -151,6 +151,8 @@ interface RetvensUrls {
         @Part Cover_photo: MultipartBody.Part,
         @Part("About") About:RequestBody,
         @Part("owner_id") owner_id:RequestBody,
-        @Part("Address") Address:RequestBody
+        @Part("Address") Address:RequestBody,
+        @Part("hotel_location[Latitude]") latitude:RequestBody,
+        @Part("hotel_location[Longitude]") longitude:RequestBody
     ): Call<ResponseClient>
 }

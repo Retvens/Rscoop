@@ -43,8 +43,7 @@ class DetailTaskEditActivity : AppCompatActivity() , CalendarAdapter.onItemClick
     private lateinit var tripadvisor:EditText
     private lateinit var twitter:EditText
     lateinit var getId:String
-
-    lateinit var getDate:String
+    var getDate:String = ""
 
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
     private val cal = Calendar.getInstance(Locale.ENGLISH)
@@ -75,7 +74,15 @@ class DetailTaskEditActivity : AppCompatActivity() , CalendarAdapter.onItemClick
         val save = findViewById<TextView>(R.id.updateSave)
 
         save.setOnClickListener {
-            UpdateTask()
+
+            if (facebook.text.isNotEmpty() && google.text.isNotEmpty() && instagram.text.isNotEmpty() && linkedin.text.isNotEmpty() && pinterest.text.isNotEmpty() &&
+                    tripadvisor.text.isNotEmpty() && twitter.text.isNotEmpty() && getDate.isNotEmpty()){
+                UpdateTask()
+            }else{
+                Toast.makeText(applicationContext,"Enter Something",Toast.LENGTH_LONG).show()
+            }
+
+
         }
         getId = intent.getStringExtra("id").toString()
         val img = intent.getStringExtra("image")

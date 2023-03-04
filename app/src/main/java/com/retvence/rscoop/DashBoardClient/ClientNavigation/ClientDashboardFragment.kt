@@ -37,6 +37,7 @@ import com.retvens.rscoop.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Double.NaN
 import java.text.DateFormatSymbols
 import java.util.*
 
@@ -252,7 +253,13 @@ class ClientDashboardFragment : Fragment() {
                                 val completedTasks = response1.size.toDouble()
                                 val pendingTasks = totalTasks - completedTasks
                                 val pendingPercentage = (pendingTasks.toDouble() / totalTasks.toDouble()) * 100.0
-                                progressBar.setProgressPercentage(pendingPercentage)
+
+                                if (pendingPercentage.toString() != "NaN"){
+                                    progressBar.setProgressPercentage(pendingPercentage)
+                                }else{
+                                    Toast.makeText(context,"Noting to show",Toast.LENGTH_LONG).show()
+                                }
+
 
                             }
                         }

@@ -1,10 +1,17 @@
 package com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile
 
+import android.Manifest
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.app.Dialog
 import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,11 +24,12 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.motion.widget.Debug.getLocation
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.Gson
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
-import com.retvence.rscoop.DataCollections.HotelsData
 import com.retvence.rscoop.DataCollections.HotelsLocation
 import com.retvence.rscoop.DataCollections.ResponseClient
 import com.retvens.rscoop.R
@@ -37,6 +45,11 @@ import java.io.FileOutputStream
 
 class AddProperty : AppCompatActivity() {
 
+    companion object {
+        private const val PERMISSIONS_REQUEST_LOCATION = 100
+    }
+
+    private lateinit var locationManager: LocationManager
     private lateinit var hotelCover:ImageView
     private lateinit var hotelProfile:ImageView
     private val IMAGE_PICK_CODE = 1000
@@ -55,10 +68,25 @@ class AddProperty : AppCompatActivity() {
     private lateinit var hotelName:EditText
     private lateinit var About:EditText
     private lateinit var id:String
+    private  var latitude:Double = 0.0
+    private var longitude:Double = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_property)
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted, request it
+            ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                PERMISSIONS_REQUEST_LOCATION)
+        } else {
+            // Permission already granted, continue
+            getLocation()
+        }
+
+        locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0f, locationListener)
 
         val backbtn = findViewById<ImageView>(R.id.addproperty_back_btn)
         backbtn.setOnClickListener {
@@ -155,16 +183,8 @@ class AddProperty : AppCompatActivity() {
         inputStream1.copyTo(outputStream1)
         val body1 = UploadRequestBody(file1,"image")
 
-        val hotelLocations = listOf(HotelsLocation(Latitude = "12.3456", Longitude = "23.4567"))
+        val location = HotelsLocation(latitude.toString(),longitude.toString())
 
-        val locationParts = mutableListOf<MultipartBody.Part>()
-
-        hotelLocations.forEach { location ->
-            val json = Gson().toJson(location)
-            val requestBody = RequestBody.create("application/json".toMediaTypeOrNull(), json)
-            val part = MultipartBody.Part.createFormData("hotel_location[]", null, requestBody)
-            locationParts.add(part)
-        }
 
         val send = RetrofitBuilder.retrofitBuilder.uploadHotelData(
             RequestBody.create("multipart/form-data".toMediaTypeOrNull(),hotelName),
@@ -176,7 +196,9 @@ class AddProperty : AppCompatActivity() {
             MultipartBody.Part.createFormData("Cover_photo", file.name, body),
             RequestBody.create("multipart/form-data".toMediaTypeOrNull(),about),
             RequestBody.create("multipart/form-data".toMediaTypeOrNull(),id),
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(),address)
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(),address),
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(),location.Latitude),
+            RequestBody.create("multipart/form-data".toMediaTypeOrNull(),location.Longitude)
         )
 
         send.enqueue(object : Callback<ResponseClient?> {
@@ -250,5 +272,15 @@ class AddProperty : AppCompatActivity() {
                 snackbar.dismiss()
             }
         }.show()
+    }
+
+    private val locationListener: LocationListener = object : LocationListener {
+        override fun onLocationChanged(location: Location) {
+            latitude = location.latitude
+            longitude = location.longitude
+            // Use the latitude and longitude values for location-based tasks
+
+            Toast.makeText(applicationContext,"$latitude  $longitude",Toast.LENGTH_LONG).show()
+        }
     }
 }
