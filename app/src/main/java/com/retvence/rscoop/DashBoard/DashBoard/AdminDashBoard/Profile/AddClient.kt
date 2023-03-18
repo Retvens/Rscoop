@@ -1,45 +1,33 @@
 package com.retvens.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.ContentResolver
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.OpenableColumns
-import android.text.InputFilter
-import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.view.Window
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.retvence.rscoop.ApiRequests.RetrofitBuilder
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.SelectClient
 import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.Profile.UploadRequestBody
-import com.retvence.rscoop.DataCollections.OwnersData
-import com.retvence.rscoop.DataCollections.PostOwner
 import com.retvence.rscoop.DataCollections.ResponseClient
 import com.retvens.rscoop.R
-import okhttp3.MediaType
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -50,10 +38,14 @@ class AddClient : AppCompatActivity(){
     private lateinit var clientProfile:ImageView
     private val IMAGE_PICK_CODE = 101
     private val PERMISSION_CODE = 1001
+    private val COVER_IMAGE_PICK_CODE = 1
+    private val PROFILE_IMAGE_PICK_CODE = 2
+    private val REQUEST_CODE_IMAGE_CROPPER = 1002
     private  var value:Boolean = false
     private  var value1:Boolean = false
     private var profilePhotoPart: Uri? = null
     private  var coverPhotoPart:Uri?= null
+    private val selectedImages = mutableListOf<Uri>()
     private lateinit var editClientCover:ImageView
     private lateinit var editClientProfile:ImageView
     private lateinit var clientNumber:EditText
@@ -82,6 +74,9 @@ class AddClient : AppCompatActivity(){
         }
 
         editClientCover.setOnClickListener {
+
+
+
             pickImageFromGallery()
             value = true
             value1 = false
@@ -145,7 +140,7 @@ class AddClient : AppCompatActivity(){
 
 
         val inputStream = FileInputStream(parcelFileDescriptor.fileDescriptor)
-        val file = File(cacheDir,contentResolver.getFileName(coverPhotoPart!!))
+        val file = File(cacheDir, "cropped_${contentResolver.getFileName(coverPhotoPart!!)}.jpg")
         val outputStream = FileOutputStream(file)
         inputStream.copyTo(outputStream)
         val body = UploadRequestBody(file,"image")
@@ -162,7 +157,7 @@ class AddClient : AppCompatActivity(){
 
 
         val inputStream1 = FileInputStream(parcelFileDescriptor1.fileDescriptor)
-        val file1 = File(cacheDir,contentResolver.getFileName(profilePhotoPart!!))
+        val file1 = File(cacheDir, contentResolver.getFileName(profilePhotoPart!!) + ".jpg")
         val outputStream1 = FileOutputStream(file1)
         inputStream1.copyTo(outputStream1)
         val body1 = UploadRequestBody(file1,"image")
@@ -218,22 +213,39 @@ class AddClient : AppCompatActivity(){
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == IMAGE_PICK_CODE && resultCode == Activity.RESULT_OK) {
-
-
-            if (value == true){
-
-                coverPhotoPart = data?.data
-                clientCover.setImageURI(coverPhotoPart)
-
+        if (requestCode == IMAGE_PICK_CODE && resultCode == RESULT_OK) {
+            val uri = data?.data
+            if (uri != null) {
+                val options = CropImage.activity(uri)
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                if (value == true) {
+                    options.setAspectRatio(16, 9)
+                        .start(this)
+                } else if (value1 == true) {
+                    options.setAspectRatio(1, 1)
+                        .setCropShape(CropImageView.CropShape.OVAL)
+                        .start(this)
+                }
             }
-            else if (value1 == true){
-               profilePhotoPart = data?.data
-                clientProfile.setImageURI(profilePhotoPart)
+        } else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            val result = CropImage.getActivityResult(data)
+            if (resultCode == RESULT_OK) {
+                val croppedUri = result.uri
+                if (value == true) {
+                    clientCover.setImageURI(croppedUri)
+                    coverPhotoPart = croppedUri // save the URI of the cropped image
+                } else if (value1 == true) {
+                    clientProfile.setImageURI(croppedUri)
+                    profilePhotoPart = croppedUri // save the URI of the cropped image
+                }
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                val error = result.error
+                Log.e("ImageCropper", "Error cropping image: ${error.message}", error)
             }
-
+            // reset the flags after handling the result
+            value = false
+            value1 = false
         }
-
     }
 
     private fun ContentResolver.getFileName(coverPhotoPart: Uri): String {
@@ -256,6 +268,7 @@ class AddClient : AppCompatActivity(){
             }
         }.show()
     }
+
 }
 
 

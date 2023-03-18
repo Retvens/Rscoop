@@ -33,6 +33,8 @@ import com.retvence.rscoop.DashBoard.DashBoard.AdminDashBoard.AdminDashBoard
 import com.retvence.rscoop.DataCollections.HotelsLocation
 import com.retvence.rscoop.DataCollections.ResponseClient
 import com.retvens.rscoop.R
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -161,7 +163,7 @@ class AddProperty : AppCompatActivity() {
 
 
         val inputStream = FileInputStream(parcelFileDescriptor.fileDescriptor)
-        val file = File(cacheDir,contentResolver.getFileName(coverPhotoPart!!))
+        val file =  File(cacheDir, "cropped_${contentResolver.getFileName(coverPhotoPart!!)}.jpg")
         val outputStream = FileOutputStream(file)
         inputStream.copyTo(outputStream)
         val body = UploadRequestBody(file,"image")
@@ -178,7 +180,7 @@ class AddProperty : AppCompatActivity() {
 
 
         val inputStream1 = FileInputStream(parcelFileDescriptor1.fileDescriptor)
-        val file1 = File(cacheDir,contentResolver.getFileName(profilePhotoPart!!))
+        val file1 = File(cacheDir, contentResolver.getFileName(profilePhotoPart!!) + ".jpg")
         val outputStream1 = FileOutputStream(file1)
         inputStream1.copyTo(outputStream1)
         val body1 = UploadRequestBody(file1,"image")
@@ -236,19 +238,37 @@ class AddProperty : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_PICK_CODE && resultCode == RESULT_OK) {
-
-
-            if (value == true){
-
-                hotelCover.setImageURI(data?.data)
-                coverPhotoPart = data?.data
-
+            val uri = data?.data
+            if (uri != null) {
+                val options = CropImage.activity(uri)
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                if (value == true) {
+                    options.setAspectRatio(16, 9)
+                        .start(this)
+                } else if (value1 == true) {
+                    options.setAspectRatio(1, 1)
+                        .setCropShape(CropImageView.CropShape.OVAL)
+                        .start(this)
+                }
             }
-            else if (value1 == true){
-                hotelProfile.setImageURI(data?.data)
-                profilePhotoPart = data?.data
+        } else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            val result = CropImage.getActivityResult(data)
+            if (resultCode == RESULT_OK) {
+                val croppedUri = result.uri
+                if (value == true) {
+                    hotelCover.setImageURI(croppedUri)
+                    coverPhotoPart = croppedUri // save the URI of the cropped image
+                } else if (value1 == true) {
+                    hotelProfile.setImageURI(croppedUri)
+                    profilePhotoPart = croppedUri // save the URI of the cropped image
+                }
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                val error = result.error
+                Log.e("ImageCropper", "Error cropping image: ${error.message}", error)
             }
-
+            // reset the flags after handling the result
+            value = false
+            value1 = false
         }
     }
 

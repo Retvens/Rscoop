@@ -103,6 +103,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC7qNJBepL9gkSOmXO2YQcD_vNKXskTtBQ" />
 
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
         <activity
             android:name=".DashBoard.DashBoard.AdminDashBoard.Profile.AddClient"
             android:exported="false" />
